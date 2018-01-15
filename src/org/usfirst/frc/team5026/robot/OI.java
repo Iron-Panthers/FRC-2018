@@ -1,6 +1,11 @@
 package org.usfirst.frc.team5026.robot;
 
+import org.usfirst.frc.team5026.robot.commands.IntakeCommand;
+import org.usfirst.frc.team5026.robot.commands.OuttakeCommand;
+
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -8,10 +13,16 @@ import edu.wpi.first.wpilibj.Joystick;
  */
 public class OI {
 	public Joystick driveStick;
+	public Button stickBtnOne;
+	public Button stickBtnTwo;
 	public OI(){
 		driveStick = new Joystick(RobotMap.DRIVE_JOYSTICK);
+		stickBtnOne = new JoystickButton(driveStick,1);
+		stickBtnTwo = new JoystickButton(driveStick,2);
 	}
 	public void mapButtons(){
+		stickBtnOne.whileHeld(new IntakeCommand());
+		stickBtnTwo.whenPressed(new OuttakeCommand());
 	}
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
