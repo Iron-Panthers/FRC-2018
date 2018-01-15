@@ -2,15 +2,14 @@ package org.usfirst.frc.team5026.robot.commands;
 
 import org.usfirst.frc.team5026.robot.Robot;
 
-import edu.wpi.first.wpilibj.command.TimedCommand;
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class OuttakeCommand extends TimedCommand {
+public class OuttakeCommand extends Command {
 
-    public OuttakeCommand(double timeout) {
-        super(timeout);
+    public OuttakeCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -34,4 +33,10 @@ public class OuttakeCommand extends TimedCommand {
     protected void interrupted() {
     	Robot.intake.stop();
     }
+
+	@Override
+	protected boolean isFinished() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
