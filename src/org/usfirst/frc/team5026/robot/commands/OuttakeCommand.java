@@ -2,15 +2,15 @@ package org.usfirst.frc.team5026.robot.commands;
 
 import org.usfirst.frc.team5026.robot.Robot;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.TimedCommand;
 
 /**
  *
  */
-public class OuttakeCommand extends Command {
+public class OuttakeCommand extends TimedCommand {
 
-    public OuttakeCommand() {
-    	requires(Robot.intake);
+    public OuttakeCommand(double timeout) {
+        super(timeout);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -24,12 +24,7 @@ public class OuttakeCommand extends Command {
     	Robot.intake.outtake();
     }
 
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-        return false;
-    }
-
-    // Called once after isFinished returns true
+    // Called once after timeout
     protected void end() {
     	Robot.intake.stop();
     }

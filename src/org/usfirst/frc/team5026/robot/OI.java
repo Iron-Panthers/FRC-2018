@@ -22,7 +22,7 @@ public class OI {
 	}
 	public void mapButtons(){
 		stickBtnOne.whileHeld(new IntakeCommand());
-		stickBtnTwo.whenPressed(new OuttakeCommand());
+		stickBtnTwo.whenPressed(new OuttakeCommand(Constants.OUTTAKE_TIME));
 	}
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a

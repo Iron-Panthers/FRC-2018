@@ -7,6 +7,7 @@ public class Constants {
 	//Intake and Outtake
 	public static final double INTAKE_POWER = 0.2;
 	public static final double OUTTAKE_POWER = -0.2;
+	public static final double OUTTAKE_TIME = 1;
 	public Constants(){
 	}
 }
