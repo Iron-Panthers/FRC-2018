@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class IntakeSubsystem extends Subsystem {
-	Talon motor;
+	public Talon motor;
 	public IntakeSubsystem() {
 		motor = Robot.hardware.intakeM;
 	}
