@@ -6,7 +6,7 @@ public class Hardware {
 	Talon rightM;
 	Talon leftM;
 	public Hardware(){
-		rightM = new Talon(Constants.RIGHT_PORT);
-		leftM = new Talon(Constants.LEFT_PORT);
+		rightM = new Talon(RobotMap.DRIVE_RIGHT_MOTOR);
+		leftM = new Talon(RobotMap.DRIVE_LEFT_MOTOR);
 	}
 }
