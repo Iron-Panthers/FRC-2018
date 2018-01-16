@@ -5,5 +5,6 @@ public class Constants {
 	public static final int LEFT_PORT = 1;
 	public static final int FULLSPEED = 1;
 	public Constants(){
+		
 	}
 }
