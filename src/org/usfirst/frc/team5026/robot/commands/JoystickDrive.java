@@ -9,7 +9,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class JoystickDrive extends Command {
-	//public double k;
+	public double x;
+	public double y;
     public JoystickDrive() {
     	requires(Robot.drive);
         // Use requires() here to declare subsystem dependencies
@@ -22,13 +23,11 @@ public class JoystickDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.drive.useArcadeDrive(Robot.oi.driveStick.getX(), Robot.oi.driveStick.getY());
-    	SmartDashboard.putNumber("Joystick X Axis", Robot.oi.driveStick.getX());
-    	SmartDashboard.putNumber("Joystick Y Axis", Robot.oi.driveStick.getY());
-//    	Robot.drive.useArcadeDrive;
-//    	k = Robot.oi.stick.getY()/Robot.oi.stick.getX();
-//    	Robot.drive.setLeftMotor(Robot.oi.stick.getY() + Robot.oi.stick.getX());
-//    	Robot.drive.setRightMotor(Robot.oi.stick.getY() - Robot.oi.stick.getX());
+    	x = Robot.oi.driveStick.getX();
+    	y = Robot.oi.driveStick.getY();
+    	Robot.drive.useArcadeDrive(x, y);
+    	SmartDashboard.putNumber("Joystick X Axis", x);
+    	SmartDashboard.putNumber("Joystick Y Axis", y);
     }
 
     // Make this return true when this Command no longer needs to run execute()

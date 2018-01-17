@@ -6,6 +6,7 @@ public class Constants {
 	public static final int FULLSPEED = 1;
 	//Intake and Outtake
 	public static final boolean IS_INTAKE_INVERTED = true;
+	public static final boolean IS_RIGHT_INVERTED = true;
 	public static final double INTAKE_POWER = 0.2;
 	public static final double OUTTAKE_POWER = -0.2;
 	public Constants(){
