@@ -41,7 +41,7 @@ public class Robot extends IterativeRobot {
 		String gameData = DriverStation.getInstance().getGameSpecificMessage();
 		oi.mapButtons();
 		SmartDashboard.putData("Auto mode", chooser);
-		SmartDashboard.getNumber("IntakeSpeed", 0.2);
+		SmartDashboard.getNumber("Intake Speed", Constants.INTAKE_POWER);
 	}
 
 	/**
