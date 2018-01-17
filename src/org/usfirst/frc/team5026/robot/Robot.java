@@ -26,8 +26,7 @@ public class Robot extends IterativeRobot {
 	public static Drive drive;
 	public static IntakeSubsystem intake;
 	Command autonomousCommand;
-	SendableChooser<Command> chooser = new SendableChooser<>();
-
+	SendableChooser<Command> chooser;
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -40,6 +39,7 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
+		SmartDashboard.getNumber("IntakeSpeed", 0.2);
 		String gameData = DriverStation.getInstance().getGameSpecificMessage();
 		oi.mapButtons();
 	}

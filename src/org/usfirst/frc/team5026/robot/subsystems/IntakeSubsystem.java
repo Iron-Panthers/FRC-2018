@@ -14,11 +14,11 @@ public class IntakeSubsystem extends Subsystem {
 	public IntakeSubsystem() {
 		motor = Robot.hardware.intakeM;
 	}
-	public void intake() {
-		motor.set(Constants.INTAKE_POWER);
+	public void intake(double in) {
+		motor.set(in);
 	}
-	public void outtake() {
-		motor.set(Constants.OUTTAKE_POWER);
+	public void outtake(double out) {
+		motor.set(out);
 	}
 	public void stop() {
 		motor.set(0);
