@@ -1,6 +1,6 @@
 package org.usfirst.frc.team5026.robot.subsystems;
+import org.usfirst.frc.team5026.robot.Constants;
 import org.usfirst.frc.team5026.robot.commands.JoystickDrive;
-import org.usfirst.frc.team5026.robot.util.Constants;
 
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
