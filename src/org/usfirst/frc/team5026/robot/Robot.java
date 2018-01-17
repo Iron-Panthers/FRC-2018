@@ -38,10 +38,10 @@ public class Robot extends IterativeRobot {
 		intake = new IntakeSubsystem();
 		oi = new OI();
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", chooser);
-		SmartDashboard.getNumber("IntakeSpeed", 0.2);
 		String gameData = DriverStation.getInstance().getGameSpecificMessage();
 		oi.mapButtons();
+		SmartDashboard.putData("Auto mode", chooser);
+		SmartDashboard.getNumber("IntakeSpeed", 0.2);
 	}
 
 	/**
