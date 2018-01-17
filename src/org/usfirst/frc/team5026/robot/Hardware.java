@@ -8,5 +8,6 @@ public class Hardware {
 	public Hardware(){
 		rightM = new Talon(RobotMap.DRIVE_RIGHT_MOTOR);
 		leftM = new Talon(RobotMap.DRIVE_LEFT_MOTOR);
+		rightM.setInverted(true);
 	}
 }
