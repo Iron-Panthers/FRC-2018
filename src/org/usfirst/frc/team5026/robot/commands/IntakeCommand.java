@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5026.robot.commands;
 
+import org.usfirst.frc.team5026.robot.Constants;
 import org.usfirst.frc.team5026.robot.Robot;
 import org.usfirst.frc.team5026.robot.RobotMap;
 
@@ -23,9 +24,10 @@ public class IntakeCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intake.intake();
+    	SmartDashboard.putNumber("Intake Speed", Constants.INTAKE_POWER);
     	SmartDashboard.putNumber("Intake Voltage", Robot.intake.motor.get() * Robot.hardware.pdp.getVoltage());
     	SmartDashboard.putNumber("Intake Current", Robot.hardware.pdp.getCurrent(RobotMap.INTAKE_PDP_PORT));
+    	SmartDashboard.putNumber("in", 0.2);
     }
 
     // Make this return true when this Command no longer needs to run execute()

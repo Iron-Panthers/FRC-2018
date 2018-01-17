@@ -1,6 +1,5 @@
 package org.usfirst.frc.team5026.robot.subsystems;
 
-import org.usfirst.frc.team5026.robot.Constants;
 import org.usfirst.frc.team5026.robot.Robot;
 
 import edu.wpi.first.wpilibj.Talon;
@@ -14,11 +13,11 @@ public class IntakeSubsystem extends Subsystem {
 	public IntakeSubsystem() {
 		motor = Robot.hardware.intakeM;
 	}
-	public void intake() {
-		motor.set(Constants.INTAKE_POWER);
+	public void intake(double speed) {
+		motor.set(speed);
 	}
-	public void outtake() {
-		motor.set(Constants.OUTTAKE_POWER);
+	public void outtake(double speed) {
+		motor.set(speed);
 	}
 	public void stop() {
 		motor.set(0);
