@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5026.robot.commands;
 
+import org.usfirst.frc.team5026.robot.Constants;
 import org.usfirst.frc.team5026.robot.Robot;
 import org.usfirst.frc.team5026.robot.RobotMap;
 
@@ -22,7 +23,7 @@ public class OuttakeCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intake.outtake(0.2);
+    	Robot.intake.outtake(Constants.OUTTAKE_POWER);
     	SmartDashboard.putNumber("Outtake Voltage", Robot.intake.motor.get() * Robot.hardware.pdp.getVoltage());
     	SmartDashboard.putNumber("Outtake Current", Robot.hardware.pdp.getCurrent(RobotMap.INTAKE_PDP_PORT));
     	SmartDashboard.putNumber("in", 0.2);
