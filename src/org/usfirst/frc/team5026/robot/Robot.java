@@ -26,7 +26,7 @@ public class Robot extends IterativeRobot {
 	public static Drive drive;
 	public static IntakeSubsystem intake;
 	Command autonomousCommand;
-	SendableChooser<Command> chooser;
+	SendableChooser<Command> chooser = new SendableChooser<>();
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.

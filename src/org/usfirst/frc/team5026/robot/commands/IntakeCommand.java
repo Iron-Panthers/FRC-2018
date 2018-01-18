@@ -24,7 +24,7 @@ public class IntakeCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intake.intake();
+    	Robot.intake.intake(Constants.INTAKE_POWER);
     	SmartDashboard.putNumber("Intake Speed", Constants.INTAKE_POWER);
     	SmartDashboard.putNumber("Intake Voltage", Robot.intake.motor.get() * Robot.hardware.pdp.getVoltage());
     	SmartDashboard.putNumber("Intake Current", Robot.hardware.pdp.getCurrent(RobotMap.INTAKE_PDP_PORT));
