@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class IntakeCommand extends Command {
-
     public IntakeCommand() {
     	requires(Robot.intake);
         // Use requires() here to declare subsystem dependencies
@@ -24,10 +23,13 @@ public class IntakeCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intake.intake(Constants.INTAKE_POWER);
+    	Robot.intake.intake(Robot.oi.driveStick.getY());
     	SmartDashboard.putNumber("Intake Speed", Constants.INTAKE_POWER);
-    	SmartDashboard.putNumber("Intake Voltage", Robot.intake.motor.get() * Robot.hardware.pdp.getVoltage());
-    	SmartDashboard.putNumber("Intake Current", Robot.hardware.pdp.getCurrent(RobotMap.INTAKE_PDP_PORT));
+    	double voltage = Robot.hardware.pdp.getVoltage()*Robot.intake.motor.get();
+    	double current = Robot.hardware.pdp.getCurrent(RobotMap.INTAKE_PDP_PORT);
+    	SmartDashboard.putNumber("Intake Current over Voltage", voltage/current);
+    	SmartDashboard.putNumber("Intake Voltage", voltage);
+    	SmartDashboard.putNumber("Intake Current", current);
     }
 
     // Make this return true when this Command no longer needs to run execute()

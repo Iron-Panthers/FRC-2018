@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5026.robot.subsystems;
 
 import org.usfirst.frc.team5026.robot.Robot;
+import org.usfirst.frc.team5026.robot.commands.IntakeCommand;
 
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -26,6 +27,7 @@ public class IntakeSubsystem extends Subsystem {
     // here. Call these from Commands.
 
     public void initDefaultCommand() {
+    	setDefaultCommand(new IntakeCommand());
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
