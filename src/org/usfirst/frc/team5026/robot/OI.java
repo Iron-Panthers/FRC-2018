@@ -1,8 +1,5 @@
 package org.usfirst.frc.team5026.robot;
 
-import org.usfirst.frc.team5026.robot.commands.IntakeCommand;
-import org.usfirst.frc.team5026.robot.commands.OuttakeCommand;
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -21,8 +18,6 @@ public class OI {
 		stickBtnTwo = new JoystickButton(driveStick,2);
 	}
 	public void mapButtons(){
-//		stickBtnOne.whileHeld(new IntakeCommand(driveStick.getY())));
-		stickBtnTwo.whileHeld(new OuttakeCommand());
 	}
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a

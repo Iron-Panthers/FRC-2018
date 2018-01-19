@@ -1,8 +1,9 @@
 package org.usfirst.frc.team5026.robot.subsystems;
 import org.usfirst.frc.team5026.robot.Constants;
-import org.usfirst.frc.team5026.robot.commands.IntakeCommand;
+import org.usfirst.frc.team5026.robot.Robot;
 
-import edu.wpi.first.wpilibj.Talon;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
@@ -10,13 +11,13 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
  *
  */
 public class Drive extends Subsystem {
-	Talon right;
-	Talon left;
+	TalonSRX right;
+	TalonSRX left;
 	DifferentialDrive dDrive;
-	public Drive(Talon r, Talon l){
-		right = r;
-		left = l;
-		dDrive = new DifferentialDrive(l, r);
+	public Drive(){
+		right = Robot.hardware.rightM;
+		left = Robot.hardware.leftM;
+		dDrive = new DifferentialDrive(left, right);
 		dDrive.setSafetyEnabled(false);
 		dDrive.setDeadband(Constants.JOYSTICK_DEADZONE);
 	}
