@@ -1,7 +1,8 @@
 package org.usfirst.frc.team5026.robot;
 
+import org.usfirst.frc.team5026.robot.commands.Intake;
+
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
@@ -9,12 +10,14 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-	public Button driveButton1;
+	public JoystickButton driveButton1;
 	public Joystick driveStick;
 	public OI(){
 		driveStick = new Joystick(RobotMap.DRIVE_JOYSTICK);
+		driveButton1 = new JoystickButton(driveStick, RobotMap.SWITCH_BUTTON);
 	}
 	public void mapButtons(){
+		driveButton1.whileHeld(new Intake());
 	}
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a

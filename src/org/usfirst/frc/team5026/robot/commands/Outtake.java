@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class Outtake extends Command {
 
     public Outtake() {
+    	requires(Robot.switchBoi);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
