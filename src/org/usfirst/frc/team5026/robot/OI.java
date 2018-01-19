@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5026.robot;
 
 import org.usfirst.frc.team5026.robot.commands.Intake;
+import org.usfirst.frc.team5026.robot.commands.Outtake;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -11,13 +12,16 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class OI {
 	public JoystickButton driveButton1;
+	public JoystickButton driveButton2;
 	public Joystick driveStick;
 	public OI(){
 		driveStick = new Joystick(RobotMap.DRIVE_JOYSTICK);
-		driveButton1 = new JoystickButton(driveStick, RobotMap.SWITCH_BUTTON);
+		driveButton1 = new JoystickButton(driveStick, RobotMap.SWITCH_INTAKE_BUTTON);
+		driveButton2 = new JoystickButton(driveStick, RobotMap.SWITCH_OUTTAKE_BUTTON);
 	}
 	public void mapButtons(){
 		driveButton1.whileHeld(new Intake());
+		driveButton2.whileHeld(new Outtake());
 	}
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a

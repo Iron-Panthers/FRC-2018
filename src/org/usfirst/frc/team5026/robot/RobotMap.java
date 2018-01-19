@@ -13,5 +13,6 @@ public class RobotMap {
 	public static final int DRIVE_RIGHT_MOTOR = 1;
 
 	public static final int SWITCH = 2;
-	public static final int SWITCH_BUTTON = 2;
+	public static final int SWITCH_INTAKE_BUTTON = 2;
+	public static final int SWITCH_OUTTAKE_BUTTON = 3;
 }
