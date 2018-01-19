@@ -1,17 +1,17 @@
 package org.usfirst.frc.team5026.robot.commands;
 
+import org.usfirst.frc.team5026.robot.Constants;
 import org.usfirst.frc.team5026.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class JoystickDrive extends Command {
-	//public double k;
-    public JoystickDrive() {
-    	requires(Robot.drive);
+public class Intake extends Command {
+
+    public Intake() {
+    	requires(Robot.switchBoi);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -22,13 +22,7 @@ public class JoystickDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.drive.useArcadeDrive(-Robot.oi.driveStick.getX(), Robot.oi.driveStick.getY());
-    	SmartDashboard.putNumber("Joystick X Axis", Robot.oi.driveStick.getX());
-    	SmartDashboard.putNumber("Joystick Y Axis", Robot.oi.driveStick.getY());
-//    	Robot.drive.useArcadeDrive;
-//    	k = Robot.oi.stick.getY()/Robot.oi.stick.getX();
-//    	Robot.drive.setLeftMotor(Robot.oi.stick.getY() + Robot.oi.stick.getX());
-//    	Robot.drive.setRightMotor(Robot.oi.stick.getY() - Robot.oi.stick.getX());
+    	Robot.switchBoi.intake(Constants.INTAKE_SPEED);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -38,11 +32,12 @@ public class JoystickDrive extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.drive.stop();
+    	Robot.switchBoi.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	Robot.switchBoi.stop();
     }
 }

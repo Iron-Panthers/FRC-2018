@@ -2,6 +2,7 @@
 package org.usfirst.frc.team5026.robot;
 
 import org.usfirst.frc.team5026.robot.subsystems.Drive;
+import org.usfirst.frc.team5026.robot.subsystems.Switch;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -23,6 +24,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static Hardware hardware;
 	public static Drive drive;
+	public static Switch switchBoi;
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
@@ -35,6 +37,7 @@ public class Robot extends IterativeRobot {
 		hardware = new Hardware();
 		drive = new Drive(hardware.rightM,hardware.leftM);
 		oi = new OI();
+		switchBoi = new Switch();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 		DriverStation.getInstance().getGameSpecificMessage();
