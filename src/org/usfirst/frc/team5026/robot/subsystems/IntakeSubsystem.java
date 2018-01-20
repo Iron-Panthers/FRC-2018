@@ -27,7 +27,7 @@ public class IntakeSubsystem extends Subsystem {
     // here. Call these from Commands.
 
     public void initDefaultCommand() {
-    	setDefaultCommand(new IntakeCommand());
+    	//setDefaultCommand(new IntakeCommand());
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }

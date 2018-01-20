@@ -21,7 +21,7 @@ public class OI {
 		stickBtnTwo = new JoystickButton(driveStick,2);
 	}
 	public void mapButtons(){
-//		stickBtnOne.whileHeld(new IntakeCommand(driveStick.getY())));
+		stickBtnOne.whileHeld(new IntakeCommand());
 		stickBtnTwo.whileHeld(new OuttakeCommand());
 	}
 	//// CREATING BUTTONS

@@ -7,13 +7,13 @@ public class Hardware {
 	public Talon rightM;
 	public Talon leftM;
 	public Talon intakeM;
-	public PowerDistributionPanel pdp;
+//	public PowerDistributionPanel pdp;
 	public Hardware(){
 		rightM = new Talon(RobotMap.DRIVE_RIGHT_MOTOR);
 		rightM.setInverted(Constants.IS_RIGHT_INVERTED);
 		leftM = new Talon(RobotMap.DRIVE_LEFT_MOTOR);
 		intakeM = new Talon(RobotMap.INTAKE_MOTOR);
 		intakeM.setInverted(Constants.IS_INTAKE_INVERTED);
-		pdp = new PowerDistributionPanel();
+//		pdp = new PowerDistributionPanel();
 	}
 }
