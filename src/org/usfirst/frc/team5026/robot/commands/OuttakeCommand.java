@@ -24,8 +24,8 @@ public class OuttakeCommand extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.intake.outtake(Constants.OUTTAKE_POWER);
-    	SmartDashboard.putNumber("Outtake Voltage", Robot.intake.motor.getOutputCurrent() * Robot.hardware.pdp.getVoltage());
-    	SmartDashboard.putNumber("Outtake Current", Robot.hardware.pdp.getCurrent(RobotMap.INTAKE_PDP_PORT));
+    	/*SmartDashboard.putNumber("Outtake Voltage", Robot.intake.motor.getOutputCurrent() * Robot.hardware.pdp.getVoltage());
+    	SmartDashboard.putNumber("Outtake Current", Robot.hardware.pdp.getCurrent(RobotMap.INTAKE_PDP_PORT));*/
     }
 
     // Called once after timeout

@@ -22,8 +22,8 @@ public class Drive extends Subsystem {
 		right = Robot.hardware.rightM;
 		left = Robot.hardware.leftM;
 //		dDrive = new DifferentialDrive(left, right);
-		dDrive.setSafetyEnabled(false);
-		dDrive.setDeadband(Constants.JOYSTICK_DEADZONE);
+		//dDrive.setSafetyEnabled(false);
+		//dDrive.setDeadband(Constants.JOYSTICK_DEADZONE);
 	}
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
