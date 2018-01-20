@@ -5,8 +5,8 @@ public class Constants {
 	public static final boolean RIGHT_MOTOR_INVERTED = true;
 	public static final int LEFT_PORT = 1;
 	public static final int FULLSPEED = 1;
-	public static final double INTAKE_SPEED = 0.2;
-	public static final double OUTTAKE_SPEED = -0.2;
+	public static final double INTAKE_SPEED = 0.4;
+	public static final double OUTTAKE_SPEED = -0.4;
 	public static final double SWITCH_POWER = 0.5;
 	public static final double SWITCH_REVERSE_POWER = -0.5;
 	public static final double ROBOT_WIDTH = 0.5; // unit is meters
