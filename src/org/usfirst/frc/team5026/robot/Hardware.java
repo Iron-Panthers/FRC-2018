@@ -12,7 +12,7 @@ public class Hardware {
 	public TalonSRX intakeM;
 	public PowerDistributionPanel pdp;
 	public Hardware(){
-		controlMode = ControlMode.PercentOutput;
+		controlMode = ControlMode.Velocity;
 		rightM = new TalonSRX(RobotMap.DRIVE_RIGHT_MOTOR);
 		rightM.setInverted(Constants.IS_RIGHT_INVERTED);
 		leftM = new TalonSRX(RobotMap.DRIVE_LEFT_MOTOR);
