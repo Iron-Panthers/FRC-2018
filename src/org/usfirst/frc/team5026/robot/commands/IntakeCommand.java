@@ -29,7 +29,7 @@ public class IntakeCommand extends Command {
     	double current = Robot.hardware.pdp.getCurrent(RobotMap.INTAKE_PDP_PORT);
     	SmartDashboard.putNumber("Intake Current over Voltage", voltage/current);
     	SmartDashboard.putNumber("Intake Voltage", voltage);
-//    	SmartDashboard.putNumber("Intake Current", current);
+    	SmartDashboard.putNumber("Intake Current", current);*/
     }
 
     // Make this return true when this Command no longer needs to run execute()
