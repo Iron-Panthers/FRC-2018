@@ -25,7 +25,7 @@ public class IntakeCommand extends Command {
     protected void execute() {
     	Robot.intake.intake(Robot.oi.driveStick.getY());
     	SmartDashboard.putNumber("Intake Speed", Constants.INTAKE_POWER);
-    	double voltage = Robot.hardware.pdp.getVoltage()*Robot.intake.motor.get();
+    	double voltage = Robot.hardware.pdp.getVoltage()*Robot.intake.motor.getOutputCurrent();
     	double current = Robot.hardware.pdp.getCurrent(RobotMap.INTAKE_PDP_PORT);
     	SmartDashboard.putNumber("Intake Current over Voltage", voltage/current);
     	SmartDashboard.putNumber("Intake Voltage", voltage);
