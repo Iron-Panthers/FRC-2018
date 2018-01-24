@@ -1,10 +1,4 @@
 package org.usfirst.frc.team5026.robot.subsystems;
-import org.usfirst.frc.team5026.robot.Robot;
-import org.usfirst.frc.team5026.robot.commands.JoystickDrive;
-
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 

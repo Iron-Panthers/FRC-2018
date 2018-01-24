@@ -1,7 +1,7 @@
 package org.usfirst.frc.team5026.robot;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-
+import org.usfirst.frc.team5026.robot.Constants;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 
 public class Hardware {
