@@ -1,6 +1,9 @@
 
 package org.usfirst.frc.team5026.robot;
 
+import org.usfirst.frc.team5026.robot.subsystems.Drive;
+import org.usfirst.frc.team5026.robot.subsystems.PneumaticsSubsystem;
+
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -8,7 +11,6 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team5026.robot.subsystems.Drive;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -20,6 +22,7 @@ import org.usfirst.frc.team5026.robot.subsystems.Drive;
 public class Robot extends IterativeRobot {
 
 	public static OI oi;
+	public static PneumaticsSubsystem solenoidBoi;
 	public static Hardware hardware;
 	public static Drive drive;
 	Command autonomousCommand;
@@ -33,10 +36,11 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		hardware = new Hardware();
 		drive = new Drive(hardware.rightM,hardware.leftM);
+		solenoidBoi = new PneumaticsSubsystem();
 		oi = new OI();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
-		DriverStation.getInstance().getGameSpecificMessage();
+//		DriverStation.getInstance().getGameSpecificMessage();
 		oi.mapButtons();
 	}
 
