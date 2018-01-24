@@ -1,8 +1,9 @@
 
 package org.usfirst.frc.team5026.robot;
 
+import org.usfirst.frc.team5026.robot.commands.AutoDrive;
 import org.usfirst.frc.team5026.robot.subsystems.Drive;
-import org.usfirst.frc.team5026.robot.subsystems.IntakeSubsystem;
+import org.usfirst.frc.team5026.robot.subsystems.DriveMotorGroup;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -24,7 +25,8 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static Hardware hardware;
 	public static Drive drive;
-	public static IntakeSubsystem intake;
+	public static DriveMotorGroup left;
+	public static DriveMotorGroup right;
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	/**
@@ -34,12 +36,15 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		hardware = new Hardware();
-		drive = new Drive();
-		intake = new IntakeSubsystem();
+		
 		oi = new OI();
+		left = new DriveMotorGroup(hardware.left1M, hardware.left2M, hardware.left3M);
+		right = new DriveMotorGroup(hardware.right1M, hardware.right2M, hardware.right3M);
+		drive = new Drive(left, right);
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		String gameData = DriverStation.getInstance().getGameSpecificMessage();
 		oi.mapButtons();
+		chooser.addDefault("My Auto", new AutoDrive());
 		SmartDashboard.putData("Auto mode", chooser);
 		SmartDashboard.getNumber("Intake Speed", Constants.INTAKE_POWER);
 	}
@@ -73,7 +78,6 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		autonomousCommand = chooser.getSelected();
-
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand

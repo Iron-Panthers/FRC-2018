@@ -21,4 +21,11 @@ public class Constants {
 	public static final double DRIVE_ACCELERATION = 1000; // I am not sure what unit this is either
 	
 	public static final double JOYSTICK_DEADZONE = 0.1;
+	//Auto Code
+	public static final double TICKS_TO_INCHES = 1024;
+	public static final double AUTO_DISTANCE = 50; //Inches
+	public static final double WHEEL_RADIUS = 2;
+	public static final double WHEEL_CIRCUMFERENCE = WHEEL_RADIUS*2*Math.PI;
+	public static final double ENCODER_TO_WHEEL_REV_RATIO = 5; // 1/ThisNumber
+	
 }

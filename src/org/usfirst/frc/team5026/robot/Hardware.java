@@ -1,22 +1,24 @@
 package org.usfirst.frc.team5026.robot;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 
 public class Hardware {
-	public ControlMode controlMode;
-	public TalonSRX rightM;
-	public TalonSRX leftM;
-	public TalonSRX intakeM;
+	public TalonSRX right1M;
+	public TalonSRX right2M;
+	public TalonSRX right3M;
+	public TalonSRX left1M;
+	public TalonSRX left2M;
+	public TalonSRX left3M;
+//	public TalonSRX intakeM;
 	public PowerDistributionPanel pdp;
 	public Hardware(){
-		controlMode = ControlMode.Velocity;
-		rightM = new TalonSRX(RobotMap.DRIVE_RIGHT_MOTOR);
-		rightM.setInverted(Constants.IS_RIGHT_INVERTED);
-		leftM = new TalonSRX(RobotMap.DRIVE_LEFT_MOTOR);
-		intakeM = new TalonSRX(RobotMap.INTAKE_MOTOR);
+		right1M = new TalonSRX(RobotMap.DRIVE_RIGHT_MOTOR);
+		left1M = new TalonSRX(RobotMap.DRIVE_LEFT_MOTOR);
+		Robot.right.setInverted(Constants.IS_RIGHT_INVERTED);
+//		intakeM = new TalonSRX(RobotMap.INTAKE_MOTOR);
 		pdp = new PowerDistributionPanel();
+		
 	}
 }

@@ -12,8 +12,8 @@ public class JoystickDrive extends Command {
 	public double k;
 	public double y;
 	public double x;
-	public double leftMotor;
-	public double rightMotor;
+	public double leftSide;
+	public double rightSide;
     public JoystickDrive() {
     	requires(Robot.drive);
         // Use requires() here to declare subsystem dependencies
@@ -32,16 +32,16 @@ public class JoystickDrive extends Command {
     	//the below stuff is cool and it works as an arcade drive.
     	x = Robot.oi.driveStick.getX();
     	y = -Robot.oi.driveStick.getY();
-    	leftMotor = y-x;
-    	rightMotor = y+x;
-    	if(rightMotor>1) {
-    		rightMotor = 1;
+    	leftSide = y-x;
+    	rightSide = y+x;
+    	if(rightSide>1) {
+    		rightSide = 1;
     	}
-    	if(leftMotor>1) {
-    		leftMotor = 1;
+    	if(leftSide>1) {
+    		leftSide = 1;
     	}
-    	Robot.drive.setLeftMotor(rightMotor);
-    	Robot.drive.setRightMotor(leftMotor);
+    	Robot.drive.setLeftSide(rightSide);
+    	Robot.drive.setRightSide(leftSide);
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
