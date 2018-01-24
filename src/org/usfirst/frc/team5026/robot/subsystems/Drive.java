@@ -1,6 +1,6 @@
 package org.usfirst.frc.team5026.robot.subsystems;
 import org.usfirst.frc.team5026.robot.Constants;
-import org.usfirst.frc.team5026.robot.commands.IntakeCommand;
+import org.usfirst.frc.team5026.robot.commands.JoystickDrive;
 
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -39,7 +39,7 @@ public class Drive extends Subsystem {
 	}
     public void initDefaultCommand() {
     	
-//    	setDefaultCommand(new JoystickDrive());
+    	setDefaultCommand(new JoystickDrive());
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
