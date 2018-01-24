@@ -8,8 +8,13 @@ package org.usfirst.frc.team5026.robot;
  */
 public class RobotMap {
 	public static final int DRIVE_JOYSTICK = 0;
-	public static final int DRIVE_LEFT_MOTOR = 1; //Change back to drive
-	public static final int DRIVE_RIGHT_MOTOR = 2;
-	public static final int INTAKE_MOTOR = 3; //Change back to drie
-	public static final int INTAKE_PDP_PORT = 2; //To Be Changed
+	public static final int DRIVE_LEFT_MOTOR_1 = 1;
+	public static final int DRIVE_LEFT_MOTOR_2 = 2; //Change back to drive
+	public static final int DRIVE_LEFT_MOTOR_3 = 3;
+	public static final int DRIVE_RIGHT_MOTOR_1 = 4;
+	public static final int DRIVE_RIGHT_MOTOR_2 = 5;
+	public static final int DRIVE_RIGHT_MOTOR_3 = 6;
+	
+//	public static final int INTAKE_MOTOR = 3; //Change back to drie
+//	public static final int INTAKE_PDP_PORT = 2; //To Be Changed
 }
