@@ -22,13 +22,28 @@ public class JoystickDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.drive.useArcadeDrive(-Robot.oi.driveStick.getX(), Robot.oi.driveStick.getY());
-    	SmartDashboard.putNumber("Joystick X Axis", Robot.oi.driveStick.getX());
-    	SmartDashboard.putNumber("Joystick Y Axis", Robot.oi.driveStick.getY());
-//    	Robot.drive.useArcadeDrive;
-//    	k = Robot.oi.stick.getY()/Robot.oi.stick.getX();
-//    	Robot.drive.setLeftMotor(Robot.oi.stick.getY() + Robot.oi.stick.getX());
-//    	Robot.drive.setRightMotor(Robot.oi.stick.getY() - Robot.oi.stick.getX());
+    	double right;
+    	double left;
+//    	Robot.drive.useArcadeDrive(Robot.oi.driveStick.getX(), -Robot.oi.driveStick.getY());
+//    	SmartDashboard.putNumber("Joystick X Axis", Robot.oi.driveStick.getX());
+//    	SmartDashboard.putNumber("Joystick Y Axis", Robot.oi.driveStick.getY());
+    	//k = Robot.oi.driveStick.getY()/Robot.oi.driveStick.getX();
+    	right = Robot.oi.driveStick.getY() - Robot.oi.driveStick.getX();
+    	left = Robot.oi.driveStick.getY() + Robot.oi.driveStick.getX();
+//    	Robot.drive.setLeftMotor(Robot.oi.driveStick.getY() + Robot.oi.driveStick.getX());
+//    	Robot.drive.setRightMotor(Robot.oi.driveStick.getY() - Robot.oi.driveStick.getX());
+    	if(right < 1) {
+    		Robot.drive.setRightMotor(right);
+    	}
+    	else {
+    		Robot.drive.setRightMotor(1);
+    	}
+    	if(left < 1) {
+    		Robot.drive.setLeftMotor(left);
+    	}
+    	else {
+    		Robot.drive.setLeftMotor(1);
+    	}	
     }
 
     // Make this return true when this Command no longer needs to run execute()
