@@ -9,7 +9,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class JoystickDrive extends Command {
-	//public double k;
+	public double k;
+	public double y;
+	public double x;
+	public double leftSide;
+	public double rightSide;
     public JoystickDrive() {
     	requires(Robot.drive);
         // Use requires() here to declare subsystem dependencies
@@ -45,7 +49,6 @@ public class JoystickDrive extends Command {
 //    		Robot.drive.setLeftMotor(1);
 //    	}	
     }
-
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return false;

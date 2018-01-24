@@ -14,6 +14,8 @@ public class OI {
 	public JoystickButton driveButton1;
 	public JoystickButton driveButton2;
 	public Joystick driveStick;
+	public Button stickBtnOne;
+	public Button stickBtnTwo;
 	public OI(){
 		driveStick = new Joystick(RobotMap.DRIVE_JOYSTICK);
 		driveButton1 = new JoystickButton(driveStick, RobotMap.SWITCH_INTAKE_BUTTON);

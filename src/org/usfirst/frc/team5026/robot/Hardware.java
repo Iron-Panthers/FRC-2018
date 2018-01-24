@@ -5,6 +5,8 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Talon;
 
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
+
 public class Hardware {
 	public TalonSRX right1M;
 	public TalonSRX right2M;
