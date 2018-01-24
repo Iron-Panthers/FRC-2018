@@ -2,8 +2,8 @@
 package org.usfirst.frc.team5026.robot;
 
 import org.usfirst.frc.team5026.robot.subsystems.Drive;
-import org.usfirst.frc.team5026.robot.subsystems.Switch;
 
+import org.usfirst.frc.team5026.robot.subsystems.Switch; 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
