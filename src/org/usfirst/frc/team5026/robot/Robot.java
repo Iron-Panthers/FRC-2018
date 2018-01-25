@@ -4,7 +4,6 @@ package org.usfirst.frc.team5026.robot;
 import org.usfirst.frc.team5026.robot.subsystems.Drive;
 import org.usfirst.frc.team5026.robot.subsystems.PneumaticsSubsystem;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -42,6 +41,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Auto mode", chooser);
 //		DriverStation.getInstance().getGameSpecificMessage();
 		oi.mapButtons();
+		LiveWindow.disableAllTelemetry();
+
 	}
 
 	/**
