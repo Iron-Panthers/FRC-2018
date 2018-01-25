@@ -1,9 +1,11 @@
 
 package org.usfirst.frc.team5026.robot;
 
+import org.usfirst.frc.team5026.robot.commands.AutoDrive;
 import org.usfirst.frc.team5026.robot.subsystems.Drive;
-import org.usfirst.frc.team5026.robot.subsystems.Switch;
+import org.usfirst.frc.team5026.robot.subsystems.DriveMotorGroup;
 
+import org.usfirst.frc.team5026.robot.subsystems.Switch; 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -24,10 +26,11 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static Hardware hardware;
 	public static Drive drive;
+	public static DriveMotorGroup left;
+	public static DriveMotorGroup right;
 	public static Switch switchBoi;
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
-
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -35,13 +38,17 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		hardware = new Hardware();
-		drive = new Drive(hardware.rightM,hardware.leftM);
+		
 		oi = new OI();
-		switchBoi = new Switch();
+		left = new DriveMotorGroup(hardware.left1M, hardware.left2M, hardware.left3M);
+		right = new DriveMotorGroup(hardware.right1M, hardware.right2M, hardware.right3M);
+		drive = new Drive(left, right);
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", chooser);
-		DriverStation.getInstance().getGameSpecificMessage();
+		String gameData = DriverStation.getInstance().getGameSpecificMessage();
 		oi.mapButtons();
+		chooser.addDefault("My Auto", new AutoDrive());
+		SmartDashboard.putData("Auto mode", chooser);
+		SmartDashboard.getNumber("Intake Speed", Constants.INTAKE_POWER);
 	}
 
 	/**
@@ -73,7 +80,6 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		autonomousCommand = chooser.getSelected();
-
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
