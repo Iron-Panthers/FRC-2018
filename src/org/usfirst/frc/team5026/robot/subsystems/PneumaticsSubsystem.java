@@ -14,10 +14,10 @@ public class PneumaticsSubsystem extends Subsystem {
 	public PneumaticsSubsystem() {
 	}
 	public void extend() {
-		solenoidBoi.set(Value.kForward);
+		solenoidBoi.set(DoubleSolenoid.Value.kForward);
 	}
 	public void contract() {
-		solenoidBoi.set(Value.kReverse);
+		solenoidBoi.set(DoubleSolenoid.Value.kReverse);
 	}
 
     // Put methods for controlling this subsystem
