@@ -28,7 +28,6 @@ public class JoystickDrive extends Command {
     protected void execute() {
     	double right;
     	double left;
-    	Robot.drive.useArcadeDrive(-Robot.oi.driveStick.getX(), Robot.oi.driveStick.getY());
 //    	SmartDashboard.putNumber("Joystick X Axis", Robot.oi.driveStick.getX());
 //    	SmartDashboard.putNumber("Joystick Y Axis", Robot.oi.driveStick.getY());
     	//k = Robot.oi.driveStick.getY()/Robot.oi.driveStick.getX();
@@ -54,6 +53,7 @@ public class JoystickDrive extends Command {
         		Robot.drive.setLeftMotor(1);
         	}	
     	}
+    	Robot.drive.useArcadeDrive(-Robot.oi.driveStick.getX(), Robot.oi.driveStick.getY());
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
