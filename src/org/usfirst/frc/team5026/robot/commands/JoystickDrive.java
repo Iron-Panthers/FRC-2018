@@ -32,18 +32,24 @@ public class JoystickDrive extends Command {
     	left = Robot.oi.driveStick.getY() + Robot.oi.driveStick.getX();
 //    	Robot.drive.setLeftMotor(Robot.oi.driveStick.getY() + Robot.oi.driveStick.getX());
 //    	Robot.drive.setRightMotor(Robot.oi.driveStick.getY() - Robot.oi.driveStick.getX());
-    	if(right < 1) {
-    		Robot.drive.setRightMotor(right);
+    	if(Robot.oi.driveStick.getY()<.13 && Robot.oi.driveStick.getX()<.13) {
+    		Robot.drive.setLeftMotor(0);
+    		Robot.drive.setRightMotor(0);
     	}
     	else {
-    		Robot.drive.setRightMotor(1);
+    		if(right < 1) {
+        		Robot.drive.setRightMotor(right);
+        	}
+        	else {
+        		Robot.drive.setRightMotor(1);
+        	}
+        	if(left < 1) {
+        		Robot.drive.setLeftMotor(left);
+        	}
+        	else {
+        		Robot.drive.setLeftMotor(1);
+        	}	
     	}
-    	if(left < 1) {
-    		Robot.drive.setLeftMotor(left);
-    	}
-    	else {
-    		Robot.drive.setLeftMotor(1);
-    	}	
     }
 
     // Make this return true when this Command no longer needs to run execute()
