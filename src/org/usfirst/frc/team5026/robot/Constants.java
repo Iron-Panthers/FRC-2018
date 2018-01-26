@@ -22,6 +22,9 @@ public class Constants {
 	
 	public static final double JOYSTICK_DEADZONE = 0.1;
 	//Auto Code
+	public static final int kTimeoutMs = 0; //Do not change
+	public static final int kSlotIdx = 0; //Do not change
+	public static final int kPIDLoopIdx = 0; //Do not change
 	public static final double DRIVE_SPEED = 1;
 	public static final double TICKS_TO_INCHES = 1024;
 	public static final double AUTO_DISTANCE = 50; //Inches

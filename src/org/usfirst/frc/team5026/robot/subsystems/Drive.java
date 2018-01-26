@@ -26,7 +26,9 @@ public class Drive extends Subsystem {
 	}
 	public void driveWithTarget(double target) {
 		left.driveWithTarget(target);
+//		left.printPowers();
 		right.driveWithTarget(target);
+//		right.printPowers();
 	}
 	public void driveWithPower(double speed) {
 		left.driveWithPower(speed);
