@@ -41,6 +41,7 @@ public class Robot extends IterativeRobot {
 		left = new DriveMotorGroup(hardware.left1M, hardware.left2M, hardware.left3M);
 		right = new DriveMotorGroup(hardware.right1M, hardware.right2M, hardware.right3M);
 		drive = new Drive(left, right);
+		right.setInverted(Constants.IS_RIGHT_INVERTED);
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		String gameData = DriverStation.getInstance().getGameSpecificMessage();
 		oi.mapButtons();
@@ -114,6 +115,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
+		System.out.println(hardware.left1M.getSelectedSensorPosition(0));
 		Scheduler.getInstance().run();
 	}
 

@@ -30,7 +30,7 @@ public class DriveMotorGroup extends Subsystem {
 		setUp(this.motor3);
 	}
 	public void setUp(TalonSRX motor) {
-		motor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
+		motor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
 		motor.setSensorPhase(true);
 		motor.setInverted(false);
 

@@ -27,9 +27,9 @@ public class Constants {
 	public static final int kPIDLoopIdx = 0; //Do not change
 	public static final double DRIVE_SPEED = 1;
 	public static final double TICKS_TO_INCHES = 1024;
-	public static final double AUTO_DISTANCE = 50; //Inches
+	public static final double AUTO_DISTANCE = 30; //Inches
 	public static final double WHEEL_RADIUS = 2;
 	public static final double WHEEL_CIRCUMFERENCE = WHEEL_RADIUS*2*Math.PI;
-	public static final double ENCODER_TO_WHEEL_REV_RATIO = 5; // 1/ThisNumber
+	public static final double ENCODER_TO_WHEEL_REV_RATIO = 5; // To be changed
 	
 }
