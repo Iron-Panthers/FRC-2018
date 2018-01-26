@@ -1,7 +1,7 @@
 package org.usfirst.frc.team5026.robot;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import org.usfirst.frc.team5026.robot.Constants;
+
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 
 public class Hardware {
@@ -20,9 +20,9 @@ public class Hardware {
 		left1M = new TalonSRX(RobotMap.DRIVE_LEFT_MOTOR_1);
 		left2M = new TalonSRX(RobotMap.DRIVE_LEFT_MOTOR_2);
 		left3M = new TalonSRX(RobotMap.DRIVE_LEFT_MOTOR_3);
-		Robot.right.setInverted(Constants.IS_RIGHT_INVERTED);
+//		Robot.right.setInverted(Constants.IS_RIGHT_INVERTED);
 //		intakeM = new TalonSRX(RobotMap.INTAKE_MOTOR);
-		pdp = new PowerDistributionPanel();
+//		pdp = new PowerDistributionPanel();
 		
 	}
 }

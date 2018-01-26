@@ -46,7 +46,7 @@ public class Robot extends IterativeRobot {
 		oi.mapButtons();
 		chooser.addDefault("My Auto", new AutoDrive());
 		SmartDashboard.putData("Auto mode", chooser);
-		SmartDashboard.getNumber("Intake Speed", Constants.INTAKE_POWER);
+//		SmartDashboard.getNumber("Intake Speed", Constants.INTAKE_POWER);
 	}
 
 	/**

@@ -28,6 +28,10 @@ public class Drive extends Subsystem {
 		left.driveWithTarget(target);
 		right.driveWithTarget(target);
 	}
+	public void driveWithPower(double speed) {
+		left.driveWithPower(speed);
+		right.driveWithPower(speed);
+	}
 //	public void setLeftRightMotors(double power) {
 //		dDrive.tankDrive(power, power);
 //	}

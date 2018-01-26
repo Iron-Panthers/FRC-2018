@@ -24,7 +24,8 @@ public class AutoDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.drive.driveWithTarget(tickTarget);
+//    	Robot.drive.driveWithTarget(tickTarget);
+    	Robot.drive.driveWithPower(Constants.DRIVE_SPEED);
     }
 
     // Make this return true when this Command no longer needs to run execute()

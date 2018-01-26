@@ -22,6 +22,7 @@ public class Constants {
 	
 	public static final double JOYSTICK_DEADZONE = 0.1;
 	//Auto Code
+	public static final double DRIVE_SPEED = 1;
 	public static final double TICKS_TO_INCHES = 1024;
 	public static final double AUTO_DISTANCE = 50; //Inches
 	public static final double WHEEL_RADIUS = 2;
