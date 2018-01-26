@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5026.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Talon;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -8,18 +9,18 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class JoystickMotor extends Subsystem {
 	
-	public Talon motor;
+	public TalonSRX motor;
 	
-	public JoystickMotor(Talon motor) {
+	public JoystickMotor(TalonSRX motor) {
 		this.motor = motor;
 	}
 	
 	public void move(double speed) {
-		motor.set(speed);
+		motor.set(ControlMode.PercentOutput, speed);
 	}
 	
 	public void stop() {
-		motor.set(0);
+		motor.set(ControlMode.PercentOutput, 0);
 	}
 	
 
