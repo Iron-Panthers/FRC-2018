@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.Talon;
 public class Hardware {
 	Talon rightM;
 	Talon leftM;
-	public static DoubleSolenoid solenoidBoi;
+	public DoubleSolenoid solenoidBoi;
 	public Hardware(){
 		solenoidBoi = new DoubleSolenoid(0,1);
 		rightM = new Talon(RobotMap.DRIVE_RIGHT_MOTOR);
