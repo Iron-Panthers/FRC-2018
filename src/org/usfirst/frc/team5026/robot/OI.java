@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5026.robot;
 
 import org.usfirst.frc.team5026.robot.commands.InCommand;
+import org.usfirst.frc.team5026.robot.commands.InOutCommand;
 import org.usfirst.frc.team5026.robot.commands.OutCommand;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -14,15 +15,17 @@ public class OI {
 	public Joystick driveStick;
 	public JoystickButton buttonOne;
 	public JoystickButton buttonTwo;
+	public JoystickButton buttonThree;
 	public OI(){
 		driveStick = new Joystick(RobotMap.DRIVE_JOYSTICK);
 		buttonOne = new JoystickButton(driveStick, 1);
 		buttonTwo = new JoystickButton(driveStick, 2);
-		
+		buttonThree = new JoystickButton(driveStick, 3);
 	}
 	public void mapButtons(){
 		buttonOne.whenPressed(new InCommand());
 		buttonTwo.whenPressed(new OutCommand());
+		buttonThree.whenPressed(new InOutCommand());
 	}
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a

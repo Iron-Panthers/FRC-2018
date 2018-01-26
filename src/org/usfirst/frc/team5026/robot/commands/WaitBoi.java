@@ -1,32 +1,34 @@
 package org.usfirst.frc.team5026.robot.commands;
 
-import org.usfirst.frc.team5026.robot.Robot;
-
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.TimedCommand;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class InCommand extends Command {
+public class WaitBoi extends TimedCommand {
 
-    public InCommand() {
-    	requires(Robot.solenoidBoi);
+	double secondsToWait;
+    public WaitBoi() {
+    		super(2);
+    		secondsToWait = 2;
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    		secondsToWait = SmartDashboard.getNumber("Wait time", 2);
+    		super.setTimeout(secondsToWait);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    		Robot.solenoidBoi.contract();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return super.isTimedOut();
     }
 
     // Called once after isFinished returns true

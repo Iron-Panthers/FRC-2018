@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class OutCommand extends Command {
 
     public OutCommand() {
+    	requires(Robot.solenoidBoi);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
