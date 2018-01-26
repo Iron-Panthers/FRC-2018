@@ -13,7 +13,6 @@ public class InOutCommand extends CommandGroup {
     	addSequential(new WaitBoi());
     	addSequential(new InCommand());
     	addSequential(new WaitBoi());
-
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
