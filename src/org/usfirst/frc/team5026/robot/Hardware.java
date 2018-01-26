@@ -15,6 +15,7 @@ public class Hardware {
 	public TalonSRX left2M;
 	public TalonSRX left3M;
 	public Talon intakeM;
+	public Talon joystickM;
 	public PowerDistributionPanel pdp;
 	public Hardware(){
 		right1M = new TalonSRX(RobotMap.DRIVE_RIGHT_MOTOR_1);
@@ -23,6 +24,7 @@ public class Hardware {
 	    left1M = new TalonSRX(RobotMap.DRIVE_LEFT_MOTOR_1);
 	    left2M = new TalonSRX(RobotMap.DRIVE_LEFT_MOTOR_2);
 	    left3M = new TalonSRX(RobotMap.DRIVE_LEFT_MOTOR_3);
+	    joystickM = new Talon(RobotMap.JOYSTICK_MOTOR);
 	    Robot.right.setInverted(Constants.IS_RIGHT_INVERTED);
 	//    intakeM = new TalonSRX(RobotMap.INTAKE_MOTOR);
 	    pdp = new PowerDistributionPanel();

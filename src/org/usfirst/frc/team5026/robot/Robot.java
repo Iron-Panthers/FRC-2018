@@ -4,8 +4,9 @@ package org.usfirst.frc.team5026.robot;
 import org.usfirst.frc.team5026.robot.commands.AutoDrive;
 import org.usfirst.frc.team5026.robot.subsystems.Drive;
 import org.usfirst.frc.team5026.robot.subsystems.DriveMotorGroup;
+import org.usfirst.frc.team5026.robot.subsystems.JoystickMotor;
+import org.usfirst.frc.team5026.robot.subsystems.Switch;
 
-import org.usfirst.frc.team5026.robot.subsystems.Switch; 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -29,6 +30,7 @@ public class Robot extends IterativeRobot {
 	public static DriveMotorGroup left;
 	public static DriveMotorGroup right;
 	public static Switch switchBoi;
+	public static JoystickMotor joystickMotor;
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	/**
@@ -38,7 +40,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		hardware = new Hardware();
-		
+		joystickMotor = new JoystickMotor(hardware.joystickM);
 		oi = new OI();
 		left = new DriveMotorGroup(hardware.left1M, hardware.left2M, hardware.left3M);
 		right = new DriveMotorGroup(hardware.right1M, hardware.right2M, hardware.right3M);

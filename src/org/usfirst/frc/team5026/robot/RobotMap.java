@@ -14,7 +14,7 @@ public static final int DRIVE_JOYSTICK = 0;
 	public static final int DRIVE_RIGHT_MOTOR_1 = 4;
 	public static final int DRIVE_RIGHT_MOTOR_2 = 5;
 	public static final int DRIVE_RIGHT_MOTOR_3 = 6;
-	  
+	public static final int JOYSTICK_MOTOR = 7;
 	public static final int INTAKE_MOTOR = 0; //PWM
 	public static final int INTAKE_PDP_PORT = 2; //To Be Changed
 }
