@@ -1,14 +1,17 @@
 package org.usfirst.frc.team5026.robot;
 
 public class Constants {
+	public static final double X_AXIS_MODIFIER = .8;
+	public static final double DEADZONE_SIZE = .1;
+	public static final double QUARTER_SPEED = .4;
 	public static final int RIGHT_PORT = 0;
 	public static final int LEFT_PORT = 1;
 	public static final int FULLSPEED = 1;
 	//Intake and Outtake
 	public static final boolean IS_INTAKE_INVERTED = true;
 	public static final boolean IS_RIGHT_INVERTED = true;
-	public static final double INTAKE_POWER = 0.4;
-	public static final double OUTTAKE_POWER = -0.4;
+	public static final double INTAKE_POWER = .8;
+	public static final double OUTTAKE_POWER = -.8;
 	
 	public static final double ROBOT_WIDTH = 0.5; // unit is meters
 	public static final double WHEEL_DIAMETER = 6; // unit is inches

@@ -1,5 +1,5 @@
 package org.usfirst.frc.team5026.robot.commands;
-
+import org.usfirst.frc.team5026.robot.Constants;
 import org.usfirst.frc.team5026.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -23,28 +23,34 @@ public class JoystickDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double right;
-    	double left;
-//    	Robot.drive.useArcadeDrive(Robot.oi.driveStick.getX(), -Robot.oi.driveStick.getY());
-//    	SmartDashboard.putNumber("Joystick X Axis", Robot.oi.driveStick.getX());
-//    	SmartDashboard.putNumber("Joystick Y Axis", Robot.oi.driveStick.getY());
+//    	double right;
+//    	double left;
+    	Robot.drive.useArcadeDrive(Robot.oi.driveStick.getX()*Constants.X_AXIS_MODIFIER, Robot.oi.driveStick.getY());
+    	SmartDashboard.putNumber("Joystick X Axis", Robot.oi.driveStick.getX());
+    	SmartDashboard.putNumber("Joystick Y Axis", Robot.oi.driveStick.getY());
     	//k = Robot.oi.driveStick.getY()/Robot.oi.driveStick.getX();
-    	right = Robot.oi.driveStick.getY() - Robot.oi.driveStick.getX();
-    	left = Robot.oi.driveStick.getY() + Robot.oi.driveStick.getX();
+//    	right = Constants.QUARTER_SPEED*(-Robot.oi.driveStick.getY() - Robot.oi.driveStick.getX());
+//    	left = Constants.QUARTER_SPEED*(-Robot.oi.driveStick.getY() + Robot.oi.driveStick.getX());
 //    	Robot.drive.setLeftMotor(Robot.oi.driveStick.getY() + Robot.oi.driveStick.getX());
 //    	Robot.drive.setRightMotor(Robot.oi.driveStick.getY() - Robot.oi.driveStick.getX());
-    	if(right < 1) {
-    		Robot.drive.setRightMotor(right);
-    	}
-    	else {
-    		Robot.drive.setRightMotor(1);
-    	}
-    	if(left < 1) {
-    		Robot.drive.setLeftMotor(left);
-    	}
-    	else {
-    		Robot.drive.setLeftMotor(1);
-    	}	
+//    	if(Robot.oi.driveStick.getY()<.13&&Robot.oi.driveStick.getX()<.13) {
+//    		Robot.drive.setRightMotor(0);
+//    		Robot.drive.setLeftMotor(0);
+//    	}
+//    	else {
+//    		if(right < Constants.QUARTER_SPEED) {
+//        		Robot.drive.setRightMotor(right);
+//        	}
+//        	else {
+//        		Robot.drive.setRightMotor(Constants.QUARTER_SPEED);
+//        	}
+//        	if(left < Constants.QUARTER_SPEED) {
+//        		Robot.drive.setLeftMotor(left);
+//        	}
+//        	else {
+//        		Robot.drive.setLeftMotor(Constants.QUARTER_SPEED);
+//        	}	
+//    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
