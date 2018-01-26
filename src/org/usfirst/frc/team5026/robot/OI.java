@@ -25,7 +25,7 @@ public class OI {
 	public void mapButtons(){
 		buttonOne.whenPressed(new InCommand());
 		buttonTwo.whenPressed(new OutCommand());
-		buttonThree.whenPressed(new InOutCommand());
+		buttonThree.whileHeld(new InOutCommand());
 	}
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
