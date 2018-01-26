@@ -4,6 +4,7 @@ import org.usfirst.frc.team5026.robot.commands.Intake;
 import org.usfirst.frc.team5026.robot.commands.Outtake;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**

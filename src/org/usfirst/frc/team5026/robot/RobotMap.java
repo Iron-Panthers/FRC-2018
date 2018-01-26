@@ -17,4 +17,6 @@ public static final int DRIVE_JOYSTICK = 0;
 	  
 	public static final int INTAKE_MOTOR = 0; //PWM
 	public static final int INTAKE_PDP_PORT = 2; //To Be Changed
+	public static final int SWITCH_INTAKE_BUTTON = 1;
+	public static final int SWITCH_OUTTAKE_BUTTON = 2;
 }
