@@ -13,7 +13,9 @@ public class Drive extends Subsystem {
 	Talon right;
 	Talon left;
 	DifferentialDrive dDrive;
+	public double isReversed;
 	public Drive(Talon r, Talon l){
+		isReversed = 1;
 		right = r;
 		left = l;
 		dDrive = new DifferentialDrive(l, r);
@@ -23,10 +25,10 @@ public class Drive extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	public void setLeftMotor(double speed){
-		left.set(speed);
+		left.set(speed*isReversed);
 	}
 	public void setRightMotor(double speed){
-		right.set(speed);
+		right.set(speed*isReversed);
 	}
 	public void setLeftRightMotors(double power) {
 		dDrive.tankDrive(power, power);
@@ -36,6 +38,9 @@ public class Drive extends Subsystem {
 	}
 	public void stop() {
 		dDrive.stopMotor();
+	}
+	public void reverseDrive() {
+		isReversed = isReversed*-1;
 	}
     public void initDefaultCommand() {
     	

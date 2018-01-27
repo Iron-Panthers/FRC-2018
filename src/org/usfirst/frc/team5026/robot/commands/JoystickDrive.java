@@ -29,11 +29,18 @@ public class JoystickDrive extends Command {
     	SmartDashboard.putNumber("Joystick X Axis", Robot.oi.driveStick.getX());
     	SmartDashboard.putNumber("Joystick Y Axis", Robot.oi.driveStick.getY());
     	//k = Robot.oi.driveStick.getY()/Robot.oi.driveStick.getX();
-    	right = (-Robot.oi.driveStick.getY() - Robot.oi.driveStick.getX());
-    	left = (-Robot.oi.driveStick.getY() + Robot.oi.driveStick.getX());
+    	if(Robot.drive.isReversed == 1) {
+    		right = (-Robot.oi.driveStick.getY() - Robot.oi.driveStick.getX());
+        	left = (-Robot.oi.driveStick.getY() + Robot.oi.driveStick.getX());
+    	}
+    	else{
+    		right = (-Robot.oi.driveStick.getY() + Robot.oi.driveStick.getX());
+        	left = (-Robot.oi.driveStick.getY() - Robot.oi.driveStick.getX());
+    	}
+    	
 //    	Robot.drive.setLeftMotor(Robot.oi.driveStick.getY() + Robot.oi.driveStick.getX());
 //    	Robot.drive.setRightMotor(Robot.oi.driveStick.getY() - Robot.oi.driveStick.getX());
-    	if(Math.abs(Robot.oi.driveStick.getY()) < .13 && Math.abs(Robot.oi.driveStick.getX()) < .13) {
+    	if(Math.abs(Robot.oi.driveStick.getY()) < .08 && Math.abs(Robot.oi.driveStick.getX()) < .08) {
     		Robot.drive.setRightMotor(0);
     		Robot.drive.setLeftMotor(0);
     	}
