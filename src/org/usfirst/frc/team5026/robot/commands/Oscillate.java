@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5026.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -9,9 +10,9 @@ public class Oscillate extends CommandGroup {
 
     public Oscillate() {
     		addSequential(new InCommand());
-    		addSequential(new VerySpeedyWaitBoi(0.01));
+    		addSequential(new VerySpeedyWaitBoi(SmartDashboard.getNumber("Oscillation Time Retract", 0.01)));
     		addSequential(new OutCommand());
-    		addSequential(new VerySpeedyWaitBoi(0.012));
+    		addSequential(new VerySpeedyWaitBoi(SmartDashboard.getNumber("Oscillation Time Extend", 0.01)));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

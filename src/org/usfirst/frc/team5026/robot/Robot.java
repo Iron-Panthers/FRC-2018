@@ -40,6 +40,8 @@ public class Robot extends IterativeRobot {
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 		SmartDashboard.putNumber("Wait time", 2);
+		SmartDashboard.putNumber("Oscillation Time Extend", 0.01);
+		SmartDashboard.putNumber("Oscillation Time Retract", 0.01);
 		SmartDashboard.putNumber("Length Out", 5);
 //		DriverStation.getInstance().getGameSpecificMessage();
 		oi.mapButtons();
