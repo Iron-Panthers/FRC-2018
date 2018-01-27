@@ -39,6 +39,6 @@ public class SpeedyWaitBoi extends Command {
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		return Robot.hardware.potentiometer.getVoltage() < SmartDashboard.getNumber("Length Out", 5);
+		return Robot.hardware.potentiometer.getVoltage() > SmartDashboard.getNumber("Length Out", 5);
 	}
 }
