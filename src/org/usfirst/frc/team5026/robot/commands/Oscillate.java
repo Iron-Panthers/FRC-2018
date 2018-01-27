@@ -5,12 +5,13 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class OutAtSetLengthOscillate extends CommandGroup {
+public class Oscillate extends CommandGroup {
 
-    public OutAtSetLengthOscillate() {
-    	addSequential(new OutCommand());
-    	addSequential(new SpeedyWaitBoi());
-    	addSequential(new Oscillate());
+    public Oscillate() {
+    		addSequential(new InCommand());
+    		addSequential(new VerySpeedyWaitBoi(0.01));
+    		addSequential(new OutCommand());
+    		addSequential(new VerySpeedyWaitBoi(0.012));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
