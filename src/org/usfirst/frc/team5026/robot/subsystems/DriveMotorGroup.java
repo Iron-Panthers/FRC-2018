@@ -55,6 +55,7 @@ public class DriveMotorGroup extends Subsystem {
 		motor.configMotionAcceleration(6000, Constants.kTimeoutMs);
 		/* zero the sensor */
 		motor.setSelectedSensorPosition(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
+		
 	}
 	public void driveWithPower(double speed) {  // -1 to 1
 		motor1.set(ControlMode.PercentOutput, speed);

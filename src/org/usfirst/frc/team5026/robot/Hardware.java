@@ -1,5 +1,7 @@
 package org.usfirst.frc.team5026.robot;
 
+import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
+import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
@@ -21,6 +23,14 @@ public class Hardware {
 		right1M = new TalonSRX(RobotMap.DRIVE_RIGHT_MOTOR_1);
 		right2M = new TalonSRX(RobotMap.DRIVE_RIGHT_MOTOR_2);
 		right3M = new TalonSRX(RobotMap.DRIVE_RIGHT_MOTOR_3);
+		
+		//Limit Switch stuff
+		left1M.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen, 0);
+		left1M.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyClosed, 0);
+		left1M.overrideLimitSwitchesEnable(false);
+		left1M.configForwardSoftLimitEnable(true, 0);
+		left1M.configForwardSoftLimitThreshold(0, 1);
+		
 		
 //		Robot.right.setInverted(Constants.IS_RIGHT_INVERTED);
 //		intakeM = new TalonSRX(RobotMap.INTAKE_MOTOR);
