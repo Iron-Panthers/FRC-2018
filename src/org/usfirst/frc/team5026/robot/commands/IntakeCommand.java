@@ -2,6 +2,7 @@ package org.usfirst.frc.team5026.robot.commands;
 
 import org.usfirst.frc.team5026.robot.Constants;
 import org.usfirst.frc.team5026.robot.Robot;
+import org.usfirst.frc.team5026.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -27,12 +28,11 @@ public class IntakeCommand extends Command {
     	//SmartDashboard.putNumber("Intake Speed", Constants.INTAKE_POWER);
     	SmartDashboard.putNumber("throttle:", Robot.oi.driveStick.getThrottle());
     	SmartDashboard.putNumber("magnitude:", Robot.oi.driveStick.getMagnitude());
-
-//    	double voltage = Robot.hardware.pdp.getVoltage()*Robot.intake.motor.get();
-//    	double current = Robot.hardware.pdp.getCurrent(RobotMap.INTAKE_PDP_PORT);
-//    	SmartDashboard.putNumber("Intake Current over Voltage", voltage/current);
-//    	SmartDashboard.putNumber("Intake Voltage", voltage);
-//    	SmartDashboard.putNumber("Intake Current", current);
+    	double current = Robot.hardware.pdp.getCurrent(RobotMap.INTAKE_PDP_PORT);
+    	double voltage = Robot.hardware.pdp.getVoltage()*Robot.intake.motor.get();
+    	SmartDashboard.putNumber("Intake Current over Voltage", voltage/current);
+    	SmartDashboard.putNumber("Intake Voltage", voltage);
+    	SmartDashboard.putNumber("Intake Current", current);
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -31,8 +31,6 @@ public class JoystickDrive extends Command {
     	//k = Robot.oi.driveStick.getY()/Robot.oi.driveStick.getX();
 //    	right = Constants.QUARTER_SPEED*(-Robot.oi.driveStick.getY() - Robot.oi.driveStick.getX());
 //    	left = Constants.QUARTER_SPEED*(-Robot.oi.driveStick.getY() + Robot.oi.driveStick.getX());
-//    	Robot.drive.setLeftMotor(Robot.oi.driveStick.getY() + Robot.oi.driveStick.getX());
-//    	Robot.drive.setRightMotor(Robot.oi.driveStick.getY() - Robot.oi.driveStick.getX());
 //    	if(Robot.oi.driveStick.getY()<.13&&Robot.oi.driveStick.getX()<.13) {
 //    		Robot.drive.setRightMotor(0);
 //    		Robot.drive.setLeftMotor(0);

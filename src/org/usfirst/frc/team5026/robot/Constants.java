@@ -10,8 +10,9 @@ public class Constants {
 	//Intake and Outtake
 	public static final boolean IS_INTAKE_INVERTED = true;
 	public static final boolean IS_RIGHT_INVERTED = true;
-	public static final double INTAKE_POWER = .8;
-	public static final double OUTTAKE_POWER = -.8;
+	public static final boolean IS_LEFT_INVERTED = false;
+	public static final double INTAKE_POWER = .5;//.5-.8 typically works well
+	public static final double OUTTAKE_POWER = -.5;
 	
 	public static final double ROBOT_WIDTH = 0.5; // unit is meters
 	public static final double WHEEL_DIAMETER = 6; // unit is inches
