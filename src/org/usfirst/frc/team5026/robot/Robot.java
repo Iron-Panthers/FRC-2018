@@ -40,7 +40,7 @@ public class Robot extends IterativeRobot {
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 		SmartDashboard.putNumber("Wait time", 2);
-		SmartDashboard.putNumber("Length Out", 0);
+		SmartDashboard.putNumber("Length Out", 5);
 //		DriverStation.getInstance().getGameSpecificMessage();
 		oi.mapButtons();
 		LiveWindow.disableAllTelemetry();

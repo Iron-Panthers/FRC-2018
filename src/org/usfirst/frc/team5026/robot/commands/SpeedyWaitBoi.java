@@ -28,6 +28,7 @@ public class SpeedyWaitBoi extends Command {
 
     // Called once after timeout
     protected void end() {
+    		System.out.println("SpeedyWaitBoi stops");
     }
 
     // Called when another command which requires one or more of the same
