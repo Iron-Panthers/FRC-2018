@@ -10,7 +10,8 @@ public class InOutAtSetLength extends CommandGroup {
     public InOutAtSetLength() {
     		addSequential(new OutCommand());
     		addSequential(new SpeedyWaitBoi());
-    		addSequential(new InCommand());        // Add Commands here:
+    		addSequential(new InCommand());        
+    		// Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
         // these will run in order.
