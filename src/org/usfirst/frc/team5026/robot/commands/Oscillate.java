@@ -13,6 +13,7 @@ public class Oscillate extends CommandGroup {
     		addSequential(new VerySpeedyWaitBoi(SmartDashboard.getNumber("Oscillation Time Retract", 0.01)));
     		addSequential(new OutCommand());
     		addSequential(new VerySpeedyWaitBoi(SmartDashboard.getNumber("Oscillation Time Extend", 0.01)));
+    		
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

@@ -1,6 +1,9 @@
 package org.usfirst.frc.team5026.robot.commands;
 
+import org.usfirst.frc.team5026.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -8,8 +11,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class OutAtSetLengthOscillate extends CommandGroup {
 
     public OutAtSetLengthOscillate() {
-    	addSequential(new OutCommand());
-    	addSequential(new SpeedyWaitBoi());
+    	if(Robot.hardware.potentiometer.getVoltage() < SmartDashboard.getNumber("Length Out", 2));
+    	addSequential(new ConditionalOutCommand());
+    	addSequential(new ConditionalSpeedyWaitBoi());
     	addSequential(new Oscillate());
         // Add Commands here:
         // e.g. addSequential(new Command1());
