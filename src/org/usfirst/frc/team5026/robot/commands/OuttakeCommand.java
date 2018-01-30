@@ -26,6 +26,7 @@ public class OuttakeCommand extends Command {
     	Robot.intake.outtake(Constants.OUTTAKE_POWER*Robot.oi.driveStick.getThrottle());
     	SmartDashboard.putNumber("magnitude:", Robot.oi.driveStick.getMagnitude());
     	SmartDashboard.putNumber("throttle:", Robot.oi.driveStick.getThrottle());
+    	Robot.intake.hasBlock();
 //    	SmartDashboard.putNumber("Outtake Voltage", Robot.intake.motor.get() * Robot.hardware.pdp.getVoltage());
 //    	SmartDashboard.putNumber("Outtake Current", Robot.hardware.pdp.getCurrent(RobotMap.INTAKE_PDP_PORT));
 //    	SmartDashboard.putNumber("in", 0.2);
