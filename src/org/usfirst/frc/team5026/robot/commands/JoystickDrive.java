@@ -29,9 +29,9 @@ public class JoystickDrive extends Command {
     	SmartDashboard.putNumber("Joystick X Axis", Robot.oi.driveStick.getX());
     	SmartDashboard.putNumber("Joystick Y Axis", Robot.oi.driveStick.getY());
     	//k = Robot.oi.driveStick.getY()/Robot.oi.driveStick.getX();
-    	if(Robot.drive.isReversed == 1) {
-    		right = (-Robot.oi.driveStick.getY() - Robot.oi.driveStick.getX());
-        	left = (-Robot.oi.driveStick.getY() + Robot.oi.driveStick.getX());
+    	if(!Robot.drive.isReversed) {
+    		right = -(-Robot.oi.driveStick.getY() - Robot.oi.driveStick.getX());
+        	left = -(-Robot.oi.driveStick.getY() + Robot.oi.driveStick.getX());
     	}
     	else{
     		right = (-Robot.oi.driveStick.getY() + Robot.oi.driveStick.getX());
@@ -40,22 +40,21 @@ public class JoystickDrive extends Command {
     	
 //    	Robot.drive.setLeftMotor(Robot.oi.driveStick.getY() + Robot.oi.driveStick.getX());
 //    	Robot.drive.setRightMotor(Robot.oi.driveStick.getY() - Robot.oi.driveStick.getX());
-    	if(Math.abs(Robot.oi.driveStick.getY()) < .08 && Math.abs(Robot.oi.driveStick.getX()) < .08) {
+    	if(Math.abs(Robot.oi.driveStick.getY()) < .08
+    			&& Math.abs(Robot.oi.driveStick.getX()) < .08) {
     		Robot.drive.setRightMotor(0);
     		Robot.drive.setLeftMotor(0);
     	}
     	else {
     		if(right > 1) {
-    			Robot.drive.setRightMotor(1*Constants.QUARTER_SPEED);
+    			Robot.drive.setRightMotor(1*Constants.SPEED);
         	}
         	else {
-        		Robot.drive.setLeftMotor(left*Constants.QUARTER_SPEED);
-        	}
+        		Robot.drive.setLeftMotor(right*Constants.SPEED);        	}
         	if(left > 1) {
-        		Robot.drive.setRightMotor(1*Constants.QUARTER_SPEED);
-        	}
+        		Robot.drive.setRightMotor(1*Constants.SPEED);        	}
         	else {
-        		Robot.drive.setRightMotor(right*Constants.QUARTER_SPEED);
+        		Robot.drive.setRightMotor(left*Constants.SPEED);
         	}	
     	}
     }

@@ -25,6 +25,7 @@ public class ReverseDrive extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+    	//if(Robot.oi.driveStick.)
         return true;
     }
 
@@ -35,5 +36,6 @@ public class ReverseDrive extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	//Robot.drive.reverseDrive();
     }
 }

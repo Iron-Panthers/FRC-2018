@@ -29,7 +29,7 @@ public class OI {
 		stickBtnOne.whileHeld(new IntakeCommand());
 		stickBtnTwo.whileHeld(new OuttakeCommand());
 		trigger.whenPressed(new ReverseDrive());
-
+		trigger.whenReleased(new ReverseDrive());
 	}
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
