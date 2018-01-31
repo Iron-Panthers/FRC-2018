@@ -23,7 +23,6 @@ public class IntakeCommand extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	//Robot.intake.intake(Robot.oi.driveStick.getY());
-    	Robot.intake.intake(Constants.INTAKE_POWER*Robot.oi.driveStick.getThrottle());
     	//SmartDashboard.putNumber("Intake Speed", Constants.INTAKE_POWER);
     	SmartDashboard.putNumber("throttle:", Robot.oi.driveStick.getThrottle());
     	SmartDashboard.putNumber("magnitude:", Robot.oi.driveStick.getMagnitude());
