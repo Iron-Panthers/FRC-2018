@@ -77,7 +77,8 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void disabledInit() {
-
+		hardware.elevatorMotor.setSelectedSensorPosition(0, 0, 0);
+		System.out.println(hardware.elevatorMotor.getSelectedSensorPosition(0));
 	}
 
 	@Override

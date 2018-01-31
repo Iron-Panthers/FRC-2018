@@ -27,9 +27,17 @@ public class OI {
 	public Button stickBtnThree;
 	public Button stickBtnFour;
 	public OI () {
+		
+		
+		
+		
+		
+		
+		
+		
 		stick = new Joystick(RobotMap.JOYSTICK_PORT);
 		stickBtnOne = new JoystickButton(stick, 1);
-		stickBtnFour = new JoystickButton(stick, 2);
+		stickBtnTwo = new JoystickButton(stick, 2);
 		stickBtnThree = new JoystickButton(stick, 3);
 		stickBtnFour = new JoystickButton(stick, 4);
 	}

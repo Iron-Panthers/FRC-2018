@@ -21,7 +21,7 @@ public class Hardware {
 		elevatorMotor.setInverted(Constants.IS_ELEVATOR_INVERTED);
 		elevatorMotor.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen, 0);
 		elevatorMotor.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen, 0);
-		slaveMotor.follow(Robot.hardware.elevatorMotor);
+		slaveMotor.follow(elevatorMotor);
 		slaveMotor.setInverted(Constants.IS_ELEVATOR_INVERTED);
 		leftSolenoid = new DoubleSolenoid(RobotMap.LEFT_SOLENOID_PORT_1, RobotMap.LEFT_SOLENOID_PORT_2);
 		rightSolenoid = new DoubleSolenoid(RobotMap.RIGHT_SOLENOID_PORT_1, RobotMap.RIGHT_SOLENOID_PORT_2);

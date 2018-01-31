@@ -39,7 +39,7 @@ public class Constants {
 	public static final double AUTO_DISTANCE = 30; //Inches
 	public static final double WHEEL_RADIUS = 2;
 	public static final double WHEEL_CIRCUMFERENCE = WHEEL_RADIUS*2*Math.PI;
-	public static final double ENCODER_TO_WHEEL_REV_RATIO = 1; // To be changed
+	public static final double ENCODER_TO_WHEEL_REV_RATIO = 5; // To be changed
 	public static final double STATIC_TICK_TARGET = 4000;
 	public static final double TICK_TARGET = Constants.AUTO_DISTANCE/Constants.WHEEL_CIRCUMFERENCE/Constants.ENCODER_TO_WHEEL_REV_RATIO*Constants.TICKS_TO_INCHES;
 	//Camera
