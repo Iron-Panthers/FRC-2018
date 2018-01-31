@@ -1,9 +1,11 @@
 package org.usfirst.frc.team5026.robot.subsystems;
+import org.usfirst.frc.team5026.robot.commands.JoystickDrive;
+import org.usfirst.frc.team5026.robot.util.Constants;
+
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import org.usfirst.frc.team5026.robot.commands.JoystickDrive;
-import org.usfirst.frc.team5026.robot.util.Constants;
 
 /**
  *
@@ -11,10 +13,13 @@ import org.usfirst.frc.team5026.robot.util.Constants;
 public class Drive extends Subsystem {
 	Talon right;
 	Talon left;
+	DoubleSolenoid gearShift;
 	DifferentialDrive dDrive;
-	public Drive(Talon r, Talon l){
+	GearState state;
+	public Drive(Talon r, Talon l, DoubleSolenoid d){
 		right = r;
 		left = l;
+		gearShift = d;
 		dDrive = new DifferentialDrive(l, r);
 		dDrive.setSafetyEnabled(false);
 		dDrive.setDeadband(Constants.JOYSTICK_DEADZONE);
@@ -35,6 +40,14 @@ public class Drive extends Subsystem {
 	}
 	public void stop() {
 		dDrive.stopMotor();
+	}
+	public void shiftHigh() {
+		state = GearState.HIGH;
+		gearShift.set(DoubleSolenoid.Value.kReverse);
+	}
+	public void shiftLow() {
+		state = GearState.LOW;
+		gearShift.set(DoubleSolenoid.Value.kForward);
 	}
     public void initDefaultCommand() {
     	setDefaultCommand(new JoystickDrive());
