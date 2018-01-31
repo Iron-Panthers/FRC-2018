@@ -15,7 +15,7 @@ public class Hardware {
 		leftM = new Talon(RobotMap.DRIVE_LEFT_MOTOR);
 		intakeM = new Talon(RobotMap.INTAKE_MOTOR);
 		intakeM.setInverted(Constants.IS_INTAKE_INVERTED);
-		bannerSensor = new DigitalInput(0);
+		bannerSensor = new DigitalInput(9);
 //		pdp = new PowerDistributionPanel();
 	}
 }
