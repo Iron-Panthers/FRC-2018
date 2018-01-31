@@ -21,6 +21,7 @@ public class RobotMap {
 	public static final int LEFT_SOLENOID_PORT_2 = 3;
 	public static final int RIGHT_SOLENOID_PORT_1 = 4;
 	public static final int RIGHT_SOLENOID_PORT_2 = 5;
+	public static int CAMERA_PORT = 0;
 	// For example to map the left and right motors, you could define the
 	// following variables to use with your drivetrain subsystem.
 	// public static int leftMotor = 1;

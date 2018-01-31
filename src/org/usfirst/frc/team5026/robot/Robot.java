@@ -12,6 +12,10 @@ import org.usfirst.frc.team5026.robot.subsystems.Elevator;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
+import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.VideoSink;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -32,8 +36,13 @@ public class Robot extends TimedRobot {
 	public static Hardware hardware;
 	public static OI oi;
 	public static Elevator elevator;
+	//Cameras
+	public static UsbCamera cam1;
+	public static CvSink cvsink1;
+	public static VideoSink server;
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
+	
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -41,6 +50,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void robotInit() {
+		startCamera();
 		hardware = new Hardware();
 		elevator = new Elevator();
 		oi = new OI();
@@ -48,6 +58,15 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putData("Auto mode", m_chooser);
 		oi.mapButtons();
 		LiveWindow.disableAllTelemetry();
+	}
+	private static void startCamera() {
+		CameraServer camera = CameraServer.getInstance();
+		cam1 = camera.startAutomaticCapture("cam0", RobotMap.CAMERA_PORT);
+		cam1.setResolution(Constants.CAMERA_PIXEL_HEIGHT, Constants.CAMERA_PIXEL_WIDTH);
+		server = camera.getServer();
+		cvsink1 = new CvSink("cam1cv");
+		cvsink1.setSource(cam1);
+		cvsink1.setEnabled(true);
 	}
 	
 
