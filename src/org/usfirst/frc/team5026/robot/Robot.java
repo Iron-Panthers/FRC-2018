@@ -32,12 +32,13 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		hardware = new Hardware();
-		drive = new Drive(hardware.rightM,hardware.leftM);
+		drive = new Drive(hardware.rightM,hardware.leftM, hardware.gearShift);
 		oi = new OI();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 		DriverStation.getInstance().getGameSpecificMessage();
 		oi.mapButtons();
+		LiveWindow.disableAllTelemetry();
 	}
 
 	/**
