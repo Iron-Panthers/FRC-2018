@@ -8,6 +8,8 @@
 package org.usfirst.frc.team5026.robot;
 
 
+import org.usfirst.frc.team5026.robot.subsystems.Elevator;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -29,6 +31,7 @@ public class Robot extends TimedRobot {
 //			= new ExampleSubsystem();
 	public static Hardware hardware;
 	public static OI oi;
+	public static Elevator elevator;
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -39,9 +42,11 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		hardware = new Hardware();
+		elevator = new Elevator();
 		oi = new OI();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
+		oi.mapButtons();
 		LiveWindow.disableAllTelemetry();
 	}
 	

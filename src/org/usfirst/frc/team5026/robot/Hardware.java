@@ -6,9 +6,14 @@ import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+
 public class Hardware {
 	public TalonSRX elevatorMotor;
 	public TalonSRX slaveMotor;
+	
+	public DoubleSolenoid leftSolenoid;
+	public DoubleSolenoid rightSolenoid;
 	public Hardware() {
 		elevatorMotor = new TalonSRX(RobotMap.TALON_PORT);
 		slaveMotor = new TalonSRX(RobotMap.SLAVE_PORT);
@@ -18,6 +23,8 @@ public class Hardware {
 		elevatorMotor.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen, 0);
 		slaveMotor.follow(Robot.hardware.elevatorMotor);
 		slaveMotor.setInverted(Constants.IS_ELEVATOR_INVERTED);
+		leftSolenoid = new DoubleSolenoid(RobotMap.LEFT_SOLENOID_PORT_1, RobotMap.LEFT_SOLENOID_PORT_2);
+		rightSolenoid = new DoubleSolenoid(RobotMap.RIGHT_SOLENOID_PORT_1, RobotMap.RIGHT_SOLENOID_PORT_2);
 	}
 	public void setUp(TalonSRX motor) {
 		motor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, Constants.kPIDLoopIdx, Constants.kTimeoutMs);

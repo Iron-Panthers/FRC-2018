@@ -7,7 +7,14 @@
 
 package org.usfirst.frc.team5026.robot;
 
+import org.usfirst.frc.team5026.robot.commands.ExtendPistonsCommand;
+import org.usfirst.frc.team5026.robot.commands.LiftElevator;
+import org.usfirst.frc.team5026.robot.commands.ResetElevator;
+import org.usfirst.frc.team5026.robot.commands.RetractPistonsCommand;
+
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -15,8 +22,22 @@ import edu.wpi.first.wpilibj.Joystick;
  */
 public class OI {
 	public Joystick stick;
+	public Button stickBtnOne;
+	public Button stickBtnTwo;
+	public Button stickBtnThree;
+	public Button stickBtnFour;
 	public OI () {
 		stick = new Joystick(RobotMap.JOYSTICK_PORT);
+		stickBtnOne = new JoystickButton(stick, 1);
+		stickBtnFour = new JoystickButton(stick, 2);
+		stickBtnThree = new JoystickButton(stick, 3);
+		stickBtnFour = new JoystickButton(stick, 4);
+	}
+	public void mapButtons() {
+		stickBtnOne.whenPressed(new ExtendPistonsCommand());
+		stickBtnTwo.whenPressed(new RetractPistonsCommand());
+		stickBtnThree.whileHeld(new LiftElevator());
+		stickBtnFour.whileHeld(new ResetElevator());
 	}
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
