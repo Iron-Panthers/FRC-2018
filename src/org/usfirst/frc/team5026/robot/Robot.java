@@ -42,6 +42,7 @@ public class Robot extends IterativeRobot {
 		oi.mapButtons();
 		SmartDashboard.putData("Auto mode", chooser);
 		SmartDashboard.getNumber("Intake Speed", Constants.INTAKE_POWER);
+		LiveWindow.disableAllTelemetry(); 
 	}
 
 	/**
