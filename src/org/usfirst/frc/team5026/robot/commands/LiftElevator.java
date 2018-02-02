@@ -25,7 +25,8 @@ public class LiftElevator extends Command {
     protected void execute() {
     	Robot.elevator.raiseToTarget(Constants.TICK_TARGET);
     	Robot.dispNum("Target", Robot.hardware.elevatorMotor.getActiveTrajectoryPosition()); // Probably puts target
-    	Robot.dispNum("Current", Robot.hardware.elevatorMotor.getActiveTrajectoryVelocity()); // Probably puts current
+    	Robot.dispNum("Velocity", Robot.hardware.elevatorMotor.getActiveTrajectoryVelocity()); // Probably puts velocity
+    	Robot.dispNum("Current", Robot.hardware.elevatorMotor.getOutputCurrent()); // Probably puts current
     }
 
     // Make this return true when this Command no longer needs to run execute()
