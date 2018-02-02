@@ -20,8 +20,8 @@ public class Drive extends Subsystem {
 		dDrive.setSafetyEnabled(false);
 		dDrive.setDeadband(Constants.JOYSTICK_DEADZONE);
 	}
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
+// Put methods for controlling this subsystem
+// here. Call these from Commands.
 	public void setLeftMotor(double speed){
 		left.set(speed);
 	}
@@ -37,11 +37,11 @@ public class Drive extends Subsystem {
 	public void stop() {
 		dDrive.stopMotor();
 	}
-    public void initDefaultCommand() {
-    	
-    	setDefaultCommand(new JoystickDrive());
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
-    }
+	public void initDefaultCommand() {
+		
+		setDefaultCommand(new JoystickDrive());
+	// Set the default command for a subsystem here.
+	//setDefaultCommand(new MySpecialCommand());
+	}
 }
 
