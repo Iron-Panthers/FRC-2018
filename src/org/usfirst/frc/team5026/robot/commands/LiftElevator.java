@@ -24,8 +24,8 @@ public class LiftElevator extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.elevator.raiseToTarget(Constants.TICK_TARGET);
-    	Robot.dispNum("Target", Constants.TICK_TARGET); // Probably puts target
-    	Robot.dispNum("Current", Robot.hardware.elevatorMotor.getOutputCurrent()); // Probably puts current
+    	Robot.dispNum("Target", Robot.hardware.elevatorMotor.getActiveTrajectoryPosition()); // Probably puts target
+    	Robot.dispNum("Current", Robot.hardware.elevatorMotor.getActiveTrajectoryVelocity()); // Probably puts current
     }
 
     // Make this return true when this Command no longer needs to run execute()
