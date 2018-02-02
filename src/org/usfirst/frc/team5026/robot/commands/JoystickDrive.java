@@ -28,7 +28,7 @@ public class JoystickDrive extends Command {
     	//Robot.drive.useArcadeDrive(Robot.oi.driveStick.getX()*Constants.X_AXIS_MODIFIER, Robot.oi.driveStick.getY());
     	SmartDashboard.putNumber("Joystick X Axis", Robot.oi.driveStick.getX());
     	SmartDashboard.putNumber("Joystick Y Axis", Robot.oi.driveStick.getY());
-    	y = 1-Robot.oi.driveStick.getY();
+    	y = -Robot.oi.driveStick.getY();
     	x = Robot.oi.driveStick.getX();
     	//k = Robot.oi.driveStick.getY()/Robot.oi.driveStick.getX();
     	if(!Robot.drive.isReversed) {
