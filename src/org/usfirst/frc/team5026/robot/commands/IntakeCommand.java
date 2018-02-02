@@ -30,6 +30,7 @@ public class IntakeCommand extends Command {
 		//Robot.intake.intake(Robot.oi.driveStick.getY());
     	double current = Robot.hardware.pdp.getCurrent(RobotMap.INTAKE_PDP_PORT);
 		double voltage = Robot.intake.motor.getMotorOutputVoltage();
+		//To change the voltage so it graphs
 		if(voltage == lastVoltage) {
 			voltage+=0.0001;
 		}
