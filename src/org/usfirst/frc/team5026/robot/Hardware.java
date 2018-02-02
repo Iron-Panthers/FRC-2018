@@ -52,6 +52,5 @@ public class Hardware {
 		motor.configMotionAcceleration(Constants.ACCELERATION, Constants.kTimeoutMs);
 		/* zero the sensor */
 		motor.setSelectedSensorPosition(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
-		
 	}
 }
