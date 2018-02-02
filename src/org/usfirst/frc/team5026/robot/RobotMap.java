@@ -12,4 +12,6 @@ public class RobotMap {
 	public static final int DRIVE_RIGHT_MOTOR = 1;
 	public static final int INTAKE_MOTOR = 3; //Change back to drie
 	public static final int INTAKE_PDP_PORT = 13; //To Be Changed
+	//Camera
+	public static int CAMERA_PORT = 0; 
 }

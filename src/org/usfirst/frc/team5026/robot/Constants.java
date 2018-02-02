@@ -25,4 +25,7 @@ public class Constants {
 	public static final double DRIVE_ACCELERATION = 1000; // I am not sure what unit this is either
 	
 	public static final double JOYSTICK_DEADZONE = 0.1;
+	//Camera stuff
+	public static int CAMERA_PIXEL_HEIGHT = 1920; 
+	public static int CAMERA_PIXEL_WIDTH = 1080; 
 }

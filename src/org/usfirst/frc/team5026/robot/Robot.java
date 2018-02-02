@@ -4,6 +4,8 @@ package org.usfirst.frc.team5026.robot;
 import org.usfirst.frc.team5026.robot.subsystems.Drive;
 import org.usfirst.frc.team5026.robot.subsystems.IntakeSubsystem;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -25,6 +27,7 @@ public class Robot extends IterativeRobot {
 	public static Hardware hardware;
 	public static Drive drive;
 	public static IntakeSubsystem intake;
+	public static UsbCamera cam1;
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	/**
@@ -33,6 +36,9 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+		CameraServer camera = CameraServer.getInstance(); 
+	    cam1 = camera.startAutomaticCapture("cam0", RobotMap.CAMERA_PORT); 
+	    cam1.setResolution(Constants.CAMERA_PIXEL_HEIGHT, Constants.CAMERA_PIXEL_WIDTH);
 		hardware = new Hardware();
 		drive = new Drive(hardware.rightM,hardware.leftM);
 		intake = new IntakeSubsystem();
