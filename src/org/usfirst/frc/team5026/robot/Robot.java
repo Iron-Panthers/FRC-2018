@@ -58,9 +58,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putData("Auto mode", m_chooser);
 		oi.mapButtons();
 		LiveWindow.disableAllTelemetry();
-		SmartDashboard.getNumber("Current", Robot.hardware.elevatorMotor.getOutputCurrent());
-		SmartDashboard.getNumber("Target", Robot.hardware.elevatorMotor.getActiveTrajectoryPosition()); // Probably puts target
-    	SmartDashboard.getNumber("Velocity", Robot.hardware.elevatorMotor.getActiveTrajectoryVelocity()); // Probably puts velocity
+		SmartDashboard.getNumber("Tick Target", Constants.TICK_TARGET); // Input setpoint
     }
 	private static void startCamera() {
 		CameraServer camera = CameraServer.getInstance();

@@ -26,6 +26,8 @@ public class Constants {
 	//Auto Code
 	public static final double FEED_FORWARD = SmartDashboard.getNumber("Feed Forward Value", 0.4);
 	public static final double AUTO_P = 0; //Do not change
+	public static final double AUTO_I = 0;
+	public static final double AUTO_D = 0;
 	public static final boolean IS_ELEVATOR_INVERTED = true;
 	public static final int LIMIT_SWITCH_MAX = 1;
 	public static final int LIMIT_SWITCH_MIN = 0;

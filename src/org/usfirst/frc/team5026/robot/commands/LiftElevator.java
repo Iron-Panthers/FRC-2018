@@ -27,7 +27,14 @@ public class LiftElevator extends Command {
     	Robot.dispNum("Target", Robot.hardware.elevatorMotor.getActiveTrajectoryPosition()); // Probably puts target
     	Robot.dispNum("Velocity", Robot.hardware.elevatorMotor.getActiveTrajectoryVelocity()); // Probably puts velocity
     	Robot.dispNum("Current", Robot.hardware.elevatorMotor.getOutputCurrent()); // Probably puts current
-    	//SmartDashboard.putBoolean("Limit Switch Triggered", );
+    	Robot.dispNum("Sensor Position", Robot.hardware.elevatorMotor.getSelectedSensorPosition(0));
+    	Robot.dispNum("P Constant", Constants.AUTO_P);
+    	Robot.dispNum("I Constant", Constants.AUTO_I);
+    	Robot.dispNum("D Constant", Constants.AUTO_D);
+    	Robot.dispNum("F Constant", Constants.FEED_FORWARD);
+    	Robot.dispNum("Error", Robot.hardware.elevatorMotor.getErrorDerivative(0));
+    	Robot.dispNum("Voltage", Robot.hardware.elevatorMotor.getBusVoltage());
+    	SmartDashboard.putBoolean("Forward Limit Switch Pressed", Robot.hardware.limitSwitchF.get()); 
     }
 
     // Make this return true when this Command no longer needs to run execute()
