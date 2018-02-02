@@ -13,10 +13,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Elevator extends Subsystem {
-	TalonSRX masterMotor;
-	TalonSRX slaveMotor;
-	DoubleSolenoid leftSolenoid;
-	DoubleSolenoid rightSolenoid;
+	public TalonSRX masterMotor;
+	public TalonSRX slaveMotor;
+	public DoubleSolenoid leftSolenoid;
+	public DoubleSolenoid rightSolenoid;
 	public Elevator() {
 		masterMotor = Robot.hardware.elevatorMotor;
 		slaveMotor = Robot.hardware.slaveMotor;
