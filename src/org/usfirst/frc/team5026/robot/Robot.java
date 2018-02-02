@@ -156,4 +156,8 @@ public class Robot extends TimedRobot {
 	@Override
 	public void testPeriodic() {
 	}
+	
+	public static void dispNum(String key, double value) {
+		SmartDashboard.putNumber(key, value);
+	}
 }
