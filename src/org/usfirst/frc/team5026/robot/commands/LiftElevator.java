@@ -26,6 +26,7 @@ public class LiftElevator extends Command {
     	Robot.dispNum("Target", Robot.hardware.elevatorMotor.getActiveTrajectoryPosition()); // Probably puts target
     	Robot.dispNum("Velocity", Robot.hardware.elevatorMotor.getActiveTrajectoryVelocity()); // Probably puts velocity
     	Robot.dispNum("Current", Robot.hardware.elevatorMotor.getOutputCurrent()); // Probably puts current
+    	Robot.dispNum("Sensor Position", Robot.hardware.elevatorMotor.getSelectedSensorPosition(0));
     }
 
     // Make this return true when this Command no longer needs to run execute()
