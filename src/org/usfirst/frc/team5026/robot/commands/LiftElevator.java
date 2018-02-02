@@ -34,7 +34,7 @@ public class LiftElevator extends Command {
     	Robot.dispNum("F Constant", Constants.FEED_FORWARD);
     	Robot.dispNum("Error", Robot.hardware.elevatorMotor.getErrorDerivative(0));
     	Robot.dispNum("Voltage", Robot.hardware.elevatorMotor.getBusVoltage());
-    	SmartDashboard.putBoolean("Forward Limit Switch Pressed", Robot.hardware.limitSwitchF.get()); 
+//    	SmartDashboard.putBoolean("Forward Limit Switch Pressed", Robot.hardware.limitSwitchF.get()); 
     }
 
     // Make this return true when this Command no longer needs to run execute()
