@@ -15,7 +15,7 @@ package org.usfirst.frc.team5026.robot;
  */
 public class RobotMap {
 	public static final int TALON_PORT = 1;
-	public static final int SLAVE_PORT = 3;
+	public static final int SLAVE_PORT = 7;
 	public static final int JOYSTICK_PORT = 1;
 	public static final int LEFT_SOLENOID_PORT_1 = 2;
 	public static final int LEFT_SOLENOID_PORT_2 = 3;

@@ -20,11 +20,11 @@ public class Hardware {
 		elevatorMotor = new TalonSRX(RobotMap.TALON_PORT);
 		slaveMotor = new TalonSRX(RobotMap.SLAVE_PORT);
 		setUp(elevatorMotor);
-		elevatorMotor.setInverted(Constants.IS_ELEVATOR_INVERTED);
+//		elevatorMotor.setInverted(Constants.IS_ELEVATOR_INVERTED);
 		elevatorMotor.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen, 0);
 		elevatorMotor.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen, 0);
 		slaveMotor.follow(elevatorMotor);
-		slaveMotor.setInverted(Constants.IS_ELEVATOR_INVERTED);
+//		slaveMotor.setInverted(Constants.IS_ELEVATOR_INVERTED);
 		
 //		limitSwitchF = new DigitalInput(RobotMap.LIMIT_SWTICH_F);
 //		limitSwitchR = new DigitalInput(RobotMap.LIMIT_SWTICH_R);
