@@ -1,7 +1,11 @@
-package org.usfirst.frc.team5026.robot;
+package org.usfirst.frc.team5026.robot.util;
 
+import org.usfirst.frc.team5026.robot.RobotMap;
+
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
+import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
@@ -37,4 +41,5 @@ public class Hardware {
 //		pdp = new PowerDistributionPanel();
 		
 	}
+	
 }

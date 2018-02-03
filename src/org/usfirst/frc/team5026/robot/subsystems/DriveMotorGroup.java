@@ -1,6 +1,6 @@
 package org.usfirst.frc.team5026.robot.subsystems;
 
-import org.usfirst.frc.team5026.robot.Constants;
+import org.usfirst.frc.team5026.robot.util.Constants;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -30,31 +30,26 @@ public class DriveMotorGroup extends Subsystem {
 		setUp(this.motor3);
 	}
 	public void setUp(TalonSRX motor) {
-		motor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
+		motor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
 		motor.setSensorPhase(true);
 		motor.setInverted(false);
-
-		/* Set relevant frame periods to be at least as fast as periodic rate */
+		
 		motor.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 10, Constants.kTimeoutMs);
 		motor.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, Constants.kTimeoutMs);
-
-		/* set the peak and nominal outputs */
+		
 		motor.configNominalOutputForward(0, Constants.kTimeoutMs);
 		motor.configNominalOutputReverse(0, Constants.kTimeoutMs);
 		motor.configPeakOutputForward(1, Constants.kTimeoutMs);
-		motor.configPeakOutputReverse(-1, Constants.kTimeoutMs);
-
-		/* set closed loop gains in slot0 - see documentation */
-		motor.selectProfileSlot(Constants.kSlotIdx, Constants.kPIDLoopIdx);
-		motor.config_kF(0, 0.2, Constants.kTimeoutMs);
-		motor.config_kP(0, 0.2, Constants.kTimeoutMs);
-		motor.config_kI(0, 0, Constants.kTimeoutMs);
-		motor.config_kD(0, 0, Constants.kTimeoutMs);
-		/* set acceleration and vcruise velocity - see documentation */
-		motor.configMotionCruiseVelocity(15000, Constants.kTimeoutMs);
-		motor.configMotionAcceleration(6000, Constants.kTimeoutMs);
-		/* zero the sensor */
-		motor.setSelectedSensorPosition(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
+		motor.configPeakOutputReverse(1, Constants.kTimeoutMs);
+		
+		motor.selectProfileSlot(Constants.kSlotIdx, Constants.kTimeoutMs);
+		motor.config_kF(0, Constants.DRIVE_F, Constants.kTimeoutMs);
+		motor.config_kP(0, Constants.DRIVE_P, Constants.kTimeoutMs);
+		motor.config_kI(0, Constants.DRIVE_I, Constants.kTimeoutMs);
+		motor.config_kD(0, Constants.DRIVE_D, Constants.kTimeoutMs);
+		
+		motor.configMotionCruiseVelocity(Constants.DRIVE_VELOCITY, Constants.kTimeoutMs);
+		motor.configMotionAcceleration(Constants.DRIVE_ACCELERATION, Constants.kTimeoutMs);
 		
 	}
 	public void driveWithPower(double speed) {  // -1 to 1
