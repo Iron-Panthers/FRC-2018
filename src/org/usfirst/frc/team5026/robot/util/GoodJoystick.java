@@ -1,6 +1,6 @@
-package Util;
-import org.usfirst.frc.team5026.robot.Constants;
+package org.usfirst.frc.team5026.robot.util;
 import org.usfirst.frc.team5026.robot.Robot;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class GoodJoystick {

@@ -1,9 +1,8 @@
 package org.usfirst.frc.team5026.robot.commands;
-import org.usfirst.frc.team5026.robot.Constants;
 import org.usfirst.frc.team5026.robot.Robot;
+import org.usfirst.frc.team5026.robot.util.Constants;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -27,16 +26,16 @@ public class JoystickDrive extends Command {
     	left = Robot.oi.joystick.findLeftPower();
     	right = Robot.oi.joystick.findRightPower();
     	if(left>Constants.SPEED) {
-			Robot.drive.setLeftMotor(Constants.SPEED);
+			Robot.drive.setLeftSide(Constants.SPEED);
 		}
 		else {
-	    	Robot.drive.setLeftMotor(left*Constants.SPEED);
+	    	Robot.drive.setLeftSide(left*Constants.SPEED);
 		}
 		if(right>Constants.SPEED) {
-			Robot.drive.setRightMotor(Constants.SPEED);
+			Robot.drive.setRightSide(Constants.SPEED);
 		}
 		else {
-	    	Robot.drive.setLeftMotor(right*Constants.SPEED);
+	    	Robot.drive.setLeftSide(right*Constants.SPEED);
 		}
 //    	double right;
 //    	double left;

@@ -1,11 +1,9 @@
 
 package org.usfirst.frc.team5026.robot;
 
-import org.usfirst.frc.team5026.robot.commands.IntakeCommand;
-import org.usfirst.frc.team5026.robot.commands.OuttakeCommand;
 import org.usfirst.frc.team5026.robot.commands.ReverseDrive;
+import org.usfirst.frc.team5026.robot.util.GoodJoystick;
 
-import Util.GoodJoystick;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -30,8 +28,6 @@ public class OI {
 		
 	}
 	public void mapButtons(){
-		stickBtnOne.whileHeld(new IntakeCommand());
-		stickBtnTwo.whileHeld(new OuttakeCommand());
 		trigger.whenPressed(new ReverseDrive());
 		trigger.whenReleased(new ReverseDrive());
 	}
