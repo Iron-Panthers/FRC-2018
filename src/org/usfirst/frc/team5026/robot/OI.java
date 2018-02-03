@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5026.robot;
 
+import org.usfirst.frc.team5026.robot.commands.ConditionalINOUT;
 import org.usfirst.frc.team5026.robot.commands.InCommand;
 import org.usfirst.frc.team5026.robot.commands.InOutAtSetLength;
 import org.usfirst.frc.team5026.robot.commands.InOutCommand;
@@ -20,6 +21,7 @@ public class OI {
 	public JoystickButton buttonThree;
 	public JoystickButton buttonFour;
 	public JoystickButton buttonFive;
+	public JoystickButton special;
 	public OI(){
 		driveStick = new Joystick(RobotMap.DRIVE_JOYSTICK);
 		buttonOne = new JoystickButton(driveStick, 1);
@@ -27,6 +29,7 @@ public class OI {
 		buttonThree = new JoystickButton(driveStick, 3);
 		buttonFour = new JoystickButton(driveStick, 4);
 		buttonFive = new JoystickButton(driveStick, 5);
+		special = new JoystickButton(driveStick, 6);
 	}
 	public void mapButtons(){
 		buttonOne.whenPressed(new InCommand());
@@ -34,6 +37,7 @@ public class OI {
 		buttonThree.whileHeld(new InOutCommand());
 		buttonFour.whileHeld(new InOutAtSetLength());
 		buttonFive.whileHeld(new OutAtSetLengthOscillate());
+		special.whileHeld(new ConditionalINOUT());
 	}
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a

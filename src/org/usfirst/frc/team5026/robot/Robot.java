@@ -43,6 +43,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Oscillation Time Extend", 0.01);
 		SmartDashboard.putNumber("Oscillation Time Retract", 0.01);
 		SmartDashboard.putNumber("Length Out", 2);
+    	SmartDashboard.putNumber("extend length", 0);
 //		DriverStation.getInstance().getGameSpecificMessage();
 		oi.mapButtons();
 		LiveWindow.disableAllTelemetry();

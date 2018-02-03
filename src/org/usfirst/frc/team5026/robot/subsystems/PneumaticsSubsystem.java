@@ -19,7 +19,6 @@ public class PneumaticsSubsystem extends Subsystem {
 	public void contract() {
 		solenoidBoi.set(DoubleSolenoid.Value.kForward);
 	}
-
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
@@ -28,4 +27,3 @@ public class PneumaticsSubsystem extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
 }
-
