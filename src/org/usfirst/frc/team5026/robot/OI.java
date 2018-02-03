@@ -1,7 +1,7 @@
 package org.usfirst.frc.team5026.robot;
 
 import org.usfirst.frc.team5026.robot.commands.InCommand;
-import org.usfirst.frc.team5026.robot.commands.InOutAtSetLength;
+import org.usfirst.frc.team5026.robot.commands.OutInSetTime;
 import org.usfirst.frc.team5026.robot.commands.InOutCommand;
 import org.usfirst.frc.team5026.robot.commands.OutAtSetLengthOscillate;
 import org.usfirst.frc.team5026.robot.commands.OutCommand;
@@ -32,7 +32,7 @@ public class OI {
 		buttonOne.whenPressed(new InCommand());
 		buttonTwo.whenPressed(new OutCommand());
 		buttonThree.whileHeld(new InOutCommand());
-		buttonFour.whileHeld(new InOutAtSetLength());
+		buttonFour.whileHeld(new OutInSetTime());
 		buttonFive.whileHeld(new OutAtSetLengthOscillate());
 	}
 	//// CREATING BUTTONS

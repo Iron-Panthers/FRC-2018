@@ -1,17 +1,17 @@
 package org.usfirst.frc.team5026.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class InOutAtSetLength extends CommandGroup {
+public class OutInSetTime extends CommandGroup {
 
-    public InOutAtSetLength() {
-    		addSequential(new OutCommand());
-    		addSequential(new SpeedyWaitBoi());
-    		addSequential(new InCommand());        
-    		// Add Commands here:
+    public OutInSetTime() {
+    	addParallel(new FindTarget(SmartDashboard.getNumber("Time to go out in", 1)));
+    	addParallel(new Oscillation());
+        // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
         // these will run in order.
