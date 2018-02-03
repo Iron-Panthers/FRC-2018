@@ -38,12 +38,18 @@ public class Constants {
 	public static final int kPIDLoopIdx = 0; //Do not change
 	public static final double DRIVE_SPEED = 1;
 	public static final double TICKS_TO_INCHES = 1024;
-	public static final double AUTO_DISTANCE = 30; //Inches
+	public static final double AUTO_SCALE_DISTANCE = 60; //Inches for Elevator
+	public static final double AUTO_SWITCH_DISTANCE = 13; //Inches for Elevator to go to switc
+	public static final double AUTO_GROUND_DISTANCE = 0; //Inches for Elevator to go to ground
 	public static final double WHEEL_RADIUS = 2;
 	public static final double WHEEL_CIRCUMFERENCE = WHEEL_RADIUS*2*Math.PI;
-	public static final double ENCODER_TO_WHEEL_REV_RATIO = 5; // To be changed
-	public static final double TICK_TARGET = Constants.AUTO_DISTANCE/Constants.WHEEL_CIRCUMFERENCE/Constants.ENCODER_TO_WHEEL_REV_RATIO*Constants.TICKS_TO_INCHES;
-	public static final double STATIC_TICK_TARGET = SmartDashboard.getNumber("Elevator Target", TICK_TARGET);
+	public static final double ELEVATOR_WHEEL_RADIUS = 1; //THe encoder thing for turning
+	public static final double ELEVATOR_WHEEL_CIRCUMFERENCE = ELEVATOR_WHEEL_RADIUS*2*Math.PI;
+	public static final double ENCODER_TO_WHEEL_REV_RATIO = 30; // To be changed
+	public static final double TICK_TARGET_TO_SCALE = Constants.AUTO_SCALE_DISTANCE/Constants.ELEVATOR_WHEEL_CIRCUMFERENCE/Constants.ENCODER_TO_WHEEL_REV_RATIO*Constants.TICKS_TO_INCHES;
+	public static final double TICK_TARGET_TO_SWITCH = Constants.AUTO_SWITCH_DISTANCE/Constants.ELEVATOR_WHEEL_CIRCUMFERENCE/Constants.ENCODER_TO_WHEEL_REV_RATIO*Constants.TICKS_TO_INCHES;
+	public static final double TICK_TARGET_TO_GROUND = Constants.AUTO_GROUND_DISTANCE/Constants.ELEVATOR_WHEEL_CIRCUMFERENCE/Constants.ENCODER_TO_WHEEL_REV_RATIO*Constants.TICKS_TO_INCHES;
+	public static final double STATIC_TICK_TARGET = SmartDashboard.getNumber("Elevator Target", TICK_TARGET_TO_SCALE);
 	//Camera
 	public static int CAMERA_PIXEL_HEIGHT = 1920; 
 	public static int CAMERA_PIXEL_WIDTH = 1080; 

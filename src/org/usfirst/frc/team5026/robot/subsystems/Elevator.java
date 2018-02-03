@@ -34,11 +34,14 @@ public class Elevator extends Subsystem {
 	public void raiseToTarget(double tickTarget) {
 		masterMotor.set(ControlMode.MotionMagic, tickTarget);
 	}
-	public void raiseAuto() {
-		masterMotor.set(ControlMode.MotionMagic, Constants.TICK_TARGET);
+	public void raiseToScale() {
+		masterMotor.set(ControlMode.MotionMagic, Constants.TICK_TARGET_TO_SCALE);
+	}
+	public void raiseToSwitch() {
+		masterMotor.set(ControlMode.MotionMagic, Constants.TICK_TARGET_TO_SWITCH);
 	}
 	public void resetElevator() {
-		masterMotor.set(ControlMode.MotionMagic, 0); //Go back to starting position
+		masterMotor.set(ControlMode.MotionMagic, Constants.TICK_TARGET_TO_GROUND); //Go back to starting position
 	}
     // Put methods for controlling this subsystem
     // here. Call these from Commands.

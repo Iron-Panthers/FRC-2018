@@ -56,9 +56,9 @@ public class Robot extends TimedRobot {
 		oi = new OI();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
+		SmartDashboard.getNumber("Scale Target", Constants.TICK_TARGET_TO_SCALE); // Input setpoint
 		oi.mapButtons();
 		LiveWindow.disableAllTelemetry();
-		SmartDashboard.getNumber("Tick Target", Constants.TICK_TARGET); // Input setpoint
     }
 	private static void startCamera() {
 		CameraServer camera = CameraServer.getInstance();
@@ -120,7 +120,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
-		hardware.elevatorMotor.set(ControlMode.MotionMagic, Constants.TICK_TARGET);
+		hardware.elevatorMotor.set(ControlMode.MotionMagic, Constants.TICK_TARGET_TO_SCALE);
 		SmartDashboard.putNumber("Auto Encoder Position", hardware.elevatorMotor.getSelectedSensorPosition(0));
 		SmartDashboard.putNumber("Auto Talon Speed", hardware.elevatorMotor.getMotorOutputPercent());
 //		System.out.println(hardware.elevatorMotor.getSelectedSensorPosition(0));

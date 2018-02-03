@@ -4,15 +4,13 @@ import org.usfirst.frc.team5026.robot.Constants;
 import org.usfirst.frc.team5026.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class LiftElevator extends Command {
+public class LiftToSwitch extends Command {
 
-    public LiftElevator() {
-    	requires(Robot.elevator);
+    public LiftToSwitch() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -23,7 +21,7 @@ public class LiftElevator extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.elevator.raiseToTarget(Constants.TICK_TARGET);
+    	Robot.elevator.raiseToTarget(Constants.TICK_TARGET_TO_SWITCH);
     	Robot.dispNum("Target", Robot.hardware.elevatorMotor.getActiveTrajectoryPosition()); // Probably puts target
     	Robot.dispNum("Velocity", Robot.hardware.elevatorMotor.getActiveTrajectoryVelocity()); // Probably puts velocity
     	Robot.dispNum("Current", Robot.hardware.elevatorMotor.getOutputCurrent()); // Probably puts current
@@ -34,7 +32,6 @@ public class LiftElevator extends Command {
     	Robot.dispNum("F Constant", Constants.FEED_FORWARD);
     	Robot.dispNum("Error", Robot.hardware.elevatorMotor.getErrorDerivative(0));
     	Robot.dispNum("Voltage", Robot.hardware.elevatorMotor.getBusVoltage());
-//    	SmartDashboard.putBoolean("Forward Limit Switch Pressed", Robot.hardware.limitSwitchF.get()); 
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -44,12 +41,10 @@ public class LiftElevator extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	
     }
 }
