@@ -17,4 +17,6 @@ public class RobotMap {
 	
 //	public static final int INTAKE_MOTOR = 3; //Change back to drie
 //	public static final int INTAKE_PDP_PORT = 2; //To Be Changed
+	public static final int INTAKE_MOTOR = 3; //Change back to drie
+	public static final int INTAKE_PDP_PORT = 2; //To Be Changed
 }

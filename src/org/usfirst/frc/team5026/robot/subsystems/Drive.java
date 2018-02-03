@@ -1,4 +1,8 @@
 package org.usfirst.frc.team5026.robot.subsystems;
+import org.usfirst.frc.team5026.robot.Constants;
+import org.usfirst.frc.team5026.robot.commands.JoystickDrive;
+
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
@@ -9,12 +13,14 @@ public class Drive extends Subsystem {
 	public DriveMotorGroup right;
 	public DriveMotorGroup left;
 	DifferentialDrive dDrive;
+	public boolean isReversed;
 	public Drive(DriveMotorGroup left, DriveMotorGroup right){
 		this.right = right;
 		this.left = left;
 //		dDrive = new DifferentialDrive(left, right);
 		//dDrive.setSafetyEnabled(false);
 		//dDrive.setDeadband(Constants.JOYSTICK_DEADZONE);
+		isReversed = false;
 	}
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -45,9 +51,12 @@ public class Drive extends Subsystem {
 		left.stop();
 		right.stop();
 	}
+	public void reverseDrive() {
+		isReversed = !isReversed;
+	}
     public void initDefaultCommand() {
     	
-//    	setDefaultCommand(new JoystickDrive());
+    	setDefaultCommand(new JoystickDrive());
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
