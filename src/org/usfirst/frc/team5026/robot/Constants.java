@@ -42,8 +42,8 @@ public class Constants {
 	public static final double WHEEL_RADIUS = 2;
 	public static final double WHEEL_CIRCUMFERENCE = WHEEL_RADIUS*2*Math.PI;
 	public static final double ENCODER_TO_WHEEL_REV_RATIO = 5; // To be changed
-	public static final double STATIC_TICK_TARGET = 4000;
 	public static final double TICK_TARGET = Constants.AUTO_DISTANCE/Constants.WHEEL_CIRCUMFERENCE/Constants.ENCODER_TO_WHEEL_REV_RATIO*Constants.TICKS_TO_INCHES;
+	public static final double STATIC_TICK_TARGET = SmartDashboard.getNumber("Elevator Target", TICK_TARGET);
 	//Camera
 	public static int CAMERA_PIXEL_HEIGHT = 1920; 
 	public static int CAMERA_PIXEL_WIDTH = 1080; 
