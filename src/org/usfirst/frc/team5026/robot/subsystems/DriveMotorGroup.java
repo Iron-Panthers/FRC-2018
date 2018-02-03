@@ -7,13 +7,13 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class DriveMotorGroup extends Subsystem {
+public class DriveMotorGroup implements SpeedController {
 	public TalonSRX motor1; 
 	public TalonSRX motor2;
 	public TalonSRX motor3;
@@ -29,41 +29,41 @@ public class DriveMotorGroup extends Subsystem {
 		setUp(this.motor2);
 		setUp(this.motor3);
 	}
-	public void setUp(TalonSRX motor) {
-		motor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
-		motor.setSensorPhase(true);
-		motor.setInverted(false);
+	public void setUp(TalonSRX encoderMotor, TalonSRX... motors) {
+		encoderMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
+		encoderMotor.setSensorPhase(true);
+		encoderMotor.setInverted(false);
 		
-		motor.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 10, Constants.kTimeoutMs);
-		motor.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, Constants.kTimeoutMs);
+		encoderMotor.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 10, Constants.kTimeoutMs);
+		encoderMotor.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, Constants.kTimeoutMs);
 		
-		motor.configNominalOutputForward(0, Constants.kTimeoutMs);
-		motor.configNominalOutputReverse(0, Constants.kTimeoutMs);
-		motor.configPeakOutputForward(1, Constants.kTimeoutMs);
-		motor.configPeakOutputReverse(1, Constants.kTimeoutMs);
+		encoderMotor.configNominalOutputForward(0, Constants.kTimeoutMs);
+		encoderMotor.configNominalOutputReverse(0, Constants.kTimeoutMs);
+		encoderMotor.configPeakOutputForward(1, Constants.kTimeoutMs);
+		encoderMotor.configPeakOutputReverse(1, Constants.kTimeoutMs);
 		
-		motor.selectProfileSlot(Constants.kSlotIdx, Constants.kTimeoutMs);
-		motor.config_kF(0, Constants.DRIVE_F, Constants.kTimeoutMs);
-		motor.config_kP(0, Constants.DRIVE_P, Constants.kTimeoutMs);
-		motor.config_kI(0, Constants.DRIVE_I, Constants.kTimeoutMs);
-		motor.config_kD(0, Constants.DRIVE_D, Constants.kTimeoutMs);
+		encoderMotor.selectProfileSlot(Constants.kSlotIdx, Constants.kTimeoutMs);
+		encoderMotor.config_kF(0, Constants.DRIVE_F, Constants.kTimeoutMs);
+		encoderMotor.config_kP(0, Constants.DRIVE_P, Constants.kTimeoutMs);
+		encoderMotor.config_kI(0, Constants.DRIVE_I, Constants.kTimeoutMs);
+		encoderMotor.config_kD(0, Constants.DRIVE_D, Constants.kTimeoutMs);
 		
-		motor.configMotionCruiseVelocity(Constants.DRIVE_VELOCITY, Constants.kTimeoutMs);
-		motor.configMotionAcceleration(Constants.DRIVE_ACCELERATION, Constants.kTimeoutMs);
+		encoderMotor.configMotionCruiseVelocity(Constants.DRIVE_VELOCITY, Constants.kTimeoutMs);
+		encoderMotor.configMotionAcceleration(Constants.DRIVE_ACCELERATION, Constants.kTimeoutMs);
+		
+		for (int i = 0; i < motors.length; i++) {
+			motors[i].follow(encoderMotor);
+		}
 		
 	}
 	public void driveWithPower(double speed) {  // -1 to 1
 		motor1.set(ControlMode.PercentOutput, speed);
-//		motor2.set(ControlMode.PercentOutput, speed);
-//		motor3.set(ControlMode.PercentOutput, speed);
 		SmartDashboard.putNumber("Motor 1", motor1.getMotorOutputPercent());
 		SmartDashboard.putNumber("Motor 2", motor2.getMotorOutputPercent());
 		SmartDashboard.putNumber("Motor 3", motor3.getMotorOutputPercent());
 	}
 	public void driveWithTarget(double target) {
 		motor1.set(ControlMode.MotionMagic, target);
-//		motor2.set(ControlMode.MotionMagic, target);
-//		motor3.set(ControlMode.MotionMagic, target);
 		SmartDashboard.putNumber("Motor "+motor1.getDeviceID(), motor1.getMotorOutputPercent());
 		SmartDashboard.putNumber("Motor "+motor2.getDeviceID(), motor2.getMotorOutputPercent());
 		SmartDashboard.putNumber("Motor "+motor3.getDeviceID(), motor3.getMotorOutputPercent());
@@ -81,9 +81,31 @@ public class DriveMotorGroup extends Subsystem {
 		motor2.setInverted(isInverted);
 		motor3.setInverted(isInverted);
 	}
-    public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
-    }
+	public void pidWrite(double arg0) {
+		// TODO LATER
+	}
+	public void disable() {
+		stop();
+	}
+	@Override
+	public double get() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public boolean getInverted() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public void set(double power) {
+		// TODO Auto-generated method stub
+		driveWithPower(power);
+	}
+	@Override
+	public void stopMotor() {
+		// TODO Auto-generated method stub
+		stop();
+	}
 }
 

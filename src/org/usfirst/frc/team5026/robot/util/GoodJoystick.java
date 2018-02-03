@@ -1,24 +1,30 @@
 package org.usfirst.frc.team5026.robot.util;
 import org.usfirst.frc.team5026.robot.Robot;
+import org.usfirst.frc.team5026.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class GoodJoystick {
 	public double x;
 	public double y;
-	public GoodJoystick(){
+	public Joystick driveStick;
+	int port;
+	public GoodJoystick(int port){
+		driveStick = new Joystick(port);
+		this.port = port;
 	}
 	double right;
 	double left;
 	public void seeAxis() {
-		SmartDashboard.putNumber("Joystick X Axis", Robot.oi.driveStick.getX());
-		SmartDashboard.putNumber("Joystick Y Axis", Robot.oi.driveStick.getY());
+		SmartDashboard.putNumber("Joystick X Axis", driveStick.getX());
+		SmartDashboard.putNumber("Joystick Y Axis", driveStick.getY());
 	}
 	//Robot.drive.useArcadeDrive(Robot.oi.driveStick.getX()*Constants.X_AXIS_MODIFIER, Robot.oi.driveStick.getY());
 
 	public void findXY() {
-		y = -Robot.oi.driveStick.getY();
-		x = Robot.oi.driveStick.getX();
+		y = -driveStick.getY();
+		x = driveStick.getX();
 		if(Math.abs(y) < Constants.DEADZONE_SIZE) {
 			y=0;
 		}

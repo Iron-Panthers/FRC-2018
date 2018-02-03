@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5026.robot.subsystems;
 import org.usfirst.frc.team5026.robot.commands.JoystickDrive;
+import org.usfirst.frc.team5026.robot.util.Constants;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -15,9 +16,9 @@ public class Drive extends Subsystem {
 	public Drive(DriveMotorGroup left, DriveMotorGroup right){
 		this.right = right;
 		this.left = left;
-//		dDrive = new DifferentialDrive(left, right);
-		//dDrive.setSafetyEnabled(false);
-		//dDrive.setDeadband(Constants.JOYSTICK_DEADZONE);
+		dDrive = new DifferentialDrive(left, right);
+		dDrive.setSafetyEnabled(false);
+		dDrive.setDeadband(Constants.JOYSTICK_DEADZONE);
 		isReversed = false;
 	}
     // Put methods for controlling this subsystem

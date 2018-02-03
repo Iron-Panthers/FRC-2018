@@ -2,10 +2,11 @@
 package org.usfirst.frc.team5026.robot;
 
 import org.usfirst.frc.team5026.robot.commands.AutoDrive;
+
 import org.usfirst.frc.team5026.robot.subsystems.Drive;
 import org.usfirst.frc.team5026.robot.subsystems.DriveMotorGroup;
 import org.usfirst.frc.team5026.robot.util.Constants;
-import org.usfirst.frc.team5026.robot.util.Hardware;
+import org.usfirst.frc.team5026.robot.Hardware;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -27,8 +28,6 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static Hardware hardware;
 	public static Drive drive;
-	public static DriveMotorGroup left;
-	public static DriveMotorGroup right;
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	/**
@@ -38,16 +37,16 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		hardware = new Hardware();
-		
 		oi = new OI();
-		left = new DriveMotorGroup(hardware.left1M, hardware.left2M, hardware.left3M);
-		right = new DriveMotorGroup(hardware.right1M, hardware.right2M, hardware.right3M);
-		drive = new Drive(left, right);
-		right.setInverted(Constants.IS_RIGHT_INVERTED);
+		drive = new Drive(hardware.left, hardware.right);
+//		right.setInverted(Constants.IS_RIGHT_INVERTED);
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		String gameData = DriverStation.getInstance().getGameSpecificMessage();
 		oi.mapButtons();
 		chooser.addDefault("My Auto", new AutoDrive());
+		SmartDashboard.putNumber("target", 100);
+		SmartDashboard.putNumber("max count", 50);
+		SmartDashboard.putNumber("tolerance", 69);
 		SmartDashboard.putData("Auto mode", chooser);
 //		SmartDashboard.getNumber("Intake Speed", Constants.INTAKE_POWER);
 		LiveWindow.disableAllTelemetry();
@@ -117,7 +116,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		System.out.println(hardware.left1M.getSelectedSensorPosition(0));
+		System.out.println(hardware.leftM1.getSelectedSensorPosition(0));
 		Scheduler.getInstance().run();
 	}
 
