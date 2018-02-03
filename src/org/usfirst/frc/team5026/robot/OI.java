@@ -5,6 +5,7 @@ import org.usfirst.frc.team5026.robot.commands.IntakeCommand;
 import org.usfirst.frc.team5026.robot.commands.OuttakeCommand;
 import org.usfirst.frc.team5026.robot.commands.ReverseDrive;
 
+import Util.GoodJoystick;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -18,11 +19,14 @@ public class OI {
 	public Button stickBtnOne;
 	public Button stickBtnTwo;
 	public Button trigger;
+	public GoodJoystick joystick;
 	public OI(){
+		joystick = new GoodJoystick();
 		driveStick = new Joystick(RobotMap.DRIVE_JOYSTICK);
 		stickBtnOne = new JoystickButton(driveStick,7);
 		stickBtnTwo = new JoystickButton(driveStick,9);
 		trigger = new JoystickButton(driveStick,1);
+		
 		
 	}
 	public void mapButtons(){
