@@ -19,7 +19,7 @@ public class IntakeSubsystem extends Subsystem {
 		motor.set(speed);
 	}
 	public void outtake(double speed) {
-		motor.set(speed);
+		motor.set(-speed);
 	}
 	public void stop() {
 		motor.set(0);
