@@ -20,8 +20,8 @@ public class DriveStraight extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	target = (int) SmartDashboard.getNumber("target", 0);
-    	target = (int) (target/Constants.WHEEL_CIRCUMFERENCE/Constants.ENCODER_TO_WHEEL_REV_RATIO*Constants.TICKS_TO_INCHES);
+    	target = (int) SmartDashboard.getNumber("target (inches)", 0);
+    	target = (int) (target * Constants.TICKS_TO_INCHES);
 		Robot.drive.stop();
 		maxCount = (int) SmartDashboard.getNumber("max count", 0);
 		tolerance = (int) SmartDashboard.getNumber("tolerance", 0);
@@ -34,7 +34,7 @@ public class DriveStraight extends Command {
     	SmartDashboard.putNumber("current left position", Robot.drive.left.motor1.getSelectedSensorPosition(0));
     	SmartDashboard.putNumber("current right position", Robot.drive.right.motor1.getSelectedSensorPosition(0));
     	SmartDashboard.putNumber("count", count);
-    	if (target - Robot.drive.left.motor1.getSelectedSensorPosition(0) < tolerance) {
+    	if ((target - Robot.drive.left.getEncoderTicks()) < tolerance) {
     		count++;
     	}
     }

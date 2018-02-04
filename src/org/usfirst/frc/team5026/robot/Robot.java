@@ -116,7 +116,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		System.out.println(hardware.leftM1.getSelectedSensorPosition(0));
+		System.out.println(hardware.leftM1.getSelectedSensorPosition(Constants.kSlotIdx));
 		Scheduler.getInstance().run();
 	}
 

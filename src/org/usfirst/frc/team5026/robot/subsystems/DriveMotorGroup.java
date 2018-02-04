@@ -50,7 +50,7 @@ public class DriveMotorGroup implements SpeedController {
 		
 		encoderMotor.configMotionCruiseVelocity(Constants.DRIVE_VELOCITY, Constants.kTimeoutMs);
 		encoderMotor.configMotionAcceleration(Constants.DRIVE_ACCELERATION, Constants.kTimeoutMs);
-		
+
 		for (int i = 0; i < motors.length; i++) {
 			motors[i].follow(encoderMotor);
 		}
@@ -106,6 +106,10 @@ public class DriveMotorGroup implements SpeedController {
 	public void stopMotor() {
 		// TODO Auto-generated method stub
 		stop();
+	}
+	
+	public int getEncoderTicks() {
+		return this.motor1.getSelectedSensorPosition(Constants.kSlotIdx);
 	}
 }
 
