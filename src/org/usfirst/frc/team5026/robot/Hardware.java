@@ -28,13 +28,12 @@ public class Hardware {
 		
 //		limitSwitchF = new DigitalInput(RobotMap.LIMIT_SWTICH_F);
 //		limitSwitchR = new DigitalInput(RobotMap.LIMIT_SWTICH_R);
-		
 		leftSolenoid = new DoubleSolenoid(RobotMap.LEFT_SOLENOID_PORT_1, RobotMap.LEFT_SOLENOID_PORT_2);
 		rightSolenoid = new DoubleSolenoid(RobotMap.RIGHT_SOLENOID_PORT_1, RobotMap.RIGHT_SOLENOID_PORT_2);
 	}
 	public void setUp(TalonSRX motor) {
 		motor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
-		motor.setSensorPhase(true);
+		motor.setSensorPhase(false); //Flips signal, allows motor to go positive and negative
 		motor.setInverted(false);
 
 		/* Set relevant frame periods to be at least as fast as periodic rate */
