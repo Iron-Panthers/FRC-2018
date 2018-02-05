@@ -12,6 +12,9 @@ public class Constants {
 	public static final boolean IS_RIGHT_INVERTED = true;
 	public static final double INTAKE_POWER = 1;
 	public static final double OUTTAKE_POWER = 1;
+	public static final double THRESHOLD_POWER = 0;//change to whatever power successfully intakes
+	public static final double THRESHOLD_CURRENT = 0;//change to whatever current successfully intakes
+	public static final int THRESHOLD_COUNT = 3;//change to whatever
 	
 	public static final double ROBOT_WIDTH = 0.5; // unit is meters
 	public static final double WHEEL_DIAMETER = 6; // unit is inches
