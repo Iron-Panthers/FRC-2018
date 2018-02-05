@@ -10,6 +10,7 @@ public class Constants {
 	//Intake and Outtake
 	public static final boolean IS_INTAKE_INVERTED = true;
 	public static final boolean IS_RIGHT_INVERTED = true;
+	public static final boolean IS_LEFT_INVERTED = false;
 	public static final double INTAKE_POWER = 1;
 	public static final double OUTTAKE_POWER = 1;
 	
@@ -41,4 +42,5 @@ public class Constants {
 	}
 	public static final int DRIVE_VELOCITY = MOTION_MAGIC_VELOCITY(DRIVE_WANTED_INCHES_PER_SECOND); // Units of encoder ticks per 100 ms 
 	public static final int DRIVE_ACCELERATION = MOTION_MAGIC_ACCELERATION(DRIVE_WANTED_ACCELERATION_INCHES_PER_SECOND_SQUARED); // Units of encoder ticks per 100 ms per second
+
 }
