@@ -42,9 +42,9 @@ public class Drive extends Subsystem {
 //	public void setLeftRightMotors(double power) {
 //		dDrive.tankDrive(power, power);
 //	}
-//	public void useArcadeDrive(double yAxis, double xAxis) {
-//		dDrive.arcadeDrive(yAxis, xAxis);
-//	}
+	public void useArcadeDrive(double yAxis, double xAxis) {
+		dDrive.arcadeDrive(yAxis, xAxis);
+	}
 	public void stop() {
 //		dDrive.stopMotor();
 		left.stop();

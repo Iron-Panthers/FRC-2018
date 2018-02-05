@@ -40,7 +40,7 @@ public class DriveMotorGroup implements SpeedController {
 		encoderMotor.configNominalOutputForward(0, Constants.kTimeoutMs);
 		encoderMotor.configNominalOutputReverse(0, Constants.kTimeoutMs);
 		encoderMotor.configPeakOutputForward(1, Constants.kTimeoutMs);
-		encoderMotor.configPeakOutputReverse(1, Constants.kTimeoutMs);
+		encoderMotor.configPeakOutputReverse(-1, Constants.kTimeoutMs);
 		
 		encoderMotor.selectProfileSlot(Constants.kSlotIdx, Constants.kTimeoutMs);
 		encoderMotor.config_kF(0, Constants.DRIVE_F, Constants.kTimeoutMs);
