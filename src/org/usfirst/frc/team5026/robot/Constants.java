@@ -19,8 +19,8 @@ public class Constants {
 	public static final double DRIVE_D = 0;
 	public static final double DRIVE_F = 0;
 	public static final int DRIVE_TICKS_PER_REVOLUTION = 1024;
-	public static final double DRIVE_VELOCITY = 500; // I am not sure what unit this is
-	public static final double DRIVE_ACCELERATION = 1000; // I am not sure what unit this is either
+	public static final double DRIVE_VELOCITY = 500; // encoder ticks per 100 ms
+	public static final double DRIVE_ACCELERATION = 1000; // encoder tickers per 100 ms per seconds
 	
 	public static final double JOYSTICK_DEADZONE = 0.1;
 	//Auto Code
@@ -46,9 +46,9 @@ public class Constants {
 	public static final double ELEVATOR_WHEEL_RADIUS = 1; //THe encoder thing for turning
 	public static final double ELEVATOR_WHEEL_CIRCUMFERENCE = ELEVATOR_WHEEL_RADIUS*2*Math.PI;
 	public static final double ENCODER_TO_WHEEL_REV_RATIO = 30; // To be changed
-	public static final double TICK_TARGET_TO_SCALE = -Constants.AUTO_SCALE_DISTANCE/Constants.ELEVATOR_WHEEL_CIRCUMFERENCE/Constants.ENCODER_TO_WHEEL_REV_RATIO*Constants.TICKS_TO_INCHES;
-	public static final double TICK_TARGET_TO_SWITCH = -Constants.AUTO_SWITCH_DISTANCE/Constants.ELEVATOR_WHEEL_CIRCUMFERENCE/Constants.ENCODER_TO_WHEEL_REV_RATIO*Constants.TICKS_TO_INCHES;
-	public static final double TICK_TARGET_TO_GROUND = -Constants.AUTO_GROUND_DISTANCE/Constants.ELEVATOR_WHEEL_CIRCUMFERENCE/Constants.ENCODER_TO_WHEEL_REV_RATIO*Constants.TICKS_TO_INCHES;
+	public static final double TICK_TARGET_TO_SCALE = -Constants.AUTO_SCALE_DISTANCE/Constants.ELEVATOR_WHEEL_CIRCUMFERENCE*Constants.ENCODER_TO_WHEEL_REV_RATIO; // *Constants.TICKS_TO_INCHES;
+	public static final double TICK_TARGET_TO_SWITCH = -Constants.AUTO_SWITCH_DISTANCE/Constants.ELEVATOR_WHEEL_CIRCUMFERENCE*Constants.ENCODER_TO_WHEEL_REV_RATIO; // *Constants.TICKS_TO_INCHES;
+	public static final double TICK_TARGET_TO_GROUND = -Constants.AUTO_GROUND_DISTANCE/Constants.ELEVATOR_WHEEL_CIRCUMFERENCE*Constants.ENCODER_TO_WHEEL_REV_RATIO; // *Constants.TICKS_TO_INCHES;
 	public static final double STATIC_TICK_TARGET = SmartDashboard.getNumber("Elevator Target", TICK_TARGET_TO_SCALE);
 	//Camera
 	public static int CAMERA_PIXEL_HEIGHT = 1920; 
