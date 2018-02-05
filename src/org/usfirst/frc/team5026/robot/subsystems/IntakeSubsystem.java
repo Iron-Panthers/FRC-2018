@@ -1,9 +1,10 @@
 package org.usfirst.frc.team5026.robot.subsystems;
 
 import org.usfirst.frc.team5026.robot.Robot;
-import org.usfirst.frc.team5026.robot.commands.IntakeCommand;
 
-import edu.wpi.first.wpilibj.Talon;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -11,18 +12,18 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class IntakeSubsystem extends Subsystem {
-	public Talon motor;
+	public TalonSRX motor;
 	public IntakeSubsystem() {
 		motor = Robot.hardware.intakeM;
 	}
 	public void intake(double speed) {
-		motor.set(speed);
+		motor.set(ControlMode.PercentOutput,speed);
 	}
 	public void outtake(double speed) {
-		motor.set(-speed);
+		motor.set(ControlMode.PercentOutput,-speed);
 	}
 	public void stop() {
-		motor.set(0);
+		motor.set(ControlMode.PercentOutput,0);
 	}
 	public void hasBlock() {
 		if (Robot.hardware.bannerSensor.get()) {
