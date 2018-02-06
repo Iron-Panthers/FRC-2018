@@ -8,7 +8,6 @@ public class Constants {
 	public static final int LEFT_PORT = 1;
 	public static final int FULLSPEED = 1;
 	//Intake and Outtake
-	public static final boolean IS_INTAKE_INVERTED = true;
 	public static final boolean IS_INTAKE_INVERTED = false;
 	public static final boolean IS_RIGHT_INVERTED = true;
 	public static final boolean IS_LEFT_INVERTED = false;
