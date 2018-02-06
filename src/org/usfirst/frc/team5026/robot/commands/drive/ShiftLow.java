@@ -1,15 +1,17 @@
-package org.usfirst.frc.team5026.robot.commands;
+package org.usfirst.frc.team5026.robot.commands.drive;
 
 import org.usfirst.frc.team5026.robot.Robot;
+import org.usfirst.frc.team5026.robot.subsystems.Drive;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class ReverseDrive extends Command {
+public class ShiftLow extends Command {
 
-    public ReverseDrive() {
+    public ShiftLow() {
+    	requires(Robot.drive);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -20,12 +22,11 @@ public class ReverseDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.drive.reverseDrive();
+    		Robot.drive.shiftLow();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	//if(Robot.oi.driveStick.)
         return true;
     }
 
@@ -36,6 +37,5 @@ public class ReverseDrive extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	//Robot.drive.reverseDrive();
     }
 }

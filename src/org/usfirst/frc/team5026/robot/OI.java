@@ -1,8 +1,8 @@
 package org.usfirst.frc.team5026.robot;
 
 import org.usfirst.frc.team5026.robot.commands.FindF;
-import org.usfirst.frc.team5026.robot.commands.ShiftHigh;
-import org.usfirst.frc.team5026.robot.commands.ShiftLow;
+import org.usfirst.frc.team5026.robot.commands.drive.ShiftHigh;
+import org.usfirst.frc.team5026.robot.commands.drive.ShiftLow;
 import org.usfirst.frc.team5026.robot.util.GoodJoystick;
 
 import edu.wpi.first.wpilibj.buttons.Button;
