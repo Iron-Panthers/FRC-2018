@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ShiftHigh extends Command {
 
     public ShiftHigh() {
-    		requires(Robot.drive);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }

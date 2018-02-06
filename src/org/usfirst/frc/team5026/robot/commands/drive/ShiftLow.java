@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ShiftLow extends Command {
 
     public ShiftLow() {
-    	requires(Robot.drive);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
