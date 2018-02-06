@@ -3,6 +3,7 @@ package org.usfirst.frc.team5026.robot;
 
 import org.usfirst.frc.team5026.robot.commands.autonomous.DriveStraight;
 import org.usfirst.frc.team5026.robot.subsystems.Drive;
+import org.usfirst.frc.team5026.robot.subsystems.IntakeSubsystem;
 import org.usfirst.frc.team5026.robot.util.Constants;
 
 import edu.wpi.first.wpilibj.DriverStation;
@@ -25,6 +26,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static Hardware hardware;
 	public static Drive drive;
+	public static IntakeSubsystem intake;
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	/**
@@ -33,6 +35,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+		intake = new IntakeSubsystem();
 		hardware = new Hardware();
 		oi = new OI();
 		drive = new Drive(hardware.left, hardware.right, hardware.gearShift);

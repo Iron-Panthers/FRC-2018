@@ -19,7 +19,7 @@ public class Hardware {
 	public TalonSRX leftM1;
 	public TalonSRX leftM2;
 	public TalonSRX leftM3;
-	public Talon intakeM;
+	public TalonSRX intakeM;
 	public DriveMotorGroup right;
 	public DriveMotorGroup left;
 	public DigitalInput bannerSensor;
@@ -37,7 +37,7 @@ public class Hardware {
 		left = new DriveMotorGroup(leftM1, leftM2, leftM3);
 		right.setInverted(Constants.IS_RIGHT_INVERTED);
 		left.setInverted(Constants.IS_LEFT_INVERTED);
-		intakeM = new Talon(RobotMap.INTAKE_MOTOR);
+		intakeM = new TalonSRX(RobotMap.INTAKE_MOTOR);
 		intakeM.setInverted(Constants.IS_INTAKE_INVERTED);
 		bannerSensor = new DigitalInput(0);
 		pdp = new PowerDistributionPanel();
