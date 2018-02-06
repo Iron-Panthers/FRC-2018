@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 	public Button stickBtnOne;
 	public Button stickBtnTwo;
+	public Button stickBtnFour;
 	public Button stickBtnThree;
 	public GoodJoystick joystick;
 	public OI(){
@@ -22,9 +23,10 @@ public class OI {
 		stickBtnOne = new JoystickButton(joystick.driveStick,1);
 		stickBtnTwo = new JoystickButton(joystick.driveStick,2);
 		stickBtnThree = new JoystickButton(joystick.driveStick,3);
+		stickBtnFour = new JoystickButton(joystick.driveStick,4);
 	}
 	public void mapButtons(){
-		stickBtnOne.whenPressed(new DriveStraight());
+		stickBtnFour.whenPressed(new DriveStraight());
 		stickBtnOne.whenPressed(new ShiftHigh());
 		stickBtnTwo.whenPressed(new ShiftLow());
 		stickBtnThree.whenPressed(new FindF());
