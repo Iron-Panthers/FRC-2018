@@ -5,9 +5,11 @@ import org.usfirst.frc.team5026.robot.util.Constants;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Talon;
 
 public class Hardware {
