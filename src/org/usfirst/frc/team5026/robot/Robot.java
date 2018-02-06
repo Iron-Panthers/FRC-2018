@@ -28,6 +28,7 @@ public class Robot extends IterativeRobot {
 	public static Drive drive;
 	public static IntakeSubsystem intake;
 	public static UsbCamera cam1;
+	public static boolean hasBlock;
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	/**
@@ -36,6 +37,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+		hasBlock = false;
 		CameraServer camera = CameraServer.getInstance(); 
 	    cam1 = camera.startAutomaticCapture("cam0", RobotMap.CAMERA_PORT); 
 	    cam1.setResolution(Constants.CAMERA_PIXEL_HEIGHT, Constants.CAMERA_PIXEL_WIDTH);

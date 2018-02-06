@@ -1,10 +1,11 @@
 package org.usfirst.frc.team5026.robot.subsystems;
  
+import org.usfirst.frc.team5026.robot.Constants;
 import org.usfirst.frc.team5026.robot.Robot;
- 
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
- 
+
 import edu.wpi.first.wpilibj.command.Subsystem;
  
 /**
@@ -23,6 +24,12 @@ public class IntakeSubsystem extends Subsystem {
 	}
 	public void stop() {
 		motor.set(ControlMode.PercentOutput,0);
+	}
+	public boolean hasBlock() {
+		if(motor.getOutputCurrent()>Constants.HAS_BLOCK_THRESHOLD) {
+			return true;
+		}
+		return false;
 	}
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.

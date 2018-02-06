@@ -23,7 +23,7 @@ public class OuttakeCommand extends Command {
 	
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.intake.outtake(Constants.OUTTAKE_POWER*Robot.oi.driveStick.getThrottle());
+		Robot.intake.outtake(Constants.OUTTAKE_POWER);
 		SmartDashboard.putNumber("magnitude:", Robot.oi.driveStick.getMagnitude());
 		SmartDashboard.putNumber("throttle:", Robot.oi.driveStick.getThrottle());
 	//	SmartDashboard.putNumber("Outtake Voltage", Robot.intake.motor.get() * Robot.hardware.pdp.getVoltage());

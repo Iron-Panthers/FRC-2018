@@ -13,10 +13,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class IntakeCommand extends Command {
 	public double lastVoltage;
 	public double lastCurrent;
+	public int timeNotGrabbed;
+	public int time;
 	public IntakeCommand() {
 		requires(Robot.intake);
 		lastVoltage = 0;
 		lastCurrent = 0;
+		timeNotGrabbed = 0;
+		time = 0;
 	// Use requires() here to declare subsystem dependencies
 	// eg. requires(chassis);
 	}
@@ -27,25 +31,46 @@ public class IntakeCommand extends Command {
 	 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
+		time++;
 			//Robot.intake.intake(Robot.oi.driveStick.getY());
-		double current = Robot.hardware.pdp.getCurrent(RobotMap.INTAKE_PDP_PORT);
-			double voltage = Robot.intake.motor.getMotorOutputVoltage();
-			if(voltage == lastVoltage) {
-				voltage+=0.0001;
-			}
-			if(current == lastCurrent) {
-				current+=0.0001;
-			}
-			Robot.intake.intake(Constants.INTAKE_POWER*Robot.oi.driveStick.getThrottle());
-			//SmartDashboard.putNumber("Intake Speed", Constants.INTAKE_POWER);
-			SmartDashboard.putNumber("throttle:", Robot.oi.driveStick.getThrottle());
-			SmartDashboard.putNumber("magnitude:", Robot.oi.driveStick.getMagnitude());
-			
-			SmartDashboard.putNumber("Intake Current over Voltage", voltage/current);
-			SmartDashboard.putNumber("Intake Voltage", voltage);
-			SmartDashboard.putNumber("Intake Current", current);
-			lastVoltage = voltage;
-			lastCurrent = current;
+		double current = Robot.intake.motor.getOutputCurrent();
+		double voltage = Robot.intake.motor.getMotorOutputVoltage();
+		//Changes voltage to work around consistent values not showing up on SmartDashboard
+//		if(voltage == lastVoltage) {
+//			voltage+=0.0001;
+//		}
+		if(current == lastCurrent) {
+			current+=0.0001;
+		}
+//		//Algorithm for lowering power to not burn out the motor
+//		if(time>Constants.SPEED_UP_TIME) {
+//			if(Robot.intake.hasBlock()) {
+//				timeNotGrabbed = 0; //If it is grabbed, reset the timer
+//				Robot.intake.intake(Constants.SLOW_INTAKE_POWER);
+//				Robot.hasBlock = true;
+//			}
+//			else {
+//				timeNotGrabbed++;
+//				if(timeNotGrabbed>Constants.TIME_NOT_GRABBED_THRESHOLD) {
+//					Robot.intake.intake(Constants.INTAKE_POWER);
+//					Robot.hasBlock = false;
+//				}
+//			}
+//		}
+//		else {
+		Robot.intake.intake(Robot.oi.driveStick.getY());
+//		}
+		//Smart Dashbaord Stuff
+		SmartDashboard.putNumber("Intake Speed", Robot.intake.motor.getMotorOutputPercent());
+		SmartDashboard.putNumber("throttle:", Robot.oi.driveStick.getThrottle());
+		SmartDashboard.putNumber("magnitude:", Robot.oi.driveStick.getMagnitude());
+		
+		SmartDashboard.putNumber("Intake Current over Voltage", current/voltage);
+		SmartDashboard.putNumber("Intake Voltage", voltage);
+		SmartDashboard.putNumber("Intake Current", current);
+		lastVoltage = voltage;
+		lastCurrent = current;
+		
 	}
 	 
 	// Make this return true when this Command no longer needs to run execute()

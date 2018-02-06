@@ -39,7 +39,7 @@ public class Drive extends Subsystem {
 	}
 	public void initDefaultCommand() {
 		
-		setDefaultCommand(new JoystickDrive());
+//		setDefaultCommand(new JoystickDrive());
 	// Set the default command for a subsystem here.
 	//setDefaultCommand(new MySpecialCommand());
 	}
