@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5026.robot;
 
 import org.usfirst.frc.team5026.robot.commands.FindF;
+import org.usfirst.frc.team5026.robot.commands.autonomous.DriveStraight;
 import org.usfirst.frc.team5026.robot.commands.drive.ShiftHigh;
 import org.usfirst.frc.team5026.robot.commands.drive.ShiftLow;
 import org.usfirst.frc.team5026.robot.util.GoodJoystick;
