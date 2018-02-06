@@ -115,6 +115,11 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		System.out.println(hardware.leftM1.getSelectedSensorVelocity(Constants.kSlotIdx));
 		Scheduler.getInstance().run();
+		try {
+			Thread.sleep(20);
+		} catch (Exception e) {
+			// meh
+		}
 	}
 
 	/**

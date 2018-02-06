@@ -39,7 +39,7 @@ public class JoystickDrive extends Command {
 //		}
 //    	double right;
 //    	double left;
-    	Robot.drive.useArcadeDrive(Robot.oi.joystick.driveStick.getX()*Constants.X_AXIS_MODIFIER, Robot.oi.joystick.driveStick.getY());
+    	Robot.drive.useArcadeDrive(-Robot.oi.joystick.driveStick.getX()*Constants.X_AXIS_MODIFIER, Robot.oi.joystick.driveStick.getY());
 //    	SmartDashboard.putNumber("Joystick X Axis", Robot.oi.driveStick.getX());
 //    	SmartDashboard.putNumber("Joystick Y Axis", Robot.oi.driveStick.getY());
 //    	y = -Robot.oi.driveStick.getY();
