@@ -48,6 +48,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("max count", 50);
 		SmartDashboard.putNumber("tolerance", 69);
 		SmartDashboard.putData("Auto mode", chooser);
+		SmartDashboard.putNumber("X Deadzone Size", 0.08);
+		SmartDashboard.putNumber("Y Deadzone Size", 0.08);
 		SmartDashboard.getNumber("Intake Speed", Constants.INTAKE_POWER);
 		LiveWindow.disableAllTelemetry();
 	}
