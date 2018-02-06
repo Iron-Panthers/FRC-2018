@@ -24,7 +24,7 @@ public class OI {
 		stickBtnThree = new JoystickButton(joystick.driveStick,3);
 	}
 	public void mapButtons(){
-//		stickBtnOne.whenPressed(new DriveStraight());
+		stickBtnOne.whenPressed(new DriveStraight());
 		stickBtnOne.whenPressed(new ShiftHigh());
 		stickBtnTwo.whenPressed(new ShiftLow());
 		stickBtnThree.whenPressed(new FindF());
