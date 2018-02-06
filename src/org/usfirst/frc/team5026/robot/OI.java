@@ -1,15 +1,10 @@
 package org.usfirst.frc.team5026.robot;
 
-import org.usfirst.frc.team5026.robot.commands.FindF;
-<<<<<<< Updated upstream
 import org.usfirst.frc.team5026.robot.commands.autonomous.DriveStraight;
+import org.usfirst.frc.team5026.robot.commands.drive.ReverseDrive;
 import org.usfirst.frc.team5026.robot.commands.drive.ShiftHigh;
+import org.usfirst.frc.team5026.robot.commands.drive.ShiftLow;
 import org.usfirst.frc.team5026.robot.commands.drive.toggleGearshift;
-=======
-import org.usfirst.frc.team5026.robot.commands.ReverseDrive;
-import org.usfirst.frc.team5026.robot.commands.ShiftHigh;
-import org.usfirst.frc.team5026.robot.commands.ShiftLow;
->>>>>>> Stashed changes
 import org.usfirst.frc.team5026.robot.util.GoodJoystick;
 
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -33,17 +28,14 @@ public class OI {
 		stickBtnFour = new JoystickButton(joystick.driveStick,4);
 	}
 	public void mapButtons(){
-<<<<<<< Updated upstream
 		stickBtnFour.whenPressed(new DriveStraight());
 		stickBtnTwo.whenPressed(new toggleGearshift());
-=======
 //		stickBtnOne.whenPressed(new DriveStraight());
 		stickBtnOne.whenPressed(new ReverseDrive());
-		stickBtnTwo.toggleWhenPressed(new ShiftHigh());
+//		stickBtnTwo.toggleWhenPressed(new ShiftHigh());
 		stickBtnThree.whenPressed(new ShiftLow());
 		
 //		stickBtnThree.whenPressed(new FindF());
->>>>>>> Stashed changes
 	}
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
