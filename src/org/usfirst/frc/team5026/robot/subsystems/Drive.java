@@ -15,10 +15,12 @@ public class Drive extends Subsystem {
 	DoubleSolenoid gearShift;
 	DifferentialDrive dDrive;
 	public boolean isReversed;
-	public Drive(Talon r, Talon l, DoubleSolenoid d){
+	GearState state;
+	
+	public Drive(DriveMotorGroup r, DriveMotorGroup l, DoubleSolenoid d){
 		gearShift = d;
-		this.right = right;
-		this.left = left;
+		this.right = r;
+		this.left = l;
 		dDrive = new DifferentialDrive(left, right);
 		dDrive.setSafetyEnabled(false);
 		dDrive.setDeadband(Constants.JOYSTICK_DEADZONE);

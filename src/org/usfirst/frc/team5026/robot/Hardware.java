@@ -21,7 +21,7 @@ public class Hardware {
 	public DriveMotorGroup left;
 	public DigitalInput bannerSensor;
 //	public PowerDistributionPanel pdp;
-	DoubleSolenoid gearShift;
+	public DoubleSolenoid gearShift;
 	public Hardware(){
 		rightM1 = new TalonSRX(RobotMap.DRIVE_RIGHT_MOTOR_1);
 		rightM2 = new TalonSRX(RobotMap.DRIVE_RIGHT_MOTOR_2);
