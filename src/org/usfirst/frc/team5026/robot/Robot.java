@@ -113,6 +113,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
+		SmartDashboard.putNumber("encoder ticks", hardware.leftM1.getSelectedSensorPosition(0));
 		Scheduler.getInstance().run();
 		try {
 			Thread.sleep(20);
