@@ -39,6 +39,6 @@ public class Hardware {
 		intakeM.setInverted(Constants.IS_INTAKE_INVERTED);
 		bannerSensor = new DigitalInput(0);
 		pdp = new PowerDistributionPanel();
-		gearShift = new DoubleSolenoid(1,1,2);
+		gearShift = new DoubleSolenoid(1,0,1);
 	}
 }
