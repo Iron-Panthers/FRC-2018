@@ -35,8 +35,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		intake = new IntakeSubsystem();
 		hardware = new Hardware();
+		intake = new IntakeSubsystem();
 		oi = new OI();
 		drive = new Drive(hardware.left, hardware.right, hardware.gearShift);
 //		right.setInverted(Constants.IS_RIGHT_INVERTED);
