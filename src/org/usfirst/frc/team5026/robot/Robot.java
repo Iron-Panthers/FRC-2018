@@ -1,8 +1,10 @@
 
 package org.usfirst.frc.team5026.robot;
 
+import org.usfirst.frc.team5026.robot.commands.autonomous.DriveStraight;
 import org.usfirst.frc.team5026.robot.subsystems.Drive;
 import org.usfirst.frc.team5026.robot.subsystems.IntakeSubsystem;
+import org.usfirst.frc.team5026.robot.util.Constants;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -33,15 +35,21 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		hardware = new Hardware();
-		drive = new Drive(hardware.rightM,hardware.leftM);
 		intake = new IntakeSubsystem();
+		hardware = new Hardware();
 		oi = new OI();
+		drive = new Drive(hardware.left, hardware.right, hardware.gearShift);
+//		right.setInverted(Constants.IS_RIGHT_INVERTED);
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		String gameData = DriverStation.getInstance().getGameSpecificMessage();
 		oi.mapButtons();
+		chooser.addDefault("My Auto", new DriveStraight());
+		SmartDashboard.putNumber("target", 100);
+		SmartDashboard.putNumber("max count", 50);
+		SmartDashboard.putNumber("tolerance", 69);
 		SmartDashboard.putData("Auto mode", chooser);
-		SmartDashboard.putNumber("Intake Speed", Constants.INTAKE_POWER);
+		SmartDashboard.getNumber("Intake Speed", Constants.INTAKE_POWER);
+		LiveWindow.disableAllTelemetry();
 	}
 
 	/**
@@ -73,7 +81,6 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		autonomousCommand = chooser.getSelected();
-
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -109,7 +116,13 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
+		System.out.println(hardware.leftM1.getSelectedSensorVelocity(Constants.kSlotIdx));
 		Scheduler.getInstance().run();
+		try {
+			Thread.sleep(20);
+		} catch (Exception e) {
+			// meh
+		}
 	}
 
 	/**
