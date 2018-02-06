@@ -11,7 +11,7 @@ public class Hardware {
 		rightM = new Talon(RobotMap.DRIVE_RIGHT_MOTOR);
 		leftM = new Talon(RobotMap.DRIVE_LEFT_MOTOR);
 		rightM.setInverted(true);
-		gearShift = new DoubleSolenoid(1,1,2);
+		gearShift = new DoubleSolenoid(1,0,1);
 		
 	}
 }
