@@ -18,7 +18,7 @@ public class Constants {
 	public static final double DRIVE_P = 0;
 	public static final double DRIVE_I = 0;
 	public static final double DRIVE_D = 0;
-	public static final double DRIVE_F = 3.069; // Calculated as per the Talon SRX Software Refrence Manual, Section: 12.4.2. Math is: 0.75 * 1023 / 2500
+	public static final double DRIVE_F = 0.3069; // Calculated as per the Talon SRX Software Refrence Manual, Section: 12.4.2. Math is: 0.75 * 1023 / 2500
 	public static final int DRIVE_TICKS_PER_REVOLUTION = 5526; // we tested this, I wonder if it's actually correct! ::thinking::
 	
 	public static final double JOYSTICK_DEADZONE = 0.1;
@@ -32,7 +32,7 @@ public class Constants {
 	public static final double WHEEL_CIRCUMFERENCE = WHEEL_RADIUS*2*Math.PI;
 	public static final double TICKS_TO_INCHES = 4096 / WHEEL_CIRCUMFERENCE;
 	
-	public static final double DRIVE_WANTED_INCHES_PER_SECOND = 10;
+	public static final double DRIVE_WANTED_INCHES_PER_SECOND = 48;
 	public static final double DRIVE_WANTED_ACCELERATION_INCHES_PER_SECOND_SQUARED = 80;
 	public static int MOTION_MAGIC_VELOCITY(double inchesPerSecond) {
 		return (int)( DRIVE_TICKS_PER_REVOLUTION * inchesPerSecond / WHEEL_CIRCUMFERENCE / 10 );
@@ -40,7 +40,7 @@ public class Constants {
 	public static int MOTION_MAGIC_ACCELERATION(double inchesPerSecondPerSecond) {
 		return (int)( DRIVE_TICKS_PER_REVOLUTION * inchesPerSecondPerSecond / (WHEEL_CIRCUMFERENCE) / 10 );
 	}
-	public static final int DRIVE_VELOCITY = 2500;//MOTION_MAGIC_VELOCITY(DRIVE_WANTED_INCHES_PER_SECOND); // Units of encoder ticks per 100 ms 
-	public static final int DRIVE_ACCELERATION = 3000;//MOTION_MAGIC_ACCELERATION(DRIVE_WANTED_ACCELERATION_INCHES_PER_SECOND_SQUARED); // Units of encoder ticks per 100 ms per second
+	public static final int DRIVE_VELOCITY = MOTION_MAGIC_VELOCITY(DRIVE_WANTED_INCHES_PER_SECOND); // Units of encoder ticks per 100 ms 
+	public static final int DRIVE_ACCELERATION = MOTION_MAGIC_ACCELERATION(DRIVE_WANTED_ACCELERATION_INCHES_PER_SECOND_SQUARED); // Units of encoder ticks per 100 ms per second
 
 }
