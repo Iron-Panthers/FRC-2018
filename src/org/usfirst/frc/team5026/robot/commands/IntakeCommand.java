@@ -28,8 +28,8 @@ public class IntakeCommand extends Command {
     	//Robot.intake.intake(Robot.oi.driveStick.getY());
     	Robot.intake.intake(Constants.INTAKE_POWER*Robot.oi.joystick.driveStick.getThrottle());
     	//SmartDashboard.putNumber("Intake Speed", Constants.INTAKE_POWER);
-    	SmartDashboard.putNumber("throttle:", Robot.oi.driveStick.getThrottle());
-    	SmartDashboard.putNumber("magnitude:", Robot.oi.driveStick.getMagnitude());
+    	SmartDashboard.putNumber("throttle:", Robot.oi.joystick.driveStick.getThrottle());
+    	SmartDashboard.putNumber("magnitude:", Robot.oi.joystick.driveStick.getMagnitude());
     	SmartDashboard.putBoolean("has block", Robot.hardware.bannerSensor.get());
     	System.out.println(Robot.hardware.bannerSensor.get());
 //    	double voltage = Robot.hardware.pdp.getVoltage()*Robot.intake.motor.get();

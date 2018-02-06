@@ -1,8 +1,6 @@
 package org.usfirst.frc.team5026.robot;
 
 import org.usfirst.frc.team5026.robot.commands.FindF;
-import org.usfirst.frc.team5026.robot.commands.ShiftHigh;
-import org.usfirst.frc.team5026.robot.commands.ShiftLow;
 import org.usfirst.frc.team5026.robot.util.GoodJoystick;
 
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -25,8 +23,6 @@ public class OI {
 	}
 	public void mapButtons(){
 //		stickBtnOne.whenPressed(new DriveStraight());
-		stickBtnOne.whenPressed(new ShiftHigh());
-		stickBtnTwo.whenPressed(new ShiftLow());
 		stickBtnThree.whenPressed(new FindF());
 	}
 	//// CREATING BUTTONS
