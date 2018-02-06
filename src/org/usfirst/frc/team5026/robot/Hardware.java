@@ -32,11 +32,11 @@ public class Hardware {
 //		rightM.setInverted(Constants.IS_RIGHT_INVERTED);
 		
 		right = new DriveMotorGroup(rightM1, rightM2, rightM3);
-		right.setInverted(Constants.IS_RIGHT_INVERTED);
 		left = new DriveMotorGroup(leftM1, leftM2, leftM3);
-		left.setInverted(Constants.IS_LEFT_INVERTED);
 		right.setUp(rightM1, rightM2, rightM3);
 		left.setUp(leftM1, leftM2, leftM3);
+		right.setInverted(Constants.IS_RIGHT_INVERTED);
+		left.setInverted(Constants.IS_LEFT_INVERTED);
 		intakeM = new Talon(RobotMap.INTAKE_MOTOR);
 		intakeM.setInverted(Constants.IS_INTAKE_INVERTED);
 		bannerSensor = new DigitalInput(0);
