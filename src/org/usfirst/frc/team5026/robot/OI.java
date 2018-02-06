@@ -3,7 +3,7 @@ package org.usfirst.frc.team5026.robot;
 import org.usfirst.frc.team5026.robot.commands.FindF;
 import org.usfirst.frc.team5026.robot.commands.autonomous.DriveStraight;
 import org.usfirst.frc.team5026.robot.commands.drive.ShiftHigh;
-import org.usfirst.frc.team5026.robot.commands.drive.ShiftLow;
+import org.usfirst.frc.team5026.robot.commands.drive.toggleGearshift;
 import org.usfirst.frc.team5026.robot.util.GoodJoystick;
 
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -28,9 +28,7 @@ public class OI {
 	}
 	public void mapButtons(){
 		stickBtnFour.whenPressed(new DriveStraight());
-		stickBtnOne.whenPressed(new ShiftHigh());
-		stickBtnTwo.whenPressed(new ShiftLow());
-		stickBtnThree.whenPressed(new FindF());
+		stickBtnTwo.whenPressed(new toggleGearshift());
 	}
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
