@@ -15,22 +15,19 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class DriveMotorGroup implements SpeedController {
 	public TalonSRX motor1; 
-	public TalonSRX motor2;
-	public TalonSRX motor3;
+	public TalonSRX[] motors;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	public DriveMotorGroup(TalonSRX motor1, TalonSRX motor2, TalonSRX motor3) {
-		this.motor1 = motor1;
-		this.motor2 = motor2;
-		this.motor3 = motor3;
-		this.motor2.follow(motor1);
-		this.motor3.follow(motor1);
-		setUp(this.motor1);
-		setUp(this.motor2);
-		setUp(this.motor3);
+//		this.motor1 = motor1;
+//		this.motor2 = motor2;
+//		this.motor3 = motor3;
+//		this.motor2.follow(motor1);
+//		this.motor3.follow(motor1);
+		setUp(motor1, motor2, motor3);
 	}
 	public void setUp(TalonSRX encoderMotor, TalonSRX... motors) {
-		encoderMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
+		encoderMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
 		encoderMotor.setSensorPhase(true);
 		encoderMotor.setInverted(false);
 		
@@ -54,32 +51,32 @@ public class DriveMotorGroup implements SpeedController {
 		for (int i = 0; i < motors.length; i++) {
 			motors[i].follow(encoderMotor);
 		}
-		
+		motor1 = encoderMotor;
+		this.motors = motors;
 	}
 	public void driveWithPower(double speed) {  // -1 to 1
 		motor1.set(ControlMode.PercentOutput, speed);
 		SmartDashboard.putNumber("Motor 1", motor1.getMotorOutputPercent());
-		SmartDashboard.putNumber("Motor 2", motor2.getMotorOutputPercent());
-		SmartDashboard.putNumber("Motor 3", motor3.getMotorOutputPercent());
+		for (TalonSRX t : motors) {
+			SmartDashboard.putNumber("Motor "+t.getDeviceID(), t.getMotorOutputPercent());
+		}
 	}
 	public void driveWithTarget(double target) {
 		motor1.set(ControlMode.MotionMagic, target);
 		SmartDashboard.putNumber("Motor "+motor1.getDeviceID(), motor1.getMotorOutputPercent());
-		SmartDashboard.putNumber("Motor "+motor2.getDeviceID(), motor2.getMotorOutputPercent());
-		SmartDashboard.putNumber("Motor "+motor3.getDeviceID(), motor3.getMotorOutputPercent());
-	}
-	public void printPowers() {
-		System.out.println("Motor "+motor1.getDeviceID()+","+motor1.getMotorOutputPercent());
-		System.out.println("Motor "+motor2.getDeviceID()+","+motor2.getMotorOutputPercent());
-		System.out.println("Motor "+motor3.getDeviceID()+","+motor3.getMotorOutputPercent());
+		for (TalonSRX t : motors) {
+			SmartDashboard.putNumber("Motor "+t.getDeviceID(), t.getMotorOutputPercent());
+		}
+		
 	}
 	public void stop() {
 		motor1.set(ControlMode.PercentOutput, 0);
 	}
 	public void setInverted(boolean isInverted) {
 		motor1.setInverted(isInverted);
-		motor2.setInverted(isInverted);
-		motor3.setInverted(isInverted);
+		for (TalonSRX t : motors) {
+			t.setInverted(isInverted);
+		}
 	}
 	public void pidWrite(double arg0) {
 		// TODO LATER

@@ -33,8 +33,6 @@ public class Hardware {
 		
 		right = new DriveMotorGroup(rightM1, rightM2, rightM3);
 		left = new DriveMotorGroup(leftM1, leftM2, leftM3);
-		right.setUp(rightM1, rightM2, rightM3);
-		left.setUp(leftM1, leftM2, leftM3);
 		right.setInverted(Constants.IS_RIGHT_INVERTED);
 		left.setInverted(Constants.IS_LEFT_INVERTED);
 		intakeM = new Talon(RobotMap.INTAKE_MOTOR);
