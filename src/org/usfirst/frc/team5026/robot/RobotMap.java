@@ -19,4 +19,11 @@ public class RobotMap {
 //	public static final int INTAKE_PDP_PORT = 2; //To Be Changed
 	public static final int INTAKE_MOTOR = 3; //Change back to drive
 	public static final int INTAKE_PDP_PORT = 2; //To Be Changed
+	
+	public static final int RIGHTM1_PDP_PORT = 13;
+	public static final int RIGHTM2_PDP_PORT = 14;
+	public static final int RIGHTM3_PDP_PORT = 15;
+	public static final int LEFTM1_PDP_PORT = 3;
+	public static final int LEFTM2_PDP_PORT = 2;
+	public static final int LEFTM3_PDP_PORT = 0;
 }
