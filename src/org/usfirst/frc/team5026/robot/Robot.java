@@ -35,7 +35,7 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		hardware = new Hardware();
 		oi = new OI();
-		drive = new Drive(hardware.left, hardware.right);
+		drive = new Drive(hardware.left, hardware.right, hardware.gearShift);
 //		right.setInverted(Constants.IS_RIGHT_INVERTED);
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		String gameData = DriverStation.getInstance().getGameSpecificMessage();

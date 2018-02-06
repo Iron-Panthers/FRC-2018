@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5026.robot.subsystems;
 import org.usfirst.frc.team5026.robot.commands.JoystickDrive;
 import org.usfirst.frc.team5026.robot.util.Constants;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -11,11 +12,15 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 public class Drive extends Subsystem {
 	public DriveMotorGroup right;
 	public DriveMotorGroup left;
+	DoubleSolenoid gearShift;
 	DifferentialDrive dDrive;
 	public boolean isReversed;
-	public Drive(DriveMotorGroup left, DriveMotorGroup right){
-		this.right = right;
-		this.left = left;
+	GearState state;
+	
+	public Drive(DriveMotorGroup r, DriveMotorGroup l, DoubleSolenoid d){
+		gearShift = d;
+		this.right = r;
+		this.left = l;
 		dDrive = new DifferentialDrive(left, right);
 		dDrive.setSafetyEnabled(false);
 		dDrive.setDeadband(Constants.JOYSTICK_DEADZONE);
@@ -52,6 +57,14 @@ public class Drive extends Subsystem {
 	}
 	public void reverseDrive() {
 		isReversed = !isReversed;
+	}
+	public void shiftHigh() {
+		state = GearState.HIGH;
+		gearShift.set(DoubleSolenoid.Value.kReverse);
+	}
+	public void shiftLow() {
+		state = GearState.LOW;
+		gearShift.set(DoubleSolenoid.Value.kForward);
 	}
     public void initDefaultCommand() {
     	
