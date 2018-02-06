@@ -21,6 +21,8 @@ public class OI {
 	}
 	public void mapButtons(){
 		stickBtnOne.whenPressed(new DriveStraight());
+		buttonOne.whenPressed(new ShiftHigh());
+		buttonTwo.whenPressed(new ShiftLow());
 	}
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
