@@ -7,6 +7,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Talon;
 
 public class Hardware {
@@ -20,7 +21,7 @@ public class Hardware {
 	public DriveMotorGroup right;
 	public DriveMotorGroup left;
 	public DigitalInput bannerSensor;
-//	public PowerDistributionPanel pdp;
+	public PowerDistributionPanel pdp;
 	public DoubleSolenoid gearShift;
 	public Hardware(){
 		rightM1 = new TalonSRX(RobotMap.DRIVE_RIGHT_MOTOR_1);
@@ -29,7 +30,6 @@ public class Hardware {
 		leftM1 = new TalonSRX(RobotMap.DRIVE_LEFT_MOTOR_1);
 		leftM2 = new TalonSRX(RobotMap.DRIVE_LEFT_MOTOR_2);
 		leftM3 = new TalonSRX(RobotMap.DRIVE_LEFT_MOTOR_3);
-//		rightM.setInverted(Constants.IS_RIGHT_INVERTED);
 		
 		right = new DriveMotorGroup(rightM1, rightM2, rightM3);
 		left = new DriveMotorGroup(leftM1, leftM2, leftM3);
@@ -38,7 +38,7 @@ public class Hardware {
 		intakeM = new Talon(RobotMap.INTAKE_MOTOR);
 		intakeM.setInverted(Constants.IS_INTAKE_INVERTED);
 		bannerSensor = new DigitalInput(0);
-//		pdp = new PowerDistributionPanel();
+		pdp = new PowerDistributionPanel();
 		gearShift = new DoubleSolenoid(1,1,2);
 	}
 }
