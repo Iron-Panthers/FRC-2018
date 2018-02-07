@@ -37,7 +37,7 @@ public class DriveStraight extends Command {
     	SmartDashboard.putNumber("current right position", Robot.drive.right.motor1.getSelectedSensorPosition(0));
     	SmartDashboard.putNumber("Left sped", Robot.drive.left.motor1.getSelectedSensorVelocity(0));
     	SmartDashboard.putNumber("count", count);
-    	if ((target - Robot.drive.left.getEncoderTicks()) < tolerance) {
+    	if (Math.abs(target - Robot.drive.left.getEncoderTicks()) < tolerance) {
     		count++;
     	}
     }
