@@ -29,6 +29,8 @@ public class Robot extends IterativeRobot {
 	public static IntakeSubsystem intake;
 	public static UsbCamera cam1;
 	public static boolean hasBlock;
+	public static double lastVoltage;
+	public static double lastCurrent;
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	/**
@@ -37,6 +39,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+		lastVoltage = 0;
+		lastCurrent = 0;
 		hasBlock = false;
 		CameraServer camera = CameraServer.getInstance(); 
 	    cam1 = camera.startAutomaticCapture("cam0", RobotMap.CAMERA_PORT); 
@@ -118,6 +122,28 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
+		//SmartDashboard
+		//Robot.intake.intake(Robot.oi.driveStick.getY());
+		double current = Robot.intake.motor.getOutputCurrent();
+		double voltage = Robot.intake.motor.getMotorOutputVoltage();
+		//Changes voltage to work around consistent values not showing up on SmartDashboard
+//		if(voltage == lastVoltage) {
+//			voltage+=0.0001;
+//		}
+		if(current == lastCurrent) {
+			current+=0.0001;
+		}
+		//Smart Dashbaord Stuff
+		SmartDashboard.putNumber("Intake Speed", Robot.intake.motor.getMotorOutputPercent());
+		SmartDashboard.putNumber("throttle:", Robot.oi.driveStick.getThrottle());
+		SmartDashboard.putNumber("magnitude:", Robot.oi.driveStick.getMagnitude());
+		SmartDashboard.putNumber("Intake Current over Voltage", current/voltage);
+		SmartDashboard.putNumber("Intake Voltage", voltage);
+		SmartDashboard.putNumber("Intake Current", current);
+		SmartDashboard.putNumber("Joystick Y", Robot.oi.driveStick.getY());
+		SmartDashboard.putNumber("Joystick X", Robot.oi.driveStick.getX());
+		lastVoltage = voltage;
+		lastCurrent = current;
 		Scheduler.getInstance().run();
 	}
 

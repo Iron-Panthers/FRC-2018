@@ -1,11 +1,8 @@
 package org.usfirst.frc.team5026.robot.commands;
  
-import org.usfirst.frc.team5026.robot.Constants;
 import org.usfirst.frc.team5026.robot.Robot;
-import org.usfirst.frc.team5026.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  
 /**
  *
@@ -32,16 +29,7 @@ public class IntakeCommand extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		time++;
-			//Robot.intake.intake(Robot.oi.driveStick.getY());
-		double current = Robot.intake.motor.getOutputCurrent();
-		double voltage = Robot.intake.motor.getMotorOutputVoltage();
-		//Changes voltage to work around consistent values not showing up on SmartDashboard
-//		if(voltage == lastVoltage) {
-//			voltage+=0.0001;
-//		}
-		if(current == lastCurrent) {
-			current+=0.0001;
-		}
+		
 //		//Algorithm for lowering power to not burn out the motor
 //		if(time>Constants.SPEED_UP_TIME) {
 //			if(Robot.intake.hasBlock()) {
@@ -60,16 +48,7 @@ public class IntakeCommand extends Command {
 //		else {
 		Robot.intake.intake(Robot.oi.driveStick.getY());
 //		}
-		//Smart Dashbaord Stuff
-		SmartDashboard.putNumber("Intake Speed", Robot.intake.motor.getMotorOutputPercent());
-		SmartDashboard.putNumber("throttle:", Robot.oi.driveStick.getThrottle());
-		SmartDashboard.putNumber("magnitude:", Robot.oi.driveStick.getMagnitude());
 		
-		SmartDashboard.putNumber("Intake Current over Voltage", current/voltage);
-		SmartDashboard.putNumber("Intake Voltage", voltage);
-		SmartDashboard.putNumber("Intake Current", current);
-		lastVoltage = voltage;
-		lastCurrent = current;
 		
 	}
 	 
