@@ -22,7 +22,8 @@ public class ConditionalINOUT extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Robot.hardware.potentiometer.getVoltage() > SmartDashboard.getNumber("extend length", 3)) {
+    	SmartDashboard.putNumber("current voltage", Robot.hardware.potentiometer.getVoltage());
+    	if(Robot.hardware.potentiometer.getVoltage() < SmartDashboard.getNumber("extend length", 3)) {
     		Robot.solenoidBoi.contract();
     	} else {
     		Robot.solenoidBoi.extend();
@@ -31,7 +32,8 @@ public class ConditionalINOUT extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        //return Robot.hardware.potentiometer.getVoltage() > SmartDashboard.getNumber("extend length", 3);
+    	return false;
     }
 
     // Called once after isFinished returns true

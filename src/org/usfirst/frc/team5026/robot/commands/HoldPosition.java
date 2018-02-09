@@ -10,7 +10,7 @@ public class HoldPosition extends CommandGroup {
 
     public HoldPosition() {
 		addSequential(new ConditionalINOUT());
-		addSequential(new WaitBoi());
+		addSequential(new VerySpeedyWaitBoi(SmartDashboard.getNumber("Oscillation Time Retract", 0.01)));
 
         // Add Commands here:
         // e.g. addSequential(new Command1());
