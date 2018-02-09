@@ -53,7 +53,6 @@ public class Robot extends IterativeRobot {
 		String gameData = DriverStation.getInstance().getGameSpecificMessage();
 		oi.mapButtons();
 		SmartDashboard.putData("Auto mode", chooser);
-		SmartDashboard.getNumber("Intake Speed", Constants.INTAKE_POWER);
 		LiveWindow.disableAllTelemetry(); 
 	}
 
@@ -130,21 +129,30 @@ public class Robot extends IterativeRobot {
 //		if(voltage == lastVoltage) {
 //			voltage+=0.0001;
 //		}
-		if(current == lastCurrent) {
-			current+=0.0001;
-		}
+//		if(current == lastCurrent) {
+//			current+=Math.round(Math.random());
+//		}
+//		if (Math.abs(current) < 1) {
+//			current = lastCurrent;
+//		}
 		//Smart Dashbaord Stuff
 		SmartDashboard.putNumber("Intake Speed", Robot.intake.motor.getMotorOutputPercent());
 		SmartDashboard.putNumber("throttle:", Robot.oi.driveStick.getThrottle());
 		SmartDashboard.putNumber("magnitude:", Robot.oi.driveStick.getMagnitude());
-		SmartDashboard.putNumber("Intake Current over Voltage", current/voltage);
+		SmartDashboard.putNumber("Intake Power", current*voltage);
 		SmartDashboard.putNumber("Intake Voltage", voltage);
 		SmartDashboard.putNumber("Intake Current", current);
 		SmartDashboard.putNumber("Joystick Y", Robot.oi.driveStick.getY());
 		SmartDashboard.putNumber("Joystick X", Robot.oi.driveStick.getX());
 		lastVoltage = voltage;
 		lastCurrent = current;
+		// lastCurrent = current;
 		Scheduler.getInstance().run();
+		try {
+			Thread.sleep(20);
+		} catch (Exception e) {
+			// yep
+		}
 	}
 
 	/**

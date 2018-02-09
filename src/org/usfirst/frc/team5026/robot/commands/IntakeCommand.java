@@ -28,7 +28,6 @@ public class IntakeCommand extends Command {
 	 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		time++;
 		
 //		//Algorithm for lowering power to not burn out the motor
 //		if(time>Constants.SPEED_UP_TIME) {

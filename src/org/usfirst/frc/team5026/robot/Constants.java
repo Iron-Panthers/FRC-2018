@@ -8,15 +8,18 @@ public class Constants {
 	public static final int LEFT_PORT = 1;
 	public static final int FULLSPEED = 1;
 	//Intake and Outtake
+	public static final double INTAKE_VOLTAGE_GRAB = 10./12; //Converted to voltage for motor
+	public static final double INTAKE_VOLTAGE_HOLD = 4./12; //"" 4 good enough, 6 secure but too much for burning 
 	public static final boolean IS_INTAKE_INVERTED = false;
 	public static final boolean IS_RIGHT_INVERTED = true;
 	public static final boolean IS_LEFT_INVERTED = false;
-	public static final double INTAKE_POWER = 1;//.25-.3 typically works well
-	public static final double SLOW_INTAKE_POWER = .4;
 	public static final double OUTTAKE_POWER = -.4;
 	public static final double HAS_BLOCK_THRESHOLD = 15; //Max amount of amps intake has without block
 	public static final int TIME_NOT_GRABBED_THRESHOLD = 20; //(in 100 milliseconds)If the counter for not grabbed goes over this, then the intake really does not have a block
 	public static final int SPEED_UP_TIME = 100; //(in 100 milliseconds) Amount of time before function has time to work
+	
+	//Elevator
+	public static final boolean IS_ELEVATOR_INVERTED = false;
 	
 	public static final double ROBOT_WIDTH = 0.5; // unit is meters
 	public static final double WHEEL_DIAMETER = 6; // unit is inches
