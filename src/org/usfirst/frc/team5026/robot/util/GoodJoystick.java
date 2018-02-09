@@ -24,14 +24,15 @@ public class GoodJoystick {
 
 	public void findXY() {
 		y = -driveStick.getY();
-		x = driveStick.getX()*Constants.X_AXIS_MODIFIER;
-		if(Math.abs(y) < Constants.DEADZONE_SIZE) {
+		x = driveStick.getX();
+		if(Math.abs(y) < Constants.YDEADZONE_SIZE) {
 			y=0;
 		}
-		if(Math.abs(x) < Constants.DEADZONE_SIZE) {
+		if(Math.abs(x) < Constants.XDEADZONE_SIZE) {
 			x=0;
 		}
-		//x = (x - Constants.DEADZONE_SIZE);
+		x = (x - Constants.XDEADZONE_SIZE);
+		y = (y - Constants.YDEADZONE_SIZE);
 		if(Robot.drive.isReversed) {
 			y = -y;
 			x = -x;

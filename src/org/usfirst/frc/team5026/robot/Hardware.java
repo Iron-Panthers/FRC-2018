@@ -39,8 +39,7 @@ public class Hardware {
 		left.setInverted(Constants.IS_LEFT_INVERTED);
 		intakeM = new TalonSRX(RobotMap.INTAKE_MOTOR);
 		intakeM.setInverted(Constants.IS_INTAKE_INVERTED);
-		bannerSensor = new DigitalInput(0);
+		bannerSensor = new DigitalInput(9);
 		pdp = new PowerDistributionPanel();
-		gearShift = new DoubleSolenoid(1,1,2);
 	}
 }

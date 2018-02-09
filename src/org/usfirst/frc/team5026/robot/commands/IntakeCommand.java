@@ -30,7 +30,8 @@ public class IntakeCommand extends Command {
     	//SmartDashboard.putNumber("Intake Speed", Constants.INTAKE_POWER);
     	SmartDashboard.putNumber("throttle:", Robot.oi.joystick.driveStick.getThrottle());
     	SmartDashboard.putNumber("magnitude:", Robot.oi.joystick.driveStick.getMagnitude());
-    	Robot.intake.hasBlock();
+    	SmartDashboard.putBoolean("has block", Robot.hardware.bannerSensor.get());
+    	System.out.println(Robot.hardware.bannerSensor.get());
 //    	double voltage = Robot.hardware.pdp.getVoltage()*Robot.intake.motor.get();
     	double current = Robot.hardware.pdp.getCurrent(RobotMap.INTAKE_PDP_PORT);
 //    	SmartDashboard.putNumber("Intake Current over Voltage", voltage/current);

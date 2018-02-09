@@ -1,8 +1,11 @@
 package org.usfirst.frc.team5026.robot.util;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 public class Constants {
 	public static final double X_AXIS_MODIFIER = .8;
-	public static final double DEADZONE_SIZE = .08;
+	public static final double XDEADZONE_SIZE = SmartDashboard.getNumber("X Deadzone Size", 0.08);
+	public static final double YDEADZONE_SIZE = SmartDashboard.getNumber("Y Deadzone Size", 0.08);
 	public static final double SPEED = .5;
 	public static final int RIGHT_PORT = 0;
 	public static final int LEFT_PORT = 1;
