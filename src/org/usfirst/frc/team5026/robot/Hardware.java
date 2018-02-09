@@ -11,7 +11,8 @@ public class Hardware {
 	public Talon leftM;
 	public TalonSRX intakeM;
 	public TalonSRX elevatorMotor;
-	public DoubleSolenoid elevatorPistons;
+	public DoubleSolenoid leftElevatorPiston;
+	public DoubleSolenoid rightElevatorPiston;
 	public PowerDistributionPanel pdp;
 	public Hardware(){
 		rightM = new Talon(RobotMap.DRIVE_RIGHT_MOTOR);
@@ -22,7 +23,8 @@ public class Hardware {
 		intakeM.setInverted(Constants.IS_INTAKE_INVERTED);
 		elevatorMotor = new TalonSRX(RobotMap.ELEVATOR_MOTOR_PORT);
 		elevatorMotor.setInverted(Constants.IS_ELEVATOR_INVERTED);
-		elevatorPiston1 = new DoubleSolenoid(1, RobotMap.ELEVATOR_PISTON_PORT_1, RobotMap.ELEVATOR_PISTON_PORT_2);
+		leftElevatorPiston = new DoubleSolenoid(1, RobotMap.ELEVATOR_PISTON_PORT_1, RobotMap.ELEVATOR_PISTON_PORT_2);
+		rightElevatorPiston = new DoubleSolenoid(1, RobotMap.ELEVATOR_PISTON_PORT_3, RobotMap.ELEVATOR_PISTON_PORT_4);
 		pdp = new PowerDistributionPanel();
 	}
 }

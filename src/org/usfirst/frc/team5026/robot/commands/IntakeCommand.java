@@ -1,5 +1,7 @@
 package org.usfirst.frc.team5026.robot.commands;
  
+import java.util.ArrayList;
+
 import org.usfirst.frc.team5026.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -12,12 +14,14 @@ public class IntakeCommand extends Command {
 	public double lastCurrent;
 	public int timeNotGrabbed;
 	public int time;
+	public ArrayList currentSamples;
 	public IntakeCommand() {
 		requires(Robot.intake);
 		lastVoltage = 0;
 		lastCurrent = 0;
 		timeNotGrabbed = 0;
 		time = 0;
+		currentSamples = new ArrayList<Double>();
 	// Use requires() here to declare subsystem dependencies
 	// eg. requires(chassis);
 	}
@@ -28,6 +32,14 @@ public class IntakeCommand extends Command {
 	 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
+		//Populates array for storing current samples
+//		for(int i = 0; i<currentSamples.length; i=(i+1)%currentSamples.length) {
+//			currentSamples[i] = Robot.intake.motor.getOutputCurrent();
+//		}
+//		Compare average to limit
+//		Change voltage 
+		
+		
 		
 //		//Algorithm for lowering power to not burn out the motor
 //		if(time>Constants.SPEED_UP_TIME) {

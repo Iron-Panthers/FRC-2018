@@ -2,6 +2,7 @@
 package org.usfirst.frc.team5026.robot;
 
 import org.usfirst.frc.team5026.robot.subsystems.Drive;
+import org.usfirst.frc.team5026.robot.subsystems.ElevatorSubsystem;
 import org.usfirst.frc.team5026.robot.subsystems.IntakeSubsystem;
 
 import edu.wpi.cscore.UsbCamera;
@@ -31,6 +32,7 @@ public class Robot extends IterativeRobot {
 	public static boolean hasBlock;
 	public static double lastVoltage;
 	public static double lastCurrent;
+	public static ElevatorSubsystem elevator;
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	/**
@@ -48,6 +50,7 @@ public class Robot extends IterativeRobot {
 		hardware = new Hardware();
 		drive = new Drive(hardware.rightM,hardware.leftM);
 		intake = new IntakeSubsystem();
+		elevator = new ElevatorSubsystem();
 		oi = new OI();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		String gameData = DriverStation.getInstance().getGameSpecificMessage();

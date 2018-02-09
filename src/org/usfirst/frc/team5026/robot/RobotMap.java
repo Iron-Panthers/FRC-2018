@@ -15,6 +15,8 @@ public class RobotMap {
 	public static final int ELEVATOR_MOTOR_PORT = 3;
 	public static final int ELEVATOR_PISTON_PORT_1 = 0;
 	public static final int ELEVATOR_PISTON_PORT_2 = 1;
+	public static final int ELEVATOR_PISTON_PORT_3 = 2;
+	public static final int ELEVATOR_PISTON_PORT_4 = 3;
 	//Camera
 	public static int CAMERA_PORT = 0; 
 }
