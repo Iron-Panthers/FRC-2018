@@ -5,13 +5,16 @@ import org.usfirst.frc.team5026.robot.Robot;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
 public class PneumaticsSubsystem extends Subsystem {
 	DoubleSolenoid solenoidBoi = Robot.hardware.solenoidBoi;
+	public double initial;
 	public PneumaticsSubsystem() {
+		initial = Robot.hardware.potentiometer.getVoltage();
 	}
 	public void extend() {
 		solenoidBoi.set(DoubleSolenoid.Value.kReverse);
@@ -19,7 +22,6 @@ public class PneumaticsSubsystem extends Subsystem {
 	public void contract() {
 		solenoidBoi.set(DoubleSolenoid.Value.kForward);
 	}
-
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
@@ -28,4 +30,3 @@ public class PneumaticsSubsystem extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
 }
-

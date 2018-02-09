@@ -45,10 +45,11 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Length Out", 2);
 		SmartDashboard.putNumber("Time to go out in", 1);
 		SmartDashboard.putNumber("Fully Extended", 0.5);
+    	SmartDashboard.putNumber("extend length", 4.1);
+    	SmartDashboard.putNumber("starting potentiometer value", Robot.hardware.potentiometer.getVoltage());
 //		DriverStation.getInstance().getGameSpecificMessage();
 		oi.mapButtons();
 		LiveWindow.disableAllTelemetry();
-
 	}
 
 	/**

@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5026.robot;
 
+import org.usfirst.frc.team5026.robot.commands.HoldPosition;
 import org.usfirst.frc.team5026.robot.commands.InCommand;
 import org.usfirst.frc.team5026.robot.commands.OutInSetTime;
 import org.usfirst.frc.team5026.robot.commands.InOutCommand;
@@ -7,6 +8,7 @@ import org.usfirst.frc.team5026.robot.commands.OutAtSetLengthOscillate;
 import org.usfirst.frc.team5026.robot.commands.OutCommand;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
@@ -15,11 +17,12 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class OI {
 	public Joystick driveStick;
-	public JoystickButton buttonOne;
-	public JoystickButton buttonTwo;
-	public JoystickButton buttonThree;
-	public JoystickButton buttonFour;
-	public JoystickButton buttonFive;
+	public Button buttonOne;
+	public Button buttonTwo;
+	public Button buttonThree;
+	public Button buttonFour;
+	public Button buttonFive;
+	public Button special;
 	public OI(){
 		driveStick = new Joystick(RobotMap.DRIVE_JOYSTICK);
 		buttonOne = new JoystickButton(driveStick, 1);
@@ -27,6 +30,7 @@ public class OI {
 		buttonThree = new JoystickButton(driveStick, 3);
 		buttonFour = new JoystickButton(driveStick, 4);
 		buttonFive = new JoystickButton(driveStick, 5);
+		special = new JoystickButton(driveStick, 7);
 	}
 	public void mapButtons(){
 		buttonOne.whenPressed(new InCommand());
@@ -34,6 +38,7 @@ public class OI {
 		buttonThree.whileHeld(new InOutCommand());
 		buttonFour.whileHeld(new OutInSetTime());
 		buttonFive.whileHeld(new OutAtSetLengthOscillate());
+		special.whileHeld(new HoldPosition());
 	}
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
