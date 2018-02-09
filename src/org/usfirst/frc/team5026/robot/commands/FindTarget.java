@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class FindTarget extends TimedCommand {
 	double timeOut;
 	public static double target;
-	double currentTime;
+	double currentTime = 0;
     public FindTarget(double timeout) {
         super(timeout);
         // Use requires() here to declare subsystem dependencies
