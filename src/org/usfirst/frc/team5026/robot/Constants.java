@@ -20,6 +20,9 @@ public class Constants {
 	
 	//Elevator
 	public static final boolean IS_ELEVATOR_INVERTED = false;
+	public static final double ELEVATOR_SWITCH_TARGET = 3000; //Arbitrary value, change plz
+	public static final double ELEVATOR_SCALE_TARGET = 7000; //See above
+	public static final double ELEVATOR_GROUND_TARGET = 0; //See above (This is supposed to lift cube enough so it does not drag on ground)
 	
 	public static final double ROBOT_WIDTH = 0.5; // unit is meters
 	public static final double WHEEL_DIAMETER = 6; // unit is inches
@@ -35,4 +38,8 @@ public class Constants {
 	//Camera stuff
 	public static int CAMERA_PIXEL_HEIGHT = 1920; 
 	public static int CAMERA_PIXEL_WIDTH = 1080; 
+	//MotionMagic
+    public static final double ELEVATOR_SWITCH_DISTANCE = 13; //Inches
+    //Find Belt teeth and other things to find conversion to ticks
+
 }
