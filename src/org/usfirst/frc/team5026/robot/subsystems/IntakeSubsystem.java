@@ -26,7 +26,7 @@ public class IntakeSubsystem extends Subsystem {
 		motor.set(ControlMode.PercentOutput,0);
 	}
 	public boolean hasBlock() {
-		if(motor.getOutputCurrent()>Constants.HAS_BLOCK_THRESHOLD) {
+		if(motor.getOutputCurrent()>Constants.BLOCK_GRAB_THRESHOLD) {
 			return true;
 		}
 		return false;

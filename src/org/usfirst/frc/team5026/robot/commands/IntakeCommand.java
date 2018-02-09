@@ -34,22 +34,25 @@ public class IntakeCommand extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		//Populates array for storing current samples
-		int sum = 0;
-		for(int i = 0; i < Constants.INTAKE_CURRENT_SAMPLE; i++) {
-			currentSamples.add(Robot.intake.motor.getOutputCurrent());
-		}
-		for(double j : currentSamples) {
-			sum += j;
-		}
-		if(sum / currentSamples.size() < Constants.INTAKE_VOLTAGE_HOLD) {
-			
+		if(!Robot.intake.hasBlock()) {
+			Robot.intake.grabBlock();
+		} else {
+			int sum = 0;
+			for(int i = currentSamples.size(); i < Constants.INTAKE_CURRENT_SAMPLE; i++) {
+				currentSamples.add(Robot.intake.motor.getOutputCurrent());
+			}
+			for(double j : currentSamples) {
+				sum += j;
+			}
+			if(sum / currentSamples.size() > Constants.BLOCK_GRAB_THRESHOLD) {
+				Robot.intake.holdBlock();
+				currentSamples.remove(0);
+			}
 		}
 		
 //		Compare average to limit
 //		Change voltage 
-		
-		
-		
+			
 //		//Algorithm for lowering power to not burn out the motor
 //		if(time>Constants.SPEED_UP_TIME) {
 //			if(Robot.intake.hasBlock()) {
@@ -67,11 +70,8 @@ public class IntakeCommand extends Command {
 //		}
 //		else {
 		Robot.intake.intake(Robot.oi.driveStick.getY());
-//		}
-		
-		
-	}
-	 
+//		}	
+	} 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
 		return false;

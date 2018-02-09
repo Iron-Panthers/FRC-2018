@@ -15,8 +15,8 @@ public class Constants {
 	public static final boolean IS_RIGHT_INVERTED = true;
 	public static final boolean IS_LEFT_INVERTED = false;
 	public static final double OUTTAKE_POWER = -.4;
-	public static final double HAS_BLOCK_THRESHOLD = 15; //Max amount of amps intake has without block
-	public static final int TIME_NOT_GRABBED_THRESHOLD = 20; //(in 100 milliseconds)If the counter for not grabbed goes over this, then the intake really does not have a block
+	public static final double BLOCK_GRAB_THRESHOLD = 15; //min amount of amps intake has with block
+	public static final double TIME_NOT_GRABBED_THRESHOLD = 25.0; //changed to match testing results
 	public static final int SPEED_UP_TIME = 100; //(in 100 milliseconds) Amount of time before function has time to work
 	
 	//Elevator

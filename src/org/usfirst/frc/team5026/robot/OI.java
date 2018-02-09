@@ -16,12 +16,12 @@ public class OI {
 	public Joystick driveStick;
 	public Button stickBtnOne;
 	public Button stickBtnTwo;
-	public OI(){
+	public OI() {
 		driveStick = new Joystick(RobotMap.DRIVE_JOYSTICK);
 		stickBtnOne = new JoystickButton(driveStick,1);
 		stickBtnTwo = new JoystickButton(driveStick,2);
 	}
-	public void mapButtons(){
+	public void mapButtons() {
 		stickBtnOne.whileHeld(new IntakeCommand());
 		stickBtnTwo.whileHeld(new OuttakeCommand());
 	}
