@@ -14,7 +14,9 @@ public class Constants {
 	public static final double INTAKE_POWER = 1;
 	public static final double OUTTAKE_POWER = 1;
 	
-	public static final double ROBOT_WIDTH = 0.5; // unit is meters
+	public static final double ROBOT_WIDTH = 22; // unit is inches
+	public static final double ROBOT_LENGTH = 32; // unit is inches
+	public static final double PATHING_F = 0.3069; // TEST FOR PATH FOLLOWING
 	public static final double DRIVE_P = 0;
 	public static final double DRIVE_I = 0;
 	public static final double DRIVE_D = 0;

@@ -2,7 +2,9 @@
 package org.usfirst.frc.team5026.robot;
 
 import org.usfirst.frc.team5026.robot.commands.autonomous.DriveStraight;
+import org.usfirst.frc.team5026.robot.commands.autonomous.PathFollower;
 import org.usfirst.frc.team5026.robot.subsystems.Drive;
+import org.usfirst.frc.team5026.robot.util.AutoPaths;
 import org.usfirst.frc.team5026.robot.util.Constants;
 
 import edu.wpi.first.wpilibj.DriverStation;
@@ -41,9 +43,12 @@ public class Robot extends IterativeRobot {
 		String gameData = DriverStation.getInstance().getGameSpecificMessage();
 		oi.mapButtons();
 		chooser.addDefault("My Auto", new DriveStraight());
+		chooser.addObject("Left Path Test (Feed forward only)", new PathFollower(AutoPaths.getLeftPath()));
+		chooser.addObject("Right Path Test (Feed forward only)", new PathFollower(AutoPaths.getRightPath()));
 		SmartDashboard.putNumber("target", 100);
 		SmartDashboard.putNumber("max count", 50);
 		SmartDashboard.putNumber("tolerance", 69);
+		SmartDashboard.putNumber("Path Planning F", Constants.PATHING_F);
 		SmartDashboard.putData("Auto mode", chooser);
 //		SmartDashboard.getNumber("Intake Speed", Constants.INTAKE_POWER);
 		LiveWindow.disableAllTelemetry();
