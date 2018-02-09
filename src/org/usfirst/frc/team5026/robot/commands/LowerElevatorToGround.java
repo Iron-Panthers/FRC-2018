@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5026.robot.commands;
 
+import org.usfirst.frc.team5026.robot.Constants;
 import org.usfirst.frc.team5026.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -21,6 +22,7 @@ public class LowerElevatorToGround extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Robot.elevator.liftElevatorToGround(Constants.ELEVATOR_GROUND_TARGET);
     	//Lowers carriage to the ground
     }
 
