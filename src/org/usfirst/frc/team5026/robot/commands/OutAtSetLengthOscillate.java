@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class OutAtSetLengthOscillate extends CommandGroup {
 
     public OutAtSetLengthOscillate() {
-    	if(Robot.hardware.potentiometer.getVoltage() < SmartDashboard.getNumber("Length Out", 2));
     	addSequential(new ConditionalOutCommand());
     	addSequential(new ConditionalSpeedyWaitBoi());
     	addSequential(new Oscillate());

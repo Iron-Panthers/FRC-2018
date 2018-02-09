@@ -40,12 +40,12 @@ public class Robot extends IterativeRobot {
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 		SmartDashboard.putNumber("Wait time", 2);
-		SmartDashboard.putNumber("Oscillation Time Extend", 0.01);
-		SmartDashboard.putNumber("Oscillation Time Retract", 0.01);
+		SmartDashboard.putNumber("Oscillation Time Extend", 0.2);
+		SmartDashboard.putNumber("Oscillation Time Retract", 0.2);
 		SmartDashboard.putNumber("Length Out", 2);
 		SmartDashboard.putNumber("Time to go out in", 1);
 		SmartDashboard.putNumber("Fully Extended", 0.5);
-    	SmartDashboard.putNumber("extend length", 4.1);
+    	SmartDashboard.putNumber("extend length", 4.0);
     	SmartDashboard.putNumber("starting potentiometer value", Robot.hardware.potentiometer.getVoltage());
 //		DriverStation.getInstance().getGameSpecificMessage();
 		oi.mapButtons();
