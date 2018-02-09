@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5026.robot.commands;
 
+import org.usfirst.frc.team5026.robot.Constants;
 import org.usfirst.frc.team5026.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -21,7 +22,8 @@ public class LiftElevatorToSwitch extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	//Lifts carriage to switch with motionmagic
+    	Robot.elevator.liftElevatorToSwitch(Constants.ELEVATOR_SWITCH_TARGET);
+    	//Lifts carriage to switch
     }
 
     // Make this return true when this Command no longer needs to run execute()

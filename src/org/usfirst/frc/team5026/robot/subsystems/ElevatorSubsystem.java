@@ -22,7 +22,7 @@ public class ElevatorSubsystem extends Subsystem {
 		rightElevatorPiston = Robot.hardware.rightElevatorPiston;
 	}
 	public void liftElevator(double target) {
-		//Lifts carriage slightly off ground with MotionMagic
+		//Lifts carriage slightly off ground
 	}
 	public void extendElevator() {
 		//Extends pistons on elevator 

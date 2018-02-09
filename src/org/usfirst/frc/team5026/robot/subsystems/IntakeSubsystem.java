@@ -33,9 +33,11 @@ public class IntakeSubsystem extends Subsystem {
 	}
 	public void grabBlock() {
 		//Grabs block by setting motor to desired voltage
+		intake(Constants.INTAKE_VOLTAGE_GRAB);
 	}
 	public void holdBlock() {
 		//Holds block with lowered voltage
+		intake(Constants.INTAKE_VOLTAGE_HOLD);
 	}
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.

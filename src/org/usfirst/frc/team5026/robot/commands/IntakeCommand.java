@@ -2,6 +2,7 @@ package org.usfirst.frc.team5026.robot.commands;
  
 import java.util.ArrayList;
 
+import org.usfirst.frc.team5026.robot.Constants;
 import org.usfirst.frc.team5026.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -14,7 +15,7 @@ public class IntakeCommand extends Command {
 	public double lastCurrent;
 	public int timeNotGrabbed;
 	public int time;
-	public ArrayList currentSamples;
+	public ArrayList<Double> currentSamples;
 	public IntakeCommand() {
 		requires(Robot.intake);
 		lastVoltage = 0;
@@ -33,9 +34,17 @@ public class IntakeCommand extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		//Populates array for storing current samples
-//		for(int i = 0; i<currentSamples.length; i=(i+1)%currentSamples.length) {
-//			currentSamples[i] = Robot.intake.motor.getOutputCurrent();
-//		}
+		int sum = 0;
+		for(int i = 0; i < Constants.INTAKE_CURRENT_SAMPLE; i++) {
+			currentSamples.add(Robot.intake.motor.getOutputCurrent());
+		}
+		for(double j : currentSamples) {
+			sum += j;
+		}
+		if(sum / currentSamples.size() < Constants.INTAKE_VOLTAGE_HOLD) {
+			
+		}
+		
 //		Compare average to limit
 //		Change voltage 
 		

@@ -9,7 +9,8 @@ public class Constants {
 	public static final int FULLSPEED = 1;
 	//Intake and Outtake
 	public static final double INTAKE_VOLTAGE_GRAB = 10./12; //Converted to voltage for motor
-	public static final double INTAKE_VOLTAGE_HOLD = 4./12; //"" 4 good enough, 6 secure but too much for burning 
+	public static final double INTAKE_VOLTAGE_HOLD = 4./12; //"" 4 good enough, 6 secure but too much for burning
+	public static final double INTAKE_CURRENT_SAMPLE = 4; //number of samples required to determine if cube is possessed
 	public static final boolean IS_INTAKE_INVERTED = false;
 	public static final boolean IS_RIGHT_INVERTED = true;
 	public static final boolean IS_LEFT_INVERTED = false;
