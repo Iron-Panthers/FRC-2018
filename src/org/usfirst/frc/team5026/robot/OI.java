@@ -30,6 +30,9 @@ public class OI {
 		stickBtnFive = new JoystickButton(joystick.driveStick,5);
 	}
 	public void mapButtons(){
+		stickBtnFour.whenPressed(new DriveStraight());
+		stickBtnTwo.toggleWhenPressed(new toggleGearshift());
+//		stickBtnOne.whenPressed(new DriveStraight());
 		stickBtnOne.whenPressed(new ReverseDrive());
 		stickBtnTwo.whenPressed(new toggleGearshift());
 		stickBtnThree.whenPressed(new ShiftLow());
