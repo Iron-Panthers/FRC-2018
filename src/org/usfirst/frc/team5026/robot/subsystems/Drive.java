@@ -29,10 +29,20 @@ public class Drive extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	public void setLeftSide(double speed){ //Input from -1 to 1
-		left.driveWithPower(speed);
+		if(speed>Constants.SPEED) {
+			left.driveWithPower(Constants.SPEED);
+		}
+		else {
+			left.driveWithPower(speed);
+		}
 	}
 	public void setRightSide(double speed){
-		right.driveWithPower(speed);
+		if(speed>Constants.SPEED) {
+			right.driveWithPower(Constants.SPEED);
+		}
+		else {
+			right.driveWithPower(speed);
+		}
 	}
 	public void driveWithTarget(double target) {
 		left.driveWithTarget(target);
@@ -40,10 +50,10 @@ public class Drive extends Subsystem {
 		right.driveWithTarget(target);
 //		right.printPowers();
 	}
-	public void driveWithPower(double speed) {
-		left.driveWithPower(speed);
-		right.driveWithPower(speed);
-	}
+//	public void driveWithPower(double speed) {
+//		left.driveWithPower(speed);
+//		right.driveWithPower(speed);
+//	}
 //	public void setLeftRightMotors(double power) {
 //		dDrive.tankDrive(power, power);
 //	}

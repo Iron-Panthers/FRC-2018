@@ -56,7 +56,6 @@ public class DriveMotorGroup implements SpeedController {
 	}
 	public void driveWithPower(double speed) {  // -1 to 1
 		motor1.set(ControlMode.PercentOutput, speed);
-		SmartDashboard.putNumber("Motor 1", motor1.getMotorOutputPercent());
 		for (TalonSRX t : motors) {
 			SmartDashboard.putNumber("Motor "+t.getDeviceID(), t.getMotorOutputPercent());
 		}
