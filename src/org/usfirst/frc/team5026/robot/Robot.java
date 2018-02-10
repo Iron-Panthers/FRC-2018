@@ -7,14 +7,14 @@
 
 package org.usfirst.frc.team5026.robot;
 
-import edu.wpi.first.wpilibj.IterativeRobot;
+import org.usfirst.frc.team5026.robot.subsystems.Drive;
 import org.usfirst.frc.team5026.robot.subsystems.Elevator;
+
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoSink;
 import edu.wpi.first.wpilibj.CameraServer;
-import org.usfirst.frc.team5026.robot.subsystems.Drive;
-import org.usfirst.frc.team5026.robot.subsystems.IntakeSubsystem;
+import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -33,12 +33,10 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static Hardware hardware;
 	public static Drive drive;
-	public static IntakeSubsystem intake;
 	public static UsbCamera cam1;
 	public static Elevator elevator;
 	public static CvSink cvsink1;
 	public static VideoSink server;
-	public static UsbCamera cam1;
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
 	/**
@@ -50,12 +48,9 @@ public class Robot extends IterativeRobot {
 		startCamera();
 		hardware = new Hardware();
 		elevator = new Elevator();
-		drive = new Drive(hardware.rightM,hardware.leftM);
-		intake = new IntakeSubsystem();
 		oi = new OI();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
-		SmartDashboard.getNumber("Scale Target", Constants.TICK_TARGET_TO_SCALE); // Input setpoint
 		oi.mapButtons();
 		LiveWindow.disableAllTelemetry();
     }

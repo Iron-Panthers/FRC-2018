@@ -24,6 +24,8 @@ public class Constants {
 	public static final double ELEVATOR_SWITCH_TARGET = 3000; //Arbitrary value, change plz
 	public static final double ELEVATOR_SCALE_TARGET = 7000; //See above
 	public static final double ELEVATOR_GROUND_TARGET = 0; //See above (This is supposed to lift cube enough so it does not drag on ground)
+	public static final int ELEVATOR_VELOCITY = 500;
+	public static final int ELEVATOR_ACCELERATION = 1000;
 	
 	public static final double ROBOT_WIDTH = 0.5; // unit is meters
 	public static final double WHEEL_DIAMETER = 6; // unit is inches
@@ -32,8 +34,14 @@ public class Constants {
 	public static final double DRIVE_D = 0;
 	public static final double DRIVE_F = 0;
 	public static final int DRIVE_TICKS_PER_REVOLUTION = 1024;
-	public static final double DRIVE_VELOCITY = 500; // I am not sure what unit this is
-	public static final double DRIVE_ACCELERATION = 1000; // I am not sure what unit this is either
+	public static final int DRIVE_VELOCITY = 500; // I am not sure what unit this is
+	public static final int DRIVE_ACCELERATION = 1000; // I am not sure what unit this is either
+	
+	//Auto Code
+	public static final int kTimeoutMs = 0; //Do not change
+	public static final int kSlotIdx = 0; //Do not change
+	public static final int kPIDLoopIdx = 0; //Do not change
+
 	
 	public static final double JOYSTICK_DEADZONE = 0.1;
 	//Camera stuff

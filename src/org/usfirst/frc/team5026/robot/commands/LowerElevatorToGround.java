@@ -22,7 +22,7 @@ public class LowerElevatorToGround extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.elevator.liftElevatorToGround(Constants.ELEVATOR_GROUND_TARGET);
+    	Robot.elevator.resetElevator();
     	//Lowers carriage to the ground
     }
 
