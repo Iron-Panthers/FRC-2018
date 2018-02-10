@@ -1,12 +1,7 @@
-
 package org.usfirst.frc.team5026.robot;
 
-import org.usfirst.frc.team5026.robot.commands.IntakeCommand;
-import org.usfirst.frc.team5026.robot.commands.OuttakeCommand;
-import org.usfirst.frc.team5026.robot.commands.ReverseDrive;
+import org.usfirst.frc.team5026.robot.util.GoodJoystick;
 
-import Util.GoodJoystick;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -15,25 +10,18 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-	public Joystick driveStick;
 	public Button stickBtnOne;
 	public Button stickBtnTwo;
-	public Button trigger;
+	public Button stickBtnThree;
 	public GoodJoystick joystick;
 	public OI(){
-		joystick = new GoodJoystick();
-		driveStick = new Joystick(RobotMap.DRIVE_JOYSTICK);
-		stickBtnOne = new JoystickButton(driveStick,7);
-		stickBtnTwo = new JoystickButton(driveStick,9);
-		trigger = new JoystickButton(driveStick,1);
-		
-		
+		joystick = new GoodJoystick(RobotMap.DRIVE_JOYSTICK);
+		stickBtnOne = new JoystickButton(joystick.driveStick,1);
+		stickBtnTwo = new JoystickButton(joystick.driveStick,2);
+		stickBtnThree = new JoystickButton(joystick.driveStick,3);
 	}
 	public void mapButtons(){
-		stickBtnOne.whileHeld(new IntakeCommand());
-		stickBtnTwo.whileHeld(new OuttakeCommand());
-		trigger.whenPressed(new ReverseDrive());
-		trigger.whenReleased(new ReverseDrive());
+//		stickBtnOne.whenPressed(new DriveStraight());
 	}
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
@@ -42,8 +30,7 @@ public class OI {
 	// number it is.
 	// Joystick stick = new Joystick(port);
 	// Button button = new JoystickButton(stick, buttonNumber);
-
-	// There are a few additional built in buttons you can use. Additionally,
+// There are a few additional built in buttons you can use. Additionally,
 	// by subclassing Button you can create custom triggers and bind those to
 	// commands the same as any other Button.
 
