@@ -10,11 +10,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class ChooseSideAuto extends Command {
+public class RightSideAuto extends Command {
+
 	int target = 0;
 	int count, maxCount;
 	int tolerance;
-    public ChooseSideAuto() {
+    public RightSideAuto() {
     	requires(Robot.drive);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -27,7 +28,7 @@ public class ChooseSideAuto extends Command {
 		Robot.drive.stop();
 		maxCount = (int) SmartDashboard.getNumber("max count", 0);
 		tolerance = (int) SmartDashboard.getNumber("tolerance", 0);
-		if(!DriverStation.getInstance().getGameSpecificMessage().startsWith("L")) {
+		if(!DriverStation.getInstance().getGameSpecificMessage().startsWith("R")) {
 			maxCount = 0;
 		}
 		SmartDashboard.putString("Switch Side",DriverStation.getInstance().getGameSpecificMessage());
