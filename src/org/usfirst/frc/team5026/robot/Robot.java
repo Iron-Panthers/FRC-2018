@@ -7,8 +7,8 @@
 
 package org.usfirst.frc.team5026.robot;
 
-import org.usfirst.frc.team5026.robot.subsystems.Drive;
 import org.usfirst.frc.team5026.robot.subsystems.Elevator;
+import org.usfirst.frc.team5026.robot.util.Constants;
 
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.UsbCamera;
@@ -32,7 +32,6 @@ public class Robot extends IterativeRobot {
 
 	public static OI oi;
 	public static Hardware hardware;
-	public static Drive drive;
 	public static UsbCamera cam1;
 	public static Elevator elevator;
 	public static CvSink cvsink1;

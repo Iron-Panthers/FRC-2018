@@ -1,9 +1,9 @@
-package org.usfirst.frc.team5026.robot.subsystems;
-
-import org.usfirst.frc.team5026.robot.Constants;
+package org.usfirst.frc.team5026.robot.util;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
+import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
@@ -19,11 +19,13 @@ public class ElevatorMotorGroup implements SpeedController {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-	public ElevatorMotorGroup(TalonSRX leftMotor, TalonSRX rightMotor) {
-		SetUp(leftMotor, rightMotor);
+	public ElevatorMotorGroup(TalonSRX masterMotor, TalonSRX slaveMotor) {
+		setUp(masterMotor, slaveMotor);
+		masterMotor.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen, Constants.kTimeoutMs);
+		masterMotor.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen, Constants.kTimeoutMs);
 	}
 	
-	public void SetUp(TalonSRX motor, TalonSRX... motors) {
+	public void setUp(TalonSRX motor, TalonSRX... motors) {
 		motor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
 		motor.setSensorPhase(true);
 		motor.setInverted(false);

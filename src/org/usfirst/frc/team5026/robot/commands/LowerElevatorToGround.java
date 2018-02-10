@@ -1,7 +1,7 @@
 package org.usfirst.frc.team5026.robot.commands;
 
-import org.usfirst.frc.team5026.robot.Constants;
 import org.usfirst.frc.team5026.robot.Robot;
+import org.usfirst.frc.team5026.robot.util.Constants;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class LowerElevatorToGround extends Command {
-
+	public int timeWithinTolerance;
     public LowerElevatorToGround() {
     	requires(Robot.elevator);
         // Use requires() here to declare subsystem dependencies
@@ -18,6 +18,7 @@ public class LowerElevatorToGround extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	timeWithinTolerance = 0;
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -28,7 +29,10 @@ public class LowerElevatorToGround extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+    	if (Math.abs(Constants.ELEVATOR_GROUND_TARGET-Robot.elevator.masterMotor.getSelectedSensorPosition(0))<Constants.ELEVATOR_TARGET_TOLERANCE){
+    		timeWithinTolerance++;
+    	}
+    	return timeWithinTolerance>Constants.ELEVATOR_TOLERANCE_TIME;
     }
 
     // Called once after isFinished returns true
