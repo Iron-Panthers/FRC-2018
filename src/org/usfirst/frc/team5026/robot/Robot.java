@@ -1,8 +1,9 @@
 
 package org.usfirst.frc.team5026.robot;
 
-import org.usfirst.frc.team5026.robot.commands.ExampleCommand;
-import org.usfirst.frc.team5026.robot.subsystems.ExampleSubsystem;
+import org.usfirst.frc.team5026.robot.subsystems.IntakeSubsystem;
+
+import edu.wpi.first.wpilibj.DriverStation;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
@@ -22,26 +23,28 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 
-	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static OI oi;
+	public static Hardware hardware;
+	public static IntakeSubsystem intake;
 	public static UsbCamera cam1;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
-
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
 	@Override
 	public void robotInit() {
+		hardware = new Hardware();
+		intake = new IntakeSubsystem();
 		oi = new OI();
 		CameraServer camera = CameraServer.getInstance();
 		cam1 = camera.startAutomaticCapture("cam0", RobotMap.CAMERA_PORT);
 		cam1.setResolution(Constants.CAMERA_PIXEL_HEIGHT, Constants.CAMERA_PIXEL_WIDTH);
-		chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", chooser);
+		oi.mapButtons();
+		LiveWindow.disableAllTelemetry(); 
 	}
 
 	/**
@@ -66,7 +69,7 @@ public class Robot extends IterativeRobot {
 	 * LabVIEW Dashboard, remove all of the chooser code and uncomment the
 	 * getString code to get the auto name from the text box below the Gyro
 	 *
-	 * You can add additional auto modes by adding additional commands to the
+	 * You can add additional auto modes by adding additional commands to th	e
 	 * chooser code above (like the commented example) or additional comparisons
 	 * to the switch structure below with additional strings & commands.
 	 */
@@ -109,7 +112,17 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
+		//Smart Dashbaord Stuff
+		SmartDashboard.putNumber("Intake Speed", Robot.intake.motor.getMotorOutputPercent());
+		SmartDashboard.putNumber("Intake Power", Robot.intake.motor.getOutputCurrent()*Robot.intake.motor.getMotorOutputVoltage());
+		SmartDashboard.putNumber("Intake Voltage", Robot.intake.motor.getMotorOutputVoltage());
+		SmartDashboard.putNumber("Intake Current", Robot.intake.motor.getOutputCurrent());
 		Scheduler.getInstance().run();
+		try {
+			Thread.sleep(20);
+		} catch (Exception e) {
+			// yep
+		}
 	}
 
 	/**
