@@ -1,9 +1,9 @@
 
 package org.usfirst.frc.team5026.robot;
 
+import org.usfirst.frc.team5026.robot.subsystems.ConveyorBelt;
 import org.usfirst.frc.team5026.robot.subsystems.IntakeSubsystem;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -23,6 +23,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static Hardware hardware;
 	public static IntakeSubsystem intake;
+	public static ConveyorBelt conveyor;
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	/**

@@ -1,6 +1,8 @@
 
 package org.usfirst.frc.team5026.robot;
 
+import org.usfirst.frc.team5026.robot.commands.ConveyorBeltBackward;
+import org.usfirst.frc.team5026.robot.commands.ConveyorBeltForward;
 import org.usfirst.frc.team5026.robot.commands.IntakeCommandGroup;
 import org.usfirst.frc.team5026.robot.commands.OuttakeCommand;
 
@@ -16,14 +18,21 @@ public class OI {
 	public Joystick driveStick;
 	public Button stickBtnOne;
 	public Button stickBtnTwo;
+	public Button stickBtnFive;
+	public Button stickBtnSix;
+	
 	public OI() {
 		driveStick = new Joystick(RobotMap.DRIVE_JOYSTICK);
 		stickBtnOne = new JoystickButton(driveStick,1);
 		stickBtnTwo = new JoystickButton(driveStick,2);
+		stickBtnFive = new JoystickButton(driveStick,5);
+		stickBtnSix = new JoystickButton(driveStick,6);
 	}
 	public void mapButtons() {
 		stickBtnOne.whileHeld(new IntakeCommandGroup());
 		stickBtnTwo.whileHeld(new OuttakeCommand());
+		stickBtnFive.whileHeld(new ConveyorBeltForward());
+		stickBtnSix.whileHeld(new ConveyorBeltBackward());
 	}
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
