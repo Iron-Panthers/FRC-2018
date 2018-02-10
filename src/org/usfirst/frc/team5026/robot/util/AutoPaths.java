@@ -28,7 +28,7 @@ public class AutoPaths {
 			return CENTER_LEFT;
 		}
 		CENTER_LEFT = new FastPathPlanner(CENTER_LEFT_PATH);
-		CENTER_LEFT.calculate(3, 0.02, Constants.ROBOT_WIDTH);
+		CENTER_LEFT.calculate(5, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
 		return CENTER_LEFT;
 	}
 	public static FastPathPlanner getRightPath() {
@@ -36,7 +36,7 @@ public class AutoPaths {
 			return CENTER_RIGHT;
 		}
 		CENTER_RIGHT = new FastPathPlanner(CENTER_RIGHT_PATH);
-		CENTER_RIGHT.calculate(3, 0.02, Constants.ROBOT_WIDTH);
+		CENTER_RIGHT.calculate(5, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
 		return CENTER_RIGHT;
 	}
 }

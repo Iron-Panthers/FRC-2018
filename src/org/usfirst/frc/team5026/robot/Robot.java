@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team5026.robot;
 
+import org.usfirst.frc.team5026.robot.commands.FindTimeCommand;
 import org.usfirst.frc.team5026.robot.commands.autonomous.DriveStraight;
 import org.usfirst.frc.team5026.robot.commands.autonomous.PathFollower;
 import org.usfirst.frc.team5026.robot.subsystems.Drive;
@@ -45,6 +46,7 @@ public class Robot extends IterativeRobot {
 		chooser.addDefault("My Auto", new DriveStraight());
 		chooser.addObject("Left Path Test (Feed forward only)", new PathFollower(AutoPaths.getLeftPath()));
 		chooser.addObject("Right Path Test (Feed forward only)", new PathFollower(AutoPaths.getRightPath()));
+		chooser.addObject("Find Time", new FindTimeCommand());
 		SmartDashboard.putNumber("target", 100);
 		SmartDashboard.putNumber("max count", 50);
 		SmartDashboard.putNumber("tolerance", 69);
@@ -118,7 +120,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		SmartDashboard.putNumber("encoder ticks", hardware.leftM1.getSelectedSensorPosition(0));
+//		SmartDashboard.putNumber("encoder ticks", hardware.leftM1.getSelectedSensorPosition(0));
 		Scheduler.getInstance().run();
 		try {
 			Thread.sleep(20);
