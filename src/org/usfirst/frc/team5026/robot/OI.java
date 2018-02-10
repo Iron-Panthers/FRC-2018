@@ -1,7 +1,7 @@
 
 package org.usfirst.frc.team5026.robot;
 
-import org.usfirst.frc.team5026.robot.commands.IntakeCommand;
+import org.usfirst.frc.team5026.robot.commands.IntakeCommandGroup;
 import org.usfirst.frc.team5026.robot.commands.OuttakeCommand;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -22,7 +22,7 @@ public class OI {
 		stickBtnTwo = new JoystickButton(driveStick,2);
 	}
 	public void mapButtons() {
-		stickBtnOne.whileHeld(new IntakeCommand());
+		stickBtnOne.whileHeld(new IntakeCommandGroup());
 		stickBtnTwo.whileHeld(new OuttakeCommand());
 	}
 	//// CREATING BUTTONS

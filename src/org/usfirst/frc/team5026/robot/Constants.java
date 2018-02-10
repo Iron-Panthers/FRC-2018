@@ -1,23 +1,15 @@
 package org.usfirst.frc.team5026.robot;
 
 public class Constants {
-	public static final double X_AXIS_MODIFIER = .8;
-	public static final double DEADZONE_SIZE = .1;
-	public static final double QUARTER_SPEED = .4;
-	public static final int RIGHT_PORT = 0;
-	public static final int LEFT_PORT = 1;
-	public static final int FULLSPEED = 1;
 	//Intake and Outtake
 	public static final double INTAKE_VOLTAGE_GRAB = 10./12; //Converted to voltage for motor
 	public static final double INTAKE_VOLTAGE_HOLD = 4./12; //"" 4 good enough, 6 secure but too much for burning
-	public static final double INTAKE_CURRENT_SAMPLE = 4; //number of samples required to determine if cube is possessed
-	public static final boolean IS_INTAKE_INVERTED = false;
-	public static final boolean IS_RIGHT_INVERTED = true;
-	public static final boolean IS_LEFT_INVERTED = false;
+	public static final boolean IS_INTAKE_INVERTED = true;
+	
 	public static final double OUTTAKE_POWER = -.4;
-	public static final double BLOCK_GRAB_THRESHOLD = 15; //min amount of amps intake has with block
+	public static final double BLOCK_GRAB_THRESHOLD = 10; //When Grabbing, if the current is greater than this threshold, it has the block
 	public static final double TIME_NOT_GRABBED_THRESHOLD = 25.0; //changed to match testing results
-	public static final int SPEED_UP_TIME = 100; //(in 100 milliseconds) Amount of time before function has time to work
+	public static final int SPEED_UP_TIME = 40; //(in 35 milliseconds) Amount of time before function has time to work
 	
 	//Elevator
 	public static final boolean IS_ELEVATOR_INVERTED = false;

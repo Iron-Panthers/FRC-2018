@@ -1,12 +1,8 @@
 
 package org.usfirst.frc.team5026.robot;
 
-import org.usfirst.frc.team5026.robot.subsystems.Drive;
-import org.usfirst.frc.team5026.robot.subsystems.ElevatorSubsystem;
 import org.usfirst.frc.team5026.robot.subsystems.IntakeSubsystem;
 
-import edu.wpi.cscore.UsbCamera;
-import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -26,13 +22,7 @@ public class Robot extends IterativeRobot {
 
 	public static OI oi;
 	public static Hardware hardware;
-	public static Drive drive;
 	public static IntakeSubsystem intake;
-	public static UsbCamera cam1;
-	public static boolean hasBlock;
-	public static double lastVoltage;
-	public static double lastCurrent;
-	public static ElevatorSubsystem elevator;
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	/**
@@ -41,19 +31,10 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		lastVoltage = 0;
-		lastCurrent = 0;
-		hasBlock = false;
-		CameraServer camera = CameraServer.getInstance(); 
-	    cam1 = camera.startAutomaticCapture("cam0", RobotMap.CAMERA_PORT); 
-	    cam1.setResolution(Constants.CAMERA_PIXEL_HEIGHT, Constants.CAMERA_PIXEL_WIDTH);
 		hardware = new Hardware();
-		drive = new Drive(hardware.rightM,hardware.leftM);
 		intake = new IntakeSubsystem();
-		elevator = new ElevatorSubsystem();
 		oi = new OI();
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		String gameData = DriverStation.getInstance().getGameSpecificMessage();
 		oi.mapButtons();
 		SmartDashboard.putData("Auto mode", chooser);
 		LiveWindow.disableAllTelemetry(); 
@@ -124,32 +105,11 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		//SmartDashboard
-		//Robot.intake.intake(Robot.oi.driveStick.getY());
-		double current = Robot.intake.motor.getOutputCurrent();
-		double voltage = Robot.intake.motor.getMotorOutputVoltage();
-		//Changes voltage to work around consistent values not showing up on SmartDashboard
-//		if(voltage == lastVoltage) {
-//			voltage+=0.0001;
-//		}
-//		if(current == lastCurrent) {
-//			current+=Math.round(Math.random());
-//		}
-//		if (Math.abs(current) < 1) {
-//			current = lastCurrent;
-//		}
 		//Smart Dashbaord Stuff
 		SmartDashboard.putNumber("Intake Speed", Robot.intake.motor.getMotorOutputPercent());
-		SmartDashboard.putNumber("throttle:", Robot.oi.driveStick.getThrottle());
-		SmartDashboard.putNumber("magnitude:", Robot.oi.driveStick.getMagnitude());
-		SmartDashboard.putNumber("Intake Power", current*voltage);
-		SmartDashboard.putNumber("Intake Voltage", voltage);
-		SmartDashboard.putNumber("Intake Current", current);
-		SmartDashboard.putNumber("Joystick Y", Robot.oi.driveStick.getY());
-		SmartDashboard.putNumber("Joystick X", Robot.oi.driveStick.getX());
-		lastVoltage = voltage;
-		lastCurrent = current;
-		// lastCurrent = current;
+		SmartDashboard.putNumber("Intake Power", Robot.intake.motor.getOutputCurrent()*Robot.intake.motor.getMotorOutputVoltage());
+		SmartDashboard.putNumber("Intake Voltage", Robot.intake.motor.getMotorOutputVoltage());
+		SmartDashboard.putNumber("Intake Current", Robot.intake.motor.getOutputCurrent());
 		Scheduler.getInstance().run();
 		try {
 			Thread.sleep(20);
