@@ -1,7 +1,7 @@
 package org.usfirst.frc.team5026.robot;
 
 import org.usfirst.frc.team5026.robot.commands.LiftElevatorToSwitch;
-import org.usfirst.frc.team5026.robot.commands.LiftToScale;
+import org.usfirst.frc.team5026.robot.commands.LiftElevatorToScale;
 import org.usfirst.frc.team5026.robot.commands.ResetElevator;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -25,7 +25,7 @@ public class OI {
 //		stickBtnOne.whenPressed(new ExtendPistonsCommand());
 //		stickBtnTwo.whenPressed(new RetractPistonsCommand());
 		stickBtnOne.whenPressed(new LiftElevatorToSwitch());
-		stickBtnThree.whileHeld(new LiftToScale());
+		stickBtnThree.whileHeld(new LiftElevatorToScale());
 		stickBtnFour.whileHeld(new ResetElevator());
 	}
 	//// CREATING BUTTONS

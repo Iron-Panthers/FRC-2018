@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class LiftToScale extends Command {
+public class LiftElevatorToScale extends Command {
 
-    public LiftToScale() {
+    public LiftElevatorToScale() {
     	requires(Robot.elevator);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
