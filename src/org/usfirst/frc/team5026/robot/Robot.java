@@ -2,8 +2,9 @@
 package org.usfirst.frc.team5026.robot;
 
 import org.usfirst.frc.team5026.robot.commands.autonomous.DriveStraight;
+import org.usfirst.frc.team5026.robot.commands.autonomous.LeftSideAuto;
+import org.usfirst.frc.team5026.robot.commands.autonomous.RightSideAuto;
 import org.usfirst.frc.team5026.robot.subsystems.Drive;
-import org.usfirst.frc.team5026.robot.util.Constants;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -41,6 +42,8 @@ public class Robot extends IterativeRobot {
 		String gameData = DriverStation.getInstance().getGameSpecificMessage();
 		oi.mapButtons();
 		chooser.addDefault("My Auto", new DriveStraight());
+		chooser.addObject("Right side switch", new RightSideAuto());
+		chooser.addObject("Left side switch", new LeftSideAuto());
 		SmartDashboard.putNumber("target", 100);
 		SmartDashboard.putNumber("max count", 50);
 		SmartDashboard.putNumber("tolerance", 69);
