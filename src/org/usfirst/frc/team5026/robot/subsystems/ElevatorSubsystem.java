@@ -5,6 +5,7 @@ import org.usfirst.frc.team5026.robot.Robot;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -25,10 +26,12 @@ public class ElevatorSubsystem extends Subsystem {
 		//Lifts carriage slightly off ground
 	}
 	public void extendElevator() {
-		//Extends pistons on elevator 
+		leftElevatorPiston.set(Value.kForward);
+		rightElevatorPiston.set(Value.kForward);
 	}
 	public void retractElevator() {
-		//Retracts pistons on elevator
+		leftElevatorPiston.set(Value.kReverse);
+		rightElevatorPiston.set(Value.kReverse);
 	}
 	public void liftElevatorToSwitch(double target) {
 		//Lifts carriage to Switch level
