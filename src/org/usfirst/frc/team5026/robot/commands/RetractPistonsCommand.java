@@ -1,6 +1,5 @@
 package org.usfirst.frc.team5026.robot.commands;
 
-import org.usfirst.frc.team5026.robot.Constants;
 import org.usfirst.frc.team5026.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -8,10 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class LiftElevatorToScale extends Command {
+public class RetractPistonsCommand extends Command {
 
-    public LiftElevatorToScale() {
-    	requires(Robot.elevator);
+    public RetractPistonsCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -22,8 +20,7 @@ public class LiftElevatorToScale extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.elevator.liftElevatorToScale(Constants.ELEVATOR_SCALE_TARGET);
-    	//Lifts carriage to scale
+    	Robot.elevator.retractPistons();
     }
 
     // Make this return true when this Command no longer needs to run execute()

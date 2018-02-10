@@ -1,14 +1,20 @@
+/*----------------------------------------------------------------------------*/
+/* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
+/* Open Source Software - may be modified and shared by FRC teams. The code   */
+/* must be accompanied by the FIRST BSD license file in the root directory of */
+/* the project.                                                               */
+/*----------------------------------------------------------------------------*/
 
 package org.usfirst.frc.team5026.robot;
 
-import org.usfirst.frc.team5026.robot.subsystems.Drive;
-import org.usfirst.frc.team5026.robot.subsystems.ElevatorSubsystem;
-import org.usfirst.frc.team5026.robot.subsystems.IntakeSubsystem;
-
-import edu.wpi.cscore.UsbCamera;
-import edu.wpi.first.wpilibj.CameraServer;
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import org.usfirst.frc.team5026.robot.subsystems.Elevator;
+import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.VideoSink;
+import edu.wpi.first.wpilibj.CameraServer;
+import org.usfirst.frc.team5026.robot.subsystems.Drive;
+import org.usfirst.frc.team5026.robot.subsystems.IntakeSubsystem;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -17,10 +23,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
- * functions corresponding to each mode, as described in the IterativeRobot
+ * functions corresponding to each mode, as described in the TimedRobot
  * documentation. If you change the name of this class or the package after
- * creating this project, you must also update the manifest file in the resource
- * directory.
+ * creating this project, you must also update the build.properties file in the
+ * project.
  */
 public class Robot extends IterativeRobot {
 
@@ -29,35 +35,40 @@ public class Robot extends IterativeRobot {
 	public static Drive drive;
 	public static IntakeSubsystem intake;
 	public static UsbCamera cam1;
-	public static boolean hasBlock;
-	public static double lastVoltage;
-	public static double lastCurrent;
-	public static ElevatorSubsystem elevator;
-	Command autonomousCommand;
-	SendableChooser<Command> chooser = new SendableChooser<>();
+	public static Elevator elevator;
+	public static CvSink cvsink1;
+	public static VideoSink server;
+	public static UsbCamera cam1;
+	Command m_autonomousCommand;
+	SendableChooser<Command> m_chooser = new SendableChooser<>();
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
 	@Override
 	public void robotInit() {
-		lastVoltage = 0;
-		lastCurrent = 0;
-		hasBlock = false;
-		CameraServer camera = CameraServer.getInstance(); 
-	    cam1 = camera.startAutomaticCapture("cam0", RobotMap.CAMERA_PORT); 
-	    cam1.setResolution(Constants.CAMERA_PIXEL_HEIGHT, Constants.CAMERA_PIXEL_WIDTH);
+		startCamera();
 		hardware = new Hardware();
+		elevator = new Elevator();
 		drive = new Drive(hardware.rightM,hardware.leftM);
 		intake = new IntakeSubsystem();
-		elevator = new ElevatorSubsystem();
 		oi = new OI();
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		String gameData = DriverStation.getInstance().getGameSpecificMessage();
+		SmartDashboard.putData("Auto mode", m_chooser);
+		SmartDashboard.getNumber("Scale Target", Constants.TICK_TARGET_TO_SCALE); // Input setpoint
 		oi.mapButtons();
-		SmartDashboard.putData("Auto mode", chooser);
-		LiveWindow.disableAllTelemetry(); 
+		LiveWindow.disableAllTelemetry();
+    }
+	private static void startCamera() {
+		CameraServer camera = CameraServer.getInstance();
+		cam1 = camera.startAutomaticCapture("cam0", RobotMap.CAMERA_PORT);
+		cam1.setResolution(Constants.CAMERA_PIXEL_HEIGHT, Constants.CAMERA_PIXEL_WIDTH);
+		server = camera.getServer();
+		cvsink1 = new CvSink("cam1cv");
+		cvsink1.setSource(cam1);
+		cvsink1.setEnabled(true);
 	}
+	
 
 	/**
 	 * This function is called once each time the robot enters Disabled mode.
@@ -66,7 +77,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
-
+		hardware.elevatorMotor.setSelectedSensorPosition(0, 0, 0);
+		System.out.println(hardware.elevatorMotor.getSelectedSensorPosition(0));
 	}
 
 	@Override
@@ -81,13 +93,13 @@ public class Robot extends IterativeRobot {
 	 * LabVIEW Dashboard, remove all of the chooser code and uncomment the
 	 * getString code to get the auto name from the text box below the Gyro
 	 *
-	 * You can add additional auto modes by adding additional commands to th	e
+	 * <p>You can add additional auto modes by adding additional commands to the
 	 * chooser code above (like the commented example) or additional comparisons
 	 * to the switch structure below with additional strings & commands.
 	 */
 	@Override
 	public void autonomousInit() {
-		autonomousCommand = chooser.getSelected();
+		m_autonomousCommand = m_chooser.getSelected();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -97,15 +109,20 @@ public class Robot extends IterativeRobot {
 		 */
 
 		// schedule the autonomous command (example)
-		if (autonomousCommand != null)
-			autonomousCommand.start();
+		if (m_autonomousCommand != null) {
+			m_autonomousCommand.start();
+		}
 	}
 
 	/**
-	 * This function is called periodically during autonomous
+	 * This function is called periodically during autonomous.
 	 */
 	@Override
 	public void autonomousPeriodic() {
+//		hardware.elevatorMotor.set(ControlMode.MotionMagic, Constants.TICK_TARGET_TO_SCALE);
+//		SmartDashboard.putNumber("Auto Encoder Position", hardware.elevatorMotor.getSelectedSensorPosition(0));
+//		SmartDashboard.putNumber("Auto Talon Speed", hardware.elevatorMotor.getMotorOutputPercent());
+////		System.out.println(hardware.elevatorMotor.getSelectedSensorPosition(0));
 		Scheduler.getInstance().run();
 	}
 
@@ -115,41 +132,17 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		if (autonomousCommand != null)
-			autonomousCommand.cancel();
+		if (m_autonomousCommand != null) {
+			m_autonomousCommand.cancel();
+		}
 	}
 
 	/**
-	 * This function is called periodically during operator control
+	 * This function is called periodically during operator control.
 	 */
 	@Override
 	public void teleopPeriodic() {
-		//SmartDashboard
-		//Robot.intake.intake(Robot.oi.driveStick.getY());
-		double current = Robot.intake.motor.getOutputCurrent();
-		double voltage = Robot.intake.motor.getMotorOutputVoltage();
-		//Changes voltage to work around consistent values not showing up on SmartDashboard
-//		if(voltage == lastVoltage) {
-//			voltage+=0.0001;
-//		}
-//		if(current == lastCurrent) {
-//			current+=Math.round(Math.random());
-//		}
-//		if (Math.abs(current) < 1) {
-//			current = lastCurrent;
-//		}
-		//Smart Dashbaord Stuff
-		SmartDashboard.putNumber("Intake Speed", Robot.intake.motor.getMotorOutputPercent());
-		SmartDashboard.putNumber("throttle:", Robot.oi.driveStick.getThrottle());
-		SmartDashboard.putNumber("magnitude:", Robot.oi.driveStick.getMagnitude());
-		SmartDashboard.putNumber("Intake Power", current*voltage);
-		SmartDashboard.putNumber("Intake Voltage", voltage);
-		SmartDashboard.putNumber("Intake Current", current);
-		SmartDashboard.putNumber("Joystick Y", Robot.oi.driveStick.getY());
-		SmartDashboard.putNumber("Joystick X", Robot.oi.driveStick.getX());
-		lastVoltage = voltage;
-		lastCurrent = current;
-		// lastCurrent = current;
+		SmartDashboard.putNumber("Encoder Position", hardware.elevatorMotor.getSelectedSensorPosition(0));
 		Scheduler.getInstance().run();
 		try {
 			Thread.sleep(20);
@@ -159,10 +152,13 @@ public class Robot extends IterativeRobot {
 	}
 
 	/**
-	 * This function is called periodically during test mode
+	 * This function is called periodically during test mode.
 	 */
 	@Override
 	public void testPeriodic() {
-		LiveWindow.run();
+	}
+	
+	public static void dispNum(String key, double value) {
+		SmartDashboard.putNumber(key, value);
 	}
 }

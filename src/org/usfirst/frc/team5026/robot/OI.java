@@ -1,10 +1,13 @@
-
 package org.usfirst.frc.team5026.robot;
 
 import org.usfirst.frc.team5026.robot.commands.IntakeCommand;
 import org.usfirst.frc.team5026.robot.commands.OuttakeCommand;
 
 import edu.wpi.first.wpilibj.Joystick;
+import org.usfirst.frc.team5026.robot.commands.LiftToScale;
+import org.usfirst.frc.team5026.robot.commands.LiftToSwitch;
+import org.usfirst.frc.team5026.robot.commands.ResetElevator;
+
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -16,14 +19,24 @@ public class OI {
 	public Joystick driveStick;
 	public Button stickBtnOne;
 	public Button stickBtnTwo;
-	public OI() {
+	public Button stickBtnThree;
+	public Button stickBtnFour;
+	public Button stickBtnFive;
+	public OI () {
 		driveStick = new Joystick(RobotMap.DRIVE_JOYSTICK);
-		stickBtnOne = new JoystickButton(driveStick,1);
-		stickBtnTwo = new JoystickButton(driveStick,2);
+		stickBtnOne = new JoystickButton(stick, 1);
+		stickBtnFive = new JoystickButton(stick, 5);
+		stickBtnFour = new JoystickButton(stick, 4);
+		stickBtnThree = new JoystickButton(stick, 3);
+		stickBtnTwo = new JoystickButton(stick, 2);
 	}
 	public void mapButtons() {
-		stickBtnOne.whileHeld(new IntakeCommand());
-		stickBtnTwo.whileHeld(new OuttakeCommand());
+//		stickBtnOne.whenPressed(new ExtendPistonsCommand());
+//		stickBtnTwo.whenPressed(new RetractPistonsCommand());
+		stickBtnOne.whenPressed(new LiftToSwitch());
+		stickBtnThree.whileHeld(new LiftToScale());
+		stickBtnFour.whileHeld(new ResetElevator());
+		stickBtnFive.whenPressed(new LiftToScale());
 	}
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
