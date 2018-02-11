@@ -1,5 +1,7 @@
 package org.usfirst.frc.team5026.robot;
 
+import org.usfirst.frc.team5026.robot.commands.IntakeCommandGroup;
+import org.usfirst.frc.team5026.robot.commands.OuttakeCommand;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorFindF;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorSetPIDF;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorSliding;
@@ -45,9 +47,8 @@ public class OI {
 		boardBtnFive = new JoystickButton(elevatorStick, 5);
 	}
 	public void mapButtons() {
-//		stickBtnOne.whenPressed(new ExtendPistonsCommand());
-//		stickBtnTwo.whenPressed(new RetractPistonsCommand());
-		stickBtnOne.whenPressed(new ElevatorToSwitch());
+		stickBtnOne.whileHeld(new IntakeCommandGroup());
+		stickBtnTwo.whileHeld(new OuttakeCommand());
 		stickBtnThree.whileHeld(new ElevatorToScale());
 		stickBtnFour.whileHeld(new ElevatorToGround());
 		boardBtnOne.whileHeld(new ElevatorFindF());

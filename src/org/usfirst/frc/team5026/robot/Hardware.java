@@ -19,6 +19,7 @@ public class Hardware {
 //	public DigitalInput limitSwitchR;
 	public DoubleSolenoid leftSolenoid;
 	public DoubleSolenoid rightSolenoid;
+	public TalonSRX intakeM;
 	public PowerDistributionPanel pdp;
 	
 	public Hardware() {
@@ -38,6 +39,8 @@ public class Hardware {
 		leftSolenoid = new DoubleSolenoid(RobotMap.LEFT_SOLENOID_PORT_1, RobotMap.LEFT_SOLENOID_PORT_2);
 		rightSolenoid = new DoubleSolenoid(RobotMap.RIGHT_SOLENOID_PORT_1, RobotMap.RIGHT_SOLENOID_PORT_2);
 
+		intakeM = new TalonSRX(RobotMap.INTAKE_MOTOR);
+		intakeM.setInverted(Constants.IS_INTAKE_INVERTED);
 		pdp = new PowerDistributionPanel();
 	}
 }

@@ -9,6 +9,7 @@ package org.usfirst.frc.team5026.robot;
 
 import org.usfirst.frc.team5026.robot.subsystems.Elevator;
 import org.usfirst.frc.team5026.robot.util.Constants;
+import org.usfirst.frc.team5026.robot.subsystems.IntakeSubsystem;
 
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.UsbCamera;
@@ -32,6 +33,7 @@ public class Robot extends IterativeRobot {
 
 	public static OI oi;
 	public static Hardware hardware;
+	public static IntakeSubsystem intake;
 	public static UsbCamera cam1;
 	public static Elevator elevator;
 	public static CvSink cvsink1;
@@ -46,6 +48,7 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		startCamera();
 		hardware = new Hardware();
+		intake = new IntakeSubsystem();
 		elevator = new Elevator();
 		oi = new OI();
 		// chooser.addObject("My Auto", new MyAutoCommand());

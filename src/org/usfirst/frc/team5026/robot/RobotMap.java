@@ -26,5 +26,6 @@ public class RobotMap {
 	public static final int RIGHT_SOLENOID_PORT_2 = 5;
 	public static final int ELEVATOR_MASTER = 7;
 	public static final int ELEVATOR_SLAVE = 8;
-	public static final int CAMERA_PORT = 0;
+	//Camera
+	public static int CAMERA_PORT = 0; 
 }
