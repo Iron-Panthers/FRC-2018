@@ -1,4 +1,4 @@
-package org.usfirst.frc.team5026.robot.commands;
+package org.usfirst.frc.team5026.robot.commands.elevator;
 
 import org.usfirst.frc.team5026.robot.Robot;
 
@@ -27,6 +27,7 @@ public class ElevatorTarget extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.elevator.motors.driveWithTarget(target);
+    	SmartDashboard.putNumber("Elevator Position", Robot.elevator.motors.getEncoderTicks());
     }
 
     // Make this return true when this Command no longer needs to run execute()

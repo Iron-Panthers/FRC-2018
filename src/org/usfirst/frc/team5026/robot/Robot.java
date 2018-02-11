@@ -51,7 +51,13 @@ public class Robot extends IterativeRobot {
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
 		SmartDashboard.putNumber("Elevator Percent", 0.25); // TODO to remove later
-		SmartDashboard.putNumber("Elevator F", 0); // TODO to remove later
+		SmartDashboard.putNumber("Elevator F", Constants.ELEVATOR_F); // TODO to remove later
+		SmartDashboard.putNumber("Elevator P Term", Constants.ELEVATOR_P); // TODO to remove later
+		SmartDashboard.putNumber("Elevator I", Constants.ELEVATOR_I); // TODO to remove later
+		SmartDashboard.putNumber("Elevator D", Constants.ELEVATOR_D); // TODO to remove later
+		SmartDashboard.putNumber("Elevator V Term", Constants.ELEVATOR_VELOCITY); // TODO to remove later
+		SmartDashboard.putNumber("Elevator A Term", Constants.ELEVATOR_ACCELERATION); // TODO to remove later
+		SmartDashboard.putNumber("Elevator Reset Value", 0); // TODO to remove later
 		SmartDashboard.putNumber("Elevator Target", 1000); // TODO to remove later
 		oi.mapButtons();
 		LiveWindow.disableAllTelemetry();
@@ -74,8 +80,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
-		hardware.elevatorMotor.setSelectedSensorPosition(0, 0, 0);
-		System.out.println(hardware.elevatorMotor.getSelectedSensorPosition(0));
+//		hardware.elevatorMotor.setSelectedSensorPosition(0, 0, 0);
+//		System.out.println(hardware.elevatorMotor.getSelectedSensorPosition(0));
 	}
 
 	@Override
@@ -140,9 +146,10 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		SmartDashboard.putNumber("Encoder Position", hardware.elevatorMotor.getSelectedSensorPosition(0));
+		SmartDashboard.putNumber("Encoder Velocity", hardware.elevatorMotor.getSelectedSensorVelocity(0));
 		Scheduler.getInstance().run();
 		try {
-			Thread.sleep(20);
+			Thread.sleep(30);
 		} catch (Exception e) {
 			// yep
 		}

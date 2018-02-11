@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5026.robot;
 
+import org.usfirst.frc.team5026.robot.util.Constants;
 import org.usfirst.frc.team5026.robot.util.ElevatorMotorGroup;
 
 import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
@@ -21,12 +22,15 @@ public class Hardware {
 	public PowerDistributionPanel pdp;
 	
 	public Hardware() {
-//		elevatorMotor.setInverted(Constants.IS_ELEVATOR_INVERTED);
 		elevatorMotor = new TalonSRX(RobotMap.ELEVATOR_MASTER);
 		elevatorSlaveMotor = new TalonSRX(RobotMap.ELEVATOR_SLAVE);
 		elevatorMotors = new ElevatorMotorGroup(elevatorMotor, elevatorSlaveMotor);
-		elevatorMotor.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen, 0);
-		elevatorMotor.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen, 0);
+//		elevatorMotor.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen, 0);
+//		elevatorMotor.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyClosed, 0);
+		// TODO Constants/RobotMap
+		elevatorMotor.setInverted(Constants.IS_ELEVATOR_INVERTED);
+		elevatorSlaveMotor.setInverted(Constants.IS_ELEVATOR_INVERTED);
+		elevatorMotor.setSensorPhase(!Constants.IS_ELEVATOR_SENSOR_INVERTED);
 //		slaveMotor.setInverted(Constants.IS_ELEVATOR_INVERTED);
 		
 //		limitSwitchF = new DigitalInput(RobotMap.LIMIT_SWTICH_F);

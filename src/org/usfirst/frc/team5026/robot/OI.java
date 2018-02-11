@@ -1,12 +1,13 @@
 package org.usfirst.frc.team5026.robot;
 
-import org.usfirst.frc.team5026.robot.commands.ElevatorTarget;
-import org.usfirst.frc.team5026.robot.commands.ElevatorSetF;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorFindF;
+import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorSetPIDF;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorSliding;
+import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorTarget;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToGround;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToScale;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToSwitch;
+import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorZero;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -28,6 +29,7 @@ public class OI {
 	public Button boardBtnTwo;
 	public Button boardBtnThree;
 	public Button boardBtnFour;
+	public Button boardBtnFive;
 	public OI () {
 		driveStick = new Joystick(RobotMap.DRIVE_JOYSTICK);
 		elevatorStick = new Joystick(RobotMap.ELEVATOR_JOYSTICK);
@@ -40,6 +42,7 @@ public class OI {
 		boardBtnTwo = new JoystickButton(elevatorStick, 2);
 		boardBtnThree = new JoystickButton(elevatorStick, 3);
 		boardBtnFour = new JoystickButton(elevatorStick, 4);
+		boardBtnFive = new JoystickButton(elevatorStick, 5);
 	}
 	public void mapButtons() {
 //		stickBtnOne.whenPressed(new ExtendPistonsCommand());
@@ -48,9 +51,10 @@ public class OI {
 		stickBtnThree.whileHeld(new ElevatorToScale());
 		stickBtnFour.whileHeld(new ElevatorToGround());
 		boardBtnOne.whileHeld(new ElevatorFindF());
-		boardBtnTwo.whenPressed(new ElevatorSliding());
+		boardBtnTwo.whileHeld(new ElevatorSliding());
 		boardBtnThree.whileHeld(new ElevatorTarget());
-		boardBtnFour.whenPressed(new ElevatorSetF());
+		boardBtnFour.whenPressed(new ElevatorSetPIDF());
+		boardBtnFive.whenPressed(new ElevatorZero());
 	}
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a

@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
@@ -22,7 +23,9 @@ public class ElevatorMotorGroup implements SpeedController {
 	public ElevatorMotorGroup(TalonSRX masterMotor, TalonSRX slaveMotor) {
 		setUp(masterMotor, slaveMotor);
 		masterMotor.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen, Constants.kTimeoutMs);
-		masterMotor.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen, Constants.kTimeoutMs);
+		masterMotor.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyClosed, Constants.kTimeoutMs);
+		masterMotor.setNeutralMode(NeutralMode.Brake);
+		slaveMotor.setNeutralMode(NeutralMode.Brake);
 	}
 	
 	public void setUp(TalonSRX motor, TalonSRX... motors) {
@@ -35,14 +38,15 @@ public class ElevatorMotorGroup implements SpeedController {
 		
 		motor.configNominalOutputForward(0, Constants.kTimeoutMs);
 		motor.configNominalOutputReverse(0, Constants.kTimeoutMs);
+		// Scaled to 0.5 so that it doesn't break everything
 		motor.configPeakOutputForward(1, Constants.kTimeoutMs);
 		motor.configPeakOutputReverse(-1, Constants.kTimeoutMs);
 		
 		motor.selectProfileSlot(Constants.kSlotIdx, Constants.kTimeoutMs);
-		motor.config_kF(0, Constants.DRIVE_F, Constants.kTimeoutMs);
-		motor.config_kP(0, Constants.DRIVE_P, Constants.kTimeoutMs);
-		motor.config_kI(0, Constants.DRIVE_I, Constants.kTimeoutMs);
-		motor.config_kD(0, Constants.DRIVE_D, Constants.kTimeoutMs);
+		motor.config_kF(0, Constants.ELEVATOR_F, Constants.kTimeoutMs);
+		motor.config_kP(0, Constants.ELEVATOR_P, Constants.kTimeoutMs);
+		motor.config_kI(0, Constants.ELEVATOR_I, Constants.kTimeoutMs);
+		motor.config_kD(0, Constants.ELEVATOR_D, Constants.kTimeoutMs);
 		
 		motor.configMotionCruiseVelocity(Constants.ELEVATOR_VELOCITY, Constants.kTimeoutMs);
 		motor.configMotionAcceleration(Constants.ELEVATOR_ACCELERATION, Constants.kTimeoutMs);

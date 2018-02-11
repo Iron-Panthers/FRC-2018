@@ -20,12 +20,18 @@ public class Constants {
 	public static final int SPEED_UP_TIME = 100; //(in 100 milliseconds) Amount of time before function has time to work
 	
 	//Elevator
-	public static final boolean IS_ELEVATOR_INVERTED = false;
-	public static final double ELEVATOR_SWITCH_TARGET = 3000.; //Arbitrary value, change plz
-	public static final double ELEVATOR_SCALE_TARGET = 7000.; //See above
-	public static final double ELEVATOR_GROUND_TARGET = 0.; //See above (This is supposed to lift cube enough so it does not drag on ground)
-	public static final int ELEVATOR_VELOCITY = 500;
-	public static final int ELEVATOR_ACCELERATION = 1000;
+	public static final boolean IS_ELEVATOR_INVERTED = true;
+	public static final boolean IS_ELEVATOR_SENSOR_INVERTED = true;
+	public static final double ELEVATOR_P = 0.8;
+	public static final double ELEVATOR_I = 0.002;
+	public static final double ELEVATOR_D = 0;
+	public static final double ELEVATOR_F = 0.21;
+	public static final int ELEVATOR_SWITCH_TARGET = 3000; //Arbitrary value, change plz
+	public static final int ELEVATOR_SCALE_TARGET = 7000; //See above
+	public static final int ELEVATOR_GROUND_TARGET = 0; //See above (This is supposed to lift cube enough so it does not drag on ground)
+	public static final int ELEVATOR_TOP_TARGET = 89000;
+	public static final int ELEVATOR_VELOCITY = 1700;
+	public static final int ELEVATOR_ACCELERATION = 2200;
 	public static final double ELEVATOR_TARGET_TOLERANCE = 100; //In ticks
 	public static final double ELEVATOR_TOLERANCE_TIME = 5; //
 	
