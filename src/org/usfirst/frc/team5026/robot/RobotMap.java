@@ -15,6 +15,7 @@ package org.usfirst.frc.team5026.robot;
  */
 public class RobotMap {
 	public static final int DRIVE_JOYSTICK = 0;
+	public static final int ELEVATOR_JOYSTICK = 1;
 	public static final int DRIVE_LEFT_MOTOR = 1; //Change back to drive
 	public static final int DRIVE_RIGHT_MOTOR = 0;
 	public static final int INTAKE_MOTOR = 1; //Change back to drie
@@ -23,5 +24,7 @@ public class RobotMap {
 	public static final int LEFT_SOLENOID_PORT_2 = 3;
 	public static final int RIGHT_SOLENOID_PORT_1 = 4;
 	public static final int RIGHT_SOLENOID_PORT_2 = 5;
-	public static int CAMERA_PORT = 0;
+	public static final int ELEVATOR_MASTER = 1;
+	public static final int ELEVATOR_SLAVE = 3;
+	public static final int CAMERA_PORT = 0;
 }

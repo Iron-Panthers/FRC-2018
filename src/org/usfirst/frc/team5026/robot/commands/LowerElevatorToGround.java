@@ -29,7 +29,7 @@ public class LowerElevatorToGround extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (Math.abs(Constants.ELEVATOR_GROUND_TARGET-Robot.elevator.masterMotor.getSelectedSensorPosition(0))<Constants.ELEVATOR_TARGET_TOLERANCE){
+    	if (Math.abs(Constants.ELEVATOR_GROUND_TARGET-Robot.elevator.motors.motor1.getSelectedSensorPosition(0))<Constants.ELEVATOR_TARGET_TOLERANCE){
     		timeWithinTolerance++;
     	}
     	return timeWithinTolerance>Constants.ELEVATOR_TOLERANCE_TIME;

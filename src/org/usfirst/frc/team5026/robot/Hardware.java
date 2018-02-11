@@ -1,5 +1,7 @@
 package org.usfirst.frc.team5026.robot;
 
+import org.usfirst.frc.team5026.robot.util.ElevatorMotorGroup;
+
 import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -10,7 +12,8 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
 
 public class Hardware {
 	public TalonSRX elevatorMotor;
-	public TalonSRX slaveMotor;
+	public TalonSRX elevatorSlaveMotor;
+	public ElevatorMotorGroup elevatorMotors;
 //	public DigitalInput limitSwitchF;
 //	public DigitalInput limitSwitchR;
 	public DoubleSolenoid leftSolenoid;
@@ -19,9 +22,11 @@ public class Hardware {
 	
 	public Hardware() {
 //		elevatorMotor.setInverted(Constants.IS_ELEVATOR_INVERTED);
+		elevatorMotor = new TalonSRX(RobotMap.ELEVATOR_MASTER);
+		elevatorSlaveMotor = new TalonSRX(RobotMap.ELEVATOR_SLAVE);
+		elevatorMotors = new ElevatorMotorGroup(elevatorMotor, elevatorSlaveMotor);
 		elevatorMotor.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen, 0);
 		elevatorMotor.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen, 0);
-		slaveMotor.follow(elevatorMotor);
 //		slaveMotor.setInverted(Constants.IS_ELEVATOR_INVERTED);
 		
 //		limitSwitchF = new DigitalInput(RobotMap.LIMIT_SWTICH_F);

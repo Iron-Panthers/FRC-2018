@@ -50,6 +50,7 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
+		SmartDashboard.putNumber("Elevator Percent", 0.25); // TODO to remove later
 		oi.mapButtons();
 		LiveWindow.disableAllTelemetry();
     }

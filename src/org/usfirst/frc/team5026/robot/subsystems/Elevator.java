@@ -2,9 +2,9 @@ package org.usfirst.frc.team5026.robot.subsystems;
 
 import org.usfirst.frc.team5026.robot.Robot;
 import org.usfirst.frc.team5026.robot.util.Constants;
+import org.usfirst.frc.team5026.robot.util.ElevatorMotorGroup;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -13,13 +13,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Elevator extends Subsystem {
-	public TalonSRX masterMotor;
-	public TalonSRX slaveMotor;
+	public ElevatorMotorGroup motors;
 	public DoubleSolenoid leftSolenoid;
 	public DoubleSolenoid rightSolenoid;
 	public Elevator() {
-		masterMotor = Robot.hardware.elevatorMotor;
-		slaveMotor = Robot.hardware.slaveMotor;
+		motors = Robot.hardware.elevatorMotors;
 		this.leftSolenoid = Robot.hardware.leftSolenoid;
 		this.rightSolenoid = Robot.hardware.rightSolenoid;
 	}
@@ -32,16 +30,19 @@ public class Elevator extends Subsystem {
 		rightSolenoid.set(DoubleSolenoid.Value.kReverse);
 	}
 	public void raiseToTarget(double tickTarget) {
-		masterMotor.set(ControlMode.MotionMagic, tickTarget);
+		motors.driveWithTarget(tickTarget);
 	}
 	public void raiseToScale() {
-		masterMotor.set(ControlMode.MotionMagic, Constants.ELEVATOR_SCALE_TARGET);
+		motors.driveWithTarget(Constants.ELEVATOR_SCALE_TARGET);
 	}
 	public void raiseToSwitch() {
-		masterMotor.set(ControlMode.MotionMagic, Constants.ELEVATOR_SWITCH_TARGET);
+		motors.driveWithTarget(Constants.ELEVATOR_SWITCH_TARGET);
 	}
 	public void resetElevator() {
-		masterMotor.set(ControlMode.MotionMagic, Constants.ELEVATOR_GROUND_TARGET); //Go back to starting position
+		motors.driveWithTarget(Constants.ELEVATOR_GROUND_TARGET);
+	}
+	public void stop() {
+		motors.stop();
 	}
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
