@@ -1,10 +1,10 @@
 package org.usfirst.frc.team5026.robot;
 
-import org.usfirst.frc.team5026.robot.commands.ElevatorFindF;
-import org.usfirst.frc.team5026.robot.commands.ElevatorSliding;
-import org.usfirst.frc.team5026.robot.commands.LiftElevatorToScale;
-import org.usfirst.frc.team5026.robot.commands.LiftElevatorToSwitch;
-import org.usfirst.frc.team5026.robot.commands.LowerElevatorToGround;
+import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorFindF;
+import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorSliding;
+import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToGround;
+import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToScale;
+import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToSwitch;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -38,9 +38,9 @@ public class OI {
 	public void mapButtons() {
 //		stickBtnOne.whenPressed(new ExtendPistonsCommand());
 //		stickBtnTwo.whenPressed(new RetractPistonsCommand());
-		stickBtnOne.whenPressed(new LiftElevatorToSwitch());
-		stickBtnThree.whileHeld(new LiftElevatorToScale());
-		stickBtnFour.whileHeld(new LowerElevatorToGround());
+		stickBtnOne.whenPressed(new ElevatorToSwitch());
+		stickBtnThree.whileHeld(new ElevatorToScale());
+		stickBtnFour.whileHeld(new ElevatorToGround());
 		boardBtnOne.whileHeld(new ElevatorFindF());
 		boardBtnTwo.whenPressed(new ElevatorSliding());
 	}
