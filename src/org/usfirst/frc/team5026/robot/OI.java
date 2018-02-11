@@ -1,9 +1,9 @@
 package org.usfirst.frc.team5026.robot;
 
-import org.usfirst.frc.team5026.robot.commands.ElevatorTarget;
-import org.usfirst.frc.team5026.robot.commands.ElevatorSetF;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorFindF;
+import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorSetF;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorSliding;
+import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorTarget;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToGround;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToScale;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToSwitch;
