@@ -1,4 +1,4 @@
-package org.usfirst.frc.team5026.robot.commands;
+package org.usfirst.frc.team5026.robot.commands.elevator;
 
 import org.usfirst.frc.team5026.robot.Robot;
 import org.usfirst.frc.team5026.robot.util.Constants;
@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class LowerElevatorToGround extends Command {
+public class ElevatorToSwitch extends Command {
 	public int timeWithinTolerance;
-    public LowerElevatorToGround() {
+    public ElevatorToSwitch() {
     	requires(Robot.elevator);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -23,13 +23,13 @@ public class LowerElevatorToGround extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.elevator.resetElevator();
-    	//Lowers carriage to the ground
+    	Robot.elevator.raiseToSwitch();
+    	//Lifts carriage to switch
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (Math.abs(Constants.ELEVATOR_GROUND_TARGET-Robot.elevator.motors.motor1.getSelectedSensorPosition(0))<Constants.ELEVATOR_TARGET_TOLERANCE){
+    	if (Math.abs(Constants.ELEVATOR_SWITCH_TARGET-Robot.elevator.motors.motor1.getSelectedSensorPosition(0))<Constants.ELEVATOR_TARGET_TOLERANCE){
     		timeWithinTolerance++;
     	}
     	return timeWithinTolerance>Constants.ELEVATOR_TOLERANCE_TIME;
