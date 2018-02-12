@@ -1,5 +1,7 @@
 package org.usfirst.frc.team5026.robot.commands;
 
+import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToSwitch;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -9,7 +11,8 @@ public class IntakeCommandGroup extends CommandGroup {
 
     public IntakeCommandGroup() {
     	addSequential(new IntakeCommand());
-    	addSequential(new HoldBlock());
+    	addParallel(new ElevatorToSwitch());
+    	addParallel(new HoldBlock());
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

@@ -151,11 +151,11 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Encoder Position", hardware.elevatorMotor.getSelectedSensorPosition(0));
 		SmartDashboard.putNumber("Encoder Velocity", hardware.elevatorMotor.getSelectedSensorVelocity(0));
 		Scheduler.getInstance().run();
-		try {
-			Thread.sleep(30);
-		} catch (Exception e) {
-			// yep
-		}
+//		try {
+//			Thread.sleep(30);
+//		} catch (Exception e) {
+//			// yep
+//		}
 	}
 
 	/**

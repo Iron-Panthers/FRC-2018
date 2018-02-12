@@ -11,13 +11,13 @@ public class Constants {
 	public static final double INTAKE_VOLTAGE_GRAB = 10./12; //Converted to voltage for motor
 	public static final double INTAKE_VOLTAGE_HOLD = 4./12; //"" 4 good enough, 6 secure but too much for burning
 	public static final double INTAKE_CURRENT_SAMPLE = 4; //number of samples required to determine if cube is possessed
-	public static final boolean IS_INTAKE_INVERTED = false;
+	public static final boolean IS_INTAKE_INVERTED = true;
 	public static final boolean IS_RIGHT_INVERTED = true;
 	public static final boolean IS_LEFT_INVERTED = false;
 	public static final double OUTTAKE_POWER = -.4;
 	public static final double BLOCK_GRAB_THRESHOLD = 15; //min amount of amps intake has with block
 	public static final double TIME_NOT_GRABBED_THRESHOLD = 25.0; //changed to match testing results
-	public static final int SPEED_UP_TIME = 100; //(in 100 milliseconds) Amount of time before function has time to work
+	public static final int SPEED_UP_TIME = 2; //(in 100 milliseconds) Amount of time before function has time to work
 	
 	//Elevator
 	public static final boolean IS_ELEVATOR_INVERTED = true;
@@ -30,8 +30,8 @@ public class Constants {
 	public static final int ELEVATOR_SCALE_TARGET = 7000; //See above
 	public static final int ELEVATOR_GROUND_TARGET = 0; //See above (This is supposed to lift cube enough so it does not drag on ground)
 	public static final int ELEVATOR_TOP_TARGET = 89000;
-	public static final int ELEVATOR_VELOCITY = 1700;
-	public static final int ELEVATOR_ACCELERATION = 2200;
+	public static final int ELEVATOR_VELOCITY = 2800;
+	public static final int ELEVATOR_ACCELERATION = 4000;
 	public static final double ELEVATOR_TARGET_TOLERANCE = 100; //In ticks
 	public static final double ELEVATOR_TOLERANCE_TIME = 5; //
 	

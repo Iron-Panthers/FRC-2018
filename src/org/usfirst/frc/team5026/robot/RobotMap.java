@@ -18,8 +18,8 @@ public class RobotMap {
 	public static final int ELEVATOR_JOYSTICK = 1;
 	public static final int DRIVE_LEFT_MOTOR = 1; //Change back to drive
 	public static final int DRIVE_RIGHT_MOTOR = 0;
-	public static final int INTAKE_MOTOR = 1; //Change back to drie
-	public static final int INTAKE_PDP_PORT = 13; //To Be Changed
+	public static final int INTAKE_MOTOR = 9; //Change back to drive
+	public static final int INTAKE_PDP_PORT = 1; //To Be Changed
 	public static final int LEFT_SOLENOID_PORT_1 = 2;
 	public static final int LEFT_SOLENOID_PORT_2 = 3;
 	public static final int RIGHT_SOLENOID_PORT_1 = 4;

@@ -28,7 +28,6 @@ public class Hardware {
 		elevatorMotors = new ElevatorMotorGroup(elevatorMotor, elevatorSlaveMotor);
 //		elevatorMotor.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen, 0);
 //		elevatorMotor.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyClosed, 0);
-		// TODO Constants/RobotMap
 		elevatorMotor.setInverted(Constants.IS_ELEVATOR_INVERTED);
 		elevatorSlaveMotor.setInverted(Constants.IS_ELEVATOR_INVERTED);
 		elevatorMotor.setSensorPhase(!Constants.IS_ELEVATOR_SENSOR_INVERTED);

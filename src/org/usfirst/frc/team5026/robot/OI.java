@@ -32,6 +32,7 @@ public class OI {
 	public Button boardBtnThree;
 	public Button boardBtnFour;
 	public Button boardBtnFive;
+	public Button boardBtnSix;
 	public OI () {
 		driveStick = new Joystick(RobotMap.DRIVE_JOYSTICK);
 		elevatorStick = new Joystick(RobotMap.ELEVATOR_JOYSTICK);
@@ -45,6 +46,7 @@ public class OI {
 		boardBtnThree = new JoystickButton(elevatorStick, 3);
 		boardBtnFour = new JoystickButton(elevatorStick, 4);
 		boardBtnFive = new JoystickButton(elevatorStick, 5);
+		boardBtnSix = new JoystickButton(elevatorStick, 6);
 	}
 	public void mapButtons() {
 		stickBtnOne.whileHeld(new IntakeCommandGroup());
@@ -56,6 +58,7 @@ public class OI {
 		boardBtnThree.whileHeld(new ElevatorTarget());
 		boardBtnFour.whenPressed(new ElevatorSetPIDF());
 		boardBtnFive.whenPressed(new ElevatorZero());
+		boardBtnSix.whenPressed(new IntakeCommandGroup());
 	}
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
