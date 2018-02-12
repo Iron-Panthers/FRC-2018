@@ -2,11 +2,11 @@ package org.usfirst.frc.team5026.robot;
 
 public class Constants {
 	//Intake and Outtake
-	public static final double INTAKE_VOLTAGE_GRAB = 10./12; //Converted to voltage for motor
-	public static final double INTAKE_VOLTAGE_HOLD = 4./12; //"" 4 good enough, 6 secure but too much for burning
+	public static final double INTAKE_VOLTAGE_GRAB = 10.0/12; //Converted to voltage for motor
+	public static final double INTAKE_VOLTAGE_HOLD = 4.0/12; //"" 4 good enough, 6 secure but too much for burning
 	public static final boolean IS_INTAKE_INVERTED = true;
 	
-	public static final double OUTTAKE_POWER = -.4;
+	public static final double OUTTAKE_POWER = -0.4;
 	public static final double BLOCK_GRAB_THRESHOLD = 10; //When Grabbing, if the current is greater than this threshold, it has the block
 	public static final double TIME_NOT_GRABBED_THRESHOLD = 25.0; //changed to match testing results
 	public static final int SPEED_UP_TIME = 40; //(in 35 milliseconds) Amount of time before function has time to work

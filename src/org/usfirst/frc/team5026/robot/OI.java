@@ -13,14 +13,17 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
+	
 	public Joystick driveStick;
 	public Button stickBtnOne;
 	public Button stickBtnTwo;
+	
 	public OI() {
 		driveStick = new Joystick(RobotMap.DRIVE_JOYSTICK);
 		stickBtnOne = new JoystickButton(driveStick,1);
 		stickBtnTwo = new JoystickButton(driveStick,2);
 	}
+	
 	public void mapButtons() {
 		stickBtnOne.whileHeld(new IntakeCommandGroup());
 		stickBtnTwo.whileHeld(new OuttakeCommand());
