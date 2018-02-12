@@ -1,4 +1,4 @@
-package org.usfirst.frc.team5026.robot;
+package org.usfirst.frc.team5026.robot.util;
 
 public class Constants {
 	//Intake and Outtake
