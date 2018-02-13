@@ -11,21 +11,20 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
  *
  */
 public class Drive extends Subsystem {
-	Talon rightM1;
-	Talon leftM1;
+	public Talon rightM1;
+	public Talon leftM1;
 	public DriveMotorGroup right;
 	public DriveMotorGroup left;
-	DoubleSolenoid gearShift;
-	DoubleSolenoid elevatorGearShift;
-	DifferentialDrive dDrive;
+	public DoubleSolenoid gearShift;
+	public DoubleSolenoid elevatorGearShift;
+	public DifferentialDrive dDrive;
 	public boolean isReversed;
-	GearState state;
-	
+	public GearState state;
+	public Drive(DriveMotorGroup r, DriveMotorGroup l, DoubleSolenoid d, DoubleSolenoid e){
 		rightM1 = new Talon(1);
 		rightM1.setInverted(true);
 		leftM1 = new Talon(0);
 		leftM1.setInverted(false);
-	public Drive(DriveMotorGroup r, DriveMotorGroup l, DoubleSolenoid d, DoubleSolenoid e){
 		gearShift = d;
 		elevatorGearShift = e;
 		this.right = r;
