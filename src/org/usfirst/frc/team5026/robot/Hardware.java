@@ -4,6 +4,7 @@ import org.usfirst.frc.team5026.robot.subsystems.DriveMotorGroup;
 import org.usfirst.frc.team5026.robot.util.Constants;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.sensors.PigeonIMU;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -23,6 +24,7 @@ public class Hardware {
 	public DigitalInput bannerSensor;
 	public PowerDistributionPanel pdp;
 	public DoubleSolenoid gearShift;
+	public PigeonIMU gyro;
 	public Hardware(){
 		rightM1 = new TalonSRX(RobotMap.DRIVE_RIGHT_MOTOR_1);
 		rightM2 = new TalonSRX(RobotMap.DRIVE_RIGHT_MOTOR_2);
@@ -40,5 +42,6 @@ public class Hardware {
 		bannerSensor = new DigitalInput(0);
 		pdp = new PowerDistributionPanel();
 		gearShift = new DoubleSolenoid(1,0,1);
+		gyro = new PigeonIMU(0);
 	}
 }

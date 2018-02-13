@@ -21,6 +21,11 @@ public class Constants {
 	public static final double DRIVE_F = 0.3069; // Calculated as per the Talon SRX Software Refrence Manual, Section: 12.4.2. Math is: 0.75 * 1023 / 2500
 	public static final int DRIVE_TICKS_PER_REVOLUTION = 5526; // we tested this, I wonder if it's actually correct! ::thinking::
 	
+	public static final double TURN_P = 0;
+	public static final double TURN_I = 0;
+	public static final double TURN_D = 0;
+	public static final double TURN_F = 0.0055; //complete guestimate
+	
 	public static final double JOYSTICK_DEADZONE = 0.1;
 	//Auto Code
 	public static final int kTimeoutMs = 0; //Do not change
