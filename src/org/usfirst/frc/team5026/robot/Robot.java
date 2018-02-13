@@ -8,13 +8,14 @@
 package org.usfirst.frc.team5026.robot;
 
 import org.usfirst.frc.team5026.robot.subsystems.Elevator;
-import org.usfirst.frc.team5026.robot.util.Constants;
 import org.usfirst.frc.team5026.robot.subsystems.IntakeSubsystem;
+import org.usfirst.frc.team5026.robot.util.Constants;
 
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoSink;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -38,8 +39,8 @@ public class Robot extends IterativeRobot {
 	public static Elevator elevator;
 	public static CvSink cvsink1;
 	public static VideoSink server;
-	Command m_autonomousCommand;
-	SendableChooser<Command> m_chooser = new SendableChooser<>();
+	Command autoCommand;
+	SendableChooser<Command> autoChooser = new SendableChooser<>();
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -52,7 +53,7 @@ public class Robot extends IterativeRobot {
 		elevator = new Elevator();
 		oi = new OI();
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", m_chooser);
+		SmartDashboard.putData("Auto mode", autoChooser);
 		SmartDashboard.putNumber("Elevator Percent", 0.25); // TODO to remove later
 		SmartDashboard.putNumber("Elevator F", Constants.ELEVATOR_F); // TODO to remove later
 		SmartDashboard.putNumber("Elevator P Term", Constants.ELEVATOR_P); // TODO to remove later
@@ -105,7 +106,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		m_autonomousCommand = m_chooser.getSelected();
+		autoCommand = autoChooser.getSelected();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -115,8 +116,8 @@ public class Robot extends IterativeRobot {
 		 */
 
 		// schedule the autonomous command (example)
-		if (m_autonomousCommand != null) {
-			m_autonomousCommand.start();
+		if (autoCommand != null) {
+			autoCommand.start();
 		}
 	}
 
@@ -138,8 +139,8 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		if (m_autonomousCommand != null) {
-			m_autonomousCommand.cancel();
+		if (autoCommand != null) {
+			autoCommand.cancel();
 		}
 	}
 
@@ -148,8 +149,23 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
+		//Teleop Window
+		String time;
+		int seconds = (int) (DriverStation.getInstance().getMatchTime() % 60);
+		int minutes = (int) (DriverStation.getInstance().getMatchTime() - seconds) / 60;
+		time = minutes+":"+seconds;
+		SmartDashboard.putString("Time Left", time);
+		SmartDashboard.putNumber("Battery Voltage", hardware.pdp.getVoltage());
+		//Debug Window
 		SmartDashboard.putNumber("Encoder Position", hardware.elevatorMotor.getSelectedSensorPosition(0));
 		SmartDashboard.putNumber("Encoder Velocity", hardware.elevatorMotor.getSelectedSensorVelocity(0));
+		SmartDashboard.putNumber("Elevator Motor Current", hardware.elevatorMotor.getOutputCurrent());
+		SmartDashboard.putNumber("Elevator Motor Voltage", hardware.elevatorMotor.getMotorOutputVoltage());
+		SmartDashboard.putNumber("Intake Motor Current", hardware.intakeM.getOutputCurrent());
+		SmartDashboard.putNumber("Intake Motor Voltage", hardware.intakeM.getMotorOutputVoltage());
+		//Drive Motor Current and Voltage
+		SmartDashboard.putNumber("Joystick Raw X", oi.driveStick.getX());
+		SmartDashboard.putNumber("Joystick Raw Y", oi.driveStick.getY());
 		Scheduler.getInstance().run();
 //		try {
 //			Thread.sleep(30);
