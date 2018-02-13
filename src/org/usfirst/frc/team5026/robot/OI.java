@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5026.robot;
 
+import org.usfirst.frc.team5026.robot.commands.ReverseDrive;
 import org.usfirst.frc.team5026.robot.util.GoodJoystick;
 
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -21,7 +22,8 @@ public class OI {
 		stickBtnThree = new JoystickButton(joystick.driveStick,3);
 	}
 	public void mapButtons(){
-//		stickBtnOne.whenPressed(new DriveStraight());
+		stickBtnOne.whenPressed(new ReverseDrive());
+		stickBtnOne.whenReleased(new ReverseDrive());
 	}
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a

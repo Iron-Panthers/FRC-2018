@@ -9,10 +9,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class JoystickDrive extends Command {
-	public double left;
-	public double right;
-	public double x;
-	public double y;
     public JoystickDrive() {
     	requires(Robot.drive);
         // Use requires() here to declare subsystem dependencies
