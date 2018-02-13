@@ -14,17 +14,12 @@ public class Constants {
 	public static final double INTAKE_POWER = 1;
 	public static final double OUTTAKE_POWER = 1;
 	
-	public static final double ROBOT_WIDTH = 0.5; // unit is meters
+	public static final double ROBOT_WIDTH = 13.5; // unit is inches
 	public static final double DRIVE_P = 0;
 	public static final double DRIVE_I = 0;
 	public static final double DRIVE_D = 0;
 	public static final double DRIVE_F = 0.3069; // Calculated as per the Talon SRX Software Refrence Manual, Section: 12.4.2. Math is: 0.75 * 1023 / 2500
 	public static final int DRIVE_TICKS_PER_REVOLUTION = 5526; // we tested this, I wonder if it's actually correct! ::thinking::
-	
-	public static final double TURN_P = 0;
-	public static final double TURN_I = 0;
-	public static final double TURN_D = 0;
-	public static final double TURN_F = 0.0055; //complete guestimate
 	
 	public static final double JOYSTICK_DEADZONE = 0.1;
 	//Auto Code
@@ -36,6 +31,9 @@ public class Constants {
 	public static final double WHEEL_RADIUS = 4; // inch
 	public static final double WHEEL_CIRCUMFERENCE = WHEEL_RADIUS*2*Math.PI;
 	public static final double TICKS_TO_INCHES = 4096 / WHEEL_CIRCUMFERENCE;
+	
+	public static final double DEGREES_PER_SECOND = 2500 / DRIVE_TICKS_PER_REVOLUTION * WHEEL_CIRCUMFERENCE / ROBOT_WIDTH / Math.PI * 180;
+	public static final double TURN_F = 0.75 / DEGREES_PER_SECOND;
 	
 	public static final double DRIVE_WANTED_INCHES_PER_SECOND = 48;
 	public static final double DRIVE_WANTED_ACCELERATION_INCHES_PER_SECOND_SQUARED = 80;
