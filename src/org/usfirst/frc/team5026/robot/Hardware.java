@@ -25,6 +25,7 @@ public class Hardware {
 	public DigitalInput bannerSensor;
 	public PowerDistributionPanel pdp;
 	public DoubleSolenoid gearShift;
+	public DoubleSolenoid elevatorGearShift;
 	public Hardware(){
 		rightM1 = new TalonSRX(RobotMap.DRIVE_RIGHT_MOTOR_1);
 		rightM2 = new TalonSRX(RobotMap.DRIVE_RIGHT_MOTOR_2);
@@ -41,5 +42,8 @@ public class Hardware {
 		intakeM.setInverted(Constants.IS_INTAKE_INVERTED);
 		bannerSensor = new DigitalInput(9);
 		pdp = new PowerDistributionPanel();
+		gearShift = new DoubleSolenoid(0, RobotMap.SHIFT_FORWARD, RobotMap.SHIFT_REVERSE);
+		elevatorGearShift = new DoubleSolenoid(1, RobotMap.SHIFT_FORWARD, RobotMap.SHIFT_REVERSE);
+
 	}
 }
