@@ -20,6 +20,10 @@ public class Hardware {
 	public TalonSRX leftM2;
 	public TalonSRX leftM3;
 	public TalonSRX intakeM;
+	
+	public Talon leftT;
+	public Talon rightT;
+	
 	public DriveMotorGroup right;
 	public DriveMotorGroup left;
 	public DigitalInput bannerSensor;
@@ -32,6 +36,9 @@ public class Hardware {
 		leftM1 = new TalonSRX(RobotMap.DRIVE_LEFT_MOTOR_1);
 		leftM2 = new TalonSRX(RobotMap.DRIVE_LEFT_MOTOR_2);
 		leftM3 = new TalonSRX(RobotMap.DRIVE_LEFT_MOTOR_3);
+		
+		leftT = new Talon(RobotMap.TALON_SR_LEFT);
+		rightT = new Talon(RobotMap.TALON_SR_RIGHT);
 		
 		right = new DriveMotorGroup(rightM1, rightM2, rightM3);
 		left = new DriveMotorGroup(leftM1, leftM2, leftM3);

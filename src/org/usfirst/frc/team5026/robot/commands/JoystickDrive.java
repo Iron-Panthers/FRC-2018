@@ -23,8 +23,8 @@ public class JoystickDrive extends Command {
     protected void execute() {
     	Robot.oi.joystick.seeAxis();
 //    	Robot.drive.useArcadeDrive(Robot.oi.joystick.findY(),Robot.oi.joystick.findX());
-    	Robot.drive.setLeftSide(Robot.oi.joystick.findLeftPower(Robot.oi.joystick.findX(),Robot.oi.joystick.findY()));
-    	Robot.drive.setRightSide(Robot.oi.joystick.findRightPower(Robot.oi.joystick.findX(),Robot.oi.joystick.findY()));
+    	Robot.drive.setLeftSide(Robot.oi.joystick.findLeftPower(Robot.oi.joystick.findY(),Robot.oi.joystick.findX()));
+    	Robot.drive.setRightSide(Robot.oi.joystick.findRightPower(Robot.oi.joystick.findY(),Robot.oi.joystick.findX()));
     }
 
     // Make this return true when this Command no longer needs to run execute()

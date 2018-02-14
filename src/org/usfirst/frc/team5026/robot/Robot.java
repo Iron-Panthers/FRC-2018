@@ -34,7 +34,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		hardware = new Hardware();
-		drive = new Drive(hardware.left, hardware.right, hardware.gearShift);
+		drive = new Drive(hardware.leftT, hardware.rightT, hardware.gearShift);
 		oi = new OI();
 //		right.setInverted(Constants.IS_RIGHT_INVERTED);
 		// chooser.addObject("My Auto", new MyAutoCommand());
@@ -44,7 +44,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("max count", 50);
 		SmartDashboard.putNumber("tolerance", 69);
 		SmartDashboard.putData("Auto mode", chooser);
-		SmartDashboard.putNumber("X Deadzone Size", 1);
+		SmartDashboard.putNumber("X Deadzone Size", 0.2);
 		SmartDashboard.putNumber("Y Deadzone Size", 0.2);
 		SmartDashboard.getNumber("Intake Speed", Constants.INTAKE_POWER);
 		LiveWindow.disableAllTelemetry();

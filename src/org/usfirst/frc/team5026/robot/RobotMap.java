@@ -15,6 +15,10 @@ public class RobotMap {
 	public static final int DRIVE_RIGHT_MOTOR_2 = 5;
 	public static final int DRIVE_RIGHT_MOTOR_3 = 6;
 	
+	// TalonSR ports
+	public static final int TALON_SR_LEFT = 0;
+	public static final int TALON_SR_RIGHT = 1;
+	
 //	public static final int INTAKE_MOTOR = 3; //Change back to drive
 //	public static final int INTAKE_PDP_PORT = 2; //To Be Changed
 	public static final int INTAKE_MOTOR = 3; //Change back to drive

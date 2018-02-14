@@ -25,10 +25,10 @@ public class DriveMotorGroup implements SpeedController {
 		this.motor1 = motor1;
 		this.motor2 = motor2;
 		this.motor3 = motor3;
-//		motors = new TalonSRX[3];
-//		motors[0] = this.motor1;
-//		motors[1] = this.motor2;
-//		motors[2] = this.motor3;
+		motors = new TalonSRX[3];
+		motors[0] = this.motor1;
+		motors[1] = this.motor2;
+		motors[2] = this.motor3;
 		this.motor2.follow(motor1);
 		this.motor3.follow(motor1);
 		setUp(motor1, motor2, motor3);
