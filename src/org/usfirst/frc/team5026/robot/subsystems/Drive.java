@@ -16,17 +16,15 @@ public class Drive extends Subsystem {
 	public DriveMotorGroup right;
 	public DriveMotorGroup left;
 	public DoubleSolenoid gearShift;
-	public DoubleSolenoid elevatorGearShift;
 	public DifferentialDrive dDrive;
 	public boolean isReversed;
 	public GearState state;
-	public Drive(DriveMotorGroup r, DriveMotorGroup l, DoubleSolenoid d, DoubleSolenoid e){
+	public Drive(DriveMotorGroup r, DriveMotorGroup l, DoubleSolenoid d){
 		rightM1 = new Talon(1);
 		rightM1.setInverted(true);
 		leftM1 = new Talon(0);
 		leftM1.setInverted(false);
 		gearShift = d;
-		elevatorGearShift = e;
 		this.right = r;
 		this.left = l;
 		dDrive = new DifferentialDrive(left, right);
@@ -89,14 +87,6 @@ public class Drive extends Subsystem {
 	public void shiftLow() {
 		state = GearState.LOW;
 		gearShift.set(DoubleSolenoid.Value.kForward);
-	}
-	public void elevatorShiftHigh() {
-		state = GearState.HIGH;
-		elevatorGearShift.set(DoubleSolenoid.Value.kReverse);
-	}
-	public void elevatorShiftLow() {
-		state = GearState.LOW;
-		elevatorGearShift.set(DoubleSolenoid.Value.kForward);
 	}
     public void initDefaultCommand() {
     	
