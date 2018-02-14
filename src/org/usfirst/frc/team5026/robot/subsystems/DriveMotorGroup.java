@@ -8,6 +8,7 @@ import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -24,6 +25,10 @@ public class DriveMotorGroup implements SpeedController {
 		this.motor1 = motor1;
 		this.motor2 = motor2;
 		this.motor3 = motor3;
+//		motors = new TalonSRX[3];
+//		motors[0] = this.motor1;
+//		motors[1] = this.motor2;
+//		motors[2] = this.motor3;
 		this.motor2.follow(motor1);
 		this.motor3.follow(motor1);
 		setUp(motor1, motor2, motor3);
