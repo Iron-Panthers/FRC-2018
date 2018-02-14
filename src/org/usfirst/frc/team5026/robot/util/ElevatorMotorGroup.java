@@ -23,7 +23,7 @@ public class ElevatorMotorGroup implements SpeedController {
 	public ElevatorMotorGroup(TalonSRX masterMotor, TalonSRX slaveMotor) {
 		setUp(masterMotor, slaveMotor);
 		masterMotor.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen, Constants.kTimeoutMs);
-		masterMotor.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyClosed, Constants.kTimeoutMs);
+		masterMotor.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen, Constants.kTimeoutMs);
 		masterMotor.setNeutralMode(NeutralMode.Brake);
 		slaveMotor.setNeutralMode(NeutralMode.Brake);
 	}
