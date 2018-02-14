@@ -28,8 +28,9 @@ public class ElevatorTarget extends Command {
     protected void execute() {
     	if(Robot.elevator.atElevatorLimit()) {
     		Robot.elevator.motors.stop();
+    	} else {
+    		Robot.elevator.motors.driveWithTarget(target);
     	}
-    	Robot.elevator.motors.driveWithTarget(target);
     	SmartDashboard.putNumber("Elevator Position", Robot.elevator.motors.getEncoderTicks());
     }
 

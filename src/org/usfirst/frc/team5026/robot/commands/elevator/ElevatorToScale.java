@@ -26,10 +26,10 @@ public class ElevatorToScale extends Command {
     protected void execute() {
     	if(Robot.elevator.atElevatorLimit()) {
     		Robot.elevator.motors.stop();
-    	}
-    	Robot.elevator.raiseToTarget(Constants.ELEVATOR_SCALE_TARGET);
+    	} else {
+    		Robot.elevator.raiseToTarget(Constants.ELEVATOR_SCALE_TARGET);
+       	}
     }
-
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	if (Math.abs(Constants.ELEVATOR_SCALE_TARGET-Robot.elevator.motors.motor1.getSelectedSensorPosition(0))<Constants.ELEVATOR_TARGET_TOLERANCE){

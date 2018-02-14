@@ -26,8 +26,9 @@ public class ElevatorToGround extends Command {
     protected void execute() {
     	if(Robot.elevator.atElevatorLimit()) {
     		Robot.elevator.motors.stop();
+    	} else {
+    		Robot.elevator.resetElevator();
     	}
-    	Robot.elevator.resetElevator();
     	//Lowers carriage to the ground
     }
 

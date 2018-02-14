@@ -34,7 +34,7 @@ public class Constants {
 	public static final int ELEVATOR_ACCELERATION = 4000;
 	public static final double ELEVATOR_TARGET_TOLERANCE = 100; //In ticks
 	public static final double ELEVATOR_TOLERANCE_TIME = 5; //
-	public static final double ELEVATOR_HIT_TOLERANCE = 20; //amps, needs changing
+	public static final double ELEVATOR_HIT_TOLERANCE = 5; //amps, needs changing
 	
 	public static final double ROBOT_WIDTH = 0.5; // unit is meters
 	public static final double WHEEL_DIAMETER = 6; // unit is inches

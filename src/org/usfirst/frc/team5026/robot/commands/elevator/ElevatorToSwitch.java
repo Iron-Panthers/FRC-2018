@@ -26,8 +26,9 @@ public class ElevatorToSwitch extends Command {
     protected void execute() {
     	if(Robot.elevator.atElevatorLimit()) {
     		Robot.elevator.motors.stop();
+    	} else {
+    		Robot.elevator.raiseToSwitch();
     	}
-    	Robot.elevator.raiseToSwitch();
     	//Lifts carriage to switch
     }
 
