@@ -156,19 +156,6 @@
         "hgap": 16.0,
         "vgap": 16.0,
         "tiles": {
-          "0,0": {
-            "size": [
-              2,
-              2
-            ],
-            "content": {
-              "_type": "Graph",
-              "_source0": "network_table:///SmartDashboard/Intake Motor Current",
-              "_source1": "network_table:///SmartDashboard/Elevator Motor Current",
-              "_title": "Graph (2 sources)",
-              "Visible time": 10.0
-            }
-          },
           "2,0": {
             "size": [
               2,
@@ -178,8 +165,10 @@
               "_type": "Graph",
               "_source0": "network_table:///SmartDashboard/Intake Motor Voltage",
               "_source1": "network_table:///SmartDashboard/Elevator Motor Voltage",
-              "_title": "Graph (2 sources)",
-              "Visible time": 30.0
+              "_title": "Voltage",
+              "Visible time": 30.0,
+              "SmartDashboard/Elevator Motor Voltage visible": false,
+              "SmartDashboard/Intake Motor Voltage visible": false
             }
           },
           "4,0": {
@@ -191,6 +180,21 @@
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Encoder Position",
               "_title": "SmartDashboard/Encoder Position"
+            }
+          },
+          "0,0": {
+            "size": [
+              2,
+              2
+            ],
+            "content": {
+              "_type": "Graph",
+              "_source0": "network_table:///SmartDashboard/Elevator Motor Current",
+              "_source1": "network_table:///SmartDashboard/Intake Motor Current",
+              "_title": "Current",
+              "Visible time": 10.0,
+              "SmartDashboard/Elevator Motor Current visible": true,
+              "SmartDashboard/Intake Motor Current visible": true
             }
           }
         }
