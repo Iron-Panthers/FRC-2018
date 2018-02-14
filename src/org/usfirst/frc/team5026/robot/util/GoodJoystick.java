@@ -11,8 +11,8 @@ public class GoodJoystick {
 		driveStick = new Joystick(port);
 	}
 	public void seeAxis() {
-		SmartDashboard.putNumber("Joystick X Axis", driveStick.getX());
-		SmartDashboard.putNumber("Joystick Y Axis", driveStick.getY());
+		SmartDashboard.putNumber("Raw X", driveStick.getX());
+		SmartDashboard.putNumber("Raw Y", driveStick.getY());
 	}
 	//Robot.drive.useArcadeDrive(Robot.oi.driveStick.getX()*Constants.X_AXIS_MODIFIER, Robot.oi.driveStick.getY());
 
