@@ -69,13 +69,13 @@ public class Drive extends Subsystem {
 	public void setRightSide(double speed){
 		if (type == DriveMotorType.TALONSRX) {
 			if(speed>1) {
-				right.set(Constants.SPEED);
+				right.driveWithPower(Constants.SPEED);
 			}
 			else if(speed<-1) {
-				right.set(-Constants.SPEED);
+				right.driveWithPower(-Constants.SPEED);
 			}
 			else {
-				right.set(speed*Constants.SPEED);
+				right.driveWithPower(speed*Constants.SPEED);
 			}
 		}else if (type == DriveMotorType.TALONSR) {
 			if(speed>1) {

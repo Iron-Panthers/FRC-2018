@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class JoystickDrive extends Command {
+	public double leftSpd;
+	public double rightSpd;
     public JoystickDrive() {
     	requires(Robot.drive);
         // Use requires() here to declare subsystem dependencies
@@ -23,8 +25,12 @@ public class JoystickDrive extends Command {
     protected void execute() {
     	Robot.oi.joystick.seeAxis();
 //    	Robot.drive.useArcadeDrive(Robot.oi.joystick.findY(),Robot.oi.joystick.findX());
-    	Robot.drive.setLeftSide(Robot.oi.joystick.findLeftPower(Robot.oi.joystick.findY(),Robot.oi.joystick.findX()));
-    	Robot.drive.setRightSide(Robot.oi.joystick.findRightPower(Robot.oi.joystick.findY(),Robot.oi.joystick.findX()));
+    	leftSpd = Robot.oi.joystick.findLeftPower(Robot.oi.joystick.findY(),Robot.oi.joystick.findX());
+    	SmartDashboard.putNumber("left spd", leftSpd);
+    	rightSpd = Robot.oi.joystick.findRightPower(Robot.oi.joystick.findY(),Robot.oi.joystick.findX());
+    	SmartDashboard.putNumber("right spd", rightSpd);
+    	Robot.drive.setLeftSide(leftSpd);
+    	Robot.drive.setRightSide(rightSpd);
     }
 
     // Make this return true when this Command no longer needs to run execute()
