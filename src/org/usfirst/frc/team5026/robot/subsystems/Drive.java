@@ -30,24 +30,24 @@ public class Drive extends Subsystem {
     // here. Call these from Commands.
 	public void setLeftSide(double speed){
 		if(speed>1) {
-			left.set(Constants.SPEED);
+			left.driveWithPower(Constants.SPEED);
 		}
 		else if(speed<-1) {
-			left.set(-Constants.SPEED);
+			left.driveWithPower(-Constants.SPEED);
 		}
 		else {
-			left.set(speed*Constants.SPEED);
+			left.driveWithPower(speed*Constants.SPEED);
 		}
 	}
 	public void setRightSide(double speed){
 		if(speed>1) {
-			right.set(Constants.SPEED);
+			right.driveWithPower(Constants.SPEED);
 		}
 		else if(speed<-1) {
-			right.set(-Constants.SPEED);
+			right.driveWithPower(-Constants.SPEED);
 		}
 		else {
-			right.set(speed*Constants.SPEED);
+			right.driveWithPower(speed*Constants.SPEED);
 		}
 	}
 	public void driveWithTarget(double target) {
