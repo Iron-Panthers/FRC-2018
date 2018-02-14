@@ -15,15 +15,17 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class DriveMotorGroup implements SpeedController {
 	public TalonSRX motor1; 
+	public TalonSRX motor2;
+	public TalonSRX motor3;
 	public TalonSRX[] motors;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	public DriveMotorGroup(TalonSRX motor1, TalonSRX motor2, TalonSRX motor3) {
-//		this.motor1 = motor1;
-//		this.motor2 = motor2;
-//		this.motor3 = motor3;
-//		this.motor2.follow(motor1);
-//		this.motor3.follow(motor1);
+		this.motor1 = motor1;
+		this.motor2 = motor2;
+		this.motor3 = motor3;
+		this.motor2.follow(motor1);
+		this.motor3.follow(motor1);
 		setUp(motor1, motor2, motor3);
 	}
 	public void setUp(TalonSRX encoderMotor, TalonSRX... motors) {
