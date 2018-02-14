@@ -11,20 +11,14 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
  *
  */
 public class Drive extends Subsystem {
-	public Talon rightM1;
-	public Talon leftM1;
 	public DriveMotorGroup right;
 	public DriveMotorGroup left;
 	public DoubleSolenoid gearShift;
 	public DifferentialDrive dDrive;
 	public boolean isReversed;
 	public GearState state;
-	public Drive(DriveMotorGroup r, DriveMotorGroup l, DoubleSolenoid d){
-		rightM1 = new Talon(1);
-		rightM1.setInverted(true);
-		leftM1 = new Talon(0);
-		leftM1.setInverted(false);
-		gearShift = d;
+	public Drive(DriveMotorGroup r, DriveMotorGroup l, DoubleSolenoid gearShift){
+		this.gearShift = gearShift;
 		this.right = r;
 		this.left = l;
 		dDrive = new DifferentialDrive(left, right);
@@ -36,24 +30,24 @@ public class Drive extends Subsystem {
     // here. Call these from Commands.
 	public void setLeftSide(double speed){
 		if(speed>1) {
-			leftM1.set(Constants.SPEED);
+			left.set(Constants.SPEED);
 		}
 		else if(speed<-1) {
-			leftM1.set(-Constants.SPEED);
+			left.set(-Constants.SPEED);
 		}
 		else {
-			leftM1.set(speed*Constants.SPEED);
+			left.set(speed*Constants.SPEED);
 		}
 	}
 	public void setRightSide(double speed){
 		if(speed>1) {
-			rightM1.set(Constants.SPEED);
+			right.set(Constants.SPEED);
 		}
 		else if(speed<-1) {
-			rightM1.set(-Constants.SPEED);
+			right.set(-Constants.SPEED);
 		}
 		else {
-			rightM1.set(speed*Constants.SPEED);
+			right.set(speed*Constants.SPEED);
 		}
 	}
 	public void driveWithTarget(double target) {

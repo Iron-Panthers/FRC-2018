@@ -20,7 +20,7 @@ public class GoodJoystick {
 		double x;
 		x = driveStick.getX();
 		if(Robot.drive.isReversed) {
-//			x = -x;
+			x = -x;
 		}
 		if(Math.abs(x) < Constants.XDEADZONE_SIZE*Math.abs(driveStick.getY()) 
 		|| Math.sqrt(driveStick.getY()*driveStick.getY() + driveStick.getX()*driveStick.getX()) < Constants.CIRCLE_DEADZONE) { 
@@ -65,8 +65,8 @@ public class GoodJoystick {
 	public double findLeftPower(double x,double y) {
 	        return y+x;
 	}
-//	Robot.drive.setLeftMotor(Robot.oi.driveStick.getY() + Robot.oi.driveStick.getX());
-//	Robot.drive.setRightMotor(Robot.oi.driveStick.getY() - Robot.oi.driveStick.getX());
+	//Robot.drive.setLeftMotor(Robot.oi.driveStick.getY() + Robot.oi.driveStick.getX());
+	//Robot.drive.setRightMotor(Robot.oi.driveStick.getY() - Robot.oi.driveStick.getX());
 }
 
 

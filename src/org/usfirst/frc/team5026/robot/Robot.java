@@ -3,7 +3,6 @@ package org.usfirst.frc.team5026.robot;
 
 
 import org.usfirst.frc.team5026.robot.subsystems.Drive;
-import org.usfirst.frc.team5026.robot.subsystems.IntakeSubsystem;
 import org.usfirst.frc.team5026.robot.util.Constants;
 
 import edu.wpi.first.wpilibj.DriverStation;
@@ -26,7 +25,6 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static Hardware hardware;
 	public static Drive drive;
-	public static IntakeSubsystem intake;
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	/**
@@ -36,7 +34,6 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		hardware = new Hardware();
-		intake = new IntakeSubsystem();
 		oi = new OI();
 		drive = new Drive(hardware.left, hardware.right, hardware.gearShift);
 //		right.setInverted(Constants.IS_RIGHT_INVERTED);
@@ -47,8 +44,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("max count", 50);
 		SmartDashboard.putNumber("tolerance", 69);
 		SmartDashboard.putData("Auto mode", chooser);
-		SmartDashboard.putNumber("X Deadzone Size", 0.08);
-		SmartDashboard.putNumber("Y Deadzone Size", 0.08);
+		SmartDashboard.putNumber("X Deadzone Size", 1);
+		SmartDashboard.putNumber("Y Deadzone Size", 0.2);
 		SmartDashboard.getNumber("Intake Speed", Constants.INTAKE_POWER);
 		LiveWindow.disableAllTelemetry();
 	}

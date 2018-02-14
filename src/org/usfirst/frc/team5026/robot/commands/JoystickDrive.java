@@ -22,6 +22,7 @@ public class JoystickDrive extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.oi.joystick.seeAxis();
+//    	Robot.drive.useArcadeDrive(Robot.oi.joystick.findY(),Robot.oi.joystick.findX());
     	Robot.drive.setLeftSide(Robot.oi.joystick.findLeftPower(Robot.oi.joystick.findX(),Robot.oi.joystick.findY()));
     	Robot.drive.setRightSide(Robot.oi.joystick.findRightPower(Robot.oi.joystick.findX(),Robot.oi.joystick.findY()));
     }
