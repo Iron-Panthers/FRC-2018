@@ -22,10 +22,8 @@ public class GoodJoystick {
 		if(Robot.drive.isReversed) {
 //			x = -x;
 		}
-		if(Math.abs(x) < Constants.XDEADZONE_SIZE*Math.abs(driveStick.getY())) {
-			x=0; // bow tie deadzone
-		}
-		else if(Math.sqrt(driveStick.getY()*driveStick.getY() + driveStick.getX()*driveStick.getX()) < Constants.CIRCLE_DEADZONE) { 
+		if(Math.abs(x) < Constants.XDEADZONE_SIZE*Math.abs(driveStick.getY()) 
+		|| Math.sqrt(driveStick.getY()*driveStick.getY() + driveStick.getX()*driveStick.getX()) < Constants.CIRCLE_DEADZONE) { 
 			x=0; //circle deadzone
 		}
 		else {
@@ -45,11 +43,9 @@ public class GoodJoystick {
 		if(Robot.drive.isReversed) {
 			y = -y;
 		}
-		if(Math.abs(y) < Constants.YDEADZONE_SIZE*Math.abs(driveStick.getX())) { 
-			y=0; //bow tie deadzone
-		}
-		else if(Math.sqrt(driveStick.getY()*driveStick.getY() + driveStick.getX()*driveStick.getX()) < Constants.CIRCLE_DEADZONE) {
-			y=0; //circle deadzone
+		if(Math.abs(y) < Constants.YDEADZONE_SIZE*Math.abs(driveStick.getX())
+		|| (Math.sqrt(driveStick.getY()*driveStick.getY() + driveStick.getX()*driveStick.getX()) < Constants.CIRCLE_DEADZONE)) {
+			y = 0;
 		}
 		else {
 			if(y<0) {
