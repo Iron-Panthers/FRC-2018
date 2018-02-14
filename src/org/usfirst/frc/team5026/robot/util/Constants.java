@@ -29,11 +29,12 @@ public class Constants {
 	public static final int ELEVATOR_SWITCH_TARGET = 3000; //Arbitrary value, change plz
 	public static final int ELEVATOR_SCALE_TARGET = 7000; //See above
 	public static final int ELEVATOR_GROUND_TARGET = 0; //See above (This is supposed to lift cube enough so it does not drag on ground)
-	public static final int ELEVATOR_TOP_TARGET = 89000;
+	public static final int ELEVATOR_TOP_TARGET = 89000; //Tested by Adam. Needs perfecting
 	public static final int ELEVATOR_VELOCITY = 2800;
 	public static final int ELEVATOR_ACCELERATION = 4000;
 	public static final double ELEVATOR_TARGET_TOLERANCE = 100; //In ticks
 	public static final double ELEVATOR_TOLERANCE_TIME = 5; //
+	public static final double ELEVATOR_HIT_TOLERANCE = 20; //amps, needs changing
 	
 	public static final double ROBOT_WIDTH = 0.5; // unit is meters
 	public static final double WHEEL_DIAMETER = 6; // unit is inches
