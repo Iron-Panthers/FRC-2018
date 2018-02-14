@@ -157,6 +157,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putString("Time Left", time);
 		SmartDashboard.putNumber("Battery Voltage", hardware.pdp.getVoltage());
 		//Debug Window
+    	SmartDashboard.putString("Elevator Status", Robot.elevator.getElevatorDirection().name());
 		SmartDashboard.putNumber("Encoder Position", hardware.elevatorMotor.getSelectedSensorPosition(0));
 		SmartDashboard.putNumber("Encoder Velocity", hardware.elevatorMotor.getSelectedSensorVelocity(0));
 		SmartDashboard.putNumber("Elevator Motor Current", hardware.elevatorMotor.getOutputCurrent());
