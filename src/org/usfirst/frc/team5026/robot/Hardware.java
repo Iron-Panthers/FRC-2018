@@ -42,7 +42,7 @@ public class Hardware {
 		intakeM.setInverted(Constants.IS_INTAKE_INVERTED);
 		bannerSensor = new DigitalInput(9);
 		pdp = new PowerDistributionPanel();
-		gearShift = new DoubleSolenoid(0, RobotMap.SHIFT_FORWARD, RobotMap.SHIFT_REVERSE);
+		gearShift = new DoubleSolenoid(1, RobotMap.SHIFT_FORWARD, RobotMap.SHIFT_REVERSE);
 		elevatorGearShift = new DoubleSolenoid(1, RobotMap.SHIFT_FORWARD, RobotMap.SHIFT_REVERSE);
 
 	}
