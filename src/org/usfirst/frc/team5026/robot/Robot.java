@@ -148,6 +148,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
+    	SmartDashboard.putString("Elevator Status", Robot.elevator.getElevatorDirection().name());
 		SmartDashboard.putNumber("Encoder Position", hardware.elevatorMotor.getSelectedSensorPosition(0));
 		SmartDashboard.putNumber("Encoder Velocity", hardware.elevatorMotor.getSelectedSensorVelocity(0));
 		Scheduler.getInstance().run();

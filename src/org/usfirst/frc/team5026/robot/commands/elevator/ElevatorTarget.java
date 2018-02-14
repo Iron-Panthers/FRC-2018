@@ -26,7 +26,6 @@ public class ElevatorTarget extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	SmartDashboard.putString("Elevator Status", Robot.elevator.getElevatorDirection().name());
     	if(Robot.elevator.atElevatorLimit()) {
     		Robot.elevator.motors.stop();
     	}
