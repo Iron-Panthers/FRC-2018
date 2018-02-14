@@ -68,6 +68,7 @@ public class Elevator extends Subsystem {
 	public boolean atElevatorLimit() {
 		if ((getElevatorDirection() == ElevatorDirection.BACKWARDS || getElevatorDirection() == ElevatorDirection.FORWARDS) 
 		&& motors.motor1.getOutputCurrent() > Constants.ELEVATOR_HIT_TOLERANCE) {
+			encoderReset(getElevatorDirection());
 			return true;
 		}
 		return false;
