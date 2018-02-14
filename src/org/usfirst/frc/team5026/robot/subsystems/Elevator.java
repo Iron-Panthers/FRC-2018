@@ -2,9 +2,8 @@ package org.usfirst.frc.team5026.robot.subsystems;
 
 import org.usfirst.frc.team5026.robot.Robot;
 import org.usfirst.frc.team5026.robot.util.Constants;
+import org.usfirst.frc.team5026.robot.util.ElevatorDirection;
 import org.usfirst.frc.team5026.robot.util.ElevatorMotorGroup;
-
-import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -21,6 +20,7 @@ public class Elevator extends Subsystem {
 		this.leftSolenoid = Robot.hardware.leftSolenoid;
 		this.rightSolenoid = Robot.hardware.rightSolenoid;
 	}
+	
 	public void extendPistons() {
 		leftSolenoid.set(DoubleSolenoid.Value.kForward);
 		rightSolenoid.set(DoubleSolenoid.Value.kForward);
@@ -43,6 +43,36 @@ public class Elevator extends Subsystem {
 	}
 	public void stop() {
 		motors.stop();
+	}
+	public void setEncoderPos(int encoderPos) {
+    	Robot.elevator.motors.motor1.setSelectedSensorPosition(encoderPos, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
+	}
+	public ElevatorDirection getElevatorDirection() {
+		ElevatorDirection status = ElevatorDirection.UNKNOWN;
+		if(motors.motor1.getMotorOutputVoltage() < 0) {
+			status = ElevatorDirection.BACKWARDS;
+		} else if(motors.motor1.getMotorOutputVoltage() > 0) {
+			status =  ElevatorDirection.FORWARDS;
+		}
+		return status;
+	}
+	
+	public void encoderReset(ElevatorDirection elevatorDirection) {
+		if(elevatorDirection == ElevatorDirection.BACKWARDS) {
+			setEncoderPos(Constants.ELEVATOR_GROUND_TARGET);
+		} else if(elevatorDirection == ElevatorDirection.FORWARDS) {
+			setEncoderPos(Constants.ELEVATOR_TOP_TARGET);
+		}
+	}
+	
+	public boolean atElevatorLimit() {
+		if ((getElevatorDirection() == ElevatorDirection.BACKWARDS || getElevatorDirection() == ElevatorDirection.FORWARDS) 
+		&& motors.motor1.getOutputCurrent() > Constants.ELEVATOR_HIT_TOLERANCE) {
+			encoderReset(getElevatorDirection());
+			return true;
+		}
+		return false;
+					
 	}
     // Put methods for controlling this subsystem
     // here. Call these from Commands.

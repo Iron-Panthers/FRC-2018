@@ -4,6 +4,7 @@ import org.usfirst.frc.team5026.robot.Robot;
 import org.usfirst.frc.team5026.robot.util.Constants;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -23,6 +24,10 @@ public class ElevatorToSwitch extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	SmartDashboard.putString("Elevator Status", Robot.elevator.getElevatorDirection().name());
+    	if(Robot.elevator.atElevatorLimit()) {
+    		Robot.elevator.motors.stop();
+    	}
     	Robot.elevator.raiseToSwitch();
     	//Lifts carriage to switch
     }

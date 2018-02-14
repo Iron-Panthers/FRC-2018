@@ -3,6 +3,7 @@ package org.usfirst.frc.team5026.robot.commands.elevator;
 import org.usfirst.frc.team5026.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -22,12 +23,16 @@ public class ElevatorSliding extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	SmartDashboard.putString("Elevator Status", Robot.elevator.getElevatorDirection().name());
+    	if(Robot.elevator.atElevatorLimit()) {
+    		Robot.elevator.motors.stop();
+    	}
     	Robot.elevator.motors.driveWithPower(-Robot.oi.elevatorStick.getY());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+    	return false;
     }
 
     // Called once after isFinished returns true
