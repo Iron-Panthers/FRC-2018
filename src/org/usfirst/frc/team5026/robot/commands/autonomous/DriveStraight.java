@@ -17,9 +17,15 @@ public class DriveStraight extends Command {
     public DriveStraight() {
         requires(Robot.drive);
     }
+    
+    public DriveStraight(int targetInInches) {
+    		requires(Robot.drive);
+    		target = targetInInches;
+    }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    if(target == 0)
     	target = (int) SmartDashboard.getNumber("target", 0);
     	target = (int) (target * Constants.TICKS_TO_INCHES);
 		Robot.drive.stop();

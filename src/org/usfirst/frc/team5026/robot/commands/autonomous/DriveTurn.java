@@ -23,13 +23,17 @@ public class DriveTurn extends Command {
         requires(Robot.drive);
         time = new Timer();
     }
+    public DriveTurn(double angle) {
+    		target = angle;
+    }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.hardware.gyro.setFusedHeading(0, Constants.kTimeoutMs);
     	Robot.hardware.gyro.setYaw(0, Constants.kTimeoutMs);
     	Robot.drive.stop();
-    	target = SmartDashboard.getNumber("gyro target", 0);
+    	if (target == 0)
+    		target = SmartDashboard.getNumber("gyro target", 0);
     	maxCount = (int) SmartDashboard.getNumber("max count", 0);
 		tolerance = SmartDashboard.getNumber("gyro tolerance", 0);
 		time.reset();
