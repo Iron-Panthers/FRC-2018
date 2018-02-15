@@ -30,8 +30,8 @@ public class Constants {
 	public static final int ELEVATOR_SCALE_TARGET = 7000; //See above
 	public static final int ELEVATOR_GROUND_TARGET = 0; //See above (This is supposed to lift cube enough so it does not drag on ground)
 	public static final int ELEVATOR_TOP_TARGET = 89760; //Tested by Adam. TODO Needs perfecting!!!
-	public static final int ELEVATOR_VELOCITY = 2800;
-	public static final int ELEVATOR_ACCELERATION = 4000;
+	public static final int ELEVATOR_VELOCITY = 10000;
+	public static final int ELEVATOR_ACCELERATION = 20000;
 	public static final double ELEVATOR_TARGET_TOLERANCE = 100; //In ticks
 	public static final double ELEVATOR_TOLERANCE_TIME = 5; //
 	public static final double ELEVATOR_HIT_TOLERANCE = 5; //amps, needs changing

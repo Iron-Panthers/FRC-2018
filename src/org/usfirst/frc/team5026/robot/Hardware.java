@@ -17,8 +17,7 @@ public class Hardware {
 	public ElevatorMotorGroup elevatorMotors;
 //	public DigitalInput limitSwitchF;
 //	public DigitalInput limitSwitchR;
-	public DoubleSolenoid leftSolenoid;
-	public DoubleSolenoid rightSolenoid;
+	public DoubleSolenoid elevatorSolenoid;
 	public TalonSRX intakeM;
 	public PowerDistributionPanel pdp;
 	
@@ -35,8 +34,7 @@ public class Hardware {
 		
 //		limitSwitchF = new DigitalInput(RobotMap.LIMIT_SWTICH_F);
 //		limitSwitchR = new DigitalInput(RobotMap.LIMIT_SWTICH_R);
-		leftSolenoid = new DoubleSolenoid(RobotMap.LEFT_SOLENOID_PORT_1, RobotMap.LEFT_SOLENOID_PORT_2);
-		rightSolenoid = new DoubleSolenoid(RobotMap.RIGHT_SOLENOID_PORT_1, RobotMap.RIGHT_SOLENOID_PORT_2);
+		elevatorSolenoid = new DoubleSolenoid(RobotMap.ELEVATOR_SOLENOID_PORT_1, RobotMap.ELEVATOR_SOLENOID_PORT_2);
 
 		intakeM = new TalonSRX(RobotMap.INTAKE_MOTOR);
 		intakeM.setInverted(Constants.IS_INTAKE_INVERTED);

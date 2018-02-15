@@ -13,21 +13,17 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Elevator extends Subsystem {
 	public ElevatorMotorGroup motors;
-	public DoubleSolenoid leftSolenoid;
-	public DoubleSolenoid rightSolenoid;
+	public DoubleSolenoid solenoid;
 	public Elevator() {
 		motors = Robot.hardware.elevatorMotors;
-		this.leftSolenoid = Robot.hardware.leftSolenoid;
-		this.rightSolenoid = Robot.hardware.rightSolenoid;
+		solenoid = Robot.hardware.elevatorSolenoid;
 	}
 	
 	public void extendPistons() {
-		leftSolenoid.set(DoubleSolenoid.Value.kForward);
-		rightSolenoid.set(DoubleSolenoid.Value.kForward);
+		solenoid.set(DoubleSolenoid.Value.kForward);
 	}
 	public void retractPistons() {
-		leftSolenoid.set(DoubleSolenoid.Value.kReverse);
-		rightSolenoid.set(DoubleSolenoid.Value.kReverse);
+		solenoid.set(DoubleSolenoid.Value.kReverse);
 	}
 	public void raiseToTarget(double tickTarget) {
 		motors.driveWithTarget(tickTarget);
@@ -58,19 +54,19 @@ public class Elevator extends Subsystem {
 	}
 	
 	public void encoderReset(ElevatorDirection elevatorDirection) {
-		if(elevatorDirection == ElevatorDirection.BACKWARDS) {
-			setEncoderPos(Constants.ELEVATOR_GROUND_TARGET);
-		} else if(elevatorDirection == ElevatorDirection.FORWARDS) {
-			setEncoderPos(Constants.ELEVATOR_TOP_TARGET);
-		}
+//		if(elevatorDirection == ElevatorDirection.BACKWARDS) {
+//			setEncoderPos(Constants.ELEVATOR_GROUND_TARGET);
+//		} else if(elevatorDirection == ElevatorDirection.FORWARDS) {
+//			setEncoderPos(Constants.ELEVATOR_TOP_TARGET);
+//		}
 	}
 	
 	public boolean atElevatorLimit() {
-		if ((getElevatorDirection() == ElevatorDirection.BACKWARDS || getElevatorDirection() == ElevatorDirection.FORWARDS) 
-		&& motors.motor1.getOutputCurrent() > Constants.ELEVATOR_HIT_TOLERANCE) {
-			encoderReset(getElevatorDirection());
-			return true;
-		}
+//		if ((getElevatorDirection() == ElevatorDirection.BACKWARDS || getElevatorDirection() == ElevatorDirection.FORWARDS) 
+//		&& motors.motor1.getOutputCurrent() > Constants.ELEVATOR_HIT_TOLERANCE && motors.motor1.getSelectedSensorVelocity(Constants.kPIDLoopIdx) < Constants.ELEVATOR_VELOCITY_STALL_THRESHOLD) {
+//			encoderReset(getElevatorDirection());
+//			return true;
+//		}
 		return false;
 					
 	}

@@ -2,13 +2,14 @@ package org.usfirst.frc.team5026.robot;
 
 import org.usfirst.frc.team5026.robot.commands.IntakeCommandGroup;
 import org.usfirst.frc.team5026.robot.commands.OuttakeCommand;
+import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorExtendPistons;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorFindF;
+import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorRetractPistons;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorSetPIDF;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorSliding;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorTarget;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToGround;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToScale;
-import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToSwitch;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorZero;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -33,6 +34,10 @@ public class OI {
 	public Button boardBtnFour;
 	public Button boardBtnFive;
 	public Button boardBtnSix;
+	public Button boardBtnSeven;
+	public Button boardBtnNine;
+	public Button boardBtnTen;
+	
 	public OI () {
 		driveStick = new Joystick(RobotMap.DRIVE_JOYSTICK);
 		elevatorStick = new Joystick(RobotMap.ELEVATOR_JOYSTICK);
@@ -47,6 +52,9 @@ public class OI {
 		boardBtnFour = new JoystickButton(elevatorStick, 4);
 		boardBtnFive = new JoystickButton(elevatorStick, 5);
 		boardBtnSix = new JoystickButton(elevatorStick, 6);
+		boardBtnSeven = new JoystickButton(elevatorStick, 7);
+		boardBtnNine = new JoystickButton(elevatorStick, 9);
+		boardBtnTen = new JoystickButton(elevatorStick, 10);
 	}
 	public void mapButtons() {
 		stickBtnOne.whileHeld(new IntakeCommandGroup());
@@ -60,6 +68,9 @@ public class OI {
 		boardBtnFour.whenPressed(new ElevatorSetPIDF());
 		boardBtnFive.whenPressed(new ElevatorZero());
 		boardBtnSix.whenPressed(new IntakeCommandGroup());
+		boardBtnSeven.whileHeld(new OuttakeCommand());
+		boardBtnNine.whenPressed(new ElevatorExtendPistons());
+		boardBtnTen.whenPressed(new ElevatorRetractPistons());
 	}
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
