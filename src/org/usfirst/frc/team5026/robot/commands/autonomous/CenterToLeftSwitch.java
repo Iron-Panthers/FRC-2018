@@ -1,5 +1,7 @@
 package org.usfirst.frc.team5026.robot.commands.autonomous;
 
+import org.usfirst.frc.team5026.robot.util.Constants;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -10,8 +12,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class CenterToLeftSwitch extends CommandGroup {
 
     public CenterToLeftSwitch() {
-    	addSequential(new DriveStraight(75));
-    	addSequential(new DriveTurn(-90));
+    	addSequential(new DriveStraight(Constants.SWTICH_DISTANCE / 2)); // Move forward halfway through
+    	addSequential(new DriveTurn(-Constants.TURN)); // Turn left 90 degrees
+    	addSequential(new DriveStraight(Constants.CENTER_TO_SWITCH)); // Move forward 4 feet or 48 inces
+    	addSequential(new DriveTurn(Constants.TURN)); // Turn right 90 degrees 
+    	addSequential(new DriveStraight(Constants.SWTICH_DISTANCE / 2)); // Move forward to switch
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
