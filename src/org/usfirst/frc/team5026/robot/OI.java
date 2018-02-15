@@ -53,6 +53,7 @@ public class OI {
 		stickBtnTwo.whileHeld(new OuttakeCommand());
 		stickBtnThree.whileHeld(new ElevatorToScale());
 		stickBtnFour.whileHeld(new ElevatorToGround());
+		
 		boardBtnOne.whileHeld(new ElevatorFindF());
 		boardBtnTwo.whileHeld(new ElevatorSliding());
 		boardBtnThree.whileHeld(new ElevatorTarget());

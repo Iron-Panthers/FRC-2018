@@ -28,7 +28,7 @@ public class ElevatorSliding extends Command {
 //    	} else { 
 //    		Robot.elevator.motors.driveWithPower(-Robot.oi.elevatorStick.getY());
 //    	}
-		Robot.elevator.motors.driveWithPower(Robot.oi.elevatorStick.getY());
+		Robot.elevator.motors.driveWithPower(-Robot.oi.elevatorStick.getY());
     }
 
     // Make this return true when this Command no longer needs to run execute()

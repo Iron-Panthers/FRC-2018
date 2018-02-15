@@ -26,8 +26,9 @@ public class ElevatorTarget extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Robot.elevator.atElevatorLimit()) {
-    		Robot.elevator.motors.stop();
+    	if (false) {
+//    	if(Robot.elevator.atElevatorLimit()) {
+//    		Robot.elevator.motors.stop();
     	} else {
     		Robot.elevator.motors.driveWithTarget(target);
     	}
