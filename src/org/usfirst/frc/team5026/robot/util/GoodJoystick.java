@@ -19,9 +19,9 @@ public class GoodJoystick {
 	public double findX() {
 		double x;
 		x = driveStick.getX();
-		if(Robot.drive.isReversed) {
-			x = -x;
-		}
+//		if(Robot.drive.isReversed) {
+//			x = -x;
+//		}
 		if(Math.abs(x) < Constants.XDEADZONE_SIZE*Math.abs(driveStick.getY()) 
 		|| Math.sqrt(driveStick.getY()*driveStick.getY() + driveStick.getX()*driveStick.getX()) < Constants.CIRCLE_DEADZONE) { 
 			x=0; //circle deadzone
