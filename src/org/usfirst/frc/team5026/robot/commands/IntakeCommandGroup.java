@@ -12,7 +12,7 @@ public class IntakeCommandGroup extends CommandGroup {
     public IntakeCommandGroup() {
     	addSequential(new IntakeCommand());
     	addParallel(new ElevatorToSwitch());
-    	addParallel(new HoldBlock());
+//    	addParallel(new HoldBlock());
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

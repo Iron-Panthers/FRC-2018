@@ -4,6 +4,7 @@ import org.usfirst.frc.team5026.robot.Robot;
 import org.usfirst.frc.team5026.robot.util.Constants;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
  
 /**
  *
@@ -18,6 +19,7 @@ public class IntakeCommand extends Command {
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		time = 0;
+		Robot.intake.stop();
 	}
 	 
 	// Called repeatedly when this Command is scheduled to run
@@ -36,6 +38,7 @@ public class IntakeCommand extends Command {
 	// Called once after isFinished returns true
 	protected void end() {
 		Robot.intake.stop();
+		Scheduler.getInstance().add(new HoldBlock());
 	}
 	 
 	// Called when another command which requires one or more of the same
