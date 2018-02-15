@@ -12,11 +12,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class CenterToLeftSwitch extends CommandGroup {
 
     public CenterToLeftSwitch() {
-    	addSequential(new DriveStraight(Constants.SWTICH_DISTANCE / 2)); // Move forward halfway through
+    	addSequential(new DriveStraight(Constants.DRIVE_TO_SWITCH_Y / 2)); // Move forward halfway through
     	addSequential(new DriveTurn(-Constants.TURN)); // Turn left 90 degrees
-    	addSequential(new DriveStraight(Constants.CENTER_TO_SWITCH)); // Move forward 4 feet or 48 inches
+    	addSequential(new DriveStraight(Constants.DRIVE_TO_SWITCH_X)); // Move forward
     	addSequential(new DriveTurn(Constants.TURN)); // Turn right 90 degrees 
-    	addSequential(new DriveStraight(Constants.SWTICH_DISTANCE / 2)); // Move forward to switch
+    	addSequential(new DriveStraight(Constants.DRIVE_TO_SWITCH_Y / 2)); // Move forward to switch
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
