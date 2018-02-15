@@ -15,6 +15,7 @@ public class Constants {
 	public static final double OUTTAKE_POWER = 1;
 	
 	public static final double ROBOT_WIDTH = 13.5; // unit is inches
+	public static final double ROBOT_LENGTH = 25; // Inches, placeholder because I don't know the actual measurement, should include bumpers
 	public static final double DRIVE_P = 0;
 	public static final double DRIVE_I = 0;
 	public static final double DRIVE_D = 0;
@@ -23,11 +24,10 @@ public class Constants {
 	
 	public static final double JOYSTICK_DEADZONE = 0.1;
 	
-	// Field measurements
+	// Center to switch auto
 	public static final int SWTICH_DISTANCE = 140; // Inches, distance from alliance station to switch fence
-	public static final int CENTER_TO_SWITCH = 63; // Inches, horizontal distance from center of field to either side of the switch
-	
-	// Turning
+	public static final int DRIVE_TO_SWITCH_Y = SWITCH_DISTANCE - (int) ROBOT_LENGTH; // Vertical distance robot needs to travel to switch
+	public static final int DRIVE_TO_SWITCH_X = 63; // Inches, horizontal distance robot needs to drive to switch
 	public static final int TURN = 90; // Degrees
 	
 	//Auto Code
