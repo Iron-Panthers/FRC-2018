@@ -24,7 +24,7 @@ public class Constants {
 	public static final double JOYSTICK_DEADZONE = 0.1;
 	
 	// Field measurements
-	public static final int SWTICH_DISTANCE = 144; // Inches, distance from alliance station to edge of switch
+	public static final int SWTICH_DISTANCE = 140; // Inches, distance from alliance station to switch fence
 	public static final int CENTER_TO_SWITCH = 63; // Inches, horizontal distance from center of field to either side of the switch
 	
 	// Turning
