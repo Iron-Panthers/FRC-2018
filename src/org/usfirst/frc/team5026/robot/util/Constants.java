@@ -25,7 +25,7 @@ public class Constants {
 	public static final double JOYSTICK_DEADZONE = 0.1;
 	
 	// Center to switch auto
-	public static final int SWTICH_DISTANCE = 140; // Inches, distance from alliance station to switch fence
+	public static final int SWITCH_DISTANCE = 140; // Inches, distance from alliance station to switch fence
 	public static final int DRIVE_TO_SWITCH_Y = SWITCH_DISTANCE - (int) ROBOT_LENGTH; // Vertical distance robot needs to travel to switch
 	public static final int DRIVE_TO_SWITCH_X = 63; // Inches, horizontal distance robot needs to drive to switch
 	public static final int TURN = 90; // Degrees
