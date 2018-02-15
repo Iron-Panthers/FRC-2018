@@ -22,6 +22,14 @@ public class Constants {
 	public static final int DRIVE_TICKS_PER_REVOLUTION = 5526; // we tested this, I wonder if it's actually correct! ::thinking::
 	
 	public static final double JOYSTICK_DEADZONE = 0.1;
+	
+	// Field measurements
+	public static final int SWTICH_DISTANCE = 150; // Inches, distance from alliance station to edge of switch
+	public static final int CENTER_TO_SWITCH = 48; // Inches, horizontal distance from center of field to center of either side of the switch
+	
+	// Turning
+	public static final int TURN = 90; // Degrees
+	
 	//Auto Code
 	public static final int kTimeoutMs = 0; //Do not change
 	public static final int kSlotIdx = 0; //Do not change
