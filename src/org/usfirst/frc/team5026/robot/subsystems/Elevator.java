@@ -100,10 +100,10 @@ public class Elevator extends Subsystem {
 		int position = motors.motor1.getSelectedSensorPosition(Constants.kPIDLoopIdx);
 		if (position > Constants.ELEVATOR_TOP_TARGET-Constants.ELEVATOR_TARGET_TOLERANCE) {
 			//At the top, set the limit
-			enableForwardCushion();
+			enableReverseCushion();
 		}
 		else if (position < Constants.ELEVATOR_GROUND_TARGET+Constants.ELEVATOR_TARGET_TOLERANCE) {
-			enableReverseCushion();
+			enableForwardCushion();
 		}
 		else {
 			resetCushions();

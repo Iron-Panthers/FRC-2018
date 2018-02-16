@@ -23,7 +23,7 @@ public class ElevatorSliding extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.elevator.checkPosition();
+//    	Robot.elevator.checkPosition();
     	Robot.elevator.motors.driveWithPower(-Robot.oi.elevatorStick.getY());
     }
 
