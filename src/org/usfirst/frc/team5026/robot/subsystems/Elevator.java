@@ -1,5 +1,7 @@
 package org.usfirst.frc.team5026.robot.subsystems;
 
+import java.util.ArrayList;
+
 import org.usfirst.frc.team5026.robot.Robot;
 import org.usfirst.frc.team5026.robot.util.Constants;
 import org.usfirst.frc.team5026.robot.util.ElevatorDirection;
@@ -72,7 +74,7 @@ public class Elevator extends Subsystem {
 		return false;
 					
 	}
-	public boolean isStopping() { //Bad name, not as accurate
+	public boolean isStopping() { //Bad name, not as accurate (Velocity)
 		//Return if the change in velocity is above the velocity threshold, in which case it is stopping
 		int velocity = motors.motor1.getSelectedSensorVelocity(Constants.kPIDLoopIdx);
 		if(Math.abs(velocity)<(Math.abs(lastVelocity)-Constants.ELEVATOR_VELOCITY_THRESHOLD)) {
@@ -80,6 +82,32 @@ public class Elevator extends Subsystem {
 			return true;
 		}
 		return false;
+	}
+	public boolean isCurrentHigh() { //Samples Currents
+		return motors.motor1.getOutputCurrent() > Constants.ELEVATOR_CURRENT_THRESHOLD;
+	}
+	public void enableForwardCushion() {
+		motors.motor1.configPeakOutputForward(0, Constants.kTimeoutMs);
+	}
+	public void enableReverseCushion() {
+		motors.motor1.configPeakOutputReverse(0, Constants.kTimeoutMs);
+	}
+	public void resetCushions() {
+		motors.motor1.configPeakOutputForward(1, Constants.kTimeoutMs);
+		motors.motor1.configPeakOutputReverse(-1, Constants.kTimeoutMs);
+	}
+	public void checkPosition() {
+		int position = motors.motor1.getSelectedSensorPosition(Constants.kPIDLoopIdx);
+		if (position > Constants.ELEVATOR_TOP_TARGET-Constants.ELEVATOR_TARGET_TOLERANCE) {
+			//At the top, set the limit
+			enableForwardCushion();
+		}
+		else if (position < Constants.ELEVATOR_GROUND_TARGET+Constants.ELEVATOR_TARGET_TOLERANCE) {
+			enableReverseCushion();
+		}
+		else {
+			resetCushions();
+		}
 	}
     // Put methods for controlling this subsystem
     // here. Call these from Commands.

@@ -24,11 +24,8 @@ public class ElevatorToGround extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Robot.elevator.atElevatorLimit()) {
-    		Robot.elevator.motors.stop();
-    	} else {
-    		Robot.elevator.resetElevator();
-    	}
+    	Robot.elevator.checkPosition();
+		Robot.elevator.resetElevator();
     	//Lowers carriage to the ground
     }
 

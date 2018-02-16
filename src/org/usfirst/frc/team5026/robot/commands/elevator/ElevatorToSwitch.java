@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class ElevatorToSwitch extends Command {
 	public int timeWithinTolerance;
+	public int currentCount;
     public ElevatorToSwitch() {
     	requires(Robot.elevator);
         // Use requires() here to declare subsystem dependencies
@@ -24,11 +25,8 @@ public class ElevatorToSwitch extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Robot.elevator.atElevatorLimit()) {
-    		Robot.elevator.motors.stop();
-    	} else {
-    		Robot.elevator.raiseToSwitch();
-    	}
+    	Robot.elevator.checkPosition();
+		Robot.elevator.raiseToSwitch();
     	//Lifts carriage to switch
     }
 
