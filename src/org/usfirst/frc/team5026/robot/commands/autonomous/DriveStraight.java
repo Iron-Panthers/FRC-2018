@@ -30,22 +30,13 @@ public class DriveStraight extends Command {
     	target = (int) (target * Constants.TICKS_TO_INCHES);
 		Robot.drive.stop();
 		maxCount = (int) SmartDashboard.getNumber("max count", 0);
-		tolerance = (int) SmartDashboard.getNumber("tolerance", 0);
-		Robot.drive.left.motor1.setSelectedSensorPosition(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
-		Robot.drive.right.motor1.setSelectedSensorPosition(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
+		tolerance = (int) SmartDashboard.getNumber("tolerance", 0); 
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.drive.driveWithTarget(target);
     	SmartDashboard.putNumber("Desired target", target);
-    	SmartDashboard.putNumber("current left position", Robot.drive.left.motor1.getSelectedSensorPosition(0));
-    	SmartDashboard.putNumber("current right position", Robot.drive.right.motor1.getSelectedSensorPosition(0));
-    	SmartDashboard.putNumber("Left sped", Robot.drive.left.motor1.getSelectedSensorVelocity(0));
     	SmartDashboard.putNumber("count", count);
-    	if (Math.abs(target - Robot.drive.left.getEncoderTicks()) < tolerance) {
-    		count++;
-    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

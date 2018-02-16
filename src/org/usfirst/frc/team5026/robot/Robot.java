@@ -35,7 +35,7 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		hardware = new Hardware();
 		oi = new OI();
-		drive = new Drive(hardware.left, hardware.right, hardware.gearShift);
+		drive = new Drive(hardware.l, hardware.r, hardware.gearShift);
 //		right.setInverted(Constants.IS_RIGHT_INVERTED);
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		String gameData = DriverStation.getInstance().getGameSpecificMessage();
@@ -45,9 +45,9 @@ public class Robot extends IterativeRobot {
 //		chooser.addObject("Left side switch", new LeftSideAuto());
 		chooser.addObject("Turning", new DriveTurn());
 		SmartDashboard.putNumber("target", 100);
-		SmartDashboard.putNumber("max count", 50);
-		SmartDashboard.putNumber("tolerance", 69);
-		SmartDashboard.putNumber("gyro target", 90);
+		SmartDashboard.putNumber("max count", 10);
+		SmartDashboard.putNumber("tolerance", 10);
+		SmartDashboard.putNumber("gyro target", 60);
 		SmartDashboard.putNumber("gyro tolerance", 2);
 		SmartDashboard.putData("Auto mode", chooser);
 //		SmartDashboard.getNumber("Intake Speed", Constants.INTAKE_POWER);
@@ -117,8 +117,9 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		SmartDashboard.putNumber("encoder ticks", hardware.leftM1.getSelectedSensorPosition(0));
+		SmartDashboard.putBoolean("banner", hardware.bannerSensor.get());
 		Scheduler.getInstance().run();
+		
 		try {
 			Thread.sleep(20);
 		} catch (Exception e) {

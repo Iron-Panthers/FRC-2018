@@ -50,12 +50,12 @@ public class JoystickDrive extends Command {
     	SmartDashboard.putNumber("LeftM2 Current", Robot.hardware.pdp.getCurrent(RobotMap.LEFTM2_PDP_PORT));
     	SmartDashboard.putNumber("LeftM3 Current", Robot.hardware.pdp.getCurrent(RobotMap.LEFTM3_PDP_PORT));
     	
-    	SmartDashboard.putNumber("RightM1 Voltage:", Robot.hardware.rightM1.getMotorOutputVoltage());
-    	SmartDashboard.putNumber("RightM2 Voltage:", Robot.hardware.rightM2.getMotorOutputVoltage());
-    	SmartDashboard.putNumber("RightM3 Voltage:", Robot.hardware.rightM3.getMotorOutputVoltage());
-    	SmartDashboard.putNumber("LeftM1 Voltage:", Robot.hardware.leftM1.getMotorOutputVoltage());
-    	SmartDashboard.putNumber("LeftM2 Voltage:", Robot.hardware.leftM2.getMotorOutputVoltage());
-    	SmartDashboard.putNumber("LeftM3 Voltage:", Robot.hardware.leftM3.getMotorOutputVoltage());
+//    	SmartDashboard.putNumber("RightM1 Voltage:", Robot.hardware.rightM1.getMotorOutputVoltage());
+//    	SmartDashboard.putNumber("RightM2 Voltage:", Robot.hardware.rightM2.getMotorOutputVoltage());
+//    	SmartDashboard.putNumber("RightM3 Voltage:", Robot.hardware.rightM3.getMotorOutputVoltage());
+//    	SmartDashboard.putNumber("LeftM1 Voltage:", Robot.hardware.leftM1.getMotorOutputVoltage());
+//    	SmartDashboard.putNumber("LeftM2 Voltage:", Robot.hardware.leftM2.getMotorOutputVoltage());
+//    	SmartDashboard.putNumber("LeftM3 Voltage:", Robot.hardware.leftM3.getMotorOutputVoltage());
 //    	SmartDashboard.putNumber("Joystick X Axis", Robot.oi.driveStick.getX());
 //    	SmartDashboard.putNumber("Joystick Y Axis", Robot.oi.driveStick.getY());
 //    	y = -Robot.oi.driveStick.getY();

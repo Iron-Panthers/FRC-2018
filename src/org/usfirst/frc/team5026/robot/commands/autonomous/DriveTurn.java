@@ -2,8 +2,8 @@ package org.usfirst.frc.team5026.robot.commands.autonomous;
 
 import org.usfirst.frc.team5026.robot.Robot;
 import org.usfirst.frc.team5026.robot.util.Constants;
+import org.usfirst.frc.team5026.robot.util.copypastalib.CombinedPath;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -13,55 +13,81 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class DriveTurn extends Command {
 
 	double target = 0;
+	double startYaw;
 	int count, maxCount;
 	double tolerance;
-	Timer time;
+	double startTime = 0; //in seconds
+	double[] ypr = new double[3];
+	CombinedPath.LongitudalTrapezoid path;
+	
+	double maxSpeed = 0;
 	
 	double lastError, sumError;
 	
     public DriveTurn() {
         requires(Robot.drive);
-        time = new Timer();
     }
     public DriveTurn(double angle) {
-    		target = angle;
+    	requires(Robot.drive);
+    	target = angle;
+    	path = new CombinedPath.LongitudalTrapezoid(0, target, 90, 270);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.hardware.gyro.setFusedHeading(0, Constants.kTimeoutMs);
+//    	Robot.hardware.gyro.setFusedHeading(0, Constants.kTimeoutMs);
+    	startTime = System.currentTimeMillis() / 1000.0;
     	Robot.hardware.gyro.setYaw(0, Constants.kTimeoutMs);
     	Robot.drive.stop();
+    	startYaw = 0;
+    	maxSpeed = 0;
+    	startYaw = this.yaw();
+    	count = 0;
     	if (target == 0)
     		target = SmartDashboard.getNumber("gyro target", 0);
     	maxCount = (int) SmartDashboard.getNumber("max count", 0);
 		tolerance = SmartDashboard.getNumber("gyro tolerance", 0);
-		time.reset();
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-    	double error = error();
+    protected void execute() {  
+    	double time = this.timeInSeconds();
+    	
+    	double error = path.getPosition(time) - this.yaw();
     	double dError = error - lastError;
     	lastError = error;
     	sumError += error;
     	
-    	double power = Constants.TURN_P * error + Constants.TURN_I * sumError + Constants.TURN_D * dError + Constants.TURN_F * predictedSpeed(time.get());
+    	if ( this.predictedSpeed(time) > maxSpeed ) {
+    		maxSpeed = this.predictedSpeed(time);
+    	}
+    	
+    	SmartDashboard.putNumber("sped", this.predictedSpeed(time));
+    	
+    	double power = Constants.TURN_P * error + Constants.TURN_I * sumError + Constants.TURN_D * dError + Constants.TURN_F * predictedSpeed(this.timeInSeconds());
     	Robot.drive.setLeftSide(power);
     	Robot.drive.setRightSide(-power);
     	
+    	SmartDashboard.putNumber("max speed", maxSpeed);
+    	SmartDashboard.putNumber("error", error);
+    	
     	SmartDashboard.putNumber("count", count);
-    	if (Math.abs(target - Robot.hardware.gyro.getFusedHeading()) < tolerance) {
+    	if (Math.abs(error) < tolerance && time > this.path.getTotalTime()) {
     		count++;
     	}
     }
     
-    private double error() {
-    	return target - Robot.hardware.gyro.getFusedHeading();
+    private double yaw() {
+    	Robot.hardware.gyro.getYawPitchRoll(ypr);
+    	return ypr[0] - startYaw;
+    }
+    
+    private double timeInSeconds() {
+    	return System.currentTimeMillis() / 1000.0 - startTime;
     }
     
     private double predictedSpeed(double time) {
-    	return 90;
+    	return path.getSpeed(time);
     }
 
     // Make this return true when this Command no longer needs to run execute()
