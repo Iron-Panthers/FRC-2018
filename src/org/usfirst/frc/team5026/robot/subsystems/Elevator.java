@@ -70,6 +70,10 @@ public class Elevator extends Subsystem {
 		return false;
 					
 	}
+	public boolean isStopping(double lastVelocity) { //Bad name, not as accurate
+		//Return if the change in velocity is above the velocity threshold, in which case it is stopping
+		return Math.abs(lastVelocity-motors.motor1.getSelectedSensorVelocity(Constants.kPIDLoopIdx))>Constants.ELEVATOR_VELOCITY_THRESHOLD;
+	}
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
