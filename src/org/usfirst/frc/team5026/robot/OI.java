@@ -42,8 +42,8 @@ public class OI {
 		stickBtnThree.whenPressed(new ShiftLow());
 		stickBtnFour.whenPressed(new DriveStraight());
 		stickBtnFive.whenPressed(new ShiftHigh());
-		stickBtnSeven.whenPressed(new CenterToRightSwitch());
-		stickBtnEight.whenPressed(new CenterToLeftSwitch());
+		stickBtnSeven.whenPressed(new CenterToLeftSwitch());
+		stickBtnEight.whenPressed(new CenterToRightSwitch());
 //		stickBtnThree.whenPressed(new FindF());
 	}
 	//// CREATING BUTTONS
