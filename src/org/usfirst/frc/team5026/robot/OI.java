@@ -1,5 +1,7 @@
 package org.usfirst.frc.team5026.robot;
 
+import org.usfirst.frc.team5026.robot.commands.autonomous.CenterToLeftSwitch;
+import org.usfirst.frc.team5026.robot.commands.autonomous.CenterToRightSwitch;
 import org.usfirst.frc.team5026.robot.commands.autonomous.DriveStraight;
 import org.usfirst.frc.team5026.robot.commands.drive.ReverseDrive;
 import org.usfirst.frc.team5026.robot.commands.drive.ShiftHigh;
@@ -20,6 +22,8 @@ public class OI {
 	public Button stickBtnThree;
 	public Button stickBtnFour;
 	public Button stickBtnFive;
+	public Button stickBtnSeven;
+	public Button stickBtnEight;
 	public GoodJoystick joystick;
 	public OI(){
 		joystick = new GoodJoystick(RobotMap.DRIVE_JOYSTICK);
@@ -28,16 +32,18 @@ public class OI {
 		stickBtnThree = new JoystickButton(joystick.driveStick,3);
 		stickBtnFour = new JoystickButton(joystick.driveStick,4);
 		stickBtnFive = new JoystickButton(joystick.driveStick,5);
+		stickBtnSeven = new JoystickButton(joystick.driveStick, 7);
+		stickBtnEight = new JoystickButton(joystick.driveStick,8);
 	}
 	public void mapButtons(){
-		stickBtnFour.whenPressed(new DriveStraight());
-		stickBtnTwo.toggleWhenPressed(new toggleGearshift());
 //		stickBtnOne.whenPressed(new DriveStraight());
 		stickBtnOne.whenPressed(new ReverseDrive());
 		stickBtnTwo.whenPressed(new toggleGearshift());
 		stickBtnThree.whenPressed(new ShiftLow());
 		stickBtnFour.whenPressed(new DriveStraight());
 		stickBtnFive.whenPressed(new ShiftHigh());
+		stickBtnSeven.whenPressed(new CenterToRightSwitch());
+		stickBtnEight.whenPressed(new CenterToLeftSwitch());
 //		stickBtnThree.whenPressed(new FindF());
 	}
 	//// CREATING BUTTONS
