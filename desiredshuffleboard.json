@@ -166,9 +166,7 @@
               "_source0": "network_table:///SmartDashboard/Intake Motor Voltage",
               "_source1": "network_table:///SmartDashboard/Elevator Motor Voltage",
               "_title": "Voltage",
-              "Visible time": 30.0,
-              "SmartDashboard/Elevator Motor Voltage visible": false,
-              "SmartDashboard/Intake Motor Voltage visible": false
+              "Visible time": 30.0
             }
           },
           "4,0": {
@@ -192,9 +190,7 @@
               "_source0": "network_table:///SmartDashboard/Elevator Motor Current",
               "_source1": "network_table:///SmartDashboard/Intake Motor Current",
               "_title": "Current",
-              "Visible time": 10.0,
-              "SmartDashboard/Elevator Motor Current visible": true,
-              "SmartDashboard/Intake Motor Current visible": true
+              "Visible time": 10.0
             }
           }
         }
