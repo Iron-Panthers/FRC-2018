@@ -41,6 +41,9 @@ public class Constants {
 	public static final double TICKS_TO_INCHES = 4096 / WHEEL_CIRCUMFERENCE;
 	
 	public static final double DEGREES_PER_SECOND = 2500 / DRIVE_TICKS_PER_REVOLUTION * WHEEL_CIRCUMFERENCE / ROBOT_WIDTH / Math.PI * 180;
+	public static final double TURN_P = 0;
+	public static final double TURN_I = 0;
+	public static final double TURN_D = 0;
 	public static final double TURN_F = 0.75 / DEGREES_PER_SECOND;
 	
 	public static final double DRIVE_WANTED_INCHES_PER_SECOND = 48;
