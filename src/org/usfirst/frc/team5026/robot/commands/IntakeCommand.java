@@ -29,7 +29,7 @@ public class IntakeCommand extends Command {
 	} 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		if (time>Constants.SPEED_UP_TIME) {
+		if (time>Constants.INTAKE_SPEED_UP_TIME) {
 			return Robot.intake.hasBlock();
 		}
 		return false;

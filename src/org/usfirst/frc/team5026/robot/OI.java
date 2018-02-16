@@ -2,6 +2,7 @@ package org.usfirst.frc.team5026.robot;
 
 import org.usfirst.frc.team5026.robot.commands.IntakeCommandGroup;
 import org.usfirst.frc.team5026.robot.commands.OuttakeCommand;
+import org.usfirst.frc.team5026.robot.commands.ReverseDrive;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorExtendPistons;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorFindF;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorRetractPistons;
@@ -11,6 +12,7 @@ import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorTarget;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToGround;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToScale;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorZero;
+import org.usfirst.frc.team5026.robot.util.GoodJoystick;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -21,7 +23,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-	public Joystick driveStick;
+	public GoodJoystick driveStick;
 	public Joystick elevatorStick;
 	public Button stickBtnOne;
 	public Button stickBtnTwo;
@@ -37,15 +39,14 @@ public class OI {
 	public Button boardBtnSeven;
 	public Button boardBtnNine;
 	public Button boardBtnTen;
-	
-	public OI () {
-		driveStick = new Joystick(RobotMap.DRIVE_JOYSTICK);
+	public OI(){
+		driveStick = new GoodJoystick(RobotMap.DRIVE_JOYSTICK);
 		elevatorStick = new Joystick(RobotMap.ELEVATOR_JOYSTICK);
-		stickBtnOne = new JoystickButton(driveStick, 1);
-		stickBtnTwo = new JoystickButton(driveStick, 2);
-		stickBtnThree = new JoystickButton(driveStick, 3);
-		stickBtnFour = new JoystickButton(driveStick, 4);
-		stickBtnFive = new JoystickButton(driveStick, 5);
+		stickBtnOne = new JoystickButton(driveStick.driveStick,1);
+		stickBtnTwo = new JoystickButton(driveStick.driveStick,2);
+		stickBtnThree = new JoystickButton(driveStick.driveStick,3);
+		stickBtnFour = new JoystickButton(driveStick.driveStick, 4);
+		stickBtnFive = new JoystickButton(driveStick.driveStick, 5);
 		boardBtnOne = new JoystickButton(elevatorStick, 1);
 		boardBtnTwo = new JoystickButton(elevatorStick, 2);
 		boardBtnThree = new JoystickButton(elevatorStick, 3);
@@ -56,8 +57,9 @@ public class OI {
 		boardBtnNine = new JoystickButton(elevatorStick, 9);
 		boardBtnTen = new JoystickButton(elevatorStick, 10);
 	}
-	public void mapButtons() {
-		stickBtnOne.whileHeld(new IntakeCommandGroup());
+	public void mapButtons(){
+		stickBtnOne.whenPressed(new ReverseDrive());
+		stickBtnOne.whenReleased(new ReverseDrive());
 		stickBtnTwo.whileHeld(new OuttakeCommand());
 		stickBtnThree.whileHeld(new ElevatorToScale());
 		stickBtnFour.whileHeld(new ElevatorToGround());
@@ -79,8 +81,7 @@ public class OI {
 	// number it is.
 	// Joystick stick = new Joystick(port);
 	// Button button = new JoystickButton(stick, buttonNumber);
-
-	// There are a few additional built in buttons you can use. Additionally,
+// There are a few additional built in buttons you can use. Additionally,
 	// by subclassing Button you can create custom triggers and bind those to
 	// commands the same as any other Button.
 

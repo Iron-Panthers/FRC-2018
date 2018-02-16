@@ -7,6 +7,8 @@
 
 package org.usfirst.frc.team5026.robot;
 
+
+import org.usfirst.frc.team5026.robot.subsystems.Drive;
 import org.usfirst.frc.team5026.robot.subsystems.Elevator;
 import org.usfirst.frc.team5026.robot.subsystems.IntakeSubsystem;
 import org.usfirst.frc.team5026.robot.util.Constants;
@@ -34,6 +36,7 @@ public class Robot extends IterativeRobot {
 
 	public static OI oi;
 	public static Hardware hardware;
+	public static Drive drive;
 	public static IntakeSubsystem intake;
 	public static UsbCamera cam1;
 	public static Elevator elevator;
@@ -49,9 +52,11 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		startCamera();
 		hardware = new Hardware();
+		drive = new Drive(hardware.left, hardware.right, hardware.gearShift);
 		intake = new IntakeSubsystem();
 		elevator = new Elevator();
 		oi = new OI();
+//		right.setInverted(Constants.IS_RIGHT_INVERTED);
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", autoChooser);
 		SmartDashboard.putNumber("Elevator Percent", 0.25); // TODO to remove later
@@ -166,14 +171,9 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Intake Motor Current", hardware.intakeM.getOutputCurrent());
 		SmartDashboard.putNumber("Intake Motor Voltage", hardware.intakeM.getMotorOutputVoltage());
 		//Drive Motor Current and Voltage
-		SmartDashboard.putNumber("Joystick Raw X", oi.driveStick.getX());
-		SmartDashboard.putNumber("Joystick Raw Y", oi.driveStick.getY());
+		SmartDashboard.putNumber("Joystick Raw X", oi.driveStick.driveStick.getX());
+		SmartDashboard.putNumber("Joystick Raw Y", oi.driveStick.driveStick.getY());
 		Scheduler.getInstance().run();
-//		try {
-//			Thread.sleep(30);
-//		} catch (Exception e) {
-//			// yep
-//		}
 	}
 
 	/**
