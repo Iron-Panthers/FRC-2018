@@ -29,6 +29,7 @@ public class ElevatorToScale extends Command {
     	} else {
     		Robot.elevator.raiseToTarget(Constants.ELEVATOR_SCALE_TARGET);
        	}
+
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Elevator extends Subsystem {
 	public ElevatorMotorGroup motors;
 	public DoubleSolenoid solenoid;
+	public double lastVelocity;
 	public Elevator() {
 		motors = Robot.hardware.elevatorMotors;
 		solenoid = Robot.hardware.elevatorSolenoid;
@@ -39,6 +40,7 @@ public class Elevator extends Subsystem {
 	}
 	public void stop() {
 		motors.stop();
+		lastVelocity = 0;
 	}
 	public void setEncoderPos(int encoderPos) {
     	Robot.elevator.motors.motor1.setSelectedSensorPosition(encoderPos, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
@@ -54,25 +56,30 @@ public class Elevator extends Subsystem {
 	}
 	
 	public void encoderReset(ElevatorDirection elevatorDirection) {
-//		if(elevatorDirection == ElevatorDirection.BACKWARDS) {
-//			setEncoderPos(Constants.ELEVATOR_GROUND_TARGET);
-//		} else if(elevatorDirection == ElevatorDirection.FORWARDS) {
-//			setEncoderPos(Constants.ELEVATOR_TOP_TARGET);
-//		}
+		if(elevatorDirection == ElevatorDirection.BACKWARDS) {
+			setEncoderPos(Constants.ELEVATOR_GROUND_TARGET);
+		} else if(elevatorDirection == ElevatorDirection.FORWARDS) {
+			setEncoderPos(Constants.ELEVATOR_TOP_TARGET);
+		}
 	}
 	
 	public boolean atElevatorLimit() {
-//		if ((getElevatorDirection() == ElevatorDirection.BACKWARDS || getElevatorDirection() == ElevatorDirection.FORWARDS) 
-//		&& motors.motor1.getOutputCurrent() > Constants.ELEVATOR_HIT_TOLERANCE && motors.motor1.getSelectedSensorVelocity(Constants.kPIDLoopIdx) < Constants.ELEVATOR_VELOCITY_STALL_THRESHOLD) {
-//			encoderReset(getElevatorDirection());
-//			return true;
-//		}
+		if ((getElevatorDirection() == ElevatorDirection.BACKWARDS || getElevatorDirection() == ElevatorDirection.FORWARDS) 
+		&& motors.motor1.getOutputCurrent() > Constants.ELEVATOR_HIT_TOLERANCE && isStopping()) {
+			encoderReset(getElevatorDirection());
+			return true;
+		}
 		return false;
 					
 	}
-	public boolean isStopping(double lastVelocity) { //Bad name, not as accurate
+	public boolean isStopping() { //Bad name, not as accurate
 		//Return if the change in velocity is above the velocity threshold, in which case it is stopping
-		return Math.abs(lastVelocity-motors.motor1.getSelectedSensorVelocity(Constants.kPIDLoopIdx))>Constants.ELEVATOR_VELOCITY_THRESHOLD;
+		int velocity = motors.motor1.getSelectedSensorVelocity(Constants.kPIDLoopIdx);
+		if(Math.abs(velocity)<(Math.abs(lastVelocity)-Constants.ELEVATOR_VELOCITY_THRESHOLD)) {
+			lastVelocity = velocity;
+			return true;
+		}
+		return false;
 	}
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
