@@ -3,6 +3,7 @@ package org.usfirst.frc.team5026.robot;
 import org.usfirst.frc.team5026.robot.commands.autonomous.CenterToLeftSwitch;
 import org.usfirst.frc.team5026.robot.commands.autonomous.CenterToRightSwitch;
 import org.usfirst.frc.team5026.robot.commands.autonomous.DriveStraight;
+import org.usfirst.frc.team5026.robot.commands.autonomous.DriveTurn;
 import org.usfirst.frc.team5026.robot.commands.drive.ReverseDrive;
 import org.usfirst.frc.team5026.robot.commands.drive.ShiftHigh;
 import org.usfirst.frc.team5026.robot.commands.drive.ShiftLow;
@@ -11,6 +12,7 @@ import org.usfirst.frc.team5026.robot.util.GoodJoystick;
 
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -24,6 +26,7 @@ public class OI {
 	public Button stickBtnFive;
 	public Button stickBtnSeven;
 	public Button stickBtnEight;
+	public Button stickBtnNine;
 	public GoodJoystick joystick;
 	public OI(){
 		joystick = new GoodJoystick(RobotMap.DRIVE_JOYSTICK);
@@ -34,16 +37,18 @@ public class OI {
 		stickBtnFive = new JoystickButton(joystick.driveStick,5);
 		stickBtnSeven = new JoystickButton(joystick.driveStick, 7);
 		stickBtnEight = new JoystickButton(joystick.driveStick,8);
+		stickBtnNine = new JoystickButton(joystick.driveStick, 9);
 	}
 	public void mapButtons(){
 //		stickBtnOne.whenPressed(new DriveStraight());
 		stickBtnOne.whenPressed(new ReverseDrive());
 		stickBtnTwo.whenPressed(new toggleGearshift());
-		stickBtnThree.whenPressed(new ShiftLow());
+		stickBtnNine.whenPressed(new ShiftLow());
 		stickBtnFour.whenPressed(new DriveStraight());
 		stickBtnFive.whenPressed(new ShiftHigh());
 		stickBtnSeven.whenPressed(new CenterToLeftSwitch());
 		stickBtnEight.whenPressed(new CenterToRightSwitch());
+		stickBtnThree.whenPressed(new DriveTurn(SmartDashboard.getNumber("gyro target", 60)));
 //		stickBtnThree.whenPressed(new FindF());
 	}
 	//// CREATING BUTTONS
