@@ -27,6 +27,9 @@ public class Constants {
 	public static final double DRIVE_VELOCITY = 500; // I am not sure what unit this is
 	public static final double DRIVE_ACCELERATION = 1000; // I am not sure what unit this is either
 	
+	//Portal to Switch
+	public static final double CONVEYOR_SPEED = 0.8;
+	
 	public static final double JOYSTICK_DEADZONE = 0.1;
 	//Camera stuff
 	public static int CAMERA_PIXEL_HEIGHT = 1920; 
