@@ -3,6 +3,13 @@ package org.usfirst.frc.team5026.robot;
 
 import org.usfirst.frc.team5026.robot.subsystems.ConveyorBelt;
 
+import org.usfirst.frc.team5026.robot.subsystems.IntakeSubsystem;
+import org.usfirst.frc.team5026.robot.util.Constants;
+
+import edu.wpi.first.wpilibj.DriverStation;
+
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -22,6 +29,9 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static Hardware hardware;
 	public static ConveyorBelt conveyor;
+	public static IntakeSubsystem intake;
+	public static UsbCamera cam1;
+
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	/**
@@ -32,9 +42,11 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		hardware = new Hardware();
 		oi = new OI();
+		CameraServer camera = CameraServer.getInstance();
+		cam1 = camera.startAutomaticCapture("cam0", RobotMap.CAMERA_PORT);
+		cam1.setResolution(Constants.CAMERA_PIXEL_HEIGHT, Constants.CAMERA_PIXEL_WIDTH);
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		oi.mapButtons();
-		SmartDashboard.putData("Auto mode", chooser);
 		LiveWindow.disableAllTelemetry(); 
 	}
 
