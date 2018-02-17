@@ -38,7 +38,7 @@ public class Constants {
 	public static final double AUTO_DISTANCE = 30; //Inches
 	public static final double WHEEL_RADIUS = 4; // inch
 	public static final double WHEEL_CIRCUMFERENCE = WHEEL_RADIUS*2*Math.PI;
-	public static final double TICKS_TO_INCHES = 4096 / WHEEL_CIRCUMFERENCE;
+	public static final double TICKS_PER_INCH = 4096 / WHEEL_CIRCUMFERENCE;
 	
 	public static final double DEGREES_PER_SECOND = 2500 / DRIVE_TICKS_PER_REVOLUTION * WHEEL_CIRCUMFERENCE / ROBOT_WIDTH / Math.PI * 180;
 	public static final double TURN_P = 0;

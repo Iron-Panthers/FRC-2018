@@ -19,15 +19,16 @@ public class DriveStraight extends Command {
     }
     
     public DriveStraight(int targetInInches) {
-    		requires(Robot.drive);
-    		target = targetInInches;
+    	requires(Robot.drive);
+    	target = targetInInches;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    if(target == 0)
-    	target = (int) SmartDashboard.getNumber("target", 0);
-    	target = (int) (target * Constants.TICKS_TO_INCHES);
+    	if(target == 0) {
+    		target = (int) SmartDashboard.getNumber("target", 0);
+    	}
+    	target = (int) (target * Constants.TICKS_PER_INCH);
 		Robot.drive.stop();
 		maxCount = (int) SmartDashboard.getNumber("max count", 0);
 		tolerance = (int) SmartDashboard.getNumber("tolerance", 0);
