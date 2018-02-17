@@ -12,11 +12,11 @@ public class Constants {
 	public static final double QUARTER_SPEED = .4;
 	//Intake and Outtake
 	public static final double INTAKE_VOLTAGE_GRAB = 10./12; //Converted to voltage for motor
-	public static final double INTAKE_VOLTAGE_HOLD = 4./12; //"" 4 good enough, 6 secure but too much for burning
+	public static final double INTAKE_VOLTAGE_HOLD = 4.5/12; //"" 4 good enough, 6 secure but too much for burning
 	public static final double INTAKE_CURRENT_SAMPLE = 4; //number of samples required to determine if cube is possessed
 	public static final int INTAKE_SPEED_UP_TIME = 2;
 	public static final boolean IS_INTAKE_INVERTED = true;
-	public static final boolean IS_RIGHT_INVERTED = true;
+	public static final boolean IS_RIGHT_INVERTED = false;
 	public static final boolean IS_LEFT_INVERTED = false;
 	public static final double OUTTAKE_POWER = -.4;
 	public static final double BLOCK_GRAB_THRESHOLD = 15; //min amount of amps intake has with block
@@ -28,10 +28,11 @@ public class Constants {
 	public static final double ELEVATOR_I = 0.002;
 	public static final double ELEVATOR_D = 0;
 	public static final double ELEVATOR_F = 0.28;
-	public static final int ELEVATOR_SWITCH_TARGET = 3000; //Arbitrary value, change plz
-	public static final int ELEVATOR_SCALE_TARGET = 7000; //See above
+	public static final int ELEVATOR_TALL_CUBE_TARGET = 2000;
+	public static final int ELEVATOR_SWITCH_TARGET = 38000; //Tested by Adam and Driveteam
+	public static final int ELEVATOR_SCALE_TARGET = 85000; //See above
 	public static final int ELEVATOR_GROUND_TARGET = 0; //See above (This is supposed to lift cube enough so it does not drag on ground)
-	public static final int ELEVATOR_TOP_TARGET = 12000; //Tested by James. TODO Needs perfecting!!!
+	public static final int ELEVATOR_TOP_TARGET = 89000; //Tested by James. TODO Needs perfecting!!!
 	public static final int ELEVATOR_VELOCITY = 10000;
 	public static final int ELEVATOR_ACCELERATION = 20000;
 	public static final double ELEVATOR_TARGET_TOLERANCE = 100; //In ticks

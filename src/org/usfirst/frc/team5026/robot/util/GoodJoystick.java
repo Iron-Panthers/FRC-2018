@@ -18,7 +18,7 @@ public class GoodJoystick {
 
 	public double findX() {
 		double x;
-		x = driveStick.getX();
+		x = -driveStick.getX();
 //		if(Robot.drive.isReversed) {
 //			x = -x;
 //		}

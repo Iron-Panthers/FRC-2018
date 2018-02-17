@@ -66,11 +66,12 @@ public class OI {
 		
 		boardBtnOne.whileHeld(new ElevatorFindF());
 		boardBtnTwo.whileHeld(new ElevatorSliding());
-		boardBtnThree.whileHeld(new ElevatorTarget());
-		boardBtnFour.whenPressed(new ElevatorSetPIDF());
+//		boardBtnThree.whileHeld(new ElevatorTarget());
+//		boardBtnFour.whenPressed(new ElevatorSetPIDF());
+		boardBtnFour.whileHeld(new OuttakeCommand());
 		boardBtnFive.whenPressed(new ElevatorZero());
 		boardBtnSix.whenPressed(new IntakeCommandGroup());
-		boardBtnSeven.whileHeld(new OuttakeCommand());
+//		boardBtnSeven.whileHeld(new OuttakeCommand());
 		boardBtnNine.whenPressed(new ElevatorExtendPistons());
 		boardBtnTen.whenPressed(new ElevatorRetractPistons());
 	}
