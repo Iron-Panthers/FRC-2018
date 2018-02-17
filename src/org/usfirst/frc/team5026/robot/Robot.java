@@ -2,7 +2,6 @@
 package org.usfirst.frc.team5026.robot;
 
 import org.usfirst.frc.team5026.robot.subsystems.ConveyorBelt;
-import org.usfirst.frc.team5026.robot.subsystems.IntakeSubsystem;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -22,7 +21,6 @@ public class Robot extends IterativeRobot {
 
 	public static OI oi;
 	public static Hardware hardware;
-	public static IntakeSubsystem intake;
 	public static ConveyorBelt conveyor;
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -33,7 +31,6 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		hardware = new Hardware();
-		intake = new IntakeSubsystem();
 		oi = new OI();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		oi.mapButtons();
@@ -107,10 +104,6 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		//Smart Dashbaord Stuff
-		SmartDashboard.putNumber("Intake Speed", Robot.intake.motor.getMotorOutputPercent());
-		SmartDashboard.putNumber("Intake Power", Robot.intake.motor.getOutputCurrent()*Robot.intake.motor.getMotorOutputVoltage());
-		SmartDashboard.putNumber("Intake Voltage", Robot.intake.motor.getMotorOutputVoltage());
-		SmartDashboard.putNumber("Intake Current", Robot.intake.motor.getOutputCurrent());
 		Scheduler.getInstance().run();
 		try {
 			Thread.sleep(20);

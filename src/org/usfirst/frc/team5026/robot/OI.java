@@ -3,8 +3,6 @@ package org.usfirst.frc.team5026.robot;
 
 import org.usfirst.frc.team5026.robot.commands.ConveyorBeltBackward;
 import org.usfirst.frc.team5026.robot.commands.ConveyorBeltForward;
-import org.usfirst.frc.team5026.robot.commands.IntakeCommandGroup;
-import org.usfirst.frc.team5026.robot.commands.OuttakeCommand;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -29,8 +27,6 @@ public class OI {
 		stickBtnSix = new JoystickButton(driveStick,6);
 	}
 	public void mapButtons() {
-		stickBtnOne.whileHeld(new IntakeCommandGroup());
-		stickBtnTwo.whileHeld(new OuttakeCommand());
 		stickBtnFive.whileHeld(new ConveyorBeltForward());
 		stickBtnSix.whileHeld(new ConveyorBeltBackward());
 	}
