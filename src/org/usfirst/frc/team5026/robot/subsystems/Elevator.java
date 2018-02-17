@@ -37,8 +37,11 @@ public class Elevator extends Subsystem {
 	public void raiseToSwitch() {
 		motors.driveWithTarget(Constants.ELEVATOR_SWITCH_TARGET);
 	}
-	public void resetElevator() {
-		motors.driveWithTarget(Constants.ELEVATOR_GROUND_TARGET);
+	public void raiseToShortCube() {
+		motors.driveWithTarget(Constants.ELEVATOR_SHORT_CUBE_TARGET);
+	}
+	public void raiseToTallCube() {
+		motors.driveWithTarget(Constants.ELEVATOR_TALL_CUBE_TARGET);
 	}
 	public void stop() {
 		motors.stop();
@@ -59,7 +62,7 @@ public class Elevator extends Subsystem {
 	
 	public void encoderReset(ElevatorDirection elevatorDirection) {
 		if(elevatorDirection == ElevatorDirection.BACKWARDS) {
-			setEncoderPos(Constants.ELEVATOR_GROUND_TARGET);
+			setEncoderPos(0);
 		} else if(elevatorDirection == ElevatorDirection.FORWARDS) {
 			setEncoderPos(Constants.ELEVATOR_TOP_TARGET);
 		}
@@ -102,7 +105,7 @@ public class Elevator extends Subsystem {
 			//At the top, set the limit
 			enableReverseCushion();
 		}
-		else if (position < Constants.ELEVATOR_GROUND_TARGET+Constants.ELEVATOR_TARGET_TOLERANCE) {
+		else if (position < 0+Constants.ELEVATOR_TARGET_TOLERANCE) {
 			enableForwardCushion();
 		}
 		else {

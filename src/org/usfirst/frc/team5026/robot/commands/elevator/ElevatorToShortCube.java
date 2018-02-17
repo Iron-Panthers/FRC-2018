@@ -9,9 +9,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class ElevatorToGround extends Command {
+public class ElevatorToShortCube extends Command {
 	public int timeWithinTolerance;
-    public ElevatorToGround() {
+    public ElevatorToShortCube() {
     	requires(Robot.elevator);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -24,14 +24,15 @@ public class ElevatorToGround extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.elevator.checkPosition();
-		Robot.elevator.resetElevator();
+//    	Robot.elevator.checkPosition();
+    	Robot.elevator.raiseToTarget(Constants.ELEVATOR_SHORT_CUBE_TARGET);
+		Robot.elevator.raiseToShortCube();
     	//Lowers carriage to the ground
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (Math.abs(Constants.ELEVATOR_GROUND_TARGET-Robot.elevator.motors.motor1.getSelectedSensorPosition(0))<Constants.ELEVATOR_TARGET_TOLERANCE){
+    	if (Math.abs(Constants.ELEVATOR_SHORT_CUBE_TARGET-Robot.elevator.motors.motor1.getSelectedSensorPosition(0))<Constants.ELEVATOR_TARGET_TOLERANCE){
     		timeWithinTolerance++;
     	}
     	return timeWithinTolerance>Constants.ELEVATOR_TOLERANCE_TIME;

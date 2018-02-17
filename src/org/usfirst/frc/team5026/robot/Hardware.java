@@ -39,7 +39,7 @@ public class Hardware {
 		elevatorMotor.setInverted(Constants.IS_ELEVATOR_INVERTED);
 		elevatorSlaveMotor.setInverted(Constants.IS_ELEVATOR_INVERTED);
 		elevatorMotor.setSensorPhase(!Constants.IS_ELEVATOR_SENSOR_INVERTED);
-		elevatorSolenoid = new DoubleSolenoid(RobotMap.ELEVATOR_SOLENOID_PORT_1, RobotMap.ELEVATOR_SOLENOID_PORT_2);
+		elevatorSolenoid = new DoubleSolenoid(0, RobotMap.ELEVATOR_SOLENOID_PORT_1, RobotMap.ELEVATOR_SOLENOID_PORT_2);
 		intakeM = new TalonSRX(RobotMap.INTAKE_MOTOR);
 		rightM1 = new TalonSRX(RobotMap.DRIVE_RIGHT_MOTOR_1);
 		rightM2 = new TalonSRX(RobotMap.DRIVE_RIGHT_MOTOR_2);
@@ -53,7 +53,7 @@ public class Hardware {
 		left.setInverted(Constants.IS_LEFT_INVERTED);
 		intakeM.setInverted(Constants.IS_INTAKE_INVERTED);
 		bannerSensor = new DigitalInput(9);
-		gearShift = new DoubleSolenoid(1, RobotMap.SHIFT_FORWARD, RobotMap.SHIFT_REVERSE);
+		gearShift = new DoubleSolenoid(0, RobotMap.SHIFT_FORWARD, RobotMap.SHIFT_REVERSE);
 		pdp = new PowerDistributionPanel();
 	}
 }
