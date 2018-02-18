@@ -4,10 +4,12 @@ import org.usfirst.frc.team5026.robot.util.Constants;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -15,15 +17,21 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class DriveMotorGroup implements SpeedController {
 	public TalonSRX motor1; 
+	public TalonSRX motor2;
+	public TalonSRX motor3;
 	public TalonSRX[] motors;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	public DriveMotorGroup(TalonSRX motor1, TalonSRX motor2, TalonSRX motor3) {
-//		this.motor1 = motor1;
-//		this.motor2 = motor2;
-//		this.motor3 = motor3;
-//		this.motor2.follow(motor1);
-//		this.motor3.follow(motor1);
+		this.motor1 = motor1;
+		this.motor2 = motor2;
+		this.motor3 = motor3;
+		motors = new TalonSRX[3];
+		motors[0] = this.motor1;
+		motors[1] = this.motor2;
+		motors[2] = this.motor3;
+		this.motor2.follow(motor1);
+		this.motor3.follow(motor1);
 		setUp(motor1, motor2, motor3);
 	}
 	public void setUp(TalonSRX encoderMotor, TalonSRX... motors) {
@@ -54,9 +62,14 @@ public class DriveMotorGroup implements SpeedController {
 		motor1 = encoderMotor;
 		this.motors = motors;
 	}
+	public void setupBrakeMode(NeutralMode mode) {
+		motor1.setNeutralMode(mode);
+		for (TalonSRX s : motors) {
+			s.setNeutralMode(mode);
+		}
+	}
 	public void driveWithPower(double speed) {  // -1 to 1
 		motor1.set(ControlMode.PercentOutput, speed);
-		SmartDashboard.putNumber("Motor 1", motor1.getMotorOutputPercent());
 		for (TalonSRX t : motors) {
 			SmartDashboard.putNumber("Motor "+t.getDeviceID(), t.getMotorOutputPercent());
 		}

@@ -1,13 +1,18 @@
-package org.usfirst.frc.team5026.robot.commands.autonomous;
+package org.usfirst.frc.team5026.robot.commands;
+
+import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToSwitch;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class CrossAutoLine extends CommandGroup {
+public class IntakeCommandGroup extends CommandGroup {
 
-    public CrossAutoLine() {
+    public IntakeCommandGroup() {
+    	addSequential(new IntakeCommand());
+    	addParallel(new ElevatorToSwitch());
+//    	addParallel(new HoldBlock());
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

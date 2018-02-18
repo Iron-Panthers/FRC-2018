@@ -1,18 +1,46 @@
 package org.usfirst.frc.team5026.robot.util;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 public class Constants {
 	public static final double X_AXIS_MODIFIER = .8;
-	public static final double DEADZONE_SIZE = .08;
-	public static final double SPEED = .5;
-	public static final int RIGHT_PORT = 0;
-	public static final int LEFT_PORT = 1;
-	public static final int FULLSPEED = 1;
+	public static final double XDEADZONE_SIZE = SmartDashboard.getNumber("X Deadzone Size", 0.2);
+	public static final double YDEADZONE_SIZE = SmartDashboard.getNumber("Y Deadzone Size", 0.2);
+	public static final double CIRCLE_DEADZONE = SmartDashboard.getNumber("Circle Deadzone Size", 0.2);
+	public static final double SPEED = 1.0;
+	public static final double DEADZONE_SIZE = .1;
+	public static final double QUARTER_SPEED = .4;
 	//Intake and Outtake
+	public static final double INTAKE_VOLTAGE_GRAB = 10./12; //Converted to voltage for motor
+	public static final double INTAKE_VOLTAGE_HOLD = 6./12; //"" 4 good enough, 6 secure but too much for burning
+	public static final double INTAKE_CURRENT_SAMPLE = 4; //number of samples required to determine if cube is possessed
+	public static final int INTAKE_SPEED_UP_TIME = 2;
 	public static final boolean IS_INTAKE_INVERTED = true;
 	public static final boolean IS_RIGHT_INVERTED = false;
-	public static final boolean IS_LEFT_INVERTED = true;
-	public static final double INTAKE_POWER = 1;
-	public static final double OUTTAKE_POWER = 1;
+	public static final boolean IS_LEFT_INVERTED = false;
+	public static final double OUTTAKE_POWER = -.4;
+	public static final double BLOCK_GRAB_THRESHOLD = 15; //min amount of amps intake has with block
+	
+	//Elevator
+	public static final boolean IS_ELEVATOR_INVERTED = false;
+	public static final boolean IS_ELEVATOR_SENSOR_INVERTED = false;
+	public static final double ELEVATOR_P = 0.8;
+	public static final double ELEVATOR_I = 0.002;
+	public static final double ELEVATOR_D = 0;
+	public static final double ELEVATOR_F = 0.28;
+	public static final int ELEVATOR_TALL_CUBE_TARGET = 3500;	
+	public static final int ELEVATOR_SHORT_CUBE_TARGET = 2000; //Needs to be tested (This is supposed to lift cube enough so it does not drag on ground)
+	public static final int ELEVATOR_SWITCH_TARGET = 38000; //Tested by Adam and Driveteam
+	public static final int ELEVATOR_SCALE_TARGET = 85000; //See above
+	public static final int ELEVATOR_TOP_TARGET = 89000; //Tested by James. TODO Needs perfecting!!!
+	public static final int ELEVATOR_VELOCITY = 9000;
+	public static final int ELEVATOR_ACCELERATION = 20000;
+	public static final double ELEVATOR_TARGET_TOLERANCE = 100; //In ticks
+	public static final double ELEVATOR_TOLERANCE_TIME = 5; //
+	public static final double ELEVATOR_HIT_TOLERANCE = 5; //amps, needs changing
+	public static final double ELEVATOR_VELOCITY_THRESHOLD = 30; //Velocity Threshold (Not tested, arbitrary)
+	public static final int ELEVATOR_CURRENT_COUNT_THRESHOLD = 5; //Amount of count when the current is high (For Elevator)
+	public static final double ELEVATOR_CURRENT_THRESHOLD = 30; //Untested, Current when we know the elevator is stalling
 	
 	public static final double ROBOT_WIDTH = 25.75; // unit is inches
 	public static final double ROBOT_LENGTH = 37.25; // unit is inches
@@ -44,6 +72,7 @@ public class Constants {
 	}
 	public static final int DRIVE_VELOCITY = MOTION_MAGIC_VELOCITY(DRIVE_WANTED_INCHES_PER_SECOND); // Units of encoder ticks per 100 ms 
 	public static final int DRIVE_ACCELERATION = MOTION_MAGIC_ACCELERATION(DRIVE_WANTED_ACCELERATION_INCHES_PER_SECOND_SQUARED); // Units of encoder ticks per 100 ms per second
-	
-	public static final double DELTA_TIME = 0.02;
+	//Camera stuff
+	public static int CAMERA_PIXEL_HEIGHT = 1920; 
+	public static int CAMERA_PIXEL_WIDTH = 1080; 
 }

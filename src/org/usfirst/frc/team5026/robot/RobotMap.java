@@ -1,3 +1,10 @@
+/*----------------------------------------------------------------------------*/
+/* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
+/* Open Source Software - may be modified and shared by FRC teams. The code   */
+/* must be accompanied by the FIRST BSD license file in the root directory of */
+/* the project.                                                               */
+/*----------------------------------------------------------------------------*/
+
 package org.usfirst.frc.team5026.robot;
 
 /**
@@ -15,15 +22,17 @@ public class RobotMap {
 	public static final int DRIVE_RIGHT_MOTOR_2 = 5;
 	public static final int DRIVE_RIGHT_MOTOR_3 = 6;
 	
-//	public static final int INTAKE_MOTOR = 3; //Change back to drive
-//	public static final int INTAKE_PDP_PORT = 2; //To Be Changed
-	public static final int INTAKE_MOTOR = 3; //Change back to drive
-	public static final int INTAKE_PDP_PORT = 2; //To Be Changed
-	
-	public static final int RIGHTM1_PDP_PORT = 13;
-	public static final int RIGHTM2_PDP_PORT = 14;
-	public static final int RIGHTM3_PDP_PORT = 15;
-	public static final int LEFTM1_PDP_PORT = 3;
-	public static final int LEFTM2_PDP_PORT = 2;
-	public static final int LEFTM3_PDP_PORT = 0;
+	public static final int ELEVATOR_JOYSTICK = 1;
+	public static final int DRIVE_LEFT_MOTOR = 1; //Change back to drive
+	public static final int DRIVE_RIGHT_MOTOR = 0;
+	public static final int INTAKE_MOTOR = 9; //Change back to drive
+	public static final int INTAKE_PDP_PORT = 1; //To Be Changed
+	public static final int ELEVATOR_SOLENOID_PORT_1 = 2;
+	public static final int ELEVATOR_SOLENOID_PORT_2 = 3;
+	public static final int ELEVATOR_MASTER = 8;
+	public static final int ELEVATOR_SLAVE = 7;
+	public static final int SHIFT_FORWARD = 0;
+	public static final int SHIFT_REVERSE = 1;
+	//Camera
+	public static int CAMERA_PORT = 0; 
 }
