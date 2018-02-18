@@ -4,6 +4,7 @@ import org.usfirst.frc.team5026.robot.util.Constants;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
@@ -60,6 +61,12 @@ public class DriveMotorGroup implements SpeedController {
 		}
 		motor1 = encoderMotor;
 		this.motors = motors;
+	}
+	public void setupBrakeMode(boolean val) {
+		motor1.setNeutralMode(NeutralMode.Brake);
+		for (TalonSRX s : motors) {
+			s.setNeutralMode(NeutralMode.Brake);
+		}
 	}
 	public void driveWithPower(double speed) {  // -1 to 1
 		motor1.set(ControlMode.PercentOutput, speed);

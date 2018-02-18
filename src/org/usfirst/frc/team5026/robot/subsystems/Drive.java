@@ -41,6 +41,10 @@ public class Drive extends Subsystem {
 		dDrive.setDeadband(Constants.JOYSTICK_DEADZONE);
 		isReversed = false;
 	}
+	public void setupBrakeMode() {
+		left.setBrakeMode(true);
+		right.setBrakeMode(true);
+	}
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	public void setLeftSide(double speed){

@@ -48,7 +48,7 @@ public class Elevator extends Subsystem {
 		lastVelocity = 0;
 	}
 	public void setEncoderPos(int encoderPos) {
-    	Robot.elevator.motors.motor1.setSelectedSensorPosition(encoderPos, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
+    	motors.motor1.setSelectedSensorPosition(encoderPos, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
 	}
 	public ElevatorDirection getElevatorDirection() {
 		ElevatorDirection status = ElevatorDirection.UNKNOWN;
