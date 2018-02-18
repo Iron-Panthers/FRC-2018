@@ -111,6 +111,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Intake Power", Robot.intake.motor.getOutputCurrent()*Robot.intake.motor.getMotorOutputVoltage());
 		SmartDashboard.putNumber("Intake Voltage", Robot.intake.motor.getMotorOutputVoltage());
 		SmartDashboard.putNumber("Intake Current", Robot.intake.motor.getOutputCurrent());
+		SmartDashboard.putBoolean("banner", hardware.banner.get());
 		Scheduler.getInstance().run();
 		try {
 			Thread.sleep(20);
