@@ -15,15 +15,12 @@ public class ConveyorBelt extends Subsystem {
 	public ConveyorBelt() {
 		motor = Robot.hardware.conveyor;
 	}
-	
 	public void forward(double speed) {
 		motor.set(ControlMode.PercentOutput, speed);
 	}
-
 	public void backward(double speed) {
 		motor.set(ControlMode.PercentOutput, -speed);
 	}
-	
 	public void stop() {
 		motor.set(ControlMode.PercentOutput, 0);
 	}
