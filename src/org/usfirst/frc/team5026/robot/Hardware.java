@@ -16,6 +16,6 @@ public class Hardware {
 		conveyor = new TalonSRX(RobotMap.CONVEYOR_BELT_MOTOR);
 		intakeM = new TalonSRX(RobotMap.INTAKE_MOTOR);
 		pdp = new PowerDistributionPanel();
-		banner = new DigitalInput(9);
+		banner = new DigitalInput(RobotMap.BANNER_PORT);
 	}
 }
