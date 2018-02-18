@@ -62,10 +62,10 @@ public class DriveMotorGroup implements SpeedController {
 		motor1 = encoderMotor;
 		this.motors = motors;
 	}
-	public void setupBrakeMode(boolean val) {
-		motor1.setNeutralMode(NeutralMode.Brake);
+	public void setupBrakeMode(NeutralMode mode) {
+		motor1.setNeutralMode(mode);
 		for (TalonSRX s : motors) {
-			s.setNeutralMode(NeutralMode.Brake);
+			s.setNeutralMode(mode);
 		}
 	}
 	public void driveWithPower(double speed) {  // -1 to 1

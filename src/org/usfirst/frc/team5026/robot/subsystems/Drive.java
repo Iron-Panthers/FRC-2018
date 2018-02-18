@@ -2,6 +2,8 @@ package org.usfirst.frc.team5026.robot.subsystems;
 import org.usfirst.frc.team5026.robot.commands.JoystickDrive;
 import org.usfirst.frc.team5026.robot.util.Constants;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -42,8 +44,8 @@ public class Drive extends Subsystem {
 		isReversed = false;
 	}
 	public void setupBrakeMode() {
-		left.setBrakeMode(true);
-		right.setBrakeMode(true);
+		left.setupBrakeMode(NeutralMode.Brake);
+		right.setupBrakeMode(NeutralMode.Brake);
 	}
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
