@@ -13,6 +13,8 @@ import org.usfirst.frc.team5026.robot.subsystems.Elevator;
 import org.usfirst.frc.team5026.robot.subsystems.IntakeSubsystem;
 import org.usfirst.frc.team5026.robot.util.Constants;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoSink;
@@ -140,7 +142,7 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void teleopInit() {
-		Robot.elevator.motors.motor1.setSelectedSensorPosition(Robot.elevator.motors.motor1.getSelectedSensorPosition(Constants.kPIDLoopIdx), Constants.kPIDLoopIdx, Constants.kTimeoutMs);
+		Robot.elevator.motors.motor1.set(ControlMode.MotionMagic, Robot.elevator.motors.motor1.getSelectedSensorPosition(Constants.kPIDLoopIdx));
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
