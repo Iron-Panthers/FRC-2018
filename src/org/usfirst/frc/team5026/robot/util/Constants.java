@@ -29,6 +29,7 @@ public class Constants {
 	
 	//Portal to Switch
 	public static final double CONVEYOR_SPEED = 0.8;
+	public static final boolean IS_COVEYOR_INVERTED = true;
 	
 	public static final double JOYSTICK_DEADZONE = 0.1;
 	//Camera stuff
