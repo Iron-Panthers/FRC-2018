@@ -32,8 +32,6 @@ public class OI {
 		stickBtnSeven = new JoystickButton(driveStick, 7);
 	}
 	public void mapButtons() {
-		stickBtnOne.whileHeld(new IntakeCommandGroup());
-		stickBtnTwo.whileHeld(new OuttakeCommand());
 		stickBtnFive.whileHeld(new ConveyorBeltForward());
 		stickBtnSix.whileHeld(new ConveyorBeltBackward());
 		stickBtnSeven.whenPressed(new ConveyorBeltForwardToBanner());

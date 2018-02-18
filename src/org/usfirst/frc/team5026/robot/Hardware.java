@@ -15,7 +15,6 @@ public class Hardware {
 	public Hardware(){
 		conveyor = new TalonSRX(RobotMap.CONVEYOR_BELT_MOTOR);
 		intakeM = new TalonSRX(RobotMap.INTAKE_MOTOR);
-		intakeM.setInverted(Constants.IS_INTAKE_INVERTED);
 		pdp = new PowerDistributionPanel();
 		banner = new DigitalInput(9);
 	}
