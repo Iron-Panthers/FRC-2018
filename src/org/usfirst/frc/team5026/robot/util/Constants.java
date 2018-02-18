@@ -16,7 +16,7 @@ public class Constants {
 	
 	public static final double ROBOT_WIDTH = 22; // unit is inches
 	public static final double ROBOT_LENGTH = 32; // unit is inches
-	public static final double PATHING_F = 0.3069; // TEST FOR PATH FOLLOWING
+	public static final double PATHING_F = 0.2069; // TEST FOR PATH FOLLOWING
 	public static final double DRIVE_P = 0;
 	public static final double DRIVE_I = 0;
 	public static final double DRIVE_D = 0;
@@ -30,7 +30,7 @@ public class Constants {
 	public static final int kPIDLoopIdx = 0; //Do not change
 	public static final double DRIVE_SPEED = 1;
 	public static final double AUTO_DISTANCE = 30; //Inches
-	public static final double WHEEL_RADIUS = 4; // inch
+	public static final double WHEEL_RADIUS = 3; // inch
 	public static final double WHEEL_CIRCUMFERENCE = WHEEL_RADIUS*2*Math.PI;
 	public static final double TICKS_TO_INCHES = 4096 / WHEEL_CIRCUMFERENCE;
 	

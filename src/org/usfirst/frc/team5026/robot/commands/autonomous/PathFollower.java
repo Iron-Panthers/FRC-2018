@@ -31,6 +31,7 @@ public class PathFollower extends Command {
     	index = 0;
     	startTime = System.currentTimeMillis();
     	F = SmartDashboard.getNumber("Path Planning F", Constants.PATHING_F);
+    	SmartDashboard.putNumber("Path total index count", path.smoothPath.length);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -38,8 +39,13 @@ public class PathFollower extends Command {
     	if (lastTime == 0) {
     		lastTime = System.currentTimeMillis();
     	}
-    	double lspeed = F * (path.smoothLeftVelocity[index][1] * 1.0 / Constants.TICKS_TO_INCHES) * 10;
-    	double rspeed = F * (path.smoothRightVelocity[index][1] * 1.0 / Constants.TICKS_TO_INCHES) * 10;
+    	index = (int)((System.currentTimeMillis()-startTime) / 1000.0 / Constants.DELTA_TIME);
+    	if (index >= path.smoothCenterVelocity.length) {
+    		index = path.smoothCenterVelocity.length-1;
+    	}
+    	SmartDashboard.putNumber("Path Index", index);
+    	double lspeed = F * (path.smoothLeftVelocity[index][1] * 1.0 / Constants.TICKS_TO_INCHES) / 10;
+    	double rspeed = F * (path.smoothRightVelocity[index][1] * 1.0 / Constants.TICKS_TO_INCHES) / 10;
     	Robot.drive.setLeftSide(lspeed);
     	Robot.drive.setRightSide(rspeed);
     	SmartDashboard.putNumber("Left path speed", path.smoothLeftVelocity[index][1]);
@@ -52,11 +58,6 @@ public class PathFollower extends Command {
     	SmartDashboard.putNumber("Right path x", path.rightPath[index][0]);
     	SmartDashboard.putNumber("Right path y", path.rightPath[index][1]);
     	SmartDashboard.putNumber("Delta Time (ms)", System.currentTimeMillis() - lastTime);
-    	index = (int)((System.currentTimeMillis()-startTime) / 1000.0 / Constants.DELTA_TIME);
-    	if (index >= path.smoothCenterVelocity.length) {
-    		index = path.smoothCenterVelocity.length-1;
-    	}
-    	SmartDashboard.putNumber("Path Index", index);
     }
 
     // Make this return true when this Command no longer needs to run execute()
