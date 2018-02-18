@@ -24,7 +24,7 @@ public class ElevatorToScale extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.elevator.checkPosition();
+//    	Robot.elevator.checkPosition();
 		Robot.elevator.raiseToTarget(Constants.ELEVATOR_SCALE_TARGET);
     }
     // Make this return true when this Command no longer needs to run execute()
