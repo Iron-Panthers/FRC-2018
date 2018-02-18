@@ -31,6 +31,7 @@ public class Constants {
 	public static final int TURN = 90; // Degrees
 	
 	//Auto Code
+	public static final int CROSS_AUTO_LINE_DISTANCE = 120; //distance from alliance station wall to auto line in inches
 	public static final int kTimeoutMs = 0; //Do not change
 	public static final int kSlotIdx = 0; //Do not change
 	public static final int kPIDLoopIdx = 0; //Do not change
