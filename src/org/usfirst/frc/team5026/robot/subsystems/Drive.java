@@ -44,8 +44,12 @@ public class Drive extends Subsystem {
 		isReversed = false;
 	}
 	public void setupBrakeMode() {
-		left.setupBrakeMode(NeutralMode.Brake);
-		right.setupBrakeMode(NeutralMode.Brake);
+		left.motor1.setNeutralMode(NeutralMode.Brake);
+		left.motor2.setNeutralMode(NeutralMode.Brake);
+		left.motor3.setNeutralMode(NeutralMode.Brake);
+		right.motor1.setNeutralMode(NeutralMode.Brake);
+		right.motor2.setNeutralMode(NeutralMode.Brake);
+		right.motor3.setNeutralMode(NeutralMode.Brake);
 	}
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
