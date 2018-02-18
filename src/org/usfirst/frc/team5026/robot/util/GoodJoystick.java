@@ -39,7 +39,7 @@ public class GoodJoystick {
 	}
 	public double findY() {
 		double y;
-		y = -driveStick.getY();
+		y = driveStick.getY();
 		if(Robot.drive.isReversed) {
 			y = -y;
 		}
