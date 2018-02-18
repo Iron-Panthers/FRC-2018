@@ -4,10 +4,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Constants {
 	public static final double X_AXIS_MODIFIER = .8;
-	public static final double XDEADZONE_SIZE = SmartDashboard.getNumber("X Deadzone Size", 0.2);
-	public static final double YDEADZONE_SIZE = SmartDashboard.getNumber("Y Deadzone Size", 0.2);
-	public static final double CIRCLE_DEADZONE = SmartDashboard.getNumber("Circle Deadzone Size", 0.2);
-	public static final double SPEED = .5;
+	public static final double XDEADZONE_SIZE = SmartDashboard.getNumber("X Deadzone Size", 0.15);
+	public static final double YDEADZONE_SIZE = SmartDashboard.getNumber("Y Deadzone Size", 0.15);
+	public static final double CIRCLE_DEADZONE = SmartDashboard.getNumber("Circle Deadzone Size", 0.1);
+	public static final double SPEED = 1;
 	public static final int RIGHT_PORT = 0;
 	public static final int LEFT_PORT = 1;
 	public static final int FULLSPEED = 1;
