@@ -2,6 +2,7 @@
 
 import org.usfirst.frc.team5026.robot.util.Constants;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -17,6 +18,7 @@ public class Hardware {
 	public Hardware(){
 		conveyor = new TalonSRX(RobotMap.CONVEYOR_BELT_MOTOR);
 		conveyor.setInverted(Constants.IS_COVEYOR_INVERTED);
+		conveyor.setNeutralMode(NeutralMode.Brake);
 		intakeM = new TalonSRX(RobotMap.INTAKE_MOTOR);
 		pdp = new PowerDistributionPanel();
 		banner = new DigitalInput(RobotMap.BANNER_PORT);
