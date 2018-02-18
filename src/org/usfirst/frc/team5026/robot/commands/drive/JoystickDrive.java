@@ -41,14 +41,14 @@ public class JoystickDrive extends Command {
 //		}
 //    	double right;
 //    	double left;
-    	Robot.drive.useArcadeDrive(-Robot.oi.joystick.driveStick.getX()*Constants.X_AXIS_MODIFIER, -Robot.oi.joystick.driveStick.getY());
+    	Robot.drive.useArcadeDrive(-Robot.oi.driveStick.driveStick.getX()*Constants.X_AXIS_MODIFIER, -Robot.oi.driveStick.driveStick.getY());
 
-    	SmartDashboard.putNumber("RightM1 Current", Robot.hardware.pdp.getCurrent(RobotMap.RIGHTM1_PDP_PORT));
-    	SmartDashboard.putNumber("RightM2 Current", Robot.hardware.pdp.getCurrent(RobotMap.RIGHTM2_PDP_PORT));
-    	SmartDashboard.putNumber("RightM3 Current", Robot.hardware.pdp.getCurrent(RobotMap.RIGHTM3_PDP_PORT));
-    	SmartDashboard.putNumber("LeftM1 Current", Robot.hardware.pdp.getCurrent(RobotMap.LEFTM1_PDP_PORT));
-    	SmartDashboard.putNumber("LeftM2 Current", Robot.hardware.pdp.getCurrent(RobotMap.LEFTM2_PDP_PORT));
-    	SmartDashboard.putNumber("LeftM3 Current", Robot.hardware.pdp.getCurrent(RobotMap.LEFTM3_PDP_PORT));
+//    	SmartDashboard.putNumber("RightM1 Current", Robot.hardware.pdp.getCurrent(RobotMap.RIGHTM1_PDP_PORT));
+//    	SmartDashboard.putNumber("RightM2 Current", Robot.hardware.pdp.getCurrent(RobotMap.RIGHTM2_PDP_PORT));
+//    	SmartDashboard.putNumber("RightM3 Current", Robot.hardware.pdp.getCurrent(RobotMap.RIGHTM3_PDP_PORT));
+//    	SmartDashboard.putNumber("LeftM1 Current", Robot.hardware.pdp.getCurrent(RobotMap.LEFTM1_PDP_PORT));
+//    	SmartDashboard.putNumber("LeftM2 Current", Robot.hardware.pdp.getCurrent(RobotMap.LEFTM2_PDP_PORT));
+//    	SmartDashboard.putNumber("LeftM3 Current", Robot.hardware.pdp.getCurrent(RobotMap.LEFTM3_PDP_PORT));
     	
     	SmartDashboard.putNumber("RightM1 Voltage:", Robot.hardware.rightM1.getMotorOutputVoltage());
     	SmartDashboard.putNumber("RightM2 Voltage:", Robot.hardware.rightM2.getMotorOutputVoltage());
