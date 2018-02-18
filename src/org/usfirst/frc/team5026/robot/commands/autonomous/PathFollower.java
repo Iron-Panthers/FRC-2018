@@ -38,16 +38,18 @@ public class PathFollower extends Command {
     protected void execute() {
     	if (lastTime == 0) {
     		lastTime = System.currentTimeMillis();
+    		startTime = lastTime;
     	}
+    	
     	index = (int)((System.currentTimeMillis()-startTime) / 1000.0 / Constants.DELTA_TIME);
     	if (index >= path.smoothCenterVelocity.length) {
     		index = path.smoothCenterVelocity.length-1;
     	}
     	SmartDashboard.putNumber("Path Index", index);
-    	double lspeed = F * (path.smoothLeftVelocity[index][1] * 1.0 / Constants.TICKS_TO_INCHES) / 10;
-    	double rspeed = F * (path.smoothRightVelocity[index][1] * 1.0 / Constants.TICKS_TO_INCHES) / 10;
+    	double lspeed = F * (path.smoothLeftVelocity[index][1]);
+    	double rspeed = F * (path.smoothRightVelocity[index][1]);
     	Robot.drive.setLeftSide(lspeed);
-    	Robot.drive.setRightSide(rspeed);
+    	Robot.drive.setRightSide(lspeed);
     	SmartDashboard.putNumber("Left path speed", path.smoothLeftVelocity[index][1]);
     	SmartDashboard.putNumber("Left motor speed", lspeed);
     	SmartDashboard.putNumber("Left path x", path.leftPath[index][0]);

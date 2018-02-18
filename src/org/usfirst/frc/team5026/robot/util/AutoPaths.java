@@ -3,7 +3,16 @@ package org.usfirst.frc.team5026.robot.util;
 import paths.FastPathPlanner;
 
 public class AutoPaths {
-	private static double width = 648, height = 324.5, robotWidth = Constants.ROBOT_WIDTH, robotLength = Constants.ROBOT_LENGTH, switchLength = 38.719, distanceToSwitchFromWall = 85.25, distanceToSwitchFromAlliance = 140, delta = 10, widthOfSwitch = 56;
+	private static double width = 648;
+	private static double height = 324.5;
+	private static double robotWidth = Constants.ROBOT_WIDTH;
+	private static double robotLength = Constants.ROBOT_LENGTH;
+	private static double switchLength = 38.719;
+	private static double distanceToSwitchFromWall = 85.25;
+	private static double distanceToSwitchFromAlliance = 140;
+	private static double delta = 10;
+	private static double widthOfSwitch = 56;
+	
 	private static double[][] CENTER_LEFT_PATH = new double[][]{
 		{robotLength/2, height / 2},
 		{(distanceToSwitchFromAlliance-robotLength)/2-delta, height/2},
