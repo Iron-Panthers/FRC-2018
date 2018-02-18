@@ -41,6 +41,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		hardware = new Hardware();
+		conveyor = new ConveyorBelt();
 		oi = new OI();
 		CameraServer camera = CameraServer.getInstance();
 		cam1 = camera.startAutomaticCapture("cam0", RobotMap.CAMERA_PORT);
@@ -116,10 +117,10 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		//Smart Dashbaord Stuff
-		SmartDashboard.putNumber("Intake Speed", Robot.intake.motor.getMotorOutputPercent());
-		SmartDashboard.putNumber("Intake Power", Robot.intake.motor.getOutputCurrent()*Robot.intake.motor.getMotorOutputVoltage());
-		SmartDashboard.putNumber("Intake Voltage", Robot.intake.motor.getMotorOutputVoltage());
-		SmartDashboard.putNumber("Intake Current", Robot.intake.motor.getOutputCurrent());
+//		SmartDashboard.putNumber("Intake Speed", Robot.intake.motor.getMotorOutputPercent());
+//		SmartDashboard.putNumber("Intake Power", Robot.intake.motor.getOutputCurrent()*Robot.intake.motor.getMotorOutputVoltage());
+//		SmartDashboard.putNumber("Intake Voltage", Robot.intake.motor.getMotorOutputVoltage());
+//		SmartDashboard.putNumber("Intake Current", Robot.intake.motor.getOutputCurrent());
 		SmartDashboard.putBoolean("banner", hardware.banner.get());
 		Scheduler.getInstance().run();
 		try {
