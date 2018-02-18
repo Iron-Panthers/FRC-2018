@@ -75,11 +75,11 @@ public class OI {
 		boardBtnOne.whileHeld(new ElevatorSliding());
 		boardBtnThree.whileHeld(new OuttakeCommand());
 		boardBtnSeven.whenPressed(new ElevatorToShortCube());
-		boardBtnEight.whenPressed(new ElevatorToSwitch());
-		boardBtnNine.whenPressed(new ElevatorToScale());
+		boardBtnNine.whenPressed(new ElevatorToSwitch());
+		boardBtnTen.whenPressed(new ElevatorToScale());
 //		boardBtnThree.whileHeld(new ElevatorTarget());
 //		boardBtnFour.whenPressed(new ElevatorSetPIDF());
-		boardBtnTen.whenPressed(new ElevatorToTallCube());
+		boardBtnEight.whenPressed(new ElevatorToTallCube());
 		boardBtnTwo.whenPressed(new IntakeCommandGroup());
 		boardBtnSix.whenPressed(new ElevatorZero());
 //		boardBtnSeven.whileHeld(new OuttakeCommand());
