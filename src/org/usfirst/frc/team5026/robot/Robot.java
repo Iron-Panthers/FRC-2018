@@ -78,8 +78,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Elevator Target", 1000); // TODO to remove later
 		oi.mapButtons();
 		autoChooser.addDefault("My Auto", new DriveStraight());
-		autoChooser.addObject("Left Path Test (Feed forward only)", new PathFollower(AutoPaths.getLeftPath()));
-		autoChooser.addObject("Right Path Test (Feed forward only)", new PathFollower(AutoPaths.getRightPath()));
+		autoChooser.addObject("Center to Left Path", new PathFollower(AutoPaths.getLeftPath()));
+		autoChooser.addObject("Center to Right Path", new PathFollower(AutoPaths.getRightPath()));
 		autoChooser.addObject("Find Time", new FindTimeCommand());
 		SmartDashboard.putNumber("target", 100);
 		SmartDashboard.putNumber("max count", 50);
