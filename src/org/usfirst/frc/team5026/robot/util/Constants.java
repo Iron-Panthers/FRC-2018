@@ -16,8 +16,6 @@ public class Constants {
 	public static final double INTAKE_CURRENT_SAMPLE = 4; //number of samples required to determine if cube is possessed
 	public static final int INTAKE_SPEED_UP_TIME = 2;
 	public static final boolean IS_INTAKE_INVERTED = true;
-	public static final boolean IS_RIGHT_INVERTED = false;
-	public static final boolean IS_LEFT_INVERTED = false;
 	public static final double OUTTAKE_POWER = -.4;
 	public static final double BLOCK_GRAB_THRESHOLD = 15; //min amount of amps intake has with block
 	
@@ -44,15 +42,21 @@ public class Constants {
 	
 	public static final double ROBOT_WIDTH = 25.75; // unit is inches
 	public static final double ROBOT_LENGTH = 37.25; // unit is inches
-	public static final double PATHING_F = 0.011069; // TEST FOR PATH FOLLOWING
 	public static final double DRIVE_P = 0;
 	public static final double DRIVE_I = 0;
 	public static final double DRIVE_D = 0;
 	public static final double DRIVE_F = 0.3069; // Calculated as per the Talon SRX Software Refrence Manual, Section: 12.4.2. Math is: 0.75 * 1023 / 2500
 	public static final int DRIVE_TICKS_PER_REVOLUTION = 5526; // we tested this, I wonder if it's actually correct! ::thinking::
+	// ScadLib variables
+	public static final double PATHING_F = 0.011069; // TEST FOR PATH FOLLOWING
+	public static final double PATHING_P = 0;
 	
 	public static final double JOYSTICK_DEADZONE = 0.1;
 	//Auto Code
+	public static final boolean IS_RIGHT_INVERTED = false;
+	public static final boolean IS_LEFT_INVERTED = true;
+	public static final boolean IS_LEFT_SENSOR_INVERTED = true;
+	public static final boolean IS_RIGHT_SENSOR_INVERTED = true;
 	public static final int kTimeoutMs = 0; //Do not change
 	public static final int kSlotIdx = 0; //Do not change
 	public static final int kPIDLoopIdx = 0; //Do not change
@@ -60,7 +64,7 @@ public class Constants {
 	public static final double AUTO_DISTANCE = 30; //Inches
 	public static final double WHEEL_RADIUS = 3; // inch
 	public static final double WHEEL_CIRCUMFERENCE = WHEEL_RADIUS*2*Math.PI;
-	public static final double TICKS_TO_INCHES = 4096 / WHEEL_CIRCUMFERENCE;
+	public static final double TICKS_TO_INCHES = DRIVE_TICKS_PER_REVOLUTION / WHEEL_CIRCUMFERENCE;
 	
 	public static final double DRIVE_WANTED_INCHES_PER_SECOND = 48;
 	public static final double DRIVE_WANTED_ACCELERATION_INCHES_PER_SECOND_SQUARED = 80;
@@ -76,5 +80,5 @@ public class Constants {
 	public static int CAMERA_PIXEL_HEIGHT = 1920; 
 	public static int CAMERA_PIXEL_WIDTH = 1080;
 	
-	public static double DELTA_TIME = 0.04;
+	public static double DELTA_TIME = 0.02;
 }

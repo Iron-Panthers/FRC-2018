@@ -57,8 +57,8 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		startCamera();
 		hardware = new Hardware();
-//		drive = new Drive(hardware.left, hardware.right, hardware.gearShift);
-		drive = new Drive(hardware.leftM, hardware.rightM, hardware.gearShift);
+		drive = new Drive(hardware.left, hardware.right, hardware.gearShift);
+//		drive = new Drive(hardware.leftM, hardware.rightM, hardware.gearShift);
 		intake = new IntakeSubsystem();
 		elevator = new Elevator();
 		oi = new OI();
@@ -83,6 +83,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("max count", 50);
 		SmartDashboard.putNumber("tolerance", 69);
 		SmartDashboard.putNumber("Path Planning F", Constants.PATHING_F);
+		SmartDashboard.putNumber("Path Planning P", Constants.PATHING_P);
 		SmartDashboard.putData("Auto mode", autoChooser);
 //		SmartDashboard.getNumber("Intake Speed", Constants.INTAKE_POWER);
 		LiveWindow.disableAllTelemetry();

@@ -5,7 +5,7 @@ import org.usfirst.frc.team5026.robot.util.Constants;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import paths.FastPathPlanner;
+import scadlib.paths.FastPathPlanner;
 
 /**
  *
@@ -15,6 +15,7 @@ public class PathFollower extends Command {
 	int index;
 	FastPathPlanner path;
 	double F;
+	double P;
 	long lastTime;
 	long startTime;
 	
@@ -28,9 +29,12 @@ public class PathFollower extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.drive.stop();
+    	Robot.drive.left.motor1.setSelectedSensorPosition(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
+    	Robot.drive.right.motor1.setSelectedSensorPosition(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
     	index = 0;
     	startTime = System.currentTimeMillis();
     	F = SmartDashboard.getNumber("Path Planning F", Constants.PATHING_F);
+    	P = SmartDashboard.getNumber("Path Planning P", Constants.PATHING_P);
     	SmartDashboard.putNumber("Path total index count", path.smoothPath.length);
     }
 
@@ -48,8 +52,23 @@ public class PathFollower extends Command {
     	SmartDashboard.putNumber("Path Index", index);
     	double lspeed = F * (path.smoothLeftVelocity[index][1]);
     	double rspeed = F * (path.smoothRightVelocity[index][1]);
-    	Robot.drive.setLeftSide(lspeed);
-    	Robot.drive.setRightSide(rspeed);
+    	double lp = P * leftPositionalError();
+    	double rp = P * rightPositionalError();
+    	System.out.println(P);
+    	
+    	lspeed += lp;
+    	rspeed += rp;
+    	
+    	Robot.drive.setLeftSide(rspeed);
+    	Robot.drive.setRightSide(lspeed);
+    	
+    	SmartDashboard.putNumber("Left Error", leftPositionalError());
+    	SmartDashboard.putNumber("Right Error", rightPositionalError());
+    	SmartDashboard.putNumber("Left Arclength", path.getLeftArclength()[index]);
+    	SmartDashboard.putNumber("Right Arclength", path.getRightArclength()[index]);
+    	SmartDashboard.putNumber("Left Position", Robot.drive.getLeftEncoderPosition() / Constants.TICKS_TO_INCHES);
+    	SmartDashboard.putNumber("Right Position", Robot.drive.getRightEncoderPosition() / Constants.TICKS_TO_INCHES);
+    	
     	SmartDashboard.putNumber("Left path speed", path.smoothLeftVelocity[index][1]);
     	SmartDashboard.putNumber("Left motor speed", lspeed);
     	SmartDashboard.putNumber("Left path x", path.leftPath[index][0]);
@@ -62,6 +81,12 @@ public class PathFollower extends Command {
     	SmartDashboard.putNumber("Delta Time (ms)", System.currentTimeMillis() - lastTime);
     	SmartDashboard.putNumber("Overall time (ms)", System.currentTimeMillis() - startTime);
     	lastTime = System.currentTimeMillis();
+    }
+    private double leftPositionalError() {
+    	return (path.getLeftArclength()[index] - Robot.drive.getLeftEncoderPosition() / Constants.TICKS_TO_INCHES);
+    }
+    private double rightPositionalError() {
+    	return (path.getRightArclength()[index] - Robot.drive.getRightEncoderPosition() / Constants.TICKS_TO_INCHES);
     }
 
     // Make this return true when this Command no longer needs to run execute()

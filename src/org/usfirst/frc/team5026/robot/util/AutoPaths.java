@@ -1,6 +1,6 @@
 package org.usfirst.frc.team5026.robot.util;
 
-import paths.FastPathPlanner;
+import scadlib.paths.FastPathPlanner;
 
 public class AutoPaths {
 	private static double width = 648;
@@ -38,6 +38,8 @@ public class AutoPaths {
 		}
 		CENTER_LEFT = new FastPathPlanner(CENTER_LEFT_PATH);
 		CENTER_LEFT.calculate(5, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+		CENTER_LEFT.getLeftArclength();
+		CENTER_LEFT.getRightArclength();
 		return CENTER_LEFT;
 	}
 	public static FastPathPlanner getRightPath() {
@@ -46,6 +48,8 @@ public class AutoPaths {
 		}
 		CENTER_RIGHT = new FastPathPlanner(CENTER_RIGHT_PATH);
 		CENTER_RIGHT.calculate(5, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+		CENTER_RIGHT.getLeftArclength();
+		CENTER_RIGHT.getRightArclength();
 		return CENTER_RIGHT;
 	}
 }

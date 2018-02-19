@@ -111,6 +111,22 @@ public class Drive extends Subsystem {
 			return;
 		}
 	}
+	public double getLeftEncoderPosition() {
+		if (type == DriveMotorType.TALONSRX) {
+			return left.getEncoderTicks();
+		} else if (type == DriveMotorType.TALONSR) {
+			System.out.println("You are in the wrong DriveMotorType! You should be in DriveMotorType.TALONSRX, but you are in DriveMotorType.TALONSR");
+		}
+		return 0;
+	}
+	public double getRightEncoderPosition() {
+		if (type == DriveMotorType.TALONSRX) {
+			return right.getEncoderTicks();
+		} else if (type == DriveMotorType.TALONSR) {
+			System.out.println("You are in the wrong DriveMotorType! You should be in DriveMotorType.TALONSRX, but you are in DriveMotorType.TALONSR");
+		}
+		return 0;
+	}
 //	public void driveWithPower(double speed) {
 //		left.driveWithPower(speed);
 //		right.driveWithPower(speed);
