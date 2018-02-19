@@ -1,4 +1,4 @@
-package org.usfirst.frc.team5026.robot.commands;
+package org.usfirst.frc.team5026.robot.commands.autonomous;
 
 import org.usfirst.frc.team5026.robot.Robot;
 
@@ -7,18 +7,14 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class DriveShift extends Command {
+public class DriveTurn extends Command {
 
-    public DriveShift() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-//    	requires(Robot.drive); // No requires so that it runs without any problems while driving
+    public DriveTurn() {
+        requires(Robot.drive);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.drive.shiftHigh();
-    	System.out.println("Shift high!");
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -32,13 +28,10 @@ public class DriveShift extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.drive.shiftLow();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	System.out.println("Shift low!");
-    	Robot.drive.shiftLow();
     }
 }

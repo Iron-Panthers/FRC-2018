@@ -1,44 +1,44 @@
-package org.usfirst.frc.team5026.robot.commands;
+package org.usfirst.frc.team5026.robot.commands.elevator;
 
 import org.usfirst.frc.team5026.robot.Robot;
+import org.usfirst.frc.team5026.robot.util.Constants;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class DriveShift extends Command {
+public class ElevatorZero extends Command {
 
-    public DriveShift() {
+    public ElevatorZero() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-//    	requires(Robot.drive); // No requires so that it runs without any problems while driving
+    	requires(Robot.elevator);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.drive.shiftHigh();
-    	System.out.println("Shift high!");
+    	Robot.elevator.stop();
+    	Robot.elevator.motors.motor1.setSelectedSensorPosition((int)SmartDashboard.getNumber("Elevator Reset Value", 0), Constants.kPIDLoopIdx, Constants.kTimeoutMs);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+    		return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.drive.shiftLow();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	System.out.println("Shift low!");
-    	Robot.drive.shiftLow();
     }
 }

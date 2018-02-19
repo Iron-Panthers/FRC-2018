@@ -1,6 +1,8 @@
 package org.usfirst.frc.team5026.robot.subsystems;
-import org.usfirst.frc.team5026.robot.commands.JoystickDrive;
+import org.usfirst.frc.team5026.robot.commands.drive.JoystickDrive;
 import org.usfirst.frc.team5026.robot.util.Constants;
+
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Talon;
@@ -40,6 +42,14 @@ public class Drive extends Subsystem {
 		dDrive.setSafetyEnabled(false);
 		dDrive.setDeadband(Constants.JOYSTICK_DEADZONE);
 		isReversed = false;
+	}
+	public void setupBrakeMode() {
+		left.motor1.setNeutralMode(NeutralMode.Brake);
+		left.motor2.setNeutralMode(NeutralMode.Brake);
+		left.motor3.setNeutralMode(NeutralMode.Brake);
+		right.motor1.setNeutralMode(NeutralMode.Brake);
+		right.motor2.setNeutralMode(NeutralMode.Brake);
+		right.motor3.setNeutralMode(NeutralMode.Brake);
 	}
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -100,6 +110,22 @@ public class Drive extends Subsystem {
 			System.out.println("You are in the wrong DriveMotorType! You should be in DriveMotorType.TALONSRX, but you are in DriveMotorType.TALONSR");
 			return;
 		}
+	}
+	public double getLeftEncoderPosition() {
+		if (type == DriveMotorType.TALONSRX) {
+			return left.getEncoderTicks();
+		} else if (type == DriveMotorType.TALONSR) {
+			System.out.println("You are in the wrong DriveMotorType! You should be in DriveMotorType.TALONSRX, but you are in DriveMotorType.TALONSR");
+		}
+		return 0;
+	}
+	public double getRightEncoderPosition() {
+		if (type == DriveMotorType.TALONSRX) {
+			return right.getEncoderTicks();
+		} else if (type == DriveMotorType.TALONSR) {
+			System.out.println("You are in the wrong DriveMotorType! You should be in DriveMotorType.TALONSRX, but you are in DriveMotorType.TALONSR");
+		}
+		return 0;
 	}
 //	public void driveWithPower(double speed) {
 //		left.driveWithPower(speed);
