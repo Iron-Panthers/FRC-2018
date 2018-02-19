@@ -26,6 +26,8 @@ public class Hardware {
 	public TalonSRX leftM1;
 	public TalonSRX leftM2;
 	public TalonSRX leftM3;
+	public Talon leftM;
+	public Talon rightM;
 	public DriveMotorGroup right;
 	public DriveMotorGroup left;
 	public DigitalInput bannerSensor;
@@ -51,6 +53,9 @@ public class Hardware {
 		left = new DriveMotorGroup(leftM1, leftM2, leftM3);
 		right.setInverted(Constants.IS_RIGHT_INVERTED);
 		left.setInverted(Constants.IS_LEFT_INVERTED);
+		leftM = new Talon(0);
+		rightM = new Talon(1);
+		rightM.setInverted(true);
 		intakeM.setInverted(Constants.IS_INTAKE_INVERTED);
 		bannerSensor = new DigitalInput(9);
 		gearShift = new DoubleSolenoid(0, RobotMap.SHIFT_FORWARD, RobotMap.SHIFT_REVERSE);
