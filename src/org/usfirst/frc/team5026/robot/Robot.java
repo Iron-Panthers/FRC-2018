@@ -7,11 +7,14 @@
 
 package org.usfirst.frc.team5026.robot;
 
-
+import org.usfirst.frc.team5026.robot.commands.FindTimeCommand;
+import org.usfirst.frc.team5026.robot.commands.autonomous.DriveStraight;
+import org.usfirst.frc.team5026.robot.commands.autonomous.PathFollower;
 import org.usfirst.frc.team5026.robot.subsystems.Drive;
 import org.usfirst.frc.team5026.robot.subsystems.Elevator;
 import org.usfirst.frc.team5026.robot.subsystems.ConveyorBelt;
 import org.usfirst.frc.team5026.robot.subsystems.IntakeSubsystem;
+import org.usfirst.frc.team5026.robot.util.AutoPaths;
 import org.usfirst.frc.team5026.robot.util.Constants;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -56,11 +59,13 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		hardware = new Hardware();
 		drive = new Drive(hardware.left, hardware.right, hardware.gearShift);
+//		drive = new Drive(hardware.leftM, hardware.rightM, hardware.gearShift);
 		intake = new IntakeSubsystem();
 		elevator = new Elevator();
 		conveyor = new ConveyorBelt();
 		oi = new OI();
-		// chooser.addObject("My Auto", new MyAutoCommand());
+//		right.setInverted(Constants.IS_RIGHT_INVERTED);
+		// autoChooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", autoChooser);
 		SmartDashboard.putNumber("Elevator Percent", 0.25); // TODO to remove later
 		SmartDashboard.putNumber("Elevator F", Constants.ELEVATOR_F); // TODO to remove later
@@ -72,6 +77,17 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Elevator Reset Value", 0); // TODO to remove later
 		SmartDashboard.putNumber("Elevator Target", 1000); // TODO to remove later
 		oi.mapButtons();
+		autoChooser.addDefault("My Auto", new DriveStraight());
+		autoChooser.addObject("Center to Left Path", new PathFollower(AutoPaths.getLeftPath()));
+		autoChooser.addObject("Center to Right Path", new PathFollower(AutoPaths.getRightPath()));
+		autoChooser.addObject("Find Time", new FindTimeCommand());
+		SmartDashboard.putNumber("target", 100);
+		SmartDashboard.putNumber("max count", 50);
+		SmartDashboard.putNumber("tolerance", 69);
+		SmartDashboard.putNumber("Path Planning F", Constants.PATHING_F);
+		SmartDashboard.putNumber("Path Planning P", Constants.PATHING_P);
+		SmartDashboard.putData("Auto mode", autoChooser);
+//		SmartDashboard.getNumber("Intake Speed", Constants.INTAKE_POWER);
 		LiveWindow.disableAllTelemetry();
     }
 	
@@ -93,14 +109,14 @@ public class Robot extends IterativeRobot {
 	}
 
 	/**
-	 * This autonomous (along with the chooser code above) shows how to select
+	 * This autonomous (along with the autoChooser code above) shows how to select
 	 * between different autonomous modes using the dashboard. The sendable
-	 * chooser code works with the Java SmartDashboard. If you prefer the
-	 * LabVIEW Dashboard, remove all of the chooser code and uncomment the
+	 * autoChooser code works with the Java SmartDashboard. If you prefer the
+	 * LabVIEW Dashboard, remove all of the autoChooser code and uncomment the
 	 * getString code to get the auto name from the text box below the Gyro
 	 *
 	 * <p>You can add additional auto modes by adding additional commands to the
-	 * chooser code above (like the commented example) or additional comparisons
+	 * autoChooser code above (like the commented example) or additional comparisons
 	 * to the switch structure below with additional strings & commands.
 	 */
 	@Override

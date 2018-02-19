@@ -56,6 +56,8 @@ public class Hardware {
 		left = new DriveMotorGroup(leftM1, leftM2, leftM3);
 		right.setInverted(Constants.IS_RIGHT_INVERTED);
 		left.setInverted(Constants.IS_LEFT_INVERTED);
+		left.setSensorInverted(Constants.IS_LEFT_SENSOR_INVERTED);
+		right.setSensorInverted(Constants.IS_RIGHT_SENSOR_INVERTED);
 		intakeM.setInverted(Constants.IS_INTAKE_INVERTED);
 		gearShift = new DoubleSolenoid(0, RobotMap.SHIFT_FORWARD, RobotMap.SHIFT_REVERSE);
 		pdp = new PowerDistributionPanel();
