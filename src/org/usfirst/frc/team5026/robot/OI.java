@@ -73,25 +73,29 @@ public class OI {
 //		stickBtnTwo.whileHeld(new OuttakeCommand());
 		stickBtnTwo.toggleWhenPressed(new DriveShift());
 		stickBtnThree.whileHeld(new OuttakeCommand());
+		stickBtnFive.whenPressed(new ElevatorZero());
 //		stickBtnThree.whileHeld(new ElevatorToScale());
 //		stickBtnFour.whileHeld(new ElevatorToGround());
 		
 		boardBtnOne.whileHeld(new ElevatorSliding());
-		boardBtnThree.whileHeld(new OuttakeCommand());
-		boardBtnSeven.whenPressed(new ElevatorToShortCube());
-		boardBtnNine.whenPressed(new ElevatorToSwitch());
-		boardBtnTen.whenPressed(new ElevatorToScale());
-//		boardBtnThree.whileHeld(new ElevatorTarget());
-//		boardBtnFour.whenPressed(new ElevatorSetPIDF());
-		boardBtnEight.whenPressed(new ElevatorToTallCube());
 		boardBtnTwo.whenPressed(new IntakeCommandGroup());
-		boardBtnSix.whenPressed(new ElevatorZero());
-//		boardBtnSeven.whileHeld(new OuttakeCommand());
-		boardBtnEleven.whenPressed(new ElevatorExtendPistons());
-		boardBtnTwelve.whenPressed(new ElevatorRetractPistons());
+		boardBtnThree.whileHeld(new OuttakeCommand());
 		boardBtnFour.whenPressed(new ConveyorBeltForwardToBanner());
 		boardBtnFive.whileHeld(new ConveyorBeltForward());
 		boardBtnSix.whileHeld(new ConveyorBeltBackward());
+		
+		boardBtnSeven.whenPressed(new ElevatorToShortCube());
+		boardBtnEight.whenPressed(new ElevatorToTallCube());
+		boardBtnNine.whenPressed(new ElevatorToSwitch());
+		boardBtnTen.whenPressed(new ElevatorToScale());
+		boardBtnEleven.whenPressed(new ElevatorExtendPistons());
+		boardBtnTwelve.whenPressed(new ElevatorRetractPistons());
+//		boardBtnThree.whileHeld(new ElevatorTarget());
+//		boardBtnFour.whenPressed(new ElevatorSetPIDF());
+		
+//		boardBtnSeven.whileHeld(new OuttakeCommand());
+		
+		
 	}
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
