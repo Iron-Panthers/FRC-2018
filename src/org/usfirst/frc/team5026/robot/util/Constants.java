@@ -44,7 +44,7 @@ public class Constants {
 	
 	public static final double ROBOT_WIDTH = 25.75; // unit is inches
 	public static final double ROBOT_LENGTH = 37.25; // unit is inches
-	public static final double PATHING_F = 0.02069; // TEST FOR PATH FOLLOWING
+	public static final double PATHING_F = 0.011069; // TEST FOR PATH FOLLOWING
 	public static final double DRIVE_P = 0;
 	public static final double DRIVE_I = 0;
 	public static final double DRIVE_D = 0;
@@ -76,5 +76,5 @@ public class Constants {
 	public static int CAMERA_PIXEL_HEIGHT = 1920; 
 	public static int CAMERA_PIXEL_WIDTH = 1080;
 	
-	public static double DELTA_TIME = 0.02;
+	public static double DELTA_TIME = 0.04;
 }
