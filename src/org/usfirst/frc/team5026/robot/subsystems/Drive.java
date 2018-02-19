@@ -29,7 +29,7 @@ public class Drive extends Subsystem {
 		type = DriveMotorType.TALONSRX;
 		dDrive = new DifferentialDrive(left, right);
 		dDrive.setSafetyEnabled(false);
-		dDrive.setDeadband(Constants.JOYSTICK_DEADZONE);
+		dDrive.setDeadband(Constants.DDRIVE_JOYSTICK_DEADZONE);
 		isReversed = false;
 	}
 	public Drive(Talon l, Talon r, DoubleSolenoid gearShift) {
@@ -40,7 +40,7 @@ public class Drive extends Subsystem {
 		type = DriveMotorType.TALONSR;
 		dDrive = new DifferentialDrive(l, r);
 		dDrive.setSafetyEnabled(false);
-		dDrive.setDeadband(Constants.JOYSTICK_DEADZONE);
+		dDrive.setDeadband(Constants.DDRIVE_JOYSTICK_DEADZONE);
 		isReversed = false;
 	}
 	public void setupBrakeMode() {
