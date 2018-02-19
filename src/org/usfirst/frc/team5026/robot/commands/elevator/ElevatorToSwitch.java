@@ -26,6 +26,7 @@ public class ElevatorToSwitch extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
 //    	Robot.elevator.checkPosition();
+    	Robot.elevator.currentLimiter();
 		Robot.elevator.raiseToSwitch();
     	//Lifts carriage to switch
     }
