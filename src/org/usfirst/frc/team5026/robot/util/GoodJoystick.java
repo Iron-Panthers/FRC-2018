@@ -35,7 +35,7 @@ public class GoodJoystick {
 			}
 		}
 		SmartDashboard.putNumber("Output X", x);
-		return x;
+		return x*Constants.X_AXIS_MODIFIER;
 	}
 	public double findY() {
 		double y;

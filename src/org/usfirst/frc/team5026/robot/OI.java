@@ -89,6 +89,9 @@ public class OI {
 //		boardBtnSeven.whileHeld(new OuttakeCommand());
 		boardBtnEleven.whenPressed(new ElevatorExtendPistons());
 		boardBtnTwelve.whenPressed(new ElevatorRetractPistons());
+		boardBtnFour.whenPressed(new ConveyorBeltForwardToBanner());
+		boardBtnFive.whileHeld(new ConveyorBeltForward());
+		boardBtnSix.whileHeld(new ConveyorBeltBackward());
 	}
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
