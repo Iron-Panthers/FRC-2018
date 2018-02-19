@@ -54,7 +54,6 @@ public class PathFollower extends Command {
     	double rspeed = F * (path.smoothRightVelocity[index][1]);
     	double lp = P * leftPositionalError();
     	double rp = P * rightPositionalError();
-    	System.out.println(P);
     	
     	lspeed += lp;
     	rspeed += rp;
