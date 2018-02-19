@@ -4,9 +4,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Constants {
 	public static final double X_AXIS_MODIFIER = .8;
-	public static final double XDEADZONE_SIZE = SmartDashboard.getNumber("X Deadzone Size", 0.2);
-	public static final double YDEADZONE_SIZE = SmartDashboard.getNumber("Y Deadzone Size", 0.2);
-	public static final double CIRCLE_DEADZONE = SmartDashboard.getNumber("Circle Deadzone Size", 0.2);
+	public static final double XDEADZONE_SIZE = SmartDashboard.getNumber("X Deadzone Size", 0.15);
+	public static final double YDEADZONE_SIZE = SmartDashboard.getNumber("Y Deadzone Size", 0.15);
+	public static final double CIRCLE_DEADZONE = SmartDashboard.getNumber("Circle Deadzone Size", 0.1);
 	public static final double SPEED = 1.0;
 	public static final double DEADZONE_SIZE = .1;
 	public static final double QUARTER_SPEED = .4;
@@ -20,6 +20,10 @@ public class Constants {
 	public static final boolean IS_LEFT_INVERTED = false;
 	public static final double OUTTAKE_POWER = -.4;
 	public static final double BLOCK_GRAB_THRESHOLD = 15; //min amount of amps intake has with block
+	  
+	//Portal to Switch 
+	public static final double CONVEYOR_SPEED = 1; 
+	public static final boolean IS_COVEYOR_INVERTED = true; 
 	
 	//Elevator
 	public static final boolean IS_ELEVATOR_INVERTED = false;

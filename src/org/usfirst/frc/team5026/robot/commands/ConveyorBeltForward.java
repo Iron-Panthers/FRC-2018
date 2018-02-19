@@ -4,17 +4,16 @@ import org.usfirst.frc.team5026.robot.Robot;
 import org.usfirst.frc.team5026.robot.util.Constants;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class HoldBlock extends Command {
+public class ConveyorBeltForward extends Command {
 
-    public HoldBlock() {
-    	requires(Robot.intake);
+    public ConveyorBeltForward() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	requires(Robot.conveyor);
     }
 
     // Called just before this Command runs the first time
@@ -23,20 +22,22 @@ public class HoldBlock extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intake.intake(Constants.INTAKE_VOLTAGE_HOLD);
+    	Robot.conveyor.forward(Constants.CONVEYOR_SPEED);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.intake.hasBlock();
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.conveyor.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	Robot.conveyor.stop();
     }
 }

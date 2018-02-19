@@ -10,6 +10,7 @@ package org.usfirst.frc.team5026.robot;
 
 import org.usfirst.frc.team5026.robot.subsystems.Drive;
 import org.usfirst.frc.team5026.robot.subsystems.Elevator;
+import org.usfirst.frc.team5026.robot.subsystems.ConveyorBelt;
 import org.usfirst.frc.team5026.robot.subsystems.IntakeSubsystem;
 import org.usfirst.frc.team5026.robot.util.Constants;
 
@@ -20,6 +21,9 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoSink;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
+
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -39,11 +43,9 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static Hardware hardware;
 	public static Drive drive;
+	public static ConveyorBelt conveyor;
 	public static IntakeSubsystem intake;
-	public static UsbCamera cam1;
 	public static Elevator elevator;
-	public static CvSink cvsink1;
-	public static VideoSink server;
 	Command autoCommand;
 	SendableChooser<Command> autoChooser = new SendableChooser<>();
 	/**
@@ -52,13 +54,12 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		startCamera();
 		hardware = new Hardware();
 		drive = new Drive(hardware.left, hardware.right, hardware.gearShift);
 		intake = new IntakeSubsystem();
 		elevator = new Elevator();
+		conveyor = new ConveyorBelt();
 		oi = new OI();
-//		right.setInverted(Constants.IS_RIGHT_INVERTED);
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", autoChooser);
 		SmartDashboard.putNumber("Elevator Percent", 0.25); // TODO to remove later
@@ -73,15 +74,6 @@ public class Robot extends IterativeRobot {
 		oi.mapButtons();
 		LiveWindow.disableAllTelemetry();
     }
-	private static void startCamera() {
-		CameraServer camera = CameraServer.getInstance();
-		cam1 = camera.startAutomaticCapture("cam0", RobotMap.CAMERA_PORT);
-		cam1.setResolution(Constants.CAMERA_PIXEL_HEIGHT, Constants.CAMERA_PIXEL_WIDTH);
-		server = camera.getServer();
-		cvsink1 = new CvSink("cam1cv");
-		cvsink1.setSource(cam1);
-		cvsink1.setEnabled(true);
-	}
 	
 
 	/**
@@ -176,6 +168,7 @@ public class Robot extends IterativeRobot {
 		//Drive Motor Current and Voltage
 		SmartDashboard.putNumber("Joystick Raw X", oi.driveStick.driveStick.getX());
 		SmartDashboard.putNumber("Joystick Raw Y", oi.driveStick.driveStick.getY());
+		SmartDashboard.putBoolean("banner", hardware.banner.get());
 		Scheduler.getInstance().run();
 	}
 
