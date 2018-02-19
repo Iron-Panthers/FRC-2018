@@ -22,6 +22,7 @@ public class ElevatorTarget extends Command {
     protected void initialize() {
     	Robot.elevator.stop();
     	target = (int)SmartDashboard.getNumber("Elevator Target", 0);
+    	Robot.elevator.resetCurrentLimiter();
     }
 
     // Called repeatedly when this Command is scheduled to run

@@ -19,6 +19,7 @@ public class ElevatorSliding extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.elevator.stop();
+    	Robot.elevator.resetCurrentLimiter();
     }
 
     // Called repeatedly when this Command is scheduled to run

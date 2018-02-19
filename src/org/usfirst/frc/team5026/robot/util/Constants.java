@@ -44,9 +44,9 @@ public class Constants {
 	public static final double ELEVATOR_HIT_TOLERANCE = 5; //amps, needs changing
 	public static final double ELEVATOR_VELOCITY_THRESHOLD = 30; //Velocity Threshold (Not tested, arbitrary)
 	public static final int ELEVATOR_CURRENT_COUNT_THRESHOLD = 5; //Amount of count when the current is high (For Elevator)
-	public static final int ELEVATOR_CURRENT_THRESHOLD = 30; //Untested, Current when we know the elevator is stalling
-	public static final int ELEVATOR_DESIRED_CURRENT = 35; //currents(amps) desired if current exceeds threshold
-	public static final int ELEVATOR_WAIT_DURATION = 500; //milliseconds
+	public static final int ELEVATOR_CURRENT_THRESHOLD = 40; //Untested, Current when we know the elevator is stalling
+	public static final int ELEVATOR_DESIRED_CURRENT = 0; //currents(amps) desired if current exceeds threshold
+	public static final int ELEVATOR_WAIT_DURATION = 100; //milliseconds
 	
 	public static final double ROBOT_WIDTH = 0.5; // unit is meters
 	public static final double DRIVE_P = 0;

@@ -115,6 +115,11 @@ public class Elevator extends Subsystem {
 		motors.motor1.configPeakCurrentLimit(Constants.ELEVATOR_CURRENT_THRESHOLD, Constants.kTimeoutMs);
 		motors.motor1.configPeakCurrentDuration(Constants.ELEVATOR_WAIT_DURATION, Constants.kTimeoutMs);
 		motors.motor1.configContinuousCurrentLimit(Constants.ELEVATOR_DESIRED_CURRENT, Constants.kTimeoutMs);
+		motors.motor1.enableCurrentLimit(true);
+	}
+	
+	public void resetCurrentLimiter() {
+		motors.motor1.enableCurrentLimit(false);
 	}
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
