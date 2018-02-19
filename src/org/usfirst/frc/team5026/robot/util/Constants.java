@@ -15,7 +15,7 @@ public class Constants {
 	public static final double OUTTAKE_POWER = 1;
 	
 	public static final double ROBOT_WIDTH = 13.5; // unit is inches
-	public static final double ROBOT_LENGTH = 25; // Inches, placeholder because I don't know the actual measurement, should include bumpers
+	public static final double ROBOT_LENGTH = 38; // Inches, placeholder because I don't know the actual measurement, should include bumpers
 	public static final double DRIVE_P = 0;
 	public static final double DRIVE_I = 0;
 	public static final double DRIVE_D = 0;
@@ -31,13 +31,14 @@ public class Constants {
 	public static final int TURN = 90; // Degrees
 	
 	//Auto Code
+	public static final int PF_STRAIGHT_PAST_SWITCH_DISTANCE = 210;
 	public static final int CROSS_AUTO_LINE_DISTANCE = 120; //distance from alliance station wall to auto line in inches
 	public static final int kTimeoutMs = 0; //Do not change
 	public static final int kSlotIdx = 0; //Do not change
 	public static final int kPIDLoopIdx = 0; //Do not change
 	public static final double DRIVE_SPEED = 1;
 	public static final double AUTO_DISTANCE = 30; //Inches
-	public static final double WHEEL_RADIUS = 4; // inch
+	public static final double WHEEL_RADIUS = 2.8125; // inch
 	public static final double WHEEL_CIRCUMFERENCE = WHEEL_RADIUS*2*Math.PI;
 	public static final double TICKS_PER_INCH = 4096 / WHEEL_CIRCUMFERENCE;
 	

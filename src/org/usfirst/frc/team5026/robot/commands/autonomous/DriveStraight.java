@@ -30,6 +30,7 @@ public class DriveStraight extends Command {
     	}
     	target = (int) (target * Constants.TICKS_PER_INCH);
 		Robot.drive.stop();
+		count = 0;
 		maxCount = (int) SmartDashboard.getNumber("max count", 0);
 		tolerance = (int) SmartDashboard.getNumber("tolerance", 0);
 		Robot.drive.left.motor1.setSelectedSensorPosition(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
