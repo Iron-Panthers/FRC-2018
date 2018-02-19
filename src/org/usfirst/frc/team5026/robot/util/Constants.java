@@ -1,6 +1,6 @@
 package org.usfirst.frc.team5026.robot.util;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team5026.robot.subsystems.DriveMotorType;
 
 public class Constants {
 	public static final double X_AXIS_MODIFIER = .8;
@@ -47,6 +47,7 @@ public class Constants {
 	public static final double ELEVATOR_CURRENT_THRESHOLD = 30; //Untested, Current when we know the elevator is stalling
 	
 	public static final double ROBOT_WIDTH = 0.5; // unit is meters
+	public static final DriveMotorType DRIVE_TYPE = DriveMotorType.TALONSRX; // change to TALONSR when using KOP
 	public static final double DRIVE_P = 0;
 	public static final double DRIVE_I = 0;
 	public static final double DRIVE_D = 0;

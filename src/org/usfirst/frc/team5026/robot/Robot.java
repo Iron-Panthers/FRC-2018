@@ -8,22 +8,16 @@
 package org.usfirst.frc.team5026.robot;
 
 
-import org.usfirst.frc.team5026.robot.subsystems.Drive;
-import org.usfirst.frc.team5026.robot.subsystems.Elevator;
 import org.usfirst.frc.team5026.robot.subsystems.ConveyorBelt;
+import org.usfirst.frc.team5026.robot.subsystems.Drive;
+import org.usfirst.frc.team5026.robot.subsystems.DriveMotorType;
+import org.usfirst.frc.team5026.robot.subsystems.Elevator;
 import org.usfirst.frc.team5026.robot.subsystems.IntakeSubsystem;
 import org.usfirst.frc.team5026.robot.util.Constants;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
-import edu.wpi.cscore.CvSink;
-import edu.wpi.cscore.UsbCamera;
-import edu.wpi.cscore.VideoSink;
-import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
-
-import edu.wpi.cscore.UsbCamera;
-import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -55,7 +49,12 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		hardware = new Hardware();
-		drive = new Drive(hardware.left, hardware.right, hardware.gearShift);
+		if (Constants.DRIVE_TYPE == DriveMotorType.TALONSRX) {
+			drive = new Drive(hardware.left, hardware.right, hardware.gearShift);
+		}
+		else {
+			drive = new Drive(hardware.leftTalon, hardware.rightTalon, hardware.gearShift);
+		}
 		intake = new IntakeSubsystem();
 		elevator = new Elevator();
 		conveyor = new ConveyorBelt();
