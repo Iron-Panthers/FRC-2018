@@ -49,7 +49,7 @@ public class PathFollower extends Command {
     	double lspeed = F * (path.smoothLeftVelocity[index][1]);
     	double rspeed = F * (path.smoothRightVelocity[index][1]);
     	Robot.drive.setLeftSide(lspeed);
-    	Robot.drive.setRightSide(lspeed);
+    	Robot.drive.setRightSide(rspeed);
     	SmartDashboard.putNumber("Left path speed", path.smoothLeftVelocity[index][1]);
     	SmartDashboard.putNumber("Left motor speed", lspeed);
     	SmartDashboard.putNumber("Left path x", path.leftPath[index][0]);
@@ -60,6 +60,8 @@ public class PathFollower extends Command {
     	SmartDashboard.putNumber("Right path x", path.rightPath[index][0]);
     	SmartDashboard.putNumber("Right path y", path.rightPath[index][1]);
     	SmartDashboard.putNumber("Delta Time (ms)", System.currentTimeMillis() - lastTime);
+    	SmartDashboard.putNumber("Overall time (ms)", System.currentTimeMillis() - startTime);
+    	lastTime = System.currentTimeMillis();
     }
 
     // Make this return true when this Command no longer needs to run execute()
