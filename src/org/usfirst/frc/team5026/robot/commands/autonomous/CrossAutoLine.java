@@ -1,5 +1,7 @@
 package org.usfirst.frc.team5026.robot.commands.autonomous;
 
+import org.usfirst.frc.team5026.robot.util.Constants;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -8,6 +10,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class CrossAutoLine extends CommandGroup {
 
     public CrossAutoLine() {
+    	addSequential(new DriveStraight(Constants.CROSS_AUTO_LINE_DISTANCE));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

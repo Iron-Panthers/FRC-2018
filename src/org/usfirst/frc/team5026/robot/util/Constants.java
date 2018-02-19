@@ -38,7 +38,7 @@ public class Constants {
 	public static final double AUTO_DISTANCE = 30; //Inches
 	public static final double WHEEL_RADIUS = 4; // inch
 	public static final double WHEEL_CIRCUMFERENCE = WHEEL_RADIUS*2*Math.PI;
-	public static final double TICKS_TO_INCHES = 4096 / WHEEL_CIRCUMFERENCE;
+	public static final double TICKS_PER_INCH = 4096 / WHEEL_CIRCUMFERENCE;
 	
 	public static final double DEGREES_PER_SECOND = 153; // degrees per second  at .5 power
 	public static final double TURN_P = 0;
@@ -56,5 +56,7 @@ public class Constants {
 	}
 	public static final int DRIVE_VELOCITY = MOTION_MAGIC_VELOCITY(DRIVE_WANTED_INCHES_PER_SECOND); // Units of encoder ticks per 100 ms 
 	public static final int DRIVE_ACCELERATION = MOTION_MAGIC_ACCELERATION(DRIVE_WANTED_ACCELERATION_INCHES_PER_SECOND_SQUARED); // Units of encoder ticks per 100 ms per second
+
+	public static final int CROSS_AUTO_LINE_DISTANCE = 48;
 
 }

@@ -2,6 +2,7 @@ package org.usfirst.frc.team5026.robot;
 
 import org.usfirst.frc.team5026.robot.commands.autonomous.CenterToLeftSwitch;
 import org.usfirst.frc.team5026.robot.commands.autonomous.CenterToRightSwitch;
+import org.usfirst.frc.team5026.robot.commands.autonomous.CrossAutoLine;
 import org.usfirst.frc.team5026.robot.commands.autonomous.DriveStraight;
 import org.usfirst.frc.team5026.robot.commands.autonomous.DriveTurn;
 import org.usfirst.frc.team5026.robot.commands.drive.ReverseDrive;
@@ -28,6 +29,7 @@ public class OI {
 	public Button stickBtnEight;
 	public Button stickBtnNine;
 	public GoodJoystick joystick;
+	public Button stickBtnSix;
 	public OI(){
 		joystick = new GoodJoystick(RobotMap.DRIVE_JOYSTICK);
 		stickBtnOne = new JoystickButton(joystick.driveStick,1);
@@ -35,6 +37,7 @@ public class OI {
 		stickBtnThree = new JoystickButton(joystick.driveStick,3);
 		stickBtnFour = new JoystickButton(joystick.driveStick,4);
 		stickBtnFive = new JoystickButton(joystick.driveStick,5);
+		stickBtnSix = new JoystickButton(joystick.driveStick,6);
 		stickBtnSeven = new JoystickButton(joystick.driveStick, 7);
 		stickBtnEight = new JoystickButton(joystick.driveStick,8);
 		stickBtnNine = new JoystickButton(joystick.driveStick, 9);
@@ -49,6 +52,7 @@ public class OI {
 		stickBtnSeven.whenPressed(new CenterToLeftSwitch());
 		stickBtnEight.whenPressed(new CenterToRightSwitch());
 		stickBtnThree.whenPressed(new DriveTurn(SmartDashboard.getNumber("gyro target", 60)));
+		stickBtnSix.whenPressed(new CrossAutoLine());
 //		stickBtnThree.whenPressed(new FindF());
 	}
 	//// CREATING BUTTONS
