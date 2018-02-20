@@ -90,7 +90,7 @@ public class PathFollower extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return index == path.smoothPath.length; // This is the last setpoint!
+        return index == path.smoothPath.length-1; // This is the last setpoint!
     }
 
     // Called once after isFinished returns true

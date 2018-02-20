@@ -12,13 +12,15 @@ public class AutoPaths {
 	private static double distanceToSwitchFromAlliance = 140;
 	private static double delta = 10;
 	private static double widthOfSwitch = 56;
+	private static double xDelta = 20;
+	private static double yDelta = 20;
 	
 	private static double[][] CENTER_LEFT_PATH = new double[][]{
 		{robotLength/2, height / 2},
-		{(distanceToSwitchFromAlliance-robotLength)/2-delta, height/2},
-		{(distanceToSwitchFromAlliance-robotLength)/2+delta, height/2+delta},
-		{(distanceToSwitchFromAlliance+robotLength)/2+delta, height-distanceToSwitchFromWall-switchLength/2},
-		{distanceToSwitchFromAlliance-robotLength/2, height-distanceToSwitchFromWall-switchLength/2}
+		{(distanceToSwitchFromAlliance-robotLength)/2-delta-xDelta, height/2},
+		{(distanceToSwitchFromAlliance-robotLength)/2+delta-xDelta, height/2+delta},
+		{(distanceToSwitchFromAlliance+robotLength)/2+delta-xDelta, height-distanceToSwitchFromWall-switchLength/2+yDelta},
+		{distanceToSwitchFromAlliance-robotLength/2, height-distanceToSwitchFromWall-switchLength/2+yDelta}
 	};
 	private static double[][] CENTER_RIGHT_PATH = new double[][]{
 		{robotLength/2, height/2},

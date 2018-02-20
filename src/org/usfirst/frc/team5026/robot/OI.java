@@ -72,20 +72,25 @@ public class OI {
 //		stickBtnTwo.whileHeld(new OuttakeCommand());
 		stickBtnTwo.toggleWhenPressed(new DriveShift());
 		stickBtnThree.whileHeld(new OuttakeCommand());
+		stickBtnFive.whenPressed(new ElevatorZero());
 //		stickBtnThree.whileHeld(new ElevatorToScale());
 //		stickBtnFour.whileHeld(new ElevatorToGround());
 		
 		boardBtnOne.whileHeld(new ElevatorSliding());
+		boardBtnTwo.whenPressed(new IntakeCommandGroup());
 		boardBtnThree.whileHeld(new OuttakeCommand());
+		boardBtnFour.whenPressed(new ConveyorBeltForwardToBanner());
+		boardBtnFive.whileHeld(new ConveyorBeltForward());
+		boardBtnSix.whileHeld(new ConveyorBeltBackward());
+		
 		boardBtnSeven.whenPressed(new ElevatorToShortCube());
+		boardBtnEight.whenPressed(new ElevatorToTallCube());
 		boardBtnNine.whenPressed(new ElevatorToSwitch());
 		boardBtnTen.whenPressed(new ElevatorToScale());
 		boardBtnEleven.whenPressed(new ElevatorToExchange());
 //		boardBtnThree.whileHeld(new ElevatorTarget());
 //		boardBtnFour.whenPressed(new ElevatorSetPIDF());
-		boardBtnEight.whenPressed(new ElevatorToTallCube());
-		boardBtnTwo.whenPressed(new IntakeCommandGroup());
-		boardBtnSix.whenPressed(new ElevatorZero());
+		
 //		boardBtnSeven.whileHeld(new OuttakeCommand());
 		boardBtnTwelve.toggleWhenPressed(new ElevatorExtendPistons());
 		boardBtnFour.whenPressed(new ConveyorBeltForwardToBanner());
