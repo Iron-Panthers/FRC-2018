@@ -54,12 +54,16 @@ public class PathFollower extends Command {
     	double rspeed = F * (path.smoothRightVelocity[index][1]);
     	double lp = P * leftPositionalError();
     	double rp = P * rightPositionalError();
+    	if (index == 0) {
+    		lp = rp = 0;
+    	}
     	
+    	// Don't ask
     	lspeed += lp;
     	rspeed += rp;
     	
-    	Robot.drive.setLeftSide(rspeed);
-    	Robot.drive.setRightSide(lspeed);
+    	Robot.drive.setLeftSide(lspeed);
+    	Robot.drive.setRightSide(rspeed);
     	
     	SmartDashboard.putNumber("Left Error", leftPositionalError());
     	SmartDashboard.putNumber("Right Error", rightPositionalError());
