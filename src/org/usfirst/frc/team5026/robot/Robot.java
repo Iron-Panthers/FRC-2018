@@ -121,6 +121,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		Robot.elevator.motors.motor1.setSelectedSensorPosition(Robot.elevator.motors.motor1.getSelectedSensorPosition(Constants.kPIDLoopIdx), Constants.kPIDLoopIdx, Constants.kTimeoutMs);
+		Robot.elevator.motors.motor1.set(ControlMode.Disabled, 1);
 		autoCommand = autoChooser.getSelected();
 
 		/*
@@ -151,6 +153,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopInit() {
 		Robot.elevator.motors.motor1.set(ControlMode.MotionMagic, Robot.elevator.motors.motor1.getSelectedSensorPosition(Constants.kPIDLoopIdx));
+		Robot.elevator.motors.motor1.set(ControlMode.Disabled, 1);
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove

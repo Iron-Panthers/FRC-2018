@@ -34,7 +34,7 @@ public class RobotMap {
 	public static final int SHIFT_FORWARD = 0;
 	public static final int SHIFT_REVERSE = 1;
 	public static final int CONVEYOR_BELT_MOTOR = 10;
-	public static final int BANNER_PORT = 9;
+	public static final int BANNER_PORT = 0;
 	//Camera
 	public static int CAMERA_PORT = 0; 
 }
