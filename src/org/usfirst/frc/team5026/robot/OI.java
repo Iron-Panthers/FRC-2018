@@ -27,7 +27,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 	public GoodJoystick driveStick;
 	public Joystick elevatorStick;
-	public Button stickBtnOne;
+//	public Button stickBtnOne; //reserved for GoodJoystick
 	public Button stickBtnTwo;
 	public Button stickBtnThree;
 	public Button stickBtnFour;
@@ -47,7 +47,7 @@ public class OI {
 	public OI(){
 		driveStick = new GoodJoystick(RobotMap.DRIVE_JOYSTICK);
 		elevatorStick = new Joystick(RobotMap.ELEVATOR_JOYSTICK);
-		stickBtnOne = new JoystickButton(driveStick.driveStick,1);
+//		stickBtnOne = new JoystickButton(driveStick.driveStick,1);
 		stickBtnTwo = new JoystickButton(driveStick.driveStick,2);
 		stickBtnThree = new JoystickButton(driveStick.driveStick,3);
 		stickBtnFour = new JoystickButton(driveStick.driveStick, 4);
