@@ -86,7 +86,7 @@ public class OI {
 		boardBtnTwo.whenPressed(new IntakeCommandGroup());
 		boardBtnSix.whenPressed(new ElevatorZero());
 //		boardBtnSeven.whileHeld(new OuttakeCommand());
-		boardBtnEleven.whenPressed(new ElevatorExtendPistons());
+		boardBtnEleven.toggleWhenPressed(new ElevatorExtendPistons());
 		boardBtnFour.whenPressed(new ConveyorBeltForwardToBanner());
 		boardBtnFive.whileHeld(new ConveyorBeltForward());
 		boardBtnSix.whileHeld(new ConveyorBeltBackward());
