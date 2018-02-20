@@ -7,26 +7,19 @@
 
 package org.usfirst.frc.team5026.robot;
 
-import org.usfirst.frc.team5026.robot.commands.FindTimeCommand;
+import org.usfirst.frc.team5026.robot.commands.autonomous.CenterToSwitchDropCube;
 import org.usfirst.frc.team5026.robot.commands.autonomous.DriveStraight;
 import org.usfirst.frc.team5026.robot.commands.autonomous.PathFollower;
+import org.usfirst.frc.team5026.robot.subsystems.ConveyorBelt;
 import org.usfirst.frc.team5026.robot.subsystems.Drive;
 import org.usfirst.frc.team5026.robot.subsystems.Elevator;
-import org.usfirst.frc.team5026.robot.subsystems.ConveyorBelt;
 import org.usfirst.frc.team5026.robot.subsystems.IntakeSubsystem;
 import org.usfirst.frc.team5026.robot.util.AutoPaths;
 import org.usfirst.frc.team5026.robot.util.Constants;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
-import edu.wpi.cscore.CvSink;
-import edu.wpi.cscore.UsbCamera;
-import edu.wpi.cscore.VideoSink;
-import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
-
-import edu.wpi.cscore.UsbCamera;
-import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -80,7 +73,7 @@ public class Robot extends IterativeRobot {
 		autoChooser.addDefault("My Auto", new DriveStraight());
 		autoChooser.addObject("Center to Left Path", new PathFollower(AutoPaths.getLeftPath()));
 		autoChooser.addObject("Center to Right Path", new PathFollower(AutoPaths.getRightPath()));
-		autoChooser.addObject("Find Time", new FindTimeCommand());
+		autoChooser.addObject("Center to Switch", new CenterToSwitchDropCube());
 		SmartDashboard.putNumber("target", 100);
 		SmartDashboard.putNumber("max count", 50);
 		SmartDashboard.putNumber("tolerance", 69);

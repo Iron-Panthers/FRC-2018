@@ -34,6 +34,10 @@ public class AutoPaths {
 	private static FastPathPlanner CENTER_LEFT;
 	private static FastPathPlanner CENTER_RIGHT;
 	
+	public static PlatformState ALLY_SWITCH_STATE = PlatformState.UNKNOWN;
+	public static PlatformState SCALE_STATE = PlatformState.UNKNOWN;
+	public static PlatformState ENEMY_SWITCH_STATE = PlatformState.UNKNOWN;
+	
 	public static FastPathPlanner getLeftPath() {
 		if (CENTER_LEFT != null) {
 			return CENTER_LEFT;
@@ -53,5 +57,15 @@ public class AutoPaths {
 		CENTER_RIGHT.getLeftArclength();
 		CENTER_RIGHT.getRightArclength();
 		return CENTER_RIGHT;
+	}
+	public static final void updateData(String gameMessage) {
+		if (gameMessage.length() <= 2) {
+			// This should never happen!
+			System.out.println("Game message not found!");
+			return;
+		}
+		ALLY_SWITCH_STATE = gameMessage.charAt(0) == 'L' || gameMessage.charAt(0) == 'l' ? PlatformState.LEFT : PlatformState.RIGHT;
+		SCALE_STATE = gameMessage.charAt(1) == 'L' || gameMessage.charAt(1) == 'l' ? PlatformState.LEFT : PlatformState.RIGHT;
+		ENEMY_SWITCH_STATE = gameMessage.charAt(2) == 'L' || gameMessage.charAt(2) == 'l' ? PlatformState.LEFT : PlatformState.RIGHT;
 	}
 }
