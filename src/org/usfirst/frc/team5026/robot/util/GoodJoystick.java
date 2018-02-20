@@ -40,7 +40,8 @@ public class GoodJoystick {
 	public double findY() {
 		double y;
 		y = -driveStick.getY();
-		if(Robot.drive.isReversed) {
+		if(driveStick.getTrigger()) {
+			System.out.println("REVERSED");
 			y = -y;
 		}
 		if(Math.abs(y) < Constants.YDEADZONE_SIZE*Math.abs(driveStick.getX())

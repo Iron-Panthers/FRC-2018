@@ -68,8 +68,8 @@ public class OI {
 
 	}
 	public void mapButtons(){
-		stickBtnOne.whenPressed(new ReverseDrive());
-		stickBtnOne.whenReleased(new ReverseDrive());
+//		stickBtnOne.whenPressed(new ReverseDrive());
+//		stickBtnOne.whenReleased(new ReverseDrive());
 //		stickBtnTwo.whileHeld(new OuttakeCommand());
 		stickBtnTwo.toggleWhenPressed(new DriveShift());
 		stickBtnThree.whileHeld(new OuttakeCommand());
