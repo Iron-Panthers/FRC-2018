@@ -3,21 +3,21 @@ package org.usfirst.frc.team5026.robot.util;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Constants {
-	public static final double X_AXIS_MODIFIER = .8;
+	public static final double X_AXIS_MODIFIER = .8;//lower for more sensitive turning
 	public static final double XDEADZONE_SIZE = 0.15;
 	public static final double YDEADZONE_SIZE = 0.15;
-	public static final double CIRCLE_DEADZONE = 0.1;
-	public static final double SPEED = 1.0;
-	public static final double DEADZONE_SIZE = .1;
-	public static final double QUARTER_SPEED = .4;
+	public static final double CIRCLE_DEADZONE = 0.1;//middle of joystick
+	public static final double SPEED = 1.0;//teleop driving
+	//public static final double DEADZONE_SIZE = .1;
+	//public static final double QUARTER_SPEED = .4;
 	//Intake and Outtake
-	public static final double INTAKE_VOLTAGE_GRAB = 10./12; //Converted to voltage for motor
+	public static final double INTAKE_VOLTAGE_GRAB = 10./12; //Voltage before grabbing the block
 	public static final double INTAKE_VOLTAGE_HOLD = 6./12; //"" 4 good enough, 6 secure but too much for burning
-	public static final double INTAKE_CURRENT_SAMPLE = 4; //number of samples required to determine if cube is possessed
-	public static final int INTAKE_SPEED_UP_TIME = 2;
-	public static final boolean IS_INTAKE_INVERTED = true;
+	//public static final double INTAKE_CURRENT_SAMPLE = 4; //number of samples required to determine if cube is possessed
+	public static final int INTAKE_SPEED_UP_TIME = 2; // execute loops waited before sampling current to prevent motor stopping w/out cube
+	public static final boolean IS_INTAKE_INVERTED = true; 
 	public static final double OUTTAKE_POWER = -.4;
-	public static final double BLOCK_GRAB_THRESHOLD = 15; //min amount of amps intake has with block
+	public static final double BLOCK_GRAB_THRESHOLD = 15; //min amount of amps intake has with block before dropping voltage
 	  
 	//Portal to Switch 
 	public static final double CONVEYOR_SPEED = 1; 
@@ -38,12 +38,13 @@ public class Constants {
 	public static final int ELEVATOR_VELOCITY = 9000;
 	public static final int ELEVATOR_ACCELERATION = 20000;
 	public static final double ELEVATOR_TARGET_TOLERANCE = 100; //In ticks
-	public static final double ELEVATOR_TOLERANCE_TIME = 5; //
+	public static final double ELEVATOR_TOLERANCE_TIME = 5; //execute loops
 	public static final double ELEVATOR_HIT_TOLERANCE = 5; //amps, needs changing
 	public static final double ELEVATOR_VELOCITY_THRESHOLD = 30; //Velocity Threshold (Not tested, arbitrary)
 	public static final int ELEVATOR_CURRENT_COUNT_THRESHOLD = 5; //Amount of count when the current is high (For Elevator)
 	public static final double ELEVATOR_CURRENT_THRESHOLD = 30; //Untested, Current when we know the elevator is stalling
 	
+	//auto?
 	public static final double ROBOT_WIDTH = 25.75; // unit is inches
 	public static final double ROBOT_LENGTH = 37.25; // unit is inches
 	public static final double DRIVE_P = 0;
@@ -55,7 +56,7 @@ public class Constants {
 	public static final double PATHING_F = 0.011069; // TESTED ON REAL ROBOT BY ADAM
 	public static final double PATHING_P = 0.001; // TESTED ON REAL ROBOT BY ADAM
 	
-	public static final double JOYSTICK_DEADZONE = 0.1;
+	public static final double DDRIVE_JOYSTICK_DEADZONE = 0.1; //used for built in differential drive
 	//Auto Code
 	public static final boolean IS_RIGHT_INVERTED = false;
 	public static final boolean IS_LEFT_INVERTED = true;
