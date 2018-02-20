@@ -22,7 +22,7 @@ public class Drive extends Subsystem {
 	public DifferentialDrive dDrive;
 	public boolean isReversed;
 	public GearState state;
-	public Drive(DriveMotorGroup r, DriveMotorGroup l, DoubleSolenoid gearShift){
+	public Drive(DriveMotorGroup l, DriveMotorGroup r, DoubleSolenoid gearShift){
 		this.gearShift = gearShift;
 		this.right = r;
 		this.left = l;
