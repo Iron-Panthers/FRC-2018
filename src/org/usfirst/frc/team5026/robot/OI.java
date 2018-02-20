@@ -1,11 +1,13 @@
 package org.usfirst.frc.team5026.robot;
 
+import org.usfirst.frc.team5026.robot.commands.ConveyorBeltBackward;
+import org.usfirst.frc.team5026.robot.commands.ConveyorBeltForward;
+import org.usfirst.frc.team5026.robot.commands.ConveyorBeltForwardToBanner;
 import org.usfirst.frc.team5026.robot.commands.DriveShift;
 import org.usfirst.frc.team5026.robot.commands.IntakeCommandGroup;
 import org.usfirst.frc.team5026.robot.commands.OuttakeCommand;
 import org.usfirst.frc.team5026.robot.commands.drive.ReverseDrive;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorExtendPistons;
-import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorRetractPistons;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorSliding;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToScale;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToShortCube;
@@ -13,9 +15,6 @@ import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToSwitch;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToTallCube;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorZero;
 import org.usfirst.frc.team5026.robot.util.GoodJoystick;
-import org.usfirst.frc.team5026.robot.commands.ConveyorBeltBackward;
-import org.usfirst.frc.team5026.robot.commands.ConveyorBeltForward;
-import org.usfirst.frc.team5026.robot.commands.ConveyorBeltForwardToBanner;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -88,7 +87,6 @@ public class OI {
 		boardBtnSix.whenPressed(new ElevatorZero());
 //		boardBtnSeven.whileHeld(new OuttakeCommand());
 		boardBtnEleven.whenPressed(new ElevatorExtendPistons());
-		boardBtnTwelve.whenPressed(new ElevatorRetractPistons());
 		boardBtnFour.whenPressed(new ConveyorBeltForwardToBanner());
 		boardBtnFive.whileHeld(new ConveyorBeltForward());
 		boardBtnSix.whileHeld(new ConveyorBeltBackward());

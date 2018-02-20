@@ -16,7 +16,7 @@ public class toggleGearshift extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    		Robot.drive.shiftHigh();
+		Robot.drive.shiftHigh();
     		
     }
 
