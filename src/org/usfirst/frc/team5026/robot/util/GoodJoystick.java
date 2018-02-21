@@ -42,7 +42,7 @@ public class GoodJoystick {
 	}
 	public double findY() {
 		double y;
-		y = driveStick.getY();
+		y = -driveStick.getY();
 		if(driveStickTrigger.get()) {
 			System.out.println("REVERSED");
 			y = -y;

@@ -28,8 +28,6 @@ public class Hardware {
 	public TalonSRX leftM1;
 	public TalonSRX leftM2;
 	public TalonSRX leftM3;
-	public Talon leftTalonSR;
-	public Talon rightTalonSR;
 	public DriveMotorGroup right;
 	public DriveMotorGroup left;
 	public DoubleSolenoid gearShift;
@@ -61,8 +59,6 @@ public class Hardware {
 		left.setSensorInverted(Constants.IS_LEFT_SENSOR_INVERTED);
 		right.setSensorInverted(Constants.IS_RIGHT_SENSOR_INVERTED);
 		intakeM.setInverted(Constants.IS_INTAKE_INVERTED);
-		leftTalonSR = new Talon(RobotMap.TALON_SR_DRIVE_LEFT_MOTOR);
-		rightTalonSR = new Talon(RobotMap.TALON_SR_DRIVE_RIGHT_MOTOR);
 		gearShift = new DoubleSolenoid(0, RobotMap.SHIFT_FORWARD, RobotMap.SHIFT_REVERSE);
 		pdp = new PowerDistributionPanel();
 		banner = new DigitalInput(RobotMap.BANNER_PORT);
