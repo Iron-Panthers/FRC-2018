@@ -1,5 +1,5 @@
 package org.usfirst.frc.team5026.robot.subsystems;
-import org.usfirst.frc.team5026.robot.commands.drive.JoystickDrive;
+import org.usfirst.frc.team5026.robot.commands.JoystickDrive;
 import org.usfirst.frc.team5026.robot.util.Constants;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
