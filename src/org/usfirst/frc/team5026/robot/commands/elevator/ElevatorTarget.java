@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5026.robot.commands.elevator;
 
 import org.usfirst.frc.team5026.robot.Robot;
+import org.usfirst.frc.team5026.robot.util.ElevatorPosition;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -27,7 +28,9 @@ public class ElevatorTarget extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
 //    	Robot.elevator.checkPosition();
-    	Robot.elevator.motors.driveWithTarget(target);
+    	if(Robot.elevator.position == ElevatorPosition.UP) {
+    		Robot.elevator.motors.driveWithTarget(target);
+    	}
     	SmartDashboard.putNumber("Elevator Position", Robot.elevator.motors.getEncoderTicks());
     }
 

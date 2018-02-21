@@ -1,14 +1,14 @@
 package org.usfirst.frc.team5026.robot.subsystems;
 
-import java.util.ArrayList;
-
 import org.usfirst.frc.team5026.robot.Robot;
 import org.usfirst.frc.team5026.robot.util.Constants;
 import org.usfirst.frc.team5026.robot.util.ElevatorDirection;
 import org.usfirst.frc.team5026.robot.util.ElevatorMotorGroup;
+import org.usfirst.frc.team5026.robot.util.ElevatorPosition;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -17,16 +17,21 @@ public class Elevator extends Subsystem {
 	public ElevatorMotorGroup motors;
 	public DoubleSolenoid solenoid;
 	public double lastVelocity;
+	public ElevatorPosition position;
+	
 	public Elevator() {
 		motors = Robot.hardware.elevatorMotors;
 		solenoid = Robot.hardware.elevatorSolenoid;
+		position = ElevatorPosition.DOWN;
 	}
 	
 	public void extendPistons() {
 		solenoid.set(DoubleSolenoid.Value.kForward);
+		position = ElevatorPosition.UP;
 	}
 	public void retractPistons() {
 		solenoid.set(DoubleSolenoid.Value.kReverse);
+		position = ElevatorPosition.DOWN;
 	}
 	public void raiseToTarget(double tickTarget) {
 		motors.driveWithTarget(tickTarget);
@@ -66,6 +71,10 @@ public class Elevator extends Subsystem {
 		} else if(elevatorDirection == ElevatorDirection.FORWARDS) {
 			setEncoderPos(Constants.ELEVATOR_TOP_TARGET);
 		}
+	}
+	
+	public ElevatorPosition getPosition() {
+		return position;
 	}
 	
 //	public boolean atElevatorLimit() {
