@@ -16,26 +16,13 @@ public class AutoPaths {
 	private static double xDelta = 10;
 	private static double yDelta = 0;
 	
-	Point[] frcPath = new Point[]{
-			new Point(-23.6, -6.6, 3.5, 1.2, 3, -8.2),
-			new Point(-8.65, 5.5, 23.4, 12.8, 2.1, 4.72),
-			new Point(28.24, 4.3, -6.9, -3.3, 12.5, 13)
-	};
-	double vMax = 25;
-	Point[] frcPath2 = new Point[]{
-			new Point(0, 0, 0, 10, 0),
-			new Point(0, 50, vMax, 0, 20),
-			new Point(25, 90, vMax, 0, 100),
-			new Point(50, 80, vMax, -10, 140),
-			new Point(60, 50, 0, 0, 150)
-	};
-	Point[] frcPath3 = new Point[]{
-			new Point(0,0,vMax,0,0),
-			new Point(6.25, 12.5, vMax, 0, 90),
-			new Point(12.5, 0, vMax, 0, 180),
-			new Point(6.25, -12.5, vMax, 0, 270),
-			new Point(0,0, vMax, 0, 360)
-	};
+	private static double stage2x1 = 5;
+	private static double stage2y1 = 2;
+	private static double stage2x2 = 10;
+	private static double stage2y2 = 10;
+	private static double stage2y3 = 15;
+	
+	
 	private static double[][] CENTER_LEFT_PATH = new double[][]{
 		{robotLength/2, height / 2},
 		{(distanceToSwitchFromAlliance-robotLength)/2-delta-xDelta, height/2},
@@ -53,7 +40,7 @@ public class AutoPaths {
 	};
 	
 
-	double[][] leftPath = new double[][]{
+	private static double[][] leftPath = new double[][]{
 		{robotLength/2, height / 2},
 		{(distanceToSwitchFromAlliance-robotLength)/2-delta-xDelta, height/2},
 		{(distanceToSwitchFromAlliance-robotLength)/2+delta-xDelta, height/2+delta},
@@ -61,37 +48,31 @@ public class AutoPaths {
 		{distanceToSwitchFromAlliance-robotLength/2, height-distanceToSwitchFromWall-switchLength/2+yDelta}
 	};
 	
-	double stage2x1 = 5;
-	double stage2y1 = 2;
-	double stage2x2 = 10;
-	double stage2y2 = 10;
-	double stage2y3 = 15;
-	
-	double[][] leftTurnBack = new double[][]{
+	private static double[][] leftTurnBack = new double[][]{
 		{distanceToSwitchFromAlliance-robotLength/2, height-distanceToSwitchFromWall-switchLength/2+yDelta},
 		{distanceToSwitchFromAlliance-robotLength/2-stage2x1, height-distanceToSwitchFromWall-switchLength/2+yDelta+stage2y1},
 		{distanceToSwitchFromAlliance-robotLength/2-stage2x2, height-distanceToSwitchFromWall-switchLength/2+yDelta+stage2y2},
 		{distanceToSwitchFromAlliance-robotLength/2-stage2x2, height-distanceToSwitchFromWall-switchLength/2+yDelta+stage2y3},
 	};
 	
-	double[][] leftGrabCube = new double[][]{
+	private static double[][] leftGrabCube = new double[][]{
 		{distanceToSwitchFromAlliance-robotLength/2-stage2x2, height-distanceToSwitchFromWall-switchLength/2+yDelta+stage2y3},
 		{distanceToSwitchFromAlliance-robotLength/2-stage2x2, height-distanceToSwitchFromWall-switchLength/2+yDelta-stage2y3}
 	};
 	
-	double[][] leftReverseCube = new double[][]{
+	private static double[][] leftReverseCube = new double[][]{
 		{distanceToSwitchFromAlliance-robotLength/2-stage2x2, height-distanceToSwitchFromWall-switchLength/2+yDelta-stage2y3},
 		{distanceToSwitchFromAlliance-robotLength/2-stage2x2, height-distanceToSwitchFromWall-switchLength/2+yDelta+stage2y3}
 	};
 	
-	double[][] leftTurnToSwitch = new double[][]{
+	private static double[][] leftTurnToSwitch = new double[][]{
 		{distanceToSwitchFromAlliance-robotLength/2-stage2x2, height-distanceToSwitchFromWall-switchLength/2+yDelta+stage2y3},
 		{distanceToSwitchFromAlliance-robotLength/2-stage2x2, height-distanceToSwitchFromWall-switchLength/2+yDelta+stage2y2},
 		{distanceToSwitchFromAlliance-robotLength/2-stage2x1, height-distanceToSwitchFromWall-switchLength/2+yDelta+stage2y1},
 		{distanceToSwitchFromAlliance-robotLength/2, height-distanceToSwitchFromWall-switchLength/2+yDelta},
 	};
 	
-	double[][] rightPath = new double[][]{
+	private static double[][] rightPath = new double[][]{
 		{robotLength/2, height/2},
 		{(distanceToSwitchFromAlliance-robotLength)/2-delta-xDelta, height/2},
 		{(distanceToSwitchFromAlliance-robotLength)/2+delta-xDelta, height/2-delta},
@@ -99,14 +80,39 @@ public class AutoPaths {
 		{distanceToSwitchFromAlliance-robotLength/2, distanceToSwitchFromWall+switchLength/2-yDelta}
 	};
 	
-	FastPathPlanner fpp = new FastPathPlanner(leftPath);
-	FastPathPlanner stage2 = new FastPathPlanner(leftTurnBack); // This path should have left and right inverted and negative!
-	FastPathPlanner grabCube = new FastPathPlanner(leftGrabCube);
-	FastPathPlanner goBackFromCube = new FastPathPlanner(leftReverseCube);
-	FastPathPlanner goBack = new FastPathPlanner(leftTurnToSwitch);
-	
 	private static FastPathPlanner CENTER_LEFT;
 	private static FastPathPlanner CENTER_RIGHT;
+	
+	private static FastPathPlanner[] CENTER_LEFT_2_CUBE;
+	
+	public static FastPathPlanner[] getLeft2Cube() {
+		if (CENTER_LEFT_2_CUBE == null) {
+			FastPathPlanner fpp = new FastPathPlanner(leftPath);
+			FastPathPlanner stage2 = new FastPathPlanner(leftTurnBack); // This path should have left and right inverted and negative!
+			FastPathPlanner grabCube = new FastPathPlanner(leftGrabCube);
+			FastPathPlanner goBackFromCube = new FastPathPlanner(leftReverseCube);
+			FastPathPlanner goBack = new FastPathPlanner(leftTurnToSwitch);
+			
+			fpp.calculate(3.2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+			stage2.calculate(2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+			grabCube.calculate(1, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+			goBackFromCube.calculate(1, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+			goBack.calculate(2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+			
+			reversePath(stage2);
+			reversePath(goBackFromCube);
+
+			CENTER_LEFT_2_CUBE = new FastPathPlanner[] {
+					fpp, stage2, grabCube, goBackFromCube, goBack
+			};
+			
+			for (FastPathPlanner p: CENTER_LEFT_2_CUBE) {
+				p.getLeftArclength();
+				p.getRightArclength();
+			}
+		}
+		return CENTER_LEFT_2_CUBE;
+	}
 	
 	public static PlatformState ALLY_SWITCH_STATE = PlatformState.UNKNOWN;
 	public static PlatformState SCALE_STATE = PlatformState.UNKNOWN;
@@ -122,6 +128,7 @@ public class AutoPaths {
 		CENTER_LEFT.getRightArclength();
 		return CENTER_LEFT;
 	}
+	
 	public static FastPathPlanner getRightPath() {
 		if (CENTER_RIGHT != null) {
 			return CENTER_RIGHT;
@@ -132,6 +139,7 @@ public class AutoPaths {
 		CENTER_RIGHT.getRightArclength();
 		return CENTER_RIGHT;
 	}
+	
 	public static final void updateData(String gameMessage) {
 		if (gameMessage.length() <= 2) {
 			// This should never happen!
