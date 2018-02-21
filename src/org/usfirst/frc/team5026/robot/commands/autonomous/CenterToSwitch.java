@@ -35,6 +35,7 @@ public class CenterToSwitch extends Command {
     		path = AutoPaths.getRightPath();
     	}
     	else {
+    		System.out.println("NO DATA!");
     		// NO PATH! Go straight instead...
     	}
     	Robot.drive.stop();
