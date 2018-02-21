@@ -3,12 +3,15 @@ import org.usfirst.frc.team5026.robot.Robot;
 import org.usfirst.frc.team5026.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class GoodJoystick {
 	public Joystick driveStick;
+	public JoystickButton driveStickTrigger;
 	public GoodJoystick(int port){
 		driveStick = new Joystick(port);
+		driveStickTrigger = new JoystickButton(driveStick, 1);
 	}
 	public void seeAxis() {
 		SmartDashboard.putNumber("Raw X", driveStick.getX());
@@ -18,8 +21,8 @@ public class GoodJoystick {
 
 	public double findX() {
 		double x;
-		x = -driveStick.getX();
-//		if(Robot.drive.isReversed) {
+		x = driveStick.getX();
+//		if(driveStickTrigger.get() {
 //			x = -x;
 //		}
 		if(Math.abs(x) < Constants.XDEADZONE_SIZE*Math.abs(driveStick.getY()) 
@@ -39,8 +42,8 @@ public class GoodJoystick {
 	}
 	public double findY() {
 		double y;
-		y = -driveStick.getY();
-		if(driveStick.getTrigger()) {
+		y = driveStick.getY();
+		if(driveStickTrigger.get()) {
 			System.out.println("REVERSED");
 			y = -y;
 		}

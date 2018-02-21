@@ -51,8 +51,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		hardware = new Hardware();
-		drive = new Drive(hardware.left, hardware.right, hardware.gearShift);
-//		drive = new Drive(hardware.leftM, hardware.rightM, hardware.gearShift);
+//		drive = new Drive(hardware.left, hardware.right, hardware.gearShift);
+		drive = new Drive(hardware.leftTalonSR, hardware.rightTalonSR, hardware.gearShift);
 		intake = new IntakeSubsystem();
 		elevator = new Elevator();
 		conveyor = new ConveyorBelt();
