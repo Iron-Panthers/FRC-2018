@@ -20,7 +20,7 @@ public class ConveyorBeltBackward extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.conveyor.backward(Constants.CONVEYOR_SPEED);
+    	Robot.conveyor.backward();
     }
 
     // Make this return true when this Command no longer needs to run execute()
