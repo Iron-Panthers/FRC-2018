@@ -3,15 +3,16 @@ package org.usfirst.frc.team5026.robot.commands;
 import org.usfirst.frc.team5026.robot.Robot;
 import org.usfirst.frc.team5026.robot.util.Constants;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.TimedCommand;
 
 /**
  *
  */
-public class AutoHoldBlock extends Command {
+public class HoldBlockForTime extends TimedCommand {
 	double error;
-	int timeWithoutBlock;
-    public AutoHoldBlock() {
+    public HoldBlockForTime(double timeout) {
+    	super(timeout);
+    	requires(Robot.intake);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -28,17 +29,6 @@ public class AutoHoldBlock extends Command {
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-    	//Stops when there is no block
-        if(Robot.intake.motor.getOutputCurrent()<(Constants.HOLD_BLOCK_NO_BLOCK_CURRENT + Constants.HOLD_BLOCK_NO_BLOCK_TOLERANCE)) {
-        	timeWithoutBlock++;
-        }
-        else {
-        	timeWithoutBlock = 0;
-        }
-        return timeWithoutBlock > Constants.HOLD_BLOCK_NO_BLOCK_STOP_TIME;
-    }
-
     // Called once after isFinished returns true
     protected void end() {
     	Robot.intake.stop();
