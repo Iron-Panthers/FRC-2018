@@ -1,4 +1,4 @@
-package org.usfirst.frc.team5026.robot.commands;
+package org.usfirst.frc.team5026.robot.commands.drive;
 import org.usfirst.frc.team5026.robot.Robot;
 import org.usfirst.frc.team5026.robot.util.Constants;
 
