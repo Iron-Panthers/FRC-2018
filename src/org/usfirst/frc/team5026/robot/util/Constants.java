@@ -25,6 +25,8 @@ public class Constants {
 	public static final double HOLD_BLOCK_NO_BLOCK_CURRENT = 5; //Current where if the intake is here with PID, we no longer have the block so it will stop (Arbitrary, test please)
 	public static final double HOLD_BLOCK_NO_BLOCK_TOLERANCE = 5; //Current tolerance for when intake current is too low, even with PID, where we know there is no block in the intake
 	public static final double HOLD_BLOCK_NO_BLOCK_STOP_TIME = 5; //Execute loops within tolerance
+	public static final double INTAKE_TIME = 5; //Intake time for hold block in auto (Arbitrary)
+	public static final double OUTTAKE_TIME = 5; //Outtake time for hold block in auto (Arbitrary)
 	
 	//Elevator
 	public static final boolean IS_ELEVATOR_INVERTED = false;
