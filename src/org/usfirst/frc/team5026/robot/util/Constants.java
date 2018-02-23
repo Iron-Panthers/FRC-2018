@@ -12,7 +12,7 @@ public class Constants {
 	public static final double QUARTER_SPEED = .4;
 	//Intake and Outtake
 	public static final double INTAKE_VOLTAGE_GRAB = 10./12; //Converted to voltage for motor
-	public static final double INTAKE_VOLTAGE_HOLD = 6./12; //"" 4 good enough, 6 secure but too much for burning
+	public static final double INTAKE_VOLTAGE_HOLD = 5.5/12; //"" 4 good enough, 6 secure but too much for burning
 	public static final double INTAKE_CURRENT_SAMPLE = 4; //number of samples required to determine if cube is possessed
 	public static final int INTAKE_SPEED_UP_TIME = 2;
 	public static final boolean IS_INTAKE_INVERTED = true;
@@ -22,6 +22,9 @@ public class Constants {
 	public static final double BLOCK_GRAB_THRESHOLD = 15; //min amount of amps intake has with block
 	public static final double HOLD_BLOCK_P = 0; //Arbitrary, please test
 	public static final double HOLD_BLOCK_CURRENT_TARGET = 40; //Arbitrary, probably around 20-30. Needs testing
+	public static final double HOLD_BLOCK_NO_BLOCK_CURRENT = 5; //Current where if the intake is here with PID, we no longer have the block so it will stop (Arbitrary, test please)
+	public static final double HOLD_BLOCK_NO_BLOCK_TOLERANCE = 5; //Current tolerance for when intake current is too low, even with PID, where we know there is no block in the intake
+	public static final double HOLD_BLOCK_NO_BLOCK_STOP_TIME = 5; //Execute loops within tolerance
 	
 	//Elevator
 	public static final boolean IS_ELEVATOR_INVERTED = false;

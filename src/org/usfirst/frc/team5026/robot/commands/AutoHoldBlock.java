@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class AutoHoldBlock extends Command {
 	double error;
+	int timeWithoutBlock;
     public AutoHoldBlock() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -28,15 +29,24 @@ public class AutoHoldBlock extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+    	//Stops when there is no block
+        if(Robot.intake.motor.getOutputCurrent()<(Constants.HOLD_BLOCK_NO_BLOCK_CURRENT + Constants.HOLD_BLOCK_NO_BLOCK_TOLERANCE)) {
+        	timeWithoutBlock++;
+        }
+        else {
+        	timeWithoutBlock = 0;
+        }
+        return timeWithoutBlock > Constants.HOLD_BLOCK_NO_BLOCK_STOP_TIME;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.intake.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	Robot.intake.stop();
     }
 }
