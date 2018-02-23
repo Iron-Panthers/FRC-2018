@@ -20,6 +20,8 @@ public class Constants {
 	public static final boolean IS_LEFT_INVERTED = false;
 	public static final double OUTTAKE_POWER = -.4;
 	public static final double BLOCK_GRAB_THRESHOLD = 15; //min amount of amps intake has with block
+	public static final double HOLD_BLOCK_P = 0; //Arbitrary, please test
+	public static final double HOLD_BLOCK_CURRENT_TARGET = 40; //Arbitrary, probably around 20-30. Needs testing
 	
 	//Elevator
 	public static final boolean IS_ELEVATOR_INVERTED = false;
