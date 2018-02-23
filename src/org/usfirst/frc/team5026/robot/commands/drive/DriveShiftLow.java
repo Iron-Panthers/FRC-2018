@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ShiftLow extends Command {
+public class DriveShiftLow extends Command {
 
-    public ShiftLow() {
+    public DriveShiftLow() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }

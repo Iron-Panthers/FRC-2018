@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class toggleGearshift extends Command {
+public class DriveToggleGearshift extends Command {
 
-    public toggleGearshift() {
+    public DriveToggleGearshift() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }

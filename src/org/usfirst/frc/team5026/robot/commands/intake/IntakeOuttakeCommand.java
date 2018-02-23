@@ -1,4 +1,4 @@
-package org.usfirst.frc.team5026.robot.commands;
+package org.usfirst.frc.team5026.robot.commands.intake;
 
 import org.usfirst.frc.team5026.robot.Robot;
 import org.usfirst.frc.team5026.robot.util.Constants;
@@ -9,9 +9,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class OuttakeCommand extends Command {
+public class IntakeOuttakeCommand extends Command {
 
-	public OuttakeCommand() {
+	public IntakeOuttakeCommand() {
 	// Use requires() here to declare subsystem dependencies
 	// eg. requires(chassis);
 	}
