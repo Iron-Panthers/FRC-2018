@@ -12,6 +12,7 @@ import org.usfirst.frc.team5026.robot.subsystems.Drive;
 import org.usfirst.frc.team5026.robot.subsystems.Elevator;
 import org.usfirst.frc.team5026.robot.subsystems.IntakeSubsystem;
 import org.usfirst.frc.team5026.robot.util.Constants;
+import org.usfirst.frc.team5026.robot.util.ElevatorPosition;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
@@ -114,6 +115,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		autoCommand = autoChooser.getSelected();
+		Robot.elevator.position = ElevatorPosition.DOWN;
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -165,7 +167,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putString("Time Left", time);
 		SmartDashboard.putNumber("Battery Voltage", hardware.pdp.getVoltage());
 		//Debug Window
-    	SmartDashboard.putString("Elevator Status", Robot.elevator.getElevatorDirection().name());
+    	SmartDashboard.putString("Elevator Direction", Robot.elevator.getElevatorDirection().name());
 		SmartDashboard.putNumber("Elevator Motor", Robot.elevator.motors.motor1.getOutputCurrent());
     	SmartDashboard.putNumber("Encoder Position", hardware.elevatorMotor.getSelectedSensorPosition(0));
 		SmartDashboard.putNumber("Encoder Velocity", hardware.elevatorMotor.getSelectedSensorVelocity(0));
@@ -176,6 +178,7 @@ public class Robot extends IterativeRobot {
 		//Drive Motor Current and Voltage
 		SmartDashboard.putNumber("Joystick Raw X", oi.driveStick.driveStick.getX());
 		SmartDashboard.putNumber("Joystick Raw Y", oi.driveStick.driveStick.getY());
+		SmartDashboard.putString("Piston Position", Robot.elevator.getPosition().name());
 		Scheduler.getInstance().run();
 	}
 

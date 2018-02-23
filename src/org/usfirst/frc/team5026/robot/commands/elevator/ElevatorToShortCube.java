@@ -2,6 +2,7 @@ package org.usfirst.frc.team5026.robot.commands.elevator;
 
 import org.usfirst.frc.team5026.robot.Robot;
 import org.usfirst.frc.team5026.robot.util.Constants;
+import org.usfirst.frc.team5026.robot.util.ElevatorPosition;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -25,8 +26,10 @@ public class ElevatorToShortCube extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
 //    	Robot.elevator.checkPosition();
-    	Robot.elevator.raiseToTarget(Constants.ELEVATOR_SHORT_CUBE_TARGET);
-		Robot.elevator.raiseToShortCube();
+    	if(Robot.elevator.position == ElevatorPosition.UP) {
+    		Robot.elevator.raiseToTarget(Constants.ELEVATOR_SHORT_CUBE_TARGET);
+    		Robot.elevator.raiseToShortCube();
+    	}
     	//Lowers carriage to the ground
     }
 
