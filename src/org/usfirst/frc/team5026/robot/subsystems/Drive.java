@@ -1,5 +1,5 @@
 package org.usfirst.frc.team5026.robot.subsystems;
-import org.usfirst.frc.team5026.robot.commands.drive.JoystickDrive;
+import org.usfirst.frc.team5026.robot.commands.JoystickDrive;
 import org.usfirst.frc.team5026.robot.util.Constants;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
@@ -20,9 +20,9 @@ public class Drive extends Subsystem {
 	public Talon r;
 	public DoubleSolenoid gearShift;
 	public DifferentialDrive dDrive;
-	public boolean isReversed;
+//	public boolean isReversed;
 	public GearState state;
-	public Drive(DriveMotorGroup r, DriveMotorGroup l, DoubleSolenoid gearShift){
+	public Drive(DriveMotorGroup l, DriveMotorGroup r, DoubleSolenoid gearShift){
 		this.gearShift = gearShift;
 		this.right = r;
 		this.left = l;
@@ -30,7 +30,7 @@ public class Drive extends Subsystem {
 		dDrive = new DifferentialDrive(left, right);
 		dDrive.setSafetyEnabled(false);
 		dDrive.setDeadband(Constants.DDRIVE_JOYSTICK_DEADZONE);
-		isReversed = false;
+//		isReversed = false;
 	}
 	public Drive(Talon l, Talon r, DoubleSolenoid gearShift) {
 		this.gearShift = gearShift;
@@ -41,7 +41,7 @@ public class Drive extends Subsystem {
 		dDrive = new DifferentialDrive(l, r);
 		dDrive.setSafetyEnabled(false);
 		dDrive.setDeadband(Constants.DDRIVE_JOYSTICK_DEADZONE);
-		isReversed = false;
+//		isReversed = false;
 	}
 	public void setupBrakeMode() {
 		left.motor1.setNeutralMode(NeutralMode.Brake);
@@ -147,9 +147,9 @@ public class Drive extends Subsystem {
 			r.stopMotor();
 		}
 	}
-	public void reverseDrive() {
-		isReversed = !isReversed;
-	}
+//	public void reverseDrive() {
+//		isReversed = !isReversed;
+//	}
 	public void shiftHigh() {
 		state = GearState.HIGH;
 		gearShift.set(DoubleSolenoid.Value.kReverse);

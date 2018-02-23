@@ -1,17 +1,17 @@
-package org.usfirst.frc.team5026.robot.commands.drive;
+package org.usfirst.frc.team5026.robot.commands.conveyorbelt;
 
 import org.usfirst.frc.team5026.robot.Robot;
+import org.usfirst.frc.team5026.robot.util.Constants;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class ReverseDrive extends Command {
+public class ConveyorBeltBackward extends Command {
 
-    public ReverseDrive() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+    public ConveyorBeltBackward() {
+       requires(Robot.conveyor);
     }
 
     // Called just before this Command runs the first time
@@ -20,22 +20,22 @@ public class ReverseDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.drive.reverseDrive();
+    	Robot.conveyor.backward(Constants.CONVEYOR_SPEED);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	//if(Robot.oi.driveStick.)
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.conveyor.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	//Robot.drive.reverseDrive();
+    	Robot.conveyor.stop();
     }
 }

@@ -12,10 +12,10 @@ public class Constants {
 	//public static final double QUARTER_SPEED = .4;
 	//Intake and Outtake
 	public static final double INTAKE_VOLTAGE_GRAB = 10./12; //Voltage before grabbing the block
-	public static final double INTAKE_VOLTAGE_HOLD = 6./12; //"" 4 good enough, 6 secure but too much for burning
-	//public static final double INTAKE_CURRENT_SAMPLE = 4; //number of samples required to determine if cube is possessed
-	public static final int INTAKE_SPEED_UP_TIME = 2; // execute loops waited before sampling current to prevent motor stopping w/out cube
-	public static final boolean IS_INTAKE_INVERTED = true; 
+	public static final double INTAKE_VOLTAGE_HOLD = 5.5/12; //"" 4 good enough, 6 secure but too much for burning
+//	public static final double INTAKE_CURRENT_SAMPLE = 4; //number of samples required to determine if cube is possessed
+	public static final int INTAKE_SPEED_UP_TIME = 2;// execute loops waited before sampling current to prevent motor stopping w/out cube 
+	public static final boolean IS_INTAKE_INVERTED = true;
 	public static final double OUTTAKE_POWER = -.4;
 	public static final double BLOCK_GRAB_THRESHOLD = 15; //min amount of amps intake has with block before dropping voltage
 	  
@@ -32,6 +32,7 @@ public class Constants {
 	public static final double ELEVATOR_F = 0.28;
 	public static final int ELEVATOR_TALL_CUBE_TARGET = 3500;	
 	public static final int ELEVATOR_SHORT_CUBE_TARGET = 2000; //Needs to be tested (This is supposed to lift cube enough so it does not drag on ground)
+	public static final int ELEVATOR_EXCHANGE_TARGET = 3000; //Arbitrary, Needs Testing
 	public static final int ELEVATOR_SWITCH_TARGET = 38000; //Tested by Adam and Driveteam
 	public static final int ELEVATOR_SCALE_TARGET = 85000; //See above
 	public static final int ELEVATOR_TOP_TARGET = 89000; //Tested by James. TODO Needs perfecting!!!
@@ -54,7 +55,7 @@ public class Constants {
 	public static final int DRIVE_TICKS_PER_REVOLUTION = 5526; // we tested this, I wonder if it's actually correct! ::thinking::
 	// ScadLib variables
 	public static final double PATHING_F = 0.011069; // TESTED ON REAL ROBOT BY ADAM
-	public static final double PATHING_P = 0.001; // TESTED ON REAL ROBOT BY ADAM
+	public static final double PATHING_P = 0.03; // TESTED ON REAL ROBOT BY ADAM
 	
 	public static final double DDRIVE_JOYSTICK_DEADZONE = 0.1; //used for built in differential drive
 	//Auto Code

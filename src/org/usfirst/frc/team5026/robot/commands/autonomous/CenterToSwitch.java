@@ -1,33 +1,43 @@
 package org.usfirst.frc.team5026.robot.commands.autonomous;
 
 import org.usfirst.frc.team5026.robot.Robot;
+import org.usfirst.frc.team5026.robot.util.AutoPaths;
 import org.usfirst.frc.team5026.robot.util.Constants;
+import org.usfirst.frc.team5026.robot.util.PlatformState;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import scadlib.paths.FastPathPlanner;
 
 /**
- *
+ * This command ONLY runs after the game data has been received
  */
-public class PathFollower extends Command {
+public class CenterToSwitch extends Command {
 
-	int index;
-	FastPathPlanner path;
+	int index = 0;
+	long startTime;
+	long lastTime;
 	double F;
 	double P;
-	long lastTime;
-	long startTime;
+	FastPathPlanner path;
 	
-    public PathFollower(FastPathPlanner p) {
+    public CenterToSwitch() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.drive);
-    	path = p;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	if (AutoPaths.ALLY_SWITCH_STATE == PlatformState.LEFT) {
+    		path = AutoPaths.getLeftPath();
+    	} else if (AutoPaths.ALLY_SWITCH_STATE == PlatformState.RIGHT) {
+    		path = AutoPaths.getRightPath();
+    	}
+    	else {
+    		System.out.println("NO DATA!");
+    		// NO PATH! Go straight instead...
+    	}
     	Robot.drive.stop();
     	Robot.drive.left.motor1.setSelectedSensorPosition(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
     	Robot.drive.right.motor1.setSelectedSensorPosition(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
@@ -85,6 +95,7 @@ public class PathFollower extends Command {
     	SmartDashboard.putNumber("Overall time (ms)", System.currentTimeMillis() - startTime);
     	lastTime = System.currentTimeMillis();
     }
+
     private double leftPositionalError() {
     	return (path.getLeftArclength()[index] - Robot.drive.getLeftEncoderPosition() / Constants.TICKS_TO_INCHES);
     }

@@ -1,4 +1,4 @@
-package org.usfirst.frc.team5026.robot.commands;
+package org.usfirst.frc.team5026.robot.commands.conveyorbelt;
 
 import org.usfirst.frc.team5026.robot.Robot;
 import org.usfirst.frc.team5026.robot.util.Constants;
@@ -8,10 +8,12 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ConveyorBeltBackward extends Command {
+public class ConveyorBeltForward extends Command {
 
-    public ConveyorBeltBackward() {
-       requires(Robot.conveyor);
+    public ConveyorBeltForward() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	requires(Robot.conveyor);
     }
 
     // Called just before this Command runs the first time
@@ -20,7 +22,7 @@ public class ConveyorBeltBackward extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.conveyor.backward(Constants.CONVEYOR_SPEED);
+    	Robot.conveyor.forward(Constants.CONVEYOR_SPEED);
     }
 
     // Make this return true when this Command no longer needs to run execute()

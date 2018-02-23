@@ -3,19 +3,18 @@ package org.usfirst.frc.team5026.robot;
 import org.usfirst.frc.team5026.robot.commands.DriveShift;
 import org.usfirst.frc.team5026.robot.commands.IntakeCommandGroup;
 import org.usfirst.frc.team5026.robot.commands.OuttakeCommand;
-import org.usfirst.frc.team5026.robot.commands.drive.ReverseDrive;
+import org.usfirst.frc.team5026.robot.commands.conveyorbelt.ConveyorBeltBackward;
+import org.usfirst.frc.team5026.robot.commands.conveyorbelt.ConveyorBeltForward;
+import org.usfirst.frc.team5026.robot.commands.conveyorbelt.ConveyorBeltForwardToBanner;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorExtendPistons;
-import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorRetractPistons;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorSliding;
+import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToExchange;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToScale;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToShortCube;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToSwitch;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToTallCube;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorZero;
 import org.usfirst.frc.team5026.robot.util.GoodJoystick;
-import org.usfirst.frc.team5026.robot.commands.ConveyorBeltBackward;
-import org.usfirst.frc.team5026.robot.commands.ConveyorBeltForward;
-import org.usfirst.frc.team5026.robot.commands.ConveyorBeltForwardToBanner;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -28,7 +27,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 	public GoodJoystick driveStick;
 	public Joystick elevatorStick;
-	public Button stickBtnOne;
+	public Button stickBtnOne; //reserved for GoodJoystick
 	public Button stickBtnTwo;
 	public Button stickBtnThree;
 	public Button stickBtnFour;
@@ -68,8 +67,8 @@ public class OI {
 
 	}
 	public void mapButtons(){
-		stickBtnOne.whenPressed(new ReverseDrive());
-		stickBtnOne.whenReleased(new ReverseDrive());
+//		stickBtnOne.whenPressed(new ReverseDrive());
+//		stickBtnOne.whenReleased(new ReverseDrive());
 //		stickBtnTwo.whileHeld(new OuttakeCommand());
 		stickBtnTwo.toggleWhenPressed(new DriveShift());
 		stickBtnThree.whileHeld(new OuttakeCommand());
@@ -80,7 +79,8 @@ public class OI {
 		boardBtnOne.whileHeld(new ElevatorSliding());
 		boardBtnTwo.whenPressed(new IntakeCommandGroup());
 		boardBtnThree.whileHeld(new OuttakeCommand());
-		boardBtnFour.whenPressed(new ConveyorBeltForwardToBanner());
+//		boardBtnFour.whenPressed(new ConveyorBeltForwardToBanner());
+		boardBtnFour.whenPressed(new ElevatorZero());
 		boardBtnFive.whileHeld(new ConveyorBeltForward());
 		boardBtnSix.whileHeld(new ConveyorBeltBackward());
 		
@@ -88,14 +88,12 @@ public class OI {
 		boardBtnEight.whenPressed(new ElevatorToTallCube());
 		boardBtnNine.whenPressed(new ElevatorToSwitch());
 		boardBtnTen.whenPressed(new ElevatorToScale());
-		boardBtnEleven.whenPressed(new ElevatorExtendPistons());
-		boardBtnTwelve.whenPressed(new ElevatorRetractPistons());
+		boardBtnEleven.whenPressed(new ElevatorToExchange());
 //		boardBtnThree.whileHeld(new ElevatorTarget());
 //		boardBtnFour.whenPressed(new ElevatorSetPIDF());
 		
 //		boardBtnSeven.whileHeld(new OuttakeCommand());
-		
-		
+		boardBtnTwelve.toggleWhenPressed(new ElevatorExtendPistons());
 	}
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a

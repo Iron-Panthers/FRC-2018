@@ -12,13 +12,15 @@ public class AutoPaths {
 	private static double distanceToSwitchFromAlliance = 140;
 	private static double delta = 10;
 	private static double widthOfSwitch = 56;
+	private static double xDelta = 10;
+	private static double yDelta = 0;
 	
 	private static double[][] CENTER_LEFT_PATH = new double[][]{
 		{robotLength/2, height / 2},
-		{(distanceToSwitchFromAlliance-robotLength)/2-delta, height/2},
-		{(distanceToSwitchFromAlliance-robotLength)/2+delta, height/2+delta},
-		{(distanceToSwitchFromAlliance+robotLength)/2+delta, height-distanceToSwitchFromWall-switchLength/2},
-		{distanceToSwitchFromAlliance-robotLength/2, height-distanceToSwitchFromWall-switchLength/2}
+		{(distanceToSwitchFromAlliance-robotLength)/2-delta-xDelta, height/2},
+		{(distanceToSwitchFromAlliance-robotLength)/2+delta-xDelta, height/2+delta},
+		{(distanceToSwitchFromAlliance+robotLength)/2+delta-xDelta, height-distanceToSwitchFromWall-switchLength/2+yDelta},
+		{distanceToSwitchFromAlliance-robotLength/2, height-distanceToSwitchFromWall-switchLength/2+yDelta}
 	};
 	private static double[][] CENTER_RIGHT_PATH = new double[][]{
 		{robotLength/2, height/2},
@@ -31,6 +33,10 @@ public class AutoPaths {
 	
 	private static FastPathPlanner CENTER_LEFT;
 	private static FastPathPlanner CENTER_RIGHT;
+	
+	public static PlatformState ALLY_SWITCH_STATE = PlatformState.UNKNOWN;
+	public static PlatformState SCALE_STATE = PlatformState.UNKNOWN;
+	public static PlatformState ENEMY_SWITCH_STATE = PlatformState.UNKNOWN;
 	
 	public static FastPathPlanner getLeftPath() {
 		if (CENTER_LEFT != null) {
@@ -51,5 +57,15 @@ public class AutoPaths {
 		CENTER_RIGHT.getLeftArclength();
 		CENTER_RIGHT.getRightArclength();
 		return CENTER_RIGHT;
+	}
+	public static final void updateData(String gameMessage) {
+		if (gameMessage.length() <= 2) {
+			// This should never happen!
+			System.out.println("Game message not found!");
+			return;
+		}
+		ALLY_SWITCH_STATE = gameMessage.charAt(0) == 'L' || gameMessage.charAt(0) == 'l' ? PlatformState.LEFT : PlatformState.RIGHT;
+		SCALE_STATE = gameMessage.charAt(1) == 'L' || gameMessage.charAt(1) == 'l' ? PlatformState.LEFT : PlatformState.RIGHT;
+		ENEMY_SWITCH_STATE = gameMessage.charAt(2) == 'L' || gameMessage.charAt(2) == 'l' ? PlatformState.LEFT : PlatformState.RIGHT;
 	}
 }
