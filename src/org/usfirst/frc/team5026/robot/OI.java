@@ -1,11 +1,9 @@
 package org.usfirst.frc.team5026.robot;
 
-import org.usfirst.frc.team5026.robot.commands.DriveShift;
-import org.usfirst.frc.team5026.robot.commands.IntakeCommandGroup;
-import org.usfirst.frc.team5026.robot.commands.OuttakeCommand;
 import org.usfirst.frc.team5026.robot.commands.conveyorbelt.ConveyorBeltBackward;
 import org.usfirst.frc.team5026.robot.commands.conveyorbelt.ConveyorBeltForward;
 import org.usfirst.frc.team5026.robot.commands.conveyorbelt.ConveyorBeltForwardToBanner;
+import org.usfirst.frc.team5026.robot.commands.drive.DriveShift;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorExtendPistons;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorSliding;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToExchange;
@@ -14,6 +12,8 @@ import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToShortCube;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToSwitch;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToTallCube;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorZero;
+import org.usfirst.frc.team5026.robot.commands.intake.IntakeCommandGroup;
+import org.usfirst.frc.team5026.robot.commands.intake.IntakeOuttakeCommand;
 import org.usfirst.frc.team5026.robot.util.GoodJoystick;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -71,14 +71,14 @@ public class OI {
 //		stickBtnOne.whenReleased(new ReverseDrive());
 //		stickBtnTwo.whileHeld(new OuttakeCommand());
 		stickBtnTwo.toggleWhenPressed(new DriveShift());
-		stickBtnThree.whileHeld(new OuttakeCommand());
+		stickBtnThree.whileHeld(new IntakeOuttakeCommand());
 		stickBtnFive.whenPressed(new ElevatorZero());
 //		stickBtnThree.whileHeld(new ElevatorToScale());
 //		stickBtnFour.whileHeld(new ElevatorToGround());
 		
 		boardBtnOne.whileHeld(new ElevatorSliding());
 		boardBtnTwo.whenPressed(new IntakeCommandGroup());
-		boardBtnThree.whileHeld(new OuttakeCommand());
+		boardBtnThree.whileHeld(new IntakeOuttakeCommand());
 //		boardBtnFour.whenPressed(new ConveyorBeltForwardToBanner());
 		boardBtnFour.whenPressed(new ElevatorZero());
 		boardBtnFive.whileHeld(new ConveyorBeltForward());

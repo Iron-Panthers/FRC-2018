@@ -1,15 +1,18 @@
-package org.usfirst.frc.team5026.robot.commands.drive;
+package org.usfirst.frc.team5026.robot.commands.intake;
 
 import org.usfirst.frc.team5026.robot.Robot;
+import org.usfirst.frc.team5026.robot.util.Constants;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class ShiftHigh extends Command {
+public class IntakeHoldBlock extends Command {
 
-    public ShiftHigh() {
+    public IntakeHoldBlock() {
+    	requires(Robot.intake);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -20,12 +23,12 @@ public class ShiftHigh extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.drive.shiftHigh();
+    	Robot.intake.intake(Constants.INTAKE_VOLTAGE_HOLD);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return Robot.intake.hasBlock();
     }
 
     // Called once after isFinished returns true

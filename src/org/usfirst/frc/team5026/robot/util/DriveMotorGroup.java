@@ -1,6 +1,4 @@
-package org.usfirst.frc.team5026.robot.subsystems;
-
-import org.usfirst.frc.team5026.robot.util.Constants;
+package org.usfirst.frc.team5026.robot.util;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
