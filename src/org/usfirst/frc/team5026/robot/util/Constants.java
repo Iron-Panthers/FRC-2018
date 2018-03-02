@@ -70,7 +70,7 @@ public class Constants {
 	public static final double AUTO_DISTANCE = 30; //Inches
 	public static final double WHEEL_RADIUS = 3; // inch
 	public static final double WHEEL_CIRCUMFERENCE = WHEEL_RADIUS*2*Math.PI;
-	public static final double TICKS_TO_INCHES = DRIVE_TICKS_PER_REVOLUTION / WHEEL_CIRCUMFERENCE;
+	public static final double TICKS_PER_INCH = DRIVE_TICKS_PER_REVOLUTION / WHEEL_CIRCUMFERENCE; //Converts inches to ticks for driving
 	
 	public static final double DRIVE_WANTED_INCHES_PER_SECOND = 48;
 	public static final double DRIVE_WANTED_ACCELERATION_INCHES_PER_SECOND_SQUARED = 80;

@@ -79,8 +79,8 @@ public class CenterToSwitch extends Command {
     	SmartDashboard.putNumber("Right Error", rightPositionalError());
     	SmartDashboard.putNumber("Left Arclength", path.getLeftArclength()[index]);
     	SmartDashboard.putNumber("Right Arclength", path.getRightArclength()[index]);
-    	SmartDashboard.putNumber("Left Position", Robot.drive.getLeftEncoderPosition() / Constants.TICKS_TO_INCHES);
-    	SmartDashboard.putNumber("Right Position", Robot.drive.getRightEncoderPosition() / Constants.TICKS_TO_INCHES);
+    	SmartDashboard.putNumber("Left Position", Robot.drive.getLeftEncoderPosition() / Constants.TICKS_PER_INCH);
+    	SmartDashboard.putNumber("Right Position", Robot.drive.getRightEncoderPosition() / Constants.TICKS_PER_INCH);
     	
     	SmartDashboard.putNumber("Left path speed", path.smoothLeftVelocity[index][1]);
     	SmartDashboard.putNumber("Left motor speed", lspeed);
@@ -97,10 +97,10 @@ public class CenterToSwitch extends Command {
     }
 
     private double leftPositionalError() {
-    	return (path.getLeftArclength()[index] - Robot.drive.getLeftEncoderPosition() / Constants.TICKS_TO_INCHES);
+    	return (path.getLeftArclength()[index] - Robot.drive.getLeftEncoderPosition() / Constants.TICKS_PER_INCH);
     }
     private double rightPositionalError() {
-    	return (path.getRightArclength()[index] - Robot.drive.getRightEncoderPosition() / Constants.TICKS_TO_INCHES);
+    	return (path.getRightArclength()[index] - Robot.drive.getRightEncoderPosition() / Constants.TICKS_PER_INCH);
     }
 
     // Make this return true when this Command no longer needs to run execute()

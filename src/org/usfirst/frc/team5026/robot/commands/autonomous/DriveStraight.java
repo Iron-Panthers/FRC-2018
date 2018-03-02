@@ -21,7 +21,7 @@ public class DriveStraight extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	target = (int) SmartDashboard.getNumber("target", 0);
-    	target = (int) (target * Constants.TICKS_TO_INCHES);
+    	target = (int) (target * Constants.TICKS_PER_INCH);
 		Robot.drive.stop();
 		maxCount = (int) SmartDashboard.getNumber("max count", 0);
 		tolerance = (int) SmartDashboard.getNumber("tolerance", 0);
