@@ -13,6 +13,7 @@ public class ConveyorForTime extends TimedCommand {
     public ConveyorForTime(boolean intake, double time) {
     	super(time);
         requires(Robot.conveyor);
+        isIntaking = intake;
     }
 
     // Called just before this Command runs the first time
