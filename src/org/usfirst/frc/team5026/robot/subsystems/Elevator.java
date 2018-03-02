@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5026.robot.subsystems;
 
 import org.usfirst.frc.team5026.robot.Robot;
+import org.usfirst.frc.team5026.robot.RobotMap;
 import org.usfirst.frc.team5026.robot.util.Constants;
 import org.usfirst.frc.team5026.robot.util.ElevatorDirection;
 import org.usfirst.frc.team5026.robot.util.ElevatorMotorGroup;
@@ -18,6 +19,7 @@ public class Elevator extends Subsystem {
 	public DoubleSolenoid solenoid;
 	public double lastVelocity;
 	public ElevatorPosition position;
+	public int count = 0;
 	
 	public Elevator() {
 		motors = Robot.hardware.elevatorMotors;
@@ -127,6 +129,20 @@ public class Elevator extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    }
+    public void zero() {
+    	if(Robot.elevator.position == ElevatorPosition.UP) {
+    		Robot.elevator.motors.driveWithPower(-Robot.oi.elevatorStick.getY());
+    	}
+    	if(Robot.hardware.pdp.getCurrent(RobotMap.ELEVATOR_MOTOR_PDP_PORT) > Constants.ELEVATOR_HIT_BOTTOM_CURRENT && Math.abs(Robot.hardware.elevatorMotor.getSelectedSensorPosition(Constants.kPIDLoopIdx)) < Constants.ELEVATOR_ZEROING_TOLERANCE) {
+    		count++;
+    	}
+    	else {
+    		count--;
+    	}
+    	if(count >= SmartDashboard.getNumber("Elevator zeroing samples", 3)) {
+    		Robot.elevator.motors.motor1.setSelectedSensorPosition((int)SmartDashboard.getNumber("Elevator Reset Value", 0), Constants.kPIDLoopIdx, Constants.kTimeoutMs);
+    	}
     }
 }
 

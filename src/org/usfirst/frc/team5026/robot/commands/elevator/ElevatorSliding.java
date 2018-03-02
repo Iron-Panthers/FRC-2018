@@ -1,15 +1,18 @@
 package org.usfirst.frc.team5026.robot.commands.elevator;
 
 import org.usfirst.frc.team5026.robot.Robot;
+import org.usfirst.frc.team5026.robot.RobotMap;
+import org.usfirst.frc.team5026.robot.util.Constants;
 import org.usfirst.frc.team5026.robot.util.ElevatorPosition;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
 public class ElevatorSliding extends Command {
-
+	int count;
     public ElevatorSliding() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -20,13 +23,11 @@ public class ElevatorSliding extends Command {
     protected void initialize() {
     	Robot.elevator.stop();
     }
-
+    
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-//    	Robot.elevator.checkPosition();
-    	if(Robot.elevator.position == ElevatorPosition.UP) {
-    		Robot.elevator.motors.driveWithPower(-Robot.oi.elevatorStick.getY());
-    	}
+    	//    	Robot.elevator.checkPosition();
+    	Robot.elevator.zero();
     }
 
     // Make this return true when this Command no longer needs to run execute()

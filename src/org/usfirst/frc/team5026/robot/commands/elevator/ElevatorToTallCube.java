@@ -29,6 +29,7 @@ public class ElevatorToTallCube extends Command {
     	if(Robot.elevator.position == ElevatorPosition.UP) {
     		Robot.elevator.raiseToTallCube();
     	}
+    	Robot.elevator.zero();
     }
 
     // Make this return true when this Command no longer needs to run execute()

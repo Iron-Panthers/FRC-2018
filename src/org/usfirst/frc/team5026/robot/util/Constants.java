@@ -48,6 +48,8 @@ public class Constants {
 	public static final double ELEVATOR_VELOCITY_THRESHOLD = 30; //Velocity Threshold (Not tested, arbitrary)
 	public static final int ELEVATOR_CURRENT_COUNT_THRESHOLD = 5; //Amount of count when the current is high (For Elevator)
 	public static final double ELEVATOR_CURRENT_THRESHOLD = 30; //Untested, Current when we know the elevator is stalling
+	public static final double ELEVATOR_HIT_BOTTOM_CURRENT = 0;
+	public static final double ELEVATOR_ZEROING_TOLERANCE = 3000;
 	
 	public static final double ROBOT_WIDTH = 0.5; // unit is meters
 	public static final double DRIVE_P = 0;

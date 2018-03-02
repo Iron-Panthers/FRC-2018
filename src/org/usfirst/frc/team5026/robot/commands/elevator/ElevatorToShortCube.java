@@ -30,6 +30,7 @@ public class ElevatorToShortCube extends Command {
     		Robot.elevator.raiseToTarget(Constants.ELEVATOR_SHORT_CUBE_TARGET);
     		Robot.elevator.raiseToShortCube();
     	}
+    	Robot.elevator.zero();
     	//Lowers carriage to the ground
     }
 

@@ -26,7 +26,10 @@ public class RobotMap {
 	public static final int DRIVE_LEFT_MOTOR = 1; //Change back to drive
 	public static final int DRIVE_RIGHT_MOTOR = 0;
 	public static final int INTAKE_MOTOR = 9; //Change back to drive
+	
 	public static final int INTAKE_PDP_PORT = 1; //To Be Changed
+	public static final int ELEVATOR_MOTOR_PDP_PORT = 0;
+	
 	public static final int ELEVATOR_SOLENOID_PORT_1 = 2;
 	public static final int ELEVATOR_SOLENOID_PORT_2 = 3;
 	public static final int ELEVATOR_MASTER = 8;
