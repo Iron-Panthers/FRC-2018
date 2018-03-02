@@ -26,9 +26,8 @@ public class LeftScale1Cube extends CommandGroup {
         // e.g. addParallel(new Command1());
         //      addSequential(new Command2());
         // Command1 and Command2 will run in parallel.
-    	
-    	addSequential(new ElevatorExtendPistons());
     	addParallel(new HoldBlock());
+    	addSequential(new ElevatorExtendPistons());
     	addSequential(new ElevatorToScale());
     	//addSequential(new DriveTheShit());
     	addSequential(new OuttakeForTime(Constants.TIME_OUTTAKING_IN_SCALE_AUTO));
