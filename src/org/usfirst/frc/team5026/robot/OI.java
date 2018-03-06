@@ -1,8 +1,9 @@
 package org.usfirst.frc.team5026.robot;
 
+import org.usfirst.frc.team5026.robot.commands.climb.ClimbDown;
+import org.usfirst.frc.team5026.robot.commands.climb.ClimbUp;
 import org.usfirst.frc.team5026.robot.commands.conveyorbelt.ConveyorBeltBackward;
 import org.usfirst.frc.team5026.robot.commands.conveyorbelt.ConveyorBeltForward;
-import org.usfirst.frc.team5026.robot.commands.conveyorbelt.ConveyorBeltForwardToBanner;
 import org.usfirst.frc.team5026.robot.commands.drive.DriveShift;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorExtendPistons;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorSliding;
@@ -32,6 +33,8 @@ public class OI {
 	public Button stickBtnThree;
 	public Button stickBtnFour;
 	public Button stickBtnFive;
+	public Button stickBtnSix;
+	public Button stickBtnSeven;
 	public Button boardBtnOne;
 	public Button boardBtnTwo;
 	public Button boardBtnThree;
@@ -52,6 +55,8 @@ public class OI {
 		stickBtnThree = new JoystickButton(driveStick.driveStick,3);
 		stickBtnFour = new JoystickButton(driveStick.driveStick, 4);
 		stickBtnFive = new JoystickButton(driveStick.driveStick, 5);
+		stickBtnSix = new JoystickButton(driveStick.driveStick, 6);
+		stickBtnSeven = new JoystickButton(driveStick.driveStick, 7);
 		boardBtnOne = new JoystickButton(elevatorStick, 1);
 		boardBtnTwo = new JoystickButton(elevatorStick, 2);
 		boardBtnThree = new JoystickButton(elevatorStick, 3);
@@ -75,6 +80,8 @@ public class OI {
 		stickBtnFive.whenPressed(new ElevatorZero());
 //		stickBtnThree.whileHeld(new ElevatorToScale());
 //		stickBtnFour.whileHeld(new ElevatorToGround());
+		stickBtnSix.whileHeld(new ClimbUp());
+		stickBtnSeven.whileHeld(new ClimbDown());
 		
 		boardBtnOne.whileHeld(new ElevatorSliding());
 		boardBtnTwo.whenPressed(new IntakeCommandGroup());

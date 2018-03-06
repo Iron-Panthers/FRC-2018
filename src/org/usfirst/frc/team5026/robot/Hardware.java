@@ -1,25 +1,25 @@
  package org.usfirst.frc.team5026.robot;
 
-import com.ctre.phoenix.motorcontrol.NeutralMode;
 import org.usfirst.frc.team5026.robot.util.Constants;
 import org.usfirst.frc.team5026.robot.util.DriveMotorGroup;
 import org.usfirst.frc.team5026.robot.util.ElevatorMotorGroup;
 
-import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
-import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 //import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
-import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Spark;
 
 public class Hardware {
 	public TalonSRX elevatorMotor;
 	public TalonSRX elevatorSlaveMotor;
 	public ElevatorMotorGroup elevatorMotors;
 	public DoubleSolenoid elevatorSolenoid;
+	public Spark leftClimb;
+	public Spark rightClimb;
 	public TalonSRX conveyor;
 	public TalonSRX intakeM;
 	public TalonSRX rightM1;
@@ -42,6 +42,10 @@ public class Hardware {
 		elevatorSlaveMotor.setInverted(Constants.IS_ELEVATOR_INVERTED);
 		elevatorMotor.setSensorPhase(!Constants.IS_ELEVATOR_SENSOR_INVERTED);
 		elevatorSolenoid = new DoubleSolenoid(0, RobotMap.ELEVATOR_SOLENOID_PORT_1, RobotMap.ELEVATOR_SOLENOID_PORT_2);
+		leftClimb = new Spark(RobotMap.CLIMB_MOTOR_PORT_LEFT);
+		rightClimb = new Spark(RobotMap.CLIMB_MOTOR_PORT_RIGHT);
+		leftClimb.setInverted(Constants.IS_LEFTCLIMB_INVERTED);
+		rightClimb.setInverted(Constants.IS_RIGHTCLIMB_INVERTED);
 		conveyor = new TalonSRX(RobotMap.CONVEYOR_BELT_MOTOR);
 		conveyor.setInverted(Constants.IS_COVEYOR_INVERTED);
 		conveyor.setNeutralMode(NeutralMode.Brake);
