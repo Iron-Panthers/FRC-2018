@@ -1,7 +1,6 @@
 package org.usfirst.frc.team5026.robot.util;
 
 import scadlib.paths.FastPathPlanner;
-import scadlib.paths.Point;
 
 public class AutoPaths {
 	private static double width = 648;
@@ -11,17 +10,22 @@ public class AutoPaths {
 	private static double switchLength = 38.719;
 	private static double distanceToSwitchFromWall = 85.25;
 	private static double distanceToSwitchFromAlliance = 140;
+	private static double distanceToScaleFromAlliance = 299.65;
+	private static double distanceToScaleFromWall = 71.57;
+	private static double scalePlatformLength = 36;
+	private static double portalY = 29.69;
 	private static double delta = 10;
 	private static double widthOfSwitch = 56;
 	private static double xDelta = 10;
 	private static double yDelta = 0;
+	private static double scaleYDelta = 8;
 	
 	private static double stage2x1 = 5;
 	private static double stage2y1 = 2;
 	private static double stage2x2 = 10;
 	private static double stage2y2 = 10;
 	private static double stage2y3 = 15;
-	
+	private static double stage2y4 = 40;
 	
 	private static double[][] CENTER_LEFT_PATH = new double[][]{
 		{robotLength/2, height / 2},
@@ -72,12 +76,84 @@ public class AutoPaths {
 		{distanceToSwitchFromAlliance-robotLength/2, height-distanceToSwitchFromWall-switchLength/2+yDelta},
 	};
 	
+	private static double[][] leftSwitchStart = new double[][]{
+		{robotLength/2, height-portalY-robotWidth/2},
+		{robotLength/2+10, height-portalY-robotWidth/2},
+		{robotLength/2+80, height-portalY-robotWidth/2},
+		{distanceToSwitchFromAlliance+widthOfSwitch/2-15, height-distanceToSwitchFromWall+robotLength/2+23},
+		{distanceToSwitchFromAlliance+widthOfSwitch/2-7, height-distanceToSwitchFromWall+robotLength/2+18},
+		{distanceToSwitchFromAlliance+widthOfSwitch/2-2, height-distanceToSwitchFromWall+robotLength/2+10},
+		{distanceToSwitchFromAlliance+widthOfSwitch/2, height-distanceToSwitchFromWall+robotLength/2+3},
+		{distanceToSwitchFromAlliance+widthOfSwitch/2, height-distanceToSwitchFromWall+robotLength/2},
+	};
+	
+	private static double[][] leftSwitchStartNew = new double[][]{
+		{robotLength/2, height-portalY-robotWidth/2},
+		{distanceToSwitchFromAlliance+widthOfSwitch/2, height-portalY-robotWidth/2},
+		{distanceToSwitchFromAlliance+widthOfSwitch/2, height-distanceToSwitchFromWall+robotLength/2},
+	};
+	
+	private static double[][] leftScaleStartNew = new double[][]{
+		{robotLength/2, height-portalY-robotWidth/2},
+		{distanceToSwitchFromAlliance+switchLength+robotLength/2,height-portalY-robotWidth/2},
+		{distanceToScaleFromAlliance-robotLength/2-40, height-distanceToScaleFromWall-scalePlatformLength/2+scaleYDelta},
+		{distanceToScaleFromAlliance-robotLength/2+5, height-distanceToScaleFromWall-scalePlatformLength/2+scaleYDelta},
+	};
+
 	private static double[][] rightPath = new double[][]{
 		{robotLength/2, height/2},
 		{(distanceToSwitchFromAlliance-robotLength)/2-delta-xDelta, height/2},
 		{(distanceToSwitchFromAlliance-robotLength)/2+delta-xDelta, height/2-delta},
 		{(distanceToSwitchFromAlliance+robotLength)/2+delta-xDelta, distanceToSwitchFromWall+switchLength/2-yDelta},
 		{distanceToSwitchFromAlliance-robotLength/2, distanceToSwitchFromWall+switchLength/2-yDelta}
+	};
+	
+	private static double[][] rightTurnBack = new double[][]{
+		{distanceToSwitchFromAlliance-robotLength/2, distanceToSwitchFromWall+switchLength/2-yDelta},
+		{distanceToSwitchFromAlliance-robotLength/2-stage2x1, distanceToSwitchFromWall+switchLength/2-yDelta-stage2y1},
+		{distanceToSwitchFromAlliance-robotLength/2-stage2x2, distanceToSwitchFromWall+switchLength/2-yDelta-stage2y2},
+		{distanceToSwitchFromAlliance-robotLength/2-stage2x2, distanceToSwitchFromWall+switchLength/2-yDelta-stage2y3},
+	};
+	
+	private static double[][] rightGrabCube = new double[][]{
+		{distanceToSwitchFromAlliance-robotLength/2-stage2x2, distanceToSwitchFromWall+switchLength/2-yDelta-stage2y3},
+		{distanceToSwitchFromAlliance-robotLength/2-stage2x2, distanceToSwitchFromWall+switchLength/2-yDelta+stage2y4}
+	};
+	
+	private static double[][] rightReverseCube = new double[][]{
+		{distanceToSwitchFromAlliance-robotLength/2-stage2x2, distanceToSwitchFromWall+switchLength/2-yDelta+stage2y4},
+		{distanceToSwitchFromAlliance-robotLength/2-stage2x2, distanceToSwitchFromWall+switchLength/2-yDelta-stage2y3},
+	};
+	
+	private static double[][] rightTurnToSwitch = new double[][]{
+		{distanceToSwitchFromAlliance-robotLength/2-stage2x2, distanceToSwitchFromWall+switchLength/2-yDelta-stage2y3},
+		{distanceToSwitchFromAlliance-robotLength/2-stage2x2, distanceToSwitchFromWall+switchLength/2-yDelta-stage2y2},
+		{distanceToSwitchFromAlliance-robotLength/2-stage2x1, distanceToSwitchFromWall+switchLength/2-yDelta-stage2y1},
+		{distanceToSwitchFromAlliance-robotLength/2, distanceToSwitchFromWall+switchLength/2-yDelta},
+	};
+	
+	private static double[][] rightSwitchStart = new double[][]{
+		{robotLength/2, portalY+robotWidth/2},
+		{robotLength/2+10, portalY+robotWidth/2},
+		{robotLength/2+80, portalY+robotWidth/2},
+		{distanceToSwitchFromAlliance+widthOfSwitch/2-15, distanceToSwitchFromWall-robotLength/2-23},
+		{distanceToSwitchFromAlliance+widthOfSwitch/2-7, distanceToSwitchFromWall-robotLength/2-18},
+		{distanceToSwitchFromAlliance+widthOfSwitch/2-2, distanceToSwitchFromWall-robotLength/2-10},
+		{distanceToSwitchFromAlliance+widthOfSwitch/2, distanceToSwitchFromWall-robotLength/2-3},
+		{distanceToSwitchFromAlliance+widthOfSwitch/2, distanceToSwitchFromWall-robotLength/2},
+	};
+
+	private static double[][] rightSwitchStartNew = new double[][]{
+		{robotLength/2, portalY+robotWidth/2},
+		{distanceToSwitchFromAlliance+widthOfSwitch/2, portalY+robotWidth/2},
+		{distanceToSwitchFromAlliance+widthOfSwitch/2, distanceToSwitchFromWall-robotLength/2},
+	};
+
+	private static double[][] rightScaleStartNew = new double[][]{
+		{robotLength/2, portalY+robotWidth/2},
+		{distanceToSwitchFromAlliance+switchLength+robotLength/2, portalY+robotWidth/2},
+		{distanceToScaleFromAlliance-robotLength/2-40, distanceToScaleFromWall+scalePlatformLength/2-scaleYDelta},
+		{distanceToScaleFromAlliance-robotLength/2+5, distanceToScaleFromWall+scalePlatformLength/2-scaleYDelta},
 	};
 	
 	private static FastPathPlanner CENTER_LEFT;
