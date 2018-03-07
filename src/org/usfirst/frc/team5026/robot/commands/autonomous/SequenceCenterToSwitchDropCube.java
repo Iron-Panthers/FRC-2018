@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class CenterToSwitchDropCube extends CommandGroup {
+public class SequenceCenterToSwitchDropCube extends CommandGroup {
 
-    public CenterToSwitchDropCube() {
+    public SequenceCenterToSwitchDropCube() {
 //        addSequential(new FindGameDataAndAddCommand(new PathFollower(AutoPaths.getLeftPath()), new PathFollower(AutoPaths.getRightPath())));
 //        addSequential(new ConveyorBeltBackward());
     	addSequential(new FindGameData());

@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5026.robot.commands.autonomous;
 
 import org.usfirst.frc.team5026.robot.util.AutoPaths;
+import org.usfirst.frc.team5026.robot.util.CommandOption;
 import org.usfirst.frc.team5026.robot.util.PlatformState;
 
 import edu.wpi.first.wpilibj.DriverStation;
@@ -12,14 +13,16 @@ import edu.wpi.first.wpilibj.command.Scheduler;
  */
 public class FindGameDataAndAddCommand extends Command {
 
-	Command left;
-	Command right;
+	CommandOption commandOption;
+	
 	boolean finished = false;
     public FindGameDataAndAddCommand(Command forLeft, Command forRight) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	left = forLeft;
-    	right = forRight;
+    	commandOption = new CommandOption(forLeft, forRight);
+    }
+    public FindGameDataAndAddCommand(CommandOption comOpt) {
+    	commandOption = comOpt;
     }
 
     // Called just before this Command runs the first time
@@ -44,9 +47,27 @@ public class FindGameDataAndAddCommand extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	if (AutoPaths.ALLY_SWITCH_STATE == PlatformState.LEFT) {
-    		Scheduler.getInstance().add(left);
+    		if (AutoPaths.SCALE_STATE == PlatformState.LEFT) {
+    			// LL
+    			Scheduler.getInstance().add(commandOption.leftSwitchLeftScale);
+    		} else if (AutoPaths.SCALE_STATE == PlatformState.RIGHT) {
+    			// LR
+    			Scheduler.getInstance().add(commandOption.leftSwitchRightScale);
+    		} else {
+    			// Never should happen
+    			System.out.println("The switch is LEFT, but the scale is UNKNOWN!");
+    		}
     	} else if (AutoPaths.ALLY_SWITCH_STATE == PlatformState.RIGHT) {
-    		Scheduler.getInstance().add(right);
+    		if (AutoPaths.SCALE_STATE == PlatformState.LEFT) {
+    			// RL
+    			Scheduler.getInstance().add(commandOption.rightSwitchLeftScale);
+    		} else if (AutoPaths.SCALE_STATE == PlatformState.RIGHT) {
+    			// RR
+    			Scheduler.getInstance().add(commandOption.rightSwitchRightScale);
+    		} else {
+    			// Never should happen
+    			System.out.println("The switch is RIGHT, but the scale is UNKNOWN!");
+    		}
     	} else {
     		// This should never happen!
     		System.out.println("Failed to setup field data BUT command still ended!");

@@ -43,40 +43,31 @@ public class AutoPaths {
 		{distanceToSwitchFromAlliance-robotLength/2, distanceToSwitchFromWall+switchLength/2}
 	};
 	
-
-	private static double[][] leftPath = new double[][]{
-		{robotLength/2, height / 2},
-		{(distanceToSwitchFromAlliance-robotLength)/2-delta-xDelta, height/2},
-		{(distanceToSwitchFromAlliance-robotLength)/2+delta-xDelta, height/2+delta},
-		{(distanceToSwitchFromAlliance+robotLength)/2+delta-xDelta, height-distanceToSwitchFromWall-switchLength/2+yDelta},
-		{distanceToSwitchFromAlliance-robotLength/2, height-distanceToSwitchFromWall-switchLength/2+yDelta}
-	};
-	
-	private static double[][] leftTurnBack = new double[][]{
+	private static double[][] CENTER_LEFT_TURNBACK = new double[][]{
 		{distanceToSwitchFromAlliance-robotLength/2, height-distanceToSwitchFromWall-switchLength/2+yDelta},
 		{distanceToSwitchFromAlliance-robotLength/2-stage2x1, height-distanceToSwitchFromWall-switchLength/2+yDelta+stage2y1},
 		{distanceToSwitchFromAlliance-robotLength/2-stage2x2, height-distanceToSwitchFromWall-switchLength/2+yDelta+stage2y2},
 		{distanceToSwitchFromAlliance-robotLength/2-stage2x2, height-distanceToSwitchFromWall-switchLength/2+yDelta+stage2y3},
 	};
 	
-	private static double[][] leftGrabCube = new double[][]{
+	private static double[][] CENTER_LEFT_GRAB = new double[][]{
 		{distanceToSwitchFromAlliance-robotLength/2-stage2x2, height-distanceToSwitchFromWall-switchLength/2+yDelta+stage2y3},
 		{distanceToSwitchFromAlliance-robotLength/2-stage2x2, height-distanceToSwitchFromWall-switchLength/2+yDelta-stage2y3}
 	};
 	
-	private static double[][] leftReverseCube = new double[][]{
+	private static double[][] CENTER_LEFT_REVERSE = new double[][]{
 		{distanceToSwitchFromAlliance-robotLength/2-stage2x2, height-distanceToSwitchFromWall-switchLength/2+yDelta-stage2y3},
 		{distanceToSwitchFromAlliance-robotLength/2-stage2x2, height-distanceToSwitchFromWall-switchLength/2+yDelta+stage2y3}
 	};
 	
-	private static double[][] leftTurnToSwitch = new double[][]{
+	private static double[][] CENTER_LEFT_TURNTO = new double[][]{
 		{distanceToSwitchFromAlliance-robotLength/2-stage2x2, height-distanceToSwitchFromWall-switchLength/2+yDelta+stage2y3},
 		{distanceToSwitchFromAlliance-robotLength/2-stage2x2, height-distanceToSwitchFromWall-switchLength/2+yDelta+stage2y2},
 		{distanceToSwitchFromAlliance-robotLength/2-stage2x1, height-distanceToSwitchFromWall-switchLength/2+yDelta+stage2y1},
 		{distanceToSwitchFromAlliance-robotLength/2, height-distanceToSwitchFromWall-switchLength/2+yDelta},
 	};
 	
-	private static double[][] leftSwitchStart = new double[][]{
+	private static double[][] LEFT_CLOSE_SWITCH = new double[][]{
 		{robotLength/2, height-portalY-robotWidth/2},
 		{robotLength/2+10, height-portalY-robotWidth/2},
 		{robotLength/2+80, height-portalY-robotWidth/2},
@@ -87,52 +78,44 @@ public class AutoPaths {
 		{distanceToSwitchFromAlliance+widthOfSwitch/2, height-distanceToSwitchFromWall+robotLength/2},
 	};
 	
-	private static double[][] leftSwitchStartNew = new double[][]{
+	private static double[][] LEFT_CLOSE_SWITCH_2 = new double[][]{
 		{robotLength/2, height-portalY-robotWidth/2},
 		{distanceToSwitchFromAlliance+widthOfSwitch/2, height-portalY-robotWidth/2},
 		{distanceToSwitchFromAlliance+widthOfSwitch/2, height-distanceToSwitchFromWall+robotLength/2},
 	};
 	
-	private static double[][] leftScaleStartNew = new double[][]{
+	private static double[][] LEFT_CLOSE_SCALE = new double[][]{
 		{robotLength/2, height-portalY-robotWidth/2},
 		{distanceToSwitchFromAlliance+switchLength+robotLength/2,height-portalY-robotWidth/2},
 		{distanceToScaleFromAlliance-robotLength/2-40, height-distanceToScaleFromWall-scalePlatformLength/2+scaleYDelta},
 		{distanceToScaleFromAlliance-robotLength/2+5, height-distanceToScaleFromWall-scalePlatformLength/2+scaleYDelta},
 	};
 
-	private static double[][] rightPath = new double[][]{
-		{robotLength/2, height/2},
-		{(distanceToSwitchFromAlliance-robotLength)/2-delta-xDelta, height/2},
-		{(distanceToSwitchFromAlliance-robotLength)/2+delta-xDelta, height/2-delta},
-		{(distanceToSwitchFromAlliance+robotLength)/2+delta-xDelta, distanceToSwitchFromWall+switchLength/2-yDelta},
-		{distanceToSwitchFromAlliance-robotLength/2, distanceToSwitchFromWall+switchLength/2-yDelta}
-	};
-	
-	private static double[][] rightTurnBack = new double[][]{
+	private static double[][] CENTER_RIGHT_TURNBACK = new double[][]{
 		{distanceToSwitchFromAlliance-robotLength/2, distanceToSwitchFromWall+switchLength/2-yDelta},
 		{distanceToSwitchFromAlliance-robotLength/2-stage2x1, distanceToSwitchFromWall+switchLength/2-yDelta-stage2y1},
 		{distanceToSwitchFromAlliance-robotLength/2-stage2x2, distanceToSwitchFromWall+switchLength/2-yDelta-stage2y2},
 		{distanceToSwitchFromAlliance-robotLength/2-stage2x2, distanceToSwitchFromWall+switchLength/2-yDelta-stage2y3},
 	};
 	
-	private static double[][] rightGrabCube = new double[][]{
+	private static double[][] CENTER_RIGHT_GRAB = new double[][]{
 		{distanceToSwitchFromAlliance-robotLength/2-stage2x2, distanceToSwitchFromWall+switchLength/2-yDelta-stage2y3},
 		{distanceToSwitchFromAlliance-robotLength/2-stage2x2, distanceToSwitchFromWall+switchLength/2-yDelta+stage2y4}
 	};
 	
-	private static double[][] rightReverseCube = new double[][]{
+	private static double[][] CENTER_RIGHT_REVERSE = new double[][]{
 		{distanceToSwitchFromAlliance-robotLength/2-stage2x2, distanceToSwitchFromWall+switchLength/2-yDelta+stage2y4},
 		{distanceToSwitchFromAlliance-robotLength/2-stage2x2, distanceToSwitchFromWall+switchLength/2-yDelta-stage2y3},
 	};
 	
-	private static double[][] rightTurnToSwitch = new double[][]{
+	private static double[][] CENTER_RIGHT_TURNTO = new double[][]{
 		{distanceToSwitchFromAlliance-robotLength/2-stage2x2, distanceToSwitchFromWall+switchLength/2-yDelta-stage2y3},
 		{distanceToSwitchFromAlliance-robotLength/2-stage2x2, distanceToSwitchFromWall+switchLength/2-yDelta-stage2y2},
 		{distanceToSwitchFromAlliance-robotLength/2-stage2x1, distanceToSwitchFromWall+switchLength/2-yDelta-stage2y1},
 		{distanceToSwitchFromAlliance-robotLength/2, distanceToSwitchFromWall+switchLength/2-yDelta},
 	};
 	
-	private static double[][] rightSwitchStart = new double[][]{
+	private static double[][] RIGHT_CLOSE_SWITCH = new double[][]{
 		{robotLength/2, portalY+robotWidth/2},
 		{robotLength/2+10, portalY+robotWidth/2},
 		{robotLength/2+80, portalY+robotWidth/2},
@@ -143,13 +126,13 @@ public class AutoPaths {
 		{distanceToSwitchFromAlliance+widthOfSwitch/2, distanceToSwitchFromWall-robotLength/2},
 	};
 
-	private static double[][] rightSwitchStartNew = new double[][]{
+	private static double[][] RIGHT_CLOSE_SWITCH_2 = new double[][]{
 		{robotLength/2, portalY+robotWidth/2},
 		{distanceToSwitchFromAlliance+widthOfSwitch/2, portalY+robotWidth/2},
 		{distanceToSwitchFromAlliance+widthOfSwitch/2, distanceToSwitchFromWall-robotLength/2},
 	};
 
-	private static double[][] rightScaleStartNew = new double[][]{
+	private static double[][] RIGHT_CLOSE_SCALE = new double[][]{
 		{robotLength/2, portalY+robotWidth/2},
 		{distanceToSwitchFromAlliance+switchLength+robotLength/2, portalY+robotWidth/2},
 		{distanceToScaleFromAlliance-robotLength/2-40, distanceToScaleFromWall+scalePlatformLength/2-scaleYDelta},
@@ -159,15 +142,16 @@ public class AutoPaths {
 	private static FastPathPlanner CENTER_LEFT;
 	private static FastPathPlanner CENTER_RIGHT;
 	
-	private static FastPathPlanner[] CENTER_LEFT_2_CUBE;
+	private static FastPathPlanner[] CENTER_LEFT_SWITCH_2_CUBE;
+	private static FastPathPlanner[] CENTER_RIGHT_SWITCH_2_CUBE;
 	
-	public static FastPathPlanner[] getLeft2Cube() {
-		if (CENTER_LEFT_2_CUBE == null) {
-			FastPathPlanner fpp = new FastPathPlanner(leftPath);
-			FastPathPlanner stage2 = new FastPathPlanner(leftTurnBack); // This path should have left and right inverted and negative!
-			FastPathPlanner grabCube = new FastPathPlanner(leftGrabCube);
-			FastPathPlanner goBackFromCube = new FastPathPlanner(leftReverseCube);
-			FastPathPlanner goBack = new FastPathPlanner(leftTurnToSwitch);
+	public static FastPathPlanner[] getLeftSwitch2Cube() {
+		if (CENTER_LEFT_SWITCH_2_CUBE == null) {
+			FastPathPlanner fpp = new FastPathPlanner(CENTER_LEFT_PATH);
+			FastPathPlanner stage2 = new FastPathPlanner(CENTER_LEFT_TURNBACK); // This path should have left and right inverted and negative!
+			FastPathPlanner grabCube = new FastPathPlanner(CENTER_LEFT_GRAB);
+			FastPathPlanner goBackFromCube = new FastPathPlanner(CENTER_LEFT_REVERSE);
+			FastPathPlanner goBack = new FastPathPlanner(CENTER_LEFT_TURNTO);
 			
 			fpp.calculate(3.2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
 			stage2.calculate(2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
@@ -178,16 +162,45 @@ public class AutoPaths {
 			reversePath(stage2);
 			reversePath(goBackFromCube);
 
-			CENTER_LEFT_2_CUBE = new FastPathPlanner[] {
+			CENTER_LEFT_SWITCH_2_CUBE = new FastPathPlanner[] {
 					fpp, stage2, grabCube, goBackFromCube, goBack
 			};
 			
-			for (FastPathPlanner p: CENTER_LEFT_2_CUBE) {
+			for (FastPathPlanner p: CENTER_LEFT_SWITCH_2_CUBE) {
 				p.getLeftArclength();
 				p.getRightArclength();
 			}
 		}
-		return CENTER_LEFT_2_CUBE;
+		return CENTER_LEFT_SWITCH_2_CUBE;
+	}
+	
+	public static FastPathPlanner[] getRightSwitch2Cube() {
+		if (CENTER_RIGHT_SWITCH_2_CUBE == null) {
+			FastPathPlanner fpp = new FastPathPlanner(CENTER_RIGHT_PATH);
+			FastPathPlanner stage2 = new FastPathPlanner(CENTER_RIGHT_TURNBACK); // This path should have left and right inverted and negative!
+			FastPathPlanner grabCube = new FastPathPlanner(CENTER_RIGHT_GRAB);
+			FastPathPlanner goBackFromCube = new FastPathPlanner(CENTER_RIGHT_REVERSE);
+			FastPathPlanner goBack = new FastPathPlanner(CENTER_RIGHT_TURNTO);
+			
+			fpp.calculate(3.2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+			stage2.calculate(2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+			grabCube.calculate(1, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+			goBackFromCube.calculate(1, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+			goBack.calculate(2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+			
+			reversePath(stage2);
+			reversePath(goBackFromCube);
+			
+			CENTER_RIGHT_SWITCH_2_CUBE = new FastPathPlanner[]{
+					fpp, stage2, grabCube, goBackFromCube, goBack
+			};
+			
+			for (FastPathPlanner p: CENTER_RIGHT_SWITCH_2_CUBE) {
+				p.getLeftArclength();
+				p.getRightArclength();
+			}
+		}
+		return CENTER_RIGHT_SWITCH_2_CUBE;
 	}
 	
 	public static PlatformState ALLY_SWITCH_STATE = PlatformState.UNKNOWN;

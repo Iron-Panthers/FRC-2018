@@ -7,7 +7,7 @@
 
 package org.usfirst.frc.team5026.robot;
 
-import org.usfirst.frc.team5026.robot.commands.autonomous.CenterToSwitchDropCube;
+import org.usfirst.frc.team5026.robot.commands.autonomous.SequenceCenterToSwitchDropCube;
 import org.usfirst.frc.team5026.robot.commands.autonomous.DriveStraight;
 import org.usfirst.frc.team5026.robot.commands.autonomous.PathFollower;
 import org.usfirst.frc.team5026.robot.subsystems.ConveyorBelt;
@@ -73,7 +73,7 @@ public class Robot extends IterativeRobot {
 		autoChooser.addDefault("My Auto", new DriveStraight());
 		autoChooser.addObject("Center to Left Path", new PathFollower(AutoPaths.getLeftPath()));
 		autoChooser.addObject("Center to Right Path", new PathFollower(AutoPaths.getRightPath()));
-		autoChooser.addObject("Center to Switch", new CenterToSwitchDropCube());
+		autoChooser.addObject("Center to Switch", new SequenceCenterToSwitchDropCube());
 		SmartDashboard.putNumber("target", 100);
 		SmartDashboard.putNumber("max count", 50);
 		SmartDashboard.putNumber("tolerance", 69);
