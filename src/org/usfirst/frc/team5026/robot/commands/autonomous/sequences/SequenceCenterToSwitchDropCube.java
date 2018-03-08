@@ -1,5 +1,7 @@
-package org.usfirst.frc.team5026.robot.commands.autonomous;
+package org.usfirst.frc.team5026.robot.commands.autonomous.sequences;
 
+import org.usfirst.frc.team5026.robot.commands.autonomous.CenterToSwitch;
+import org.usfirst.frc.team5026.robot.commands.autonomous.FindGameData;
 import org.usfirst.frc.team5026.robot.commands.conveyorbelt.ConveyorBeltBackward;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;

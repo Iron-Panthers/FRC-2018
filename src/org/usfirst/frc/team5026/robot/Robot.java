@@ -7,15 +7,17 @@
 
 package org.usfirst.frc.team5026.robot;
 
-import org.usfirst.frc.team5026.robot.commands.autonomous.SequenceCenterToSwitchDropCube;
+import org.usfirst.frc.team5026.robot.commands.autonomous.ChooseStartPosition;
 import org.usfirst.frc.team5026.robot.commands.autonomous.DriveStraight;
 import org.usfirst.frc.team5026.robot.commands.autonomous.PathFollower;
+import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceCenterToSwitchDropCube;
 import org.usfirst.frc.team5026.robot.subsystems.ConveyorBelt;
 import org.usfirst.frc.team5026.robot.subsystems.Drive;
 import org.usfirst.frc.team5026.robot.subsystems.Elevator;
 import org.usfirst.frc.team5026.robot.subsystems.IntakeSubsystem;
 import org.usfirst.frc.team5026.robot.util.AutoPaths;
 import org.usfirst.frc.team5026.robot.util.Constants;
+import org.usfirst.frc.team5026.robot.util.StartPosition;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
@@ -44,6 +46,7 @@ public class Robot extends IterativeRobot {
 	public static Elevator elevator;
 	Command autoCommand;
 	SendableChooser<Command> autoChooser = new SendableChooser<>();
+	SendableChooser<ChooseStartPosition> startPositionSelector = new SendableChooser<>(); 
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -74,6 +77,9 @@ public class Robot extends IterativeRobot {
 		autoChooser.addObject("Center to Left Path", new PathFollower(AutoPaths.getLeftPath()));
 		autoChooser.addObject("Center to Right Path", new PathFollower(AutoPaths.getRightPath()));
 		autoChooser.addObject("Center to Switch", new SequenceCenterToSwitchDropCube());
+		startPositionSelector.addDefault("Center", new ChooseStartPosition(StartPosition.CENTER));
+		startPositionSelector.addObject("Left", new ChooseStartPosition(StartPosition.LEFT));
+		startPositionSelector.addObject("Right", new ChooseStartPosition(StartPosition.RIGHT));
 		SmartDashboard.putNumber("target", 100);
 		SmartDashboard.putNumber("max count", 50);
 		SmartDashboard.putNumber("tolerance", 69);
@@ -98,6 +104,7 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void disabledPeriodic() {
+		startPositionSelector.getSelected().start();
 		Scheduler.getInstance().run();
 	}
 
@@ -116,7 +123,9 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		Robot.elevator.motors.motor1.setSelectedSensorPosition(Robot.elevator.motors.motor1.getSelectedSensorPosition(Constants.kPIDLoopIdx), Constants.kPIDLoopIdx, Constants.kTimeoutMs);
 		Robot.elevator.motors.motor1.set(ControlMode.Disabled, 1);
-		autoCommand = autoChooser.getSelected();
+		
+//		autoCommand = autoChooser.getSelected();
+		autoCommand = startPositionSelector.getSelected().chooser.getSelected();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",

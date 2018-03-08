@@ -1,7 +1,6 @@
 package org.usfirst.frc.team5026.robot.commands.autonomous;
 
 import org.usfirst.frc.team5026.robot.util.AutoPaths;
-import org.usfirst.frc.team5026.robot.util.CommandOption;
 import org.usfirst.frc.team5026.robot.util.PlatformState;
 
 import edu.wpi.first.wpilibj.DriverStation;

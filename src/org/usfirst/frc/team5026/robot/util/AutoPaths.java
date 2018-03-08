@@ -207,6 +207,8 @@ public class AutoPaths {
 	public static PlatformState SCALE_STATE = PlatformState.UNKNOWN;
 	public static PlatformState ENEMY_SWITCH_STATE = PlatformState.UNKNOWN;
 	
+	public static StartPosition startPosition = StartPosition.UNKNOWN;
+	
 	public static FastPathPlanner getLeftPath() {
 		if (CENTER_LEFT != null) {
 			return CENTER_LEFT;
