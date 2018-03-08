@@ -42,7 +42,7 @@ public class SelectSwitch extends Command {
     	case CENTER:
     		// Center to Switch
     		Scheduler.getInstance().add(new SequenceCenterToSwitchDropCube());
-    		System.out.println("Center to Switch autonomous started!");
+    		System.out.println("Center to Switch autonomous selected!");
     		break;
     	case RIGHT:
     		// Right to Switch
