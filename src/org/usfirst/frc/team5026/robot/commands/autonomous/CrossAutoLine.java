@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class CrossAutoLine extends CommandGroup {
 
     public CrossAutoLine() {
-    	requires(Robot.drive);
     	addSequential(new DriveStraight(Constants.AUTO_BASELINE_DISTANCE));
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);

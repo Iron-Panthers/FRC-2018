@@ -67,7 +67,7 @@ public class Constants {
 	public static final int kSlotIdx = 0; //Do not change
 	public static final int kPIDLoopIdx = 0; //Do not change
 	public static final double DRIVE_SPEED = 1;
-	public static final double AUTO_BASELINE_DISTANCE = 120; //Inches
+	public static final double AUTO_BASELINE_DISTANCE = 150; //Inches
 	public static final double WHEEL_RADIUS = 3; // inch
 	public static final double WHEEL_CIRCUMFERENCE = WHEEL_RADIUS*2*Math.PI;
 	public static final double TICKS_PER_INCH = DRIVE_TICKS_PER_REVOLUTION / WHEEL_CIRCUMFERENCE; //Converts inches to ticks for driving

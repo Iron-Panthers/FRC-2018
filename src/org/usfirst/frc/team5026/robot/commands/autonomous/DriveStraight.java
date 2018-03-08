@@ -26,7 +26,9 @@ public class DriveStraight extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	target = (int) SmartDashboard.getNumber("target", targetInInches);
+    	if (target == 0) {
+    		target = (int) SmartDashboard.getNumber("target", targetInInches);
+    	}
     	target = (int) (target * Constants.TICKS_PER_INCH);
 		Robot.drive.stop();
 		maxCount = (int) SmartDashboard.getNumber("max count", 0);
@@ -44,6 +46,7 @@ public class DriveStraight extends Command {
     	SmartDashboard.putNumber("Left sped", Robot.drive.left.motor1.getSelectedSensorVelocity(0));
     	SmartDashboard.putNumber("count", count);
     	if (Math.abs(target - Robot.drive.left.getEncoderTicks()) < tolerance) {
+    		// Might want to compare motor speeds as well...
     		count++;
     	}
     }
