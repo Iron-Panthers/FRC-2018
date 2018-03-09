@@ -5,7 +5,6 @@ import org.usfirst.frc.team5026.robot.commands.IntakeCommandGroup;
 import org.usfirst.frc.team5026.robot.commands.OuttakeCommand;
 import org.usfirst.frc.team5026.robot.commands.ReverseDrive;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorExtendPistons;
-import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorRetractPistons;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorSliding;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToScale;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToShortCube;
@@ -84,8 +83,7 @@ public class OI {
 		boardBtnTwo.whenPressed(new IntakeCommandGroup());
 		boardBtnSix.whenPressed(new ElevatorZero());
 //		boardBtnSeven.whileHeld(new OuttakeCommand());
-		boardBtnEleven.whenPressed(new ElevatorExtendPistons());
-		boardBtnTwelve.whenPressed(new ElevatorRetractPistons());
+		boardBtnEleven.toggleWhenPressed(new ElevatorExtendPistons());
 	}
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
