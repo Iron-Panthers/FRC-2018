@@ -2,9 +2,8 @@ package org.usfirst.frc.team5026.robot;
 
 import org.usfirst.frc.team5026.robot.commands.conveyorbelt.ConveyorBeltBackward;
 import org.usfirst.frc.team5026.robot.commands.conveyorbelt.ConveyorBeltForward;
-import org.usfirst.frc.team5026.robot.commands.conveyorbelt.ConveyorBeltForwardToBanner;
 import org.usfirst.frc.team5026.robot.commands.drive.DriveShift;
-import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorExtendPistons;
+import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorPistonToggle;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorSliding;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToExchange;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToScale;
@@ -93,7 +92,7 @@ public class OI {
 //		boardBtnFour.whenPressed(new ElevatorSetPIDF());
 		
 //		boardBtnSeven.whileHeld(new OuttakeCommand());
-		boardBtnTwelve.toggleWhenPressed(new ElevatorExtendPistons());
+		boardBtnTwelve.whenPressed(new ElevatorPistonToggle());
 	}
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
