@@ -54,8 +54,8 @@ public class Constants {
 	public static final double DRIVE_F = 0.3069; // Calculated as per the Talon SRX Software Refrence Manual, Section: 12.4.2. Math is: 0.75 * 1023 / 2500
 	public static final int DRIVE_TICKS_PER_REVOLUTION = 5526; // we tested this, I wonder if it's actually correct! ::thinking::
 	// ScadLib variables
-	public static final double PATHING_F = 0.011069; // TESTED ON REAL ROBOT BY ADAM
-	public static final double PATHING_P = 0.03; // TESTED ON REAL ROBOT BY ADAM
+	public static final double PATHING_F = 0.011069; // TESTED ON REAL ROBOT BY ADAM (0.011069)
+	public static final double PATHING_P = 0.025; // TESTED ON REAL ROBOT BY ADAM (0.03)
 	
 	public static final double DDRIVE_JOYSTICK_DEADZONE = 0.1; //used for built in differential drive
 	//Auto Code

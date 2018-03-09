@@ -17,14 +17,14 @@ public class CenterToLeftSwitch2Cube extends CommandGroup {
 
     public CenterToLeftSwitch2Cube() {
         addSequential(new PathFollower(AutoPaths.getLeftSwitch2Cube()[0]));
-        addSequential(new ConveyorForTime(false, 0.5));
+        addSequential(new ConveyorForTime(false, 1));
         addParallel(new ElevatorExtendPistons());
         addSequential(new PathFollower(AutoPaths.getLeftSwitch2Cube()[1]));
         addParallel(new ElevatorTarget(0));
         addParallel(new IntakeCommand());
         addSequential(new PathFollower(AutoPaths.getLeftSwitch2Cube()[2]));
         addParallel(new IntakeCommandGroup());
-        addSequential(new PathFollower(AutoPaths.getLeftSwitch2Cube()[3]));
+        addParallel(new PathFollower(AutoPaths.getLeftSwitch2Cube()[3]));
         addSequential(new PathFollower(AutoPaths.getLeftSwitch2Cube()[4]));
         addSequential(new OuttakeCommand());
         // This command doesn't end, but who cares?

@@ -4,7 +4,9 @@ import org.usfirst.frc.team5026.robot.util.AutoPaths;
 import org.usfirst.frc.team5026.robot.util.StartPosition;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -12,7 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 public class ChooseStartPosition extends Command {
 
 	StartPosition position;
-	public SendableChooser<Command> chooser = new SendableChooser<Command>();
+	public SendableChooser<SelectionCommand> chooser = new SendableChooser<SelectionCommand>();
 
     public ChooseStartPosition(StartPosition start) {
         // Use requires() here to declare subsystem dependencies
@@ -50,6 +52,9 @@ public class ChooseStartPosition extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	SmartDashboard.putData("Autonomous Target", chooser);
+    	chooser.getSelected().setRunWhenDisabled(true);
+    	chooser.getSelected().start();
     }
 
     // Called when another command which requires one or more of the same

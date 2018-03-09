@@ -10,7 +10,12 @@ package org.usfirst.frc.team5026.robot;
 import org.usfirst.frc.team5026.robot.commands.autonomous.ChooseStartPosition;
 import org.usfirst.frc.team5026.robot.commands.autonomous.DriveStraight;
 import org.usfirst.frc.team5026.robot.commands.autonomous.PathFollower;
+import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceCenterToSwitch2Cube;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceCenterToSwitchDropCube;
+import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceLeftToScale;
+import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceLeftToSwitch;
+import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceRightToScale;
+import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceRightToSwitch;
 import org.usfirst.frc.team5026.robot.subsystems.ConveyorBelt;
 import org.usfirst.frc.team5026.robot.subsystems.Drive;
 import org.usfirst.frc.team5026.robot.subsystems.Elevator;
@@ -77,6 +82,11 @@ public class Robot extends IterativeRobot {
 		autoChooser.addObject("Center to Left Path", new PathFollower(AutoPaths.getLeftPath()));
 		autoChooser.addObject("Center to Right Path", new PathFollower(AutoPaths.getRightPath()));
 		autoChooser.addObject("Center to Switch", new SequenceCenterToSwitchDropCube());
+		autoChooser.addObject("Center to Switch 2 Cube", new SequenceCenterToSwitch2Cube());
+		autoChooser.addObject("Left to Scale", new SequenceLeftToScale());
+		autoChooser.addObject("Right to Scale", new SequenceRightToScale());
+		autoChooser.addObject("Left to Switch", new SequenceLeftToSwitch());
+		autoChooser.addObject("Right to Switch", new SequenceRightToSwitch());
 		startPositionSelector.addDefault("Center", new ChooseStartPosition(StartPosition.CENTER));
 		startPositionSelector.addObject("Left", new ChooseStartPosition(StartPosition.LEFT));
 		startPositionSelector.addObject("Right", new ChooseStartPosition(StartPosition.RIGHT));
@@ -86,6 +96,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Path Planning F", Constants.PATHING_F);
 		SmartDashboard.putNumber("Path Planning P", Constants.PATHING_P);
 		SmartDashboard.putData("Auto mode", autoChooser);
+		SmartDashboard.putData("Starting Position", startPositionSelector);
 //		SmartDashboard.getNumber("Intake Speed", Constants.INTAKE_POWER);
 		LiveWindow.disableAllTelemetry();
     }
@@ -104,8 +115,13 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void disabledPeriodic() {
+		startPositionSelector.getSelected().setRunWhenDisabled(true);
 		startPositionSelector.getSelected().start();
 		Scheduler.getInstance().run();
+		Command choice = startPositionSelector.getSelected().chooser.getSelected().choice;
+		if (choice != null) {
+			SmartDashboard.putString("Selected autonomous mode", choice.toString());
+		}
 	}
 
 	/**
@@ -124,8 +140,8 @@ public class Robot extends IterativeRobot {
 		Robot.elevator.motors.motor1.setSelectedSensorPosition(Robot.elevator.motors.motor1.getSelectedSensorPosition(Constants.kPIDLoopIdx), Constants.kPIDLoopIdx, Constants.kTimeoutMs);
 		Robot.elevator.motors.motor1.set(ControlMode.Disabled, 1);
 		
-//		autoCommand = autoChooser.getSelected();
-		autoCommand = startPositionSelector.getSelected().chooser.getSelected();
+		autoCommand = autoChooser.getSelected();
+//		autoCommand = startPositionSelector.getSelected().chooser.getSelected().choice;
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
