@@ -22,16 +22,16 @@ public class ElevatorPistonToggle extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     		if( Robot.elevator.solenoid.get() == Value.kForward) {
-    			Robot.elevator.extendPistons();
+    			Robot.elevator.retractPistons();
     		}
     		else {
-    			Robot.elevator.retractPistons();
+    			Robot.elevator.extendPistons();
     		}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true
