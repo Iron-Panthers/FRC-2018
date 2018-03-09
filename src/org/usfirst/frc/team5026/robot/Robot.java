@@ -95,6 +95,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("tolerance", 69);
 		SmartDashboard.putNumber("Path Planning F", Constants.PATHING_F);
 		SmartDashboard.putNumber("Path Planning P", Constants.PATHING_P);
+		SmartDashboard.putNumber("Path Planning I", Constants.PATHING_I);
 		SmartDashboard.putData("Auto mode", autoChooser);
 		SmartDashboard.putData("Starting Position", startPositionSelector);
 //		SmartDashboard.getNumber("Intake Speed", Constants.INTAKE_POWER);
@@ -111,6 +112,7 @@ public class Robot extends IterativeRobot {
 	public void disabledInit() {
 //		hardware.elevatorMotor.setSelectedSensorPosition(0, 0, 0);
 //		System.out.println(hardware.elevatorMotor.getSelectedSensorPosition(0));
+		drive.setupCoastMode();
 	}
 
 	@Override
@@ -118,9 +120,12 @@ public class Robot extends IterativeRobot {
 		startPositionSelector.getSelected().setRunWhenDisabled(true);
 		startPositionSelector.getSelected().start();
 		Scheduler.getInstance().run();
-		Command choice = startPositionSelector.getSelected().chooser.getSelected().choice;
-		if (choice != null) {
-			SmartDashboard.putString("Selected autonomous mode", choice.toString());
+		try {
+			if (startPositionSelector.getSelected().chooser.getSelected().choice != null) {
+				SmartDashboard.putString("Selected autonomous mode", startPositionSelector.getSelected().chooser.getSelected().choice.toString());
+			}
+		} catch (NullPointerException e) {
+			// Just continue on with life
 		}
 	}
 
@@ -139,6 +144,8 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		Robot.elevator.motors.motor1.setSelectedSensorPosition(Robot.elevator.motors.motor1.getSelectedSensorPosition(Constants.kPIDLoopIdx), Constants.kPIDLoopIdx, Constants.kTimeoutMs);
 		Robot.elevator.motors.motor1.set(ControlMode.Disabled, 1);
+		
+		drive.setupBrakeMode();
 		
 		autoCommand = autoChooser.getSelected();
 //		autoCommand = startPositionSelector.getSelected().chooser.getSelected().choice;
@@ -172,6 +179,9 @@ public class Robot extends IterativeRobot {
 	public void teleopInit() {
 		Robot.elevator.motors.motor1.set(ControlMode.MotionMagic, Robot.elevator.motors.motor1.getSelectedSensorPosition(Constants.kPIDLoopIdx));
 		Robot.elevator.motors.motor1.set(ControlMode.Disabled, 1);
+		
+		drive.setupBrakeMode();
+
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
@@ -214,6 +224,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void testPeriodic() {
+		SmartDashboard.putNumber("Drive Left Encoder Reading", Robot.drive.getLeftEncoderPosition());
+		SmartDashboard.putNumber("Drive Right Encoder Reading", Robot.drive.getRightEncoderPosition());
 	}
 	
 	public static void dispNum(String key, double value) {

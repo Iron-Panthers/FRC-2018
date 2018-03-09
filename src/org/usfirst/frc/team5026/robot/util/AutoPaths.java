@@ -76,6 +76,7 @@ public class AutoPaths {
 		{distanceToSwitchFromAlliance+widthOfSwitch/2-2, height-distanceToSwitchFromWall+robotLength/2+10},
 		{distanceToSwitchFromAlliance+widthOfSwitch/2, height-distanceToSwitchFromWall+robotLength/2+3},
 		{distanceToSwitchFromAlliance+widthOfSwitch/2, height-distanceToSwitchFromWall+robotLength/2},
+		{distanceToSwitchFromAlliance+widthOfSwitch/2, height-distanceToSwitchFromWall+robotLength/2-5},
 	};
 
 	private static double[][] CENTER_RIGHT_TURNBACK = new double[][]{
@@ -111,6 +112,8 @@ public class AutoPaths {
 		{distanceToSwitchFromAlliance+widthOfSwitch/2-2, distanceToSwitchFromWall-robotLength/2-10},
 		{distanceToSwitchFromAlliance+widthOfSwitch/2, distanceToSwitchFromWall-robotLength/2-3},
 		{distanceToSwitchFromAlliance+widthOfSwitch/2, distanceToSwitchFromWall-robotLength/2},
+		{distanceToSwitchFromAlliance+widthOfSwitch/2, distanceToSwitchFromWall-robotLength/2+5},
+
 	};
 
 	private static double[][] LEFT_SCALE_LEFT_START = new double[][]{
@@ -147,6 +150,8 @@ public class AutoPaths {
 	// Scale Auto Modes
 	private static FastPathPlanner LEFT_SCALE_LEFT_START_PATH;
 	private static FastPathPlanner RIGHT_SCALE_RIGHT_START_PATH;
+	private static FastPathPlanner LEFT_SCALE_LEFT_START_PATH_SWITCH;
+	private static FastPathPlanner RIGHT_SCALE_RIGHT_START_PATH_SWITCH;
 	
 	// States
 	public static PlatformState ALLY_SWITCH_STATE = PlatformState.UNKNOWN;
@@ -185,10 +190,10 @@ public class AutoPaths {
 			FastPathPlanner goBack = new FastPathPlanner(CENTER_LEFT_TURNTO);
 			
 			fpp.calculate(3.2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
-			stage2.calculate(2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+			stage2.calculate(1, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
 			grabCube.calculate(1, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
 			goBackFromCube.calculate(1, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
-			goBack.calculate(2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+			goBack.calculate(1, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
 			
 			reverseAndFlipPath(stage2);
 			reverseAndFlipPath(goBackFromCube);
@@ -214,10 +219,10 @@ public class AutoPaths {
 			FastPathPlanner goBack = new FastPathPlanner(CENTER_RIGHT_TURNTO);
 			
 			fpp.calculate(3.2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
-			stage2.calculate(2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+			stage2.calculate(1, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
 			grabCube.calculate(1, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
 			goBackFromCube.calculate(1, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
-			goBack.calculate(2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+			goBack.calculate(1, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
 			
 			reverseAndFlipPath(stage2);
 			reverseAndFlipPath(goBackFromCube);
@@ -256,6 +261,28 @@ public class AutoPaths {
 		return RIGHT_SCALE_RIGHT_START_PATH;
 	}
 	
+	public static FastPathPlanner getLeftStartingLeftScaleSwitchPath() {
+		if (LEFT_SCALE_LEFT_START_PATH != null) {
+			return LEFT_SCALE_LEFT_START_PATH;
+		}
+		LEFT_SCALE_LEFT_START_PATH = new FastPathPlanner(LEFT_SCALE_LEFT_START);
+		LEFT_SCALE_LEFT_START_PATH.calculate(8, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+		LEFT_SCALE_LEFT_START_PATH.getLeftArclength();
+		LEFT_SCALE_LEFT_START_PATH.getRightArclength();
+		return LEFT_SCALE_LEFT_START_PATH;
+	}
+	
+	public static FastPathPlanner getRightStartingRightScaleSwitchPath() {
+		if (RIGHT_SCALE_RIGHT_START_PATH != null) {
+			return RIGHT_SCALE_RIGHT_START_PATH;
+		}
+		RIGHT_SCALE_RIGHT_START_PATH = new FastPathPlanner(RIGHT_SCALE_RIGHT_START);
+		RIGHT_SCALE_RIGHT_START_PATH.calculate(8, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+		RIGHT_SCALE_RIGHT_START_PATH.getLeftArclength();
+		RIGHT_SCALE_RIGHT_START_PATH.getRightArclength();
+		return RIGHT_SCALE_RIGHT_START_PATH;
+	}
+	
 	public static FastPathPlanner getLeftStartingLeftSwitchPath() {
 		if (LEFT_LEFT != null) {
 			return LEFT_LEFT;
@@ -277,6 +304,7 @@ public class AutoPaths {
 		RIGHT_RIGHT.getRightArclength();
 		return RIGHT_RIGHT;
 	}
+
 	
 	public static final void updateData(String gameMessage) {
 		if (gameMessage.length() <= 2) {

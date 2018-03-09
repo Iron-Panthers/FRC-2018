@@ -56,6 +56,7 @@ public class Constants {
 	// ScadLib variables
 	public static final double PATHING_F = 0.011069; // TESTED ON REAL ROBOT BY ADAM (0.011069)
 	public static final double PATHING_P = 0.025; // TESTED ON REAL ROBOT BY ADAM (0.03)
+	public static final double PATHING_I = 0.00025;
 	
 	public static final double DDRIVE_JOYSTICK_DEADZONE = 0.1; //used for built in differential drive
 	//Auto Code
@@ -70,7 +71,9 @@ public class Constants {
 	public static final double AUTO_DISTANCE = 30; //Inches
 	public static final double WHEEL_RADIUS = 3; // inch
 	public static final double WHEEL_CIRCUMFERENCE = WHEEL_RADIUS*2*Math.PI;
-	public static final double TICKS_TO_INCHES = DRIVE_TICKS_PER_REVOLUTION / WHEEL_CIRCUMFERENCE;
+//	public static final double TICKS_TO_INCHES = DRIVE_TICKS_PER_REVOLUTION / WHEEL_CIRCUMFERENCE;
+	public static final double TICKS_TO_INCHES = 288; // Measured with 175 inch test, on practice robot by Adam
+	
 	
 	public static final double DRIVE_WANTED_INCHES_PER_SECOND = 48;
 	public static final double DRIVE_WANTED_ACCELERATION_INCHES_PER_SECOND_SQUARED = 80;

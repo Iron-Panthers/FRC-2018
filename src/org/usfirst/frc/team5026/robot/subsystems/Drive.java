@@ -51,6 +51,14 @@ public class Drive extends Subsystem {
 		right.motor2.setNeutralMode(NeutralMode.Brake);
 		right.motor3.setNeutralMode(NeutralMode.Brake);
 	}
+	public void setupCoastMode() {
+		left.motor1.setNeutralMode(NeutralMode.Coast);
+		left.motor2.setNeutralMode(NeutralMode.Coast);
+		left.motor3.setNeutralMode(NeutralMode.Coast);
+		right.motor1.setNeutralMode(NeutralMode.Coast);
+		right.motor2.setNeutralMode(NeutralMode.Coast);
+		right.motor3.setNeutralMode(NeutralMode.Coast);
+	}
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	public void setLeftSide(double speed){

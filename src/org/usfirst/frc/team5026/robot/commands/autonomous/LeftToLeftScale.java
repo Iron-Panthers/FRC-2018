@@ -15,9 +15,9 @@ public class LeftToLeftScale extends CommandGroup {
 
     public LeftToLeftScale() {
     	addParallel(new HoldBlock());
-    	addSequential(new ElevatorExtendPistons()); 
-        addSequential(new PathFollower(AutoPaths.getRightStartingRightScalePath()));
-        addSequential(new ElevatorToScale());
-        addSequential(new OuttakeForTime(0.5)); 
+    	addSequential(new ElevatorExtendPistons());
+        addParallel(new ElevatorToScale());
+        addSequential(new PathFollower(AutoPaths.getLeftStartingLeftScalePath()));
+        addSequential(new OuttakeForTime(2)); 
     }
 }
