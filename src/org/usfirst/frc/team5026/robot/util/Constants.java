@@ -17,7 +17,7 @@ public class Constants {
 	public static final int INTAKE_SPEED_UP_TIME = 6;// execute loops waited before sampling current to prevent motor stopping w/out cube 
 	public static final boolean IS_INTAKE_INVERTED = true;
 	public static final double OUTTAKE_POWER = -.4;
-	public static final double BLOCK_GRAB_THRESHOLD = 15; //min amount of amps intake has with block before dropping voltage
+	public static final double BLOCK_GRAB_THRESHOLD = 25; //min amount of amps intake has with block before dropping voltage
 	  
 	//Portal to Switch 
 	public static final double CONVEYOR_SPEED = 1; 
