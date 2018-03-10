@@ -12,6 +12,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class SequenceRightToScale extends CommandGroup {
 
     public SequenceRightToScale() {
-        addSequential(new FindGameDataAndAddCommand(new CommandOption(new RightToRightScale(), null, new RightToRightScale(), null)));
+        addSequential(new FindGameDataAndAddCommand(new CommandOption(null, new RightToRightScale(), null, new RightToRightScale())));
     }
 }

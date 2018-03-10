@@ -12,6 +12,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class SequenceRightToSwitch extends CommandGroup {
 
     public SequenceRightToSwitch() {
-        addSequential(new FindGameDataAndAddCommand(new CommandOption(new RightToRightSwitch(), new RightToRightSwitch(), null, null)));
+        addSequential(new FindGameDataAndAddCommand(new CommandOption(null, null, new RightToRightSwitch(), new RightToRightSwitch())));
     }
 }

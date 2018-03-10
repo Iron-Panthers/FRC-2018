@@ -11,13 +11,13 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class RightToRightScale extends CommandGroup {
+public class LeftToLeftScaleSwitchSide extends CommandGroup {
 
-    public RightToRightScale() {
+    public LeftToLeftScaleSwitchSide() {
     	addParallel(new HoldBlock());
     	addSequential(new ElevatorExtendPistons());
         addParallel(new ElevatorToScale());
-        addSequential(new PathFollower(AutoPaths.getRightStartingRightScalePath()));
-        addSequential(new OuttakeForTime(2));  
+        addSequential(new PathFollower(AutoPaths.getLeftStartingLeftScaleSwitchPath()));
+        addSequential(new OuttakeForTime(2)); 
     }
 }
