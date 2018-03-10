@@ -41,6 +41,7 @@ public class IntakeCommand extends Command {
 	// Called once after isFinished returns true
 	protected void end() {
 		Robot.intake.stop();
+		System.out.println("Adding HoldBlock!");
 		Scheduler.getInstance().add(new IntakeHoldBlock());
 	}
 	 
