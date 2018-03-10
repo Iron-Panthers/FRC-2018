@@ -53,7 +53,7 @@ public class OI {
 		stickBtnFour = new JoystickButton(driveStick.driveStick, 4);
 		stickBtnFive = new JoystickButton(driveStick.driveStick, 5);
 		
-		boardBtnZero = new JoystickButton(elevatorStick, 12);
+		boardBtnZero = new JoystickButton(elevatorStick, 0);
 		boardBtnOne = new JoystickButton(elevatorStick, 1);
 		boardBtnTwo = new JoystickButton(elevatorStick, 2);
 		boardBtnThree = new JoystickButton(elevatorStick, 3);
