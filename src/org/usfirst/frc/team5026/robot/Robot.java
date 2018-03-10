@@ -178,7 +178,7 @@ public class Robot extends IterativeRobot {
 		//Drive Motor Current and Voltage
 		SmartDashboard.putNumber("Joystick Raw X", oi.driveStick.driveStick.getX());
 		SmartDashboard.putNumber("Joystick Raw Y", oi.driveStick.driveStick.getY());
-		SmartDashboard.putString("Piston Position", Robot.elevator.getPosition().name());
+		SmartDashboard.putString("Piston Position", Robot.elevator.position.name());
 		Scheduler.getInstance().run();
 	}
 

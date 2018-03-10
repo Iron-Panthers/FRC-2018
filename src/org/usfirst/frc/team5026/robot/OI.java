@@ -5,7 +5,6 @@ import org.usfirst.frc.team5026.robot.commands.IntakeCommandGroup;
 import org.usfirst.frc.team5026.robot.commands.OuttakeCommand;
 import org.usfirst.frc.team5026.robot.commands.ReverseDrive;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorExtendPistons;
-import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorSliding;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToScale;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToShortCube;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToSwitch;
@@ -72,7 +71,6 @@ public class OI {
 //		stickBtnThree.whileHeld(new ElevatorToScale());
 //		stickBtnFour.whileHeld(new ElevatorToGround());
 		
-		boardBtnOne.whileHeld(new ElevatorSliding());
 		boardBtnThree.whileHeld(new OuttakeCommand());
 		boardBtnSeven.whenPressed(new ElevatorToShortCube());
 		boardBtnNine.whenPressed(new ElevatorToSwitch());

@@ -1,7 +1,6 @@
 package org.usfirst.frc.team5026.robot.subsystems;
 
 import org.usfirst.frc.team5026.robot.Robot;
-import org.usfirst.frc.team5026.robot.RobotMap;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToSetpoint;
 import org.usfirst.frc.team5026.robot.util.Constants;
 import org.usfirst.frc.team5026.robot.util.ElevatorDirection;
@@ -10,7 +9,6 @@ import org.usfirst.frc.team5026.robot.util.ElevatorPosition;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -22,7 +20,6 @@ public class Elevator extends Subsystem {
 	
 	public ElevatorMotorGroup motors;
 	public DoubleSolenoid solenoid;
-	public double lastVelocity;
 	
 	private int wantedSetpoint;
 	public int wantedSetpoint() {
@@ -35,6 +32,15 @@ public class Elevator extends Subsystem {
 			this.atSetpointCount = 0;
 			this.atSetpoint = false;
 		}
+	}
+	
+	/**
+	 * Only use this if you are sure that you are at the given target
+	 */
+	public void forceSetpoint(int target) {
+		this.wantedSetpoint = target;
+		this.atSetpoint = true;
+		this.atSetpointCount = 0;
 	}
 	
 	public int atSetpointCount = 0;
@@ -57,7 +63,6 @@ public class Elevator extends Subsystem {
 	
 	public void stop() {
 		motors.stop();
-		lastVelocity = 0;
 	}
 	
 	public void setEncoderPos(int encoderPos) {
@@ -81,72 +86,14 @@ public class Elevator extends Subsystem {
 			setEncoderPos(Constants.ELEVATOR_TOP_TARGET);
 		}
 	}
-	
-	public boolean atElevatorLimit() {
-		if ((getElevatorDirection() == ElevatorDirection.BACKWARDS || getElevatorDirection() == ElevatorDirection.FORWARDS) 
-				&& motors.motor1.getOutputCurrent() > Constants.ELEVATOR_HIT_TOLERANCE && isStopping()) {
-			encoderReset(getElevatorDirection());
-			return true;
-		}
-		return false;
-	}
 
-	public boolean isStopping() { //Bad name, not as accurate (Velocity)
-		//Return if the change in velocity is above the velocity threshold, in which case it is stopping
-		int velocity = motors.motor1.getSelectedSensorVelocity(Constants.kPIDLoopIdx);
-		if(Math.abs(velocity)<(Math.abs(lastVelocity)-Constants.ELEVATOR_VELOCITY_THRESHOLD)) {
-			lastVelocity = velocity;
-			return true;
-		}
-		return false;
-	}
-
-	public boolean isCurrentHigh() { // Samples Currents 
-		return motors.motor1.getOutputCurrent() > Constants.ELEVATOR_CURRENT_THRESHOLD; 
-	} 
-	
-	public void checkPosition() { 
-		int position = motors.motor1.getSelectedSensorPosition(Constants.kPIDLoopIdx); 
-		if (position > Constants.ELEVATOR_TOP_TARGET-Constants.ELEVATOR_TARGET_TOLERANCE) { 
-			//At the top, set the limit 
-			enableReverseCushion(); 
-		} 
-		else if (position < 0+Constants.ELEVATOR_TARGET_TOLERANCE) { 
-			enableForwardCushion(); 
-		} 
-		else { 
-			resetCushions(); 
-		} 
-	} 
-	
-	public void enableForwardCushion() { 
-		motors.motor1.configPeakOutputForward(0, Constants.kTimeoutMs); 
-	} 
-	public void enableReverseCushion() { 
-		motors.motor1.configPeakOutputReverse(0, Constants.kTimeoutMs); 
-	} 
-	
-	public void resetCushions() {
-		motors.motor1.configPeakOutputForward(1, Constants.kTimeoutMs);
-		motors.motor1.configPeakOutputReverse(-1, Constants.kTimeoutMs);
+	public double getCurrent() {
+		return motors.motor1.getOutputCurrent();
 	}
 	
     public void initDefaultCommand() {
     	setDefaultCommand(new ElevatorToSetpoint());
     }
-    public void zero() {
-    	if(Robot.elevator.position == ElevatorPosition.UP) {
-    		Robot.elevator.motors.driveWithPower(-Robot.oi.elevatorStick.getY());
-    	}
-    	if(Robot.hardware.pdp.getCurrent(RobotMap.ELEVATOR_MOTOR_PDP_PORT) > Constants.ELEVATOR_HIT_BOTTOM_CURRENT && Math.abs(Robot.hardware.elevatorMotor.getSelectedSensorPosition(Constants.kPIDLoopIdx)) < Constants.ELEVATOR_ZEROING_TOLERANCE) {
-    		count++;
-    	}
-    	else {
-    		count--;
-    	}
-    	if(count >= SmartDashboard.getNumber("Elevator zeroing samples", 3)) {
-    		Robot.elevator.motors.motor1.setSelectedSensorPosition((int)SmartDashboard.getNumber("Elevator Reset Value", 0), Constants.kPIDLoopIdx, Constants.kTimeoutMs);
-    	}
-    }
+    
 }
 
