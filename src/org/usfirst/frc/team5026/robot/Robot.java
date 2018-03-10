@@ -59,7 +59,6 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 //		right.setInverted(Constants.IS_RIGHT_INVERTED);
 		// autoChooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", autoChooser);
 		SmartDashboard.putNumber("Elevator Percent", 0.25); // TODO to remove later
 		SmartDashboard.putNumber("Elevator F", Constants.ELEVATOR_F); // TODO to remove later
 		SmartDashboard.putNumber("Elevator P Term", Constants.ELEVATOR_P); // TODO to remove later
