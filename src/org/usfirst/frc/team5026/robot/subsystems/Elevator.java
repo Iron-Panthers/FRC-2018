@@ -6,6 +6,7 @@ import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToSetpoint;
 import org.usfirst.frc.team5026.robot.util.Constants;
 import org.usfirst.frc.team5026.robot.util.ElevatorDirection;
 import org.usfirst.frc.team5026.robot.util.ElevatorMotorGroup;
+import org.usfirst.frc.team5026.robot.util.ElevatorPosition;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -15,6 +16,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class Elevator extends Subsystem {
+	
+	public ElevatorPosition position; 
+	public int count = 0; 
+	
 	public ElevatorMotorGroup motors;
 	public DoubleSolenoid solenoid;
 	public double lastVelocity;
@@ -78,13 +83,14 @@ public class Elevator extends Subsystem {
 	}
 	
 	public boolean atElevatorLimit() {
-		if ((getElevatorDirection() == ElevatorDirection.BACKWARDS || getElevatorDirection() == ElevatorDirection.FORWARDS) && motors.motor1.getOutputCurrent() > Constants.ELEVATOR_HIT_TOLERANCE && isStopping()) {
+		if ((getElevatorDirection() == ElevatorDirection.BACKWARDS || getElevatorDirection() == ElevatorDirection.FORWARDS) 
+				&& motors.motor1.getOutputCurrent() > Constants.ELEVATOR_HIT_TOLERANCE && isStopping()) {
 			encoderReset(getElevatorDirection());
 			return true;
 		}
 		return false;
 	}
-	
+
 	public boolean isStopping() { //Bad name, not as accurate (Velocity)
 		//Return if the change in velocity is above the velocity threshold, in which case it is stopping
 		int velocity = motors.motor1.getSelectedSensorVelocity(Constants.kPIDLoopIdx);
@@ -94,6 +100,31 @@ public class Elevator extends Subsystem {
 		}
 		return false;
 	}
+
+	public boolean isCurrentHigh() { // Samples Currents 
+		return motors.motor1.getOutputCurrent() > Constants.ELEVATOR_CURRENT_THRESHOLD; 
+	} 
+	
+	public void checkPosition() { 
+		int position = motors.motor1.getSelectedSensorPosition(Constants.kPIDLoopIdx); 
+		if (position > Constants.ELEVATOR_TOP_TARGET-Constants.ELEVATOR_TARGET_TOLERANCE) { 
+			//At the top, set the limit 
+			enableReverseCushion(); 
+		} 
+		else if (position < 0+Constants.ELEVATOR_TARGET_TOLERANCE) { 
+			enableForwardCushion(); 
+		} 
+		else { 
+			resetCushions(); 
+		} 
+	} 
+	
+	public void enableForwardCushion() { 
+		motors.motor1.configPeakOutputForward(0, Constants.kTimeoutMs); 
+	} 
+	public void enableReverseCushion() { 
+		motors.motor1.configPeakOutputReverse(0, Constants.kTimeoutMs); 
+	} 
 	
 	public void resetCushions() {
 		motors.motor1.configPeakOutputForward(1, Constants.kTimeoutMs);
