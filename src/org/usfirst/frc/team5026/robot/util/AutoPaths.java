@@ -136,6 +136,22 @@ public class AutoPaths {
 		{318.2301369863014, 39.67101648351648},
 		{324.0, 52.0},
 		{324.0, 58.375},
+	private static double[][] LEFT_SCALE_LEFT_START_SWITCH = new double[][]{
+		{robotLength/2, height-portalY-robotWidth/2},
+		{distanceToSwitchFromAlliance+switchLength+robotLength/2,height-portalY-robotWidth/2},
+		{distanceToScaleFromAlliance-robotLength/2-40, height-distanceToScaleFromWall-scalePlatformLength/2+scaleYDelta},
+		{distanceToScaleFromAlliance-robotLength/2+5, height-distanceToScaleFromWall-scalePlatformLength/2+scaleYDelta},
+	};
+	
+	private static double[][] RIGHT_SCALE_RIGHT_START_SWITCH = new double[][]{
+		{18.625, 42.565},
+		{28.849315068493155, 42.791208791208796},
+		{113.17808219178083, 39.67101648351648},
+		{194.84383561643838, 41.45398351648352},
+		{242.77808219178084, 48.58585164835165},
+		{264.0821917808219, 54.82623626373626},
+		{283.6109589041096, 61.958104395604394},
+		{291.6, 68.19848901098901},
 	};
 	
 	// Switch Auto Modes
@@ -262,25 +278,25 @@ public class AutoPaths {
 	}
 	
 	public static FastPathPlanner getLeftStartingLeftScaleSwitchPath() {
-		if (LEFT_SCALE_LEFT_START_PATH != null) {
-			return LEFT_SCALE_LEFT_START_PATH;
+		if (LEFT_SCALE_LEFT_START_PATH_SWITCH != null) {
+			return LEFT_SCALE_LEFT_START_PATH_SWITCH;
 		}
-		LEFT_SCALE_LEFT_START_PATH = new FastPathPlanner(LEFT_SCALE_LEFT_START);
-		LEFT_SCALE_LEFT_START_PATH.calculate(8, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
-		LEFT_SCALE_LEFT_START_PATH.getLeftArclength();
-		LEFT_SCALE_LEFT_START_PATH.getRightArclength();
-		return LEFT_SCALE_LEFT_START_PATH;
+		LEFT_SCALE_LEFT_START_PATH_SWITCH = new FastPathPlanner(LEFT_SCALE_LEFT_START_SWITCH);
+		LEFT_SCALE_LEFT_START_PATH_SWITCH.calculate(6, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+		LEFT_SCALE_LEFT_START_PATH_SWITCH.getLeftArclength();
+		LEFT_SCALE_LEFT_START_PATH_SWITCH.getRightArclength();
+		return LEFT_SCALE_LEFT_START_PATH_SWITCH;
 	}
 	
 	public static FastPathPlanner getRightStartingRightScaleSwitchPath() {
-		if (RIGHT_SCALE_RIGHT_START_PATH != null) {
-			return RIGHT_SCALE_RIGHT_START_PATH;
+		if (RIGHT_SCALE_RIGHT_START_PATH_SWITCH != null) {
+			return RIGHT_SCALE_RIGHT_START_PATH_SWITCH;
 		}
-		RIGHT_SCALE_RIGHT_START_PATH = new FastPathPlanner(RIGHT_SCALE_RIGHT_START);
-		RIGHT_SCALE_RIGHT_START_PATH.calculate(8, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
-		RIGHT_SCALE_RIGHT_START_PATH.getLeftArclength();
-		RIGHT_SCALE_RIGHT_START_PATH.getRightArclength();
-		return RIGHT_SCALE_RIGHT_START_PATH;
+		RIGHT_SCALE_RIGHT_START_PATH_SWITCH = new FastPathPlanner(RIGHT_SCALE_RIGHT_START_SWITCH);
+		RIGHT_SCALE_RIGHT_START_PATH_SWITCH.calculate(6, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+		RIGHT_SCALE_RIGHT_START_PATH_SWITCH.getLeftArclength();
+		RIGHT_SCALE_RIGHT_START_PATH_SWITCH.getRightArclength();
+		return RIGHT_SCALE_RIGHT_START_PATH_SWITCH;
 	}
 	
 	public static FastPathPlanner getLeftStartingLeftSwitchPath() {
