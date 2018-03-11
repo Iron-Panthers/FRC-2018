@@ -42,7 +42,7 @@ public class IntakeCommand extends Command {
 	protected void end() {
 		Robot.intake.stop();
 		System.out.println("Adding HoldBlock!");
-		Scheduler.getInstance().add(new IntakeHoldBlock());
+		Scheduler.getInstance().add(new HoldBlock());
 	}
 	 
 	// Called when another command which requires one or more of the same
