@@ -15,6 +15,6 @@ public class ElevatorToExchange extends Command {
     }
     
     protected boolean isFinished() {
-    	return true;
+    	return Robot.elevator.atSetpoint;
     }
 }

@@ -15,7 +15,7 @@ public class ElevatorToSwitch extends Command {
     }
     
     protected boolean isFinished() {
-    	return true;
+    	return Robot.elevator.atSetpoint;
     }
 	
 }

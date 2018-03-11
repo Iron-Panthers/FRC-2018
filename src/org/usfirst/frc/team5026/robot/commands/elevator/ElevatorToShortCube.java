@@ -15,7 +15,7 @@ public class ElevatorToShortCube extends Command {
     }
     
     protected boolean isFinished() {
-    	return true;
+    	return Robot.elevator.atSetpoint;
     }
 	
 }
