@@ -1,6 +1,9 @@
 package org.usfirst.frc.team5026.robot.subsystems;
-import org.usfirst.frc.team5026.robot.commands.JoystickDrive;
+import org.usfirst.frc.team5026.robot.commands.drive.DriveWithJoystick;
 import org.usfirst.frc.team5026.robot.util.Constants;
+import org.usfirst.frc.team5026.robot.util.DriveMotorGroup;
+import org.usfirst.frc.team5026.robot.util.DriveMotorType;
+import org.usfirst.frc.team5026.robot.util.GearState;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 
@@ -168,7 +171,7 @@ public class Drive extends Subsystem {
 	}
     public void initDefaultCommand() {
     	
-    	setDefaultCommand(new JoystickDrive());
+    	setDefaultCommand(new DriveWithJoystick());
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }

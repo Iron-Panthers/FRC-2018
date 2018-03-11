@@ -1,4 +1,4 @@
-package org.usfirst.frc.team5026.robot.commands;
+package org.usfirst.frc.team5026.robot.commands.intake;
 
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToSwitch;
 

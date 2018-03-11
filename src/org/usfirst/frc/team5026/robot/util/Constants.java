@@ -6,18 +6,18 @@ public class Constants {
 	public static final double X_AXIS_MODIFIER = .8;//lower for more sensitive turning
 	public static final double XDEADZONE_SIZE = 0.15;
 	public static final double YDEADZONE_SIZE = 0.15;
-	public static final double CIRCLE_DEADZONE = 0.1;//middle of joystick
+	public static final double CIRCLE_DEADZONE = 0.2;//middle of joystick
 	public static final double SPEED = 1.0;//teleop driving
 	//public static final double DEADZONE_SIZE = .1;
 	//public static final double QUARTER_SPEED = .4;
 	//Intake and Outtake
-	public static final double INTAKE_VOLTAGE_GRAB = 10./12; //Voltage before grabbing the block
+	public static final double INTAKE_VOLTAGE_GRAB = 12./12; //Voltage before grabbing the block
 	public static final double INTAKE_VOLTAGE_HOLD = 5.5/12; //"" 4 good enough, 6 secure but too much for burning
 //	public static final double INTAKE_CURRENT_SAMPLE = 4; //number of samples required to determine if cube is possessed
-	public static final int INTAKE_SPEED_UP_TIME = 2;// execute loops waited before sampling current to prevent motor stopping w/out cube 
+	public static final int INTAKE_SPEED_UP_TIME = 10;// execute loops waited before sampling current to prevent motor stopping w/out cube 
 	public static final boolean IS_INTAKE_INVERTED = true;
-	public static final double OUTTAKE_POWER = -.4;
-	public static final double BLOCK_GRAB_THRESHOLD = 15; //min amount of amps intake has with block before dropping voltage
+	public static final double OUTTAKE_POWER = -.8;
+	public static final double BLOCK_GRAB_THRESHOLD = 20; //min amount of amps intake has with block before dropping voltage
 	  
 	//Portal to Switch 
 	public static final double CONVEYOR_SPEED = 1; 
