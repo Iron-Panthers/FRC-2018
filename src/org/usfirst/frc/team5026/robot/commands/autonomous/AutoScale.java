@@ -7,17 +7,20 @@ import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToScale;
 import org.usfirst.frc.team5026.robot.util.AutoPaths;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
+import scadlib.paths.FastPathPlanner;
 
 /**
  *
  */
-public class LeftToLeftScaleSwitchSide extends CommandGroup {
+public class AutoScale extends CommandGroup {
 
-    public LeftToLeftScaleSwitchSide() {
+    public AutoScale(FastPathPlanner path) {
     	addParallel(new HoldBlock());
     	addSequential(new ElevatorExtendPistons());
+    	addSequential(new WaitCommand(1));
         addParallel(new ElevatorToScale());
-        addSequential(new PathFollower(AutoPaths.getLeftStartingLeftScaleSwitchPath()));
+        addSequential(new PathFollower(path));
         addSequential(new OuttakeForTime(2)); 
     }
 }

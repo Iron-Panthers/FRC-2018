@@ -1,10 +1,13 @@
 package org.usfirst.frc.team5026.robot.commands.autonomous;
 
+import org.usfirst.frc.team5026.robot.commands.autonomous.selections.SelectCornerScale;
+import org.usfirst.frc.team5026.robot.commands.autonomous.selections.SelectScale;
+import org.usfirst.frc.team5026.robot.commands.autonomous.selections.SelectSwitch;
+import org.usfirst.frc.team5026.robot.commands.autonomous.selections.SelectionCommand;
 import org.usfirst.frc.team5026.robot.util.AutoPaths;
 import org.usfirst.frc.team5026.robot.util.StartPosition;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -29,12 +32,14 @@ public class ChooseStartPosition extends Command {
     	switch (position) {
     	case LEFT:
     		chooser.addObject("Scale", new SelectScale(position));
+    		chooser.addObject("Scale Corner", new SelectCornerScale(position));
     		break;
     	case CENTER:
     		// Only switch works here!
     		break;
     	case RIGHT:
     		chooser.addObject("Scale", new SelectScale(position));
+    		chooser.addObject("Scale Corner", new SelectCornerScale(position));
     		break;
     	case UNKNOWN:
     	default:

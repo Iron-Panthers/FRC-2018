@@ -1,8 +1,9 @@
 package org.usfirst.frc.team5026.robot.commands.autonomous.sequences;
 
+import org.usfirst.frc.team5026.robot.commands.autonomous.AutoScale;
 import org.usfirst.frc.team5026.robot.commands.autonomous.CommandOption;
 import org.usfirst.frc.team5026.robot.commands.autonomous.FindGameDataAndAddCommand;
-import org.usfirst.frc.team5026.robot.commands.autonomous.LeftToLeftScaleSwitchSide;
+import org.usfirst.frc.team5026.robot.util.AutoPaths;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -12,6 +13,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class SequenceLeftToScaleSwitchSide extends CommandGroup {
 
     public SequenceLeftToScaleSwitchSide() {
-        addSequential(new FindGameDataAndAddCommand(new CommandOption(new LeftToLeftScaleSwitchSide(), null, new LeftToLeftScaleSwitchSide(), null)));
+        addSequential(new FindGameDataAndAddCommand(new CommandOption(new AutoScale(AutoPaths.getLeftStartingLeftScaleSwitchPath()), 
+        		null, new AutoScale(AutoPaths.getLeftStartingLeftScaleSwitchPath()), null)));
     }
 }

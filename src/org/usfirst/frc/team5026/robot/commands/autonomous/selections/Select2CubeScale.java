@@ -1,4 +1,4 @@
-package org.usfirst.frc.team5026.robot.commands.autonomous;
+package org.usfirst.frc.team5026.robot.commands.autonomous.selections;
 
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceCenterToSwitch2Cube;
 import org.usfirst.frc.team5026.robot.util.StartPosition;

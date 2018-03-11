@@ -12,6 +12,7 @@ public class OuttakeForTime extends TimedCommand {
  
     public OuttakeForTime(double timeout) {
         super(timeout);
+        requires(Robot.intake);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
