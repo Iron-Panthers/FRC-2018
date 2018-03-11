@@ -13,7 +13,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class SequenceLeftToScale extends CommandGroup {
 
     public SequenceLeftToScale() {
-        addSequential(new FindGameDataAndAddCommand(new CommandOption(new AutoScale(AutoPaths.getLeftStartingLeftScalePath()), 
-        		null, new AutoScale(AutoPaths.getLeftStartingLeftScalePath()), null)));
+        addSequential(new FindGameDataAndAddCommand(new CommandOption(
+        		new AutoScale(AutoPaths.getLeftStartingLeftScalePath()), 
+        		new AutoScale(AutoPaths.getLeftStartingRightScalePath()),
+        		new AutoScale(AutoPaths.getLeftStartingLeftScalePath()),
+        		new AutoScale(AutoPaths.getLeftStartingRightScalePath()))));
     }
 }
