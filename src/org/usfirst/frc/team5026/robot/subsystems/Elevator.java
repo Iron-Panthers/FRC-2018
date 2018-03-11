@@ -17,20 +17,54 @@ public class Elevator extends Subsystem {
 	
 	public ElevatorPosition position; 
 	public int count = 0; 
+	/**
+	 * Whether the delta setpoint slider or joystick needs to be re-zero'd.
+	 * This happens whenever someone other than the slider sets the setpoint.
+	 */
+	public boolean deltaNeedRezero = false;
 	
 	public ElevatorMotorGroup motors;
 	public DoubleSolenoid solenoid;
 	
 	private int wantedSetpoint;
+	private int lastSetpoint;
+	public boolean useSetpoint = true;
+	
 	public int wantedSetpoint() {
 		return wantedSetpoint;
 	}
 	public void setWantedSetpoint(int target) {
+		if (!useSetpoint) {
+			return;
+		}
+		
 		int delta = Math.abs(target - wantedSetpoint);
 		if (delta > Constants.ELEVATOR_TARGET_TOLERANCE) {
 			this.wantedSetpoint = target;
+			this.lastSetpoint = target;
 			this.atSetpointCount = 0;
 			this.atSetpoint = false;
+			this.deltaNeedRezero = true;
+		}
+	}
+	public void changeWantedSetpoint(int amount) {
+		if (!useSetpoint) {
+			return;
+		}
+		
+		if (amount == 0) {
+			this.deltaNeedRezero = false;
+		}
+		
+		if (!this.deltaNeedRezero) {
+			this.wantedSetpoint += amount;
+			
+			int delta = Math.abs(this.lastSetpoint - wantedSetpoint);
+			if (delta > Constants.ELEVATOR_TARGET_TOLERANCE) {
+				this.lastSetpoint = this.wantedSetpoint;
+				this.atSetpointCount = 0;
+				this.atSetpoint = false;
+			}
 		}
 	}
 	

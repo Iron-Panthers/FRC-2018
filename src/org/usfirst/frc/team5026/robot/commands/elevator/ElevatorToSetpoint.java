@@ -60,6 +60,8 @@ public class ElevatorToSetpoint extends Command {
     		return;
     	}
     	
+    	Robot.elevator.changeWantedSetpoint((int)(Robot.oi.elevatorStick.getX() * Constants.ELEVATOR_SLIDER_SENSITIVITY));
+    	
     	if (Robot.elevator.atSetpoint) {
     		return;
     	}
@@ -85,6 +87,7 @@ public class ElevatorToSetpoint extends Command {
 			
 			if (stallCount > Constants.ELEVATOR_TOLERANCE_TIME) {
 				encoderMode = false;
+				Robot.elevator.useSetpoint = false;
 				System.out.println("MOVING TO ELEVATOR NON-ENCODER MDOE!! USE SLIDER!!");
 				Robot.elevator.motors.stop();
 			}
