@@ -61,12 +61,11 @@ public class ElevatorToSetpoint extends Command {
     	}
     	
     	Robot.elevator.changeWantedSetpoint((int)(Robot.oi.elevatorStick.getX() * Constants.ELEVATOR_SLIDER_SENSITIVITY));
+		Robot.elevator.motors.driveWithTarget(Robot.elevator.wantedSetpoint());
     	
     	if (Robot.elevator.atSetpoint) {
     		return;
     	}
-    	
-		Robot.elevator.motors.driveWithTarget(Robot.elevator.wantedSetpoint());
 		
 		int delta = Math.abs(Robot.elevator.motors.getEncoderTicks() - Robot.elevator.wantedSetpoint());
 		if (delta < Constants.ELEVATOR_TARGET_TOLERANCE) {
