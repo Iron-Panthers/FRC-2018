@@ -1,19 +1,16 @@
  package org.usfirst.frc.team5026.robot;
 
-import com.ctre.phoenix.motorcontrol.NeutralMode;
 import org.usfirst.frc.team5026.robot.util.Constants;
+import org.usfirst.frc.team5026.robot.util.DriveMotorGroup;
 import org.usfirst.frc.team5026.robot.util.ElevatorMotorGroup;
 
-import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
-import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 //import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import org.usfirst.frc.team5026.robot.subsystems.DriveMotorGroup;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
-import edu.wpi.first.wpilibj.Talon;
 
 public class Hardware {
 	public TalonSRX elevatorMotor;

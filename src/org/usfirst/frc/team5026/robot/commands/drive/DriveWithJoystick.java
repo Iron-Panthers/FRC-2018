@@ -1,6 +1,5 @@
-package org.usfirst.frc.team5026.robot.commands;
+package org.usfirst.frc.team5026.robot.commands.drive;
 import org.usfirst.frc.team5026.robot.Robot;
-import org.usfirst.frc.team5026.robot.util.Constants;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -8,10 +7,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class JoystickDrive extends Command {
+public class DriveWithJoystick extends Command {
 	public double leftSpd;
 	public double rightSpd;
-    public JoystickDrive() {
+    public DriveWithJoystick() {
     	requires(Robot.drive);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);

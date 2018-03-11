@@ -7,33 +7,38 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ShiftHigh extends Command {
+public class DriveShift extends Command {
 
-    public ShiftHigh() {
+    public DriveShift() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+//    	requires(Robot.drive); // No requires so that it runs without any problems while driving
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.drive.shiftHigh();
+    	System.out.println("Shift high!");
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.drive.shiftHigh();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.drive.shiftLow();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	System.out.println("Shift low!");
+    	Robot.drive.shiftLow();
     }
 }

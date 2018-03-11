@@ -69,7 +69,6 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 //		right.setInverted(Constants.IS_RIGHT_INVERTED);
 		// autoChooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", autoChooser);
 		SmartDashboard.putNumber("Elevator Percent", 0.25); // TODO to remove later
 		SmartDashboard.putNumber("Elevator F", Constants.ELEVATOR_F); // TODO to remove later
 		SmartDashboard.putNumber("Elevator P Term", Constants.ELEVATOR_P); // TODO to remove later
@@ -208,7 +207,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putString("Time Left", time);
 		SmartDashboard.putNumber("Battery Voltage", hardware.pdp.getVoltage());
 		//Debug Window
-    	SmartDashboard.putString("Elevator Status", Robot.elevator.getElevatorDirection().name());
+    	SmartDashboard.putString("Elevator Direction", Robot.elevator.getElevatorDirection().name());
 		SmartDashboard.putNumber("Elevator Motor", Robot.elevator.motors.motor1.getOutputCurrent());
     	SmartDashboard.putNumber("Encoder Position", hardware.elevatorMotor.getSelectedSensorPosition(0));
 		SmartDashboard.putNumber("Encoder Velocity", hardware.elevatorMotor.getSelectedSensorVelocity(0));
@@ -219,7 +218,7 @@ public class Robot extends IterativeRobot {
 		//Drive Motor Current and Voltage
 		SmartDashboard.putNumber("Joystick Raw X", oi.driveStick.driveStick.getX());
 		SmartDashboard.putNumber("Joystick Raw Y", oi.driveStick.driveStick.getY());
-		SmartDashboard.putBoolean("banner", hardware.banner.get());
+		SmartDashboard.putString("Piston Position", Robot.elevator.position.name());
 		Scheduler.getInstance().run();
 	}
 

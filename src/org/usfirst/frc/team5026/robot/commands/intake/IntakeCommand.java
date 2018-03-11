@@ -1,4 +1,4 @@
-package org.usfirst.frc.team5026.robot.commands;
+package org.usfirst.frc.team5026.robot.commands.intake;
  
 import org.usfirst.frc.team5026.robot.Robot;
 import org.usfirst.frc.team5026.robot.util.Constants;
@@ -41,6 +41,7 @@ public class IntakeCommand extends Command {
 	// Called once after isFinished returns true
 	protected void end() {
 		Robot.intake.stop();
+		System.out.println("Adding HoldBlock!");
 		Scheduler.getInstance().add(new HoldBlock());
 	}
 	 
