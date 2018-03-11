@@ -18,7 +18,7 @@ public class AutoScale extends CommandGroup {
     public AutoScale(FastPathPlanner path) {
     	addParallel(new HoldBlock());
     	addSequential(new ElevatorExtendPistons());
-    	addSequential(new WaitCommand(1));
+    	addSequential(new WaitCommand(2));
         addParallel(new ElevatorToScale());
         addSequential(new PathFollower(path));
         addSequential(new OuttakeForTime(2)); 
