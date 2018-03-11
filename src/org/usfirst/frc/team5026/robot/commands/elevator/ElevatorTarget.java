@@ -12,17 +12,20 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class ElevatorTarget extends Command {
 
 	
-	int target;
-    public ElevatorTarget() {
+	int target = Integer.MAX_VALUE;
+    public ElevatorTarget(int trgt) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.elevator);
+    	target = trgt;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.elevator.stop();
-    	target = (int)SmartDashboard.getNumber("Elevator Target", 0);
+    	if (target == Integer.MAX_VALUE) {
+    		target = (int)SmartDashboard.getNumber("Elevator Target", 0);
+    	}
     }
 
     // Called repeatedly when this Command is scheduled to run

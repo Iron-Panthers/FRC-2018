@@ -7,19 +7,27 @@
 
 package org.usfirst.frc.team5026.robot;
 
-
+import org.usfirst.frc.team5026.robot.commands.autonomous.ChooseStartPosition;
+import org.usfirst.frc.team5026.robot.commands.autonomous.DriveStraight;
+import org.usfirst.frc.team5026.robot.commands.autonomous.PathFollower;
+import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceCenterToSwitch2Cube;
+import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceCenterToSwitchDropCube;
+import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceLeftToScale;
+import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceLeftToScaleSwitchSide;
+import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceLeftToSwitch;
+import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceRightToScale;
+import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceRightToScaleSwitchSide;
+import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceRightToSwitch;
+import org.usfirst.frc.team5026.robot.subsystems.ConveyorBelt;
 import org.usfirst.frc.team5026.robot.subsystems.Drive;
 import org.usfirst.frc.team5026.robot.subsystems.Elevator;
 import org.usfirst.frc.team5026.robot.subsystems.IntakeSubsystem;
+import org.usfirst.frc.team5026.robot.util.AutoPaths;
 import org.usfirst.frc.team5026.robot.util.Constants;
-import org.usfirst.frc.team5026.robot.util.ElevatorPosition;
+import org.usfirst.frc.team5026.robot.util.StartPosition;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
-import edu.wpi.cscore.CvSink;
-import edu.wpi.cscore.UsbCamera;
-import edu.wpi.cscore.VideoSink;
-import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -40,27 +48,27 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static Hardware hardware;
 	public static Drive drive;
+	public static ConveyorBelt conveyor;
 	public static IntakeSubsystem intake;
-	public static UsbCamera cam1;
 	public static Elevator elevator;
-	public static CvSink cvsink1;
-	public static VideoSink server;
 	Command autoCommand;
 	SendableChooser<Command> autoChooser = new SendableChooser<>();
+	SendableChooser<ChooseStartPosition> startPositionSelector = new SendableChooser<>(); 
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
 	@Override
 	public void robotInit() {
-		startCamera();
 		hardware = new Hardware();
 		drive = new Drive(hardware.left, hardware.right, hardware.gearShift);
+//		drive = new Drive(hardware.leftTalonSR, hardware.rightTalonSR, hardware.gearShift);
 		intake = new IntakeSubsystem();
 		elevator = new Elevator();
+		conveyor = new ConveyorBelt();
 		oi = new OI();
 //		right.setInverted(Constants.IS_RIGHT_INVERTED);
-		// chooser.addObject("My Auto", new MyAutoCommand());
+		// autoChooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", autoChooser);
 		SmartDashboard.putNumber("Elevator Percent", 0.25); // TODO to remove later
 		SmartDashboard.putNumber("Elevator F", Constants.ELEVATOR_F); // TODO to remove later
@@ -72,17 +80,31 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Elevator Reset Value", 0); // TODO to remove later
 		SmartDashboard.putNumber("Elevator Target", 1000); // TODO to remove later
 		oi.mapButtons();
+		autoChooser.addDefault("My Auto", new DriveStraight());
+		autoChooser.addObject("Center to Left Path", new PathFollower(AutoPaths.getLeftPath()));
+		autoChooser.addObject("Center to Right Path", new PathFollower(AutoPaths.getRightPath()));
+		autoChooser.addObject("Center to Switch", new SequenceCenterToSwitchDropCube());
+		autoChooser.addObject("Center to Switch 2 Cube", new SequenceCenterToSwitch2Cube());
+		autoChooser.addObject("Left to Scale", new SequenceLeftToScale());
+		autoChooser.addObject("Right to Scale", new SequenceRightToScale());
+		autoChooser.addObject("Left to Switch", new SequenceLeftToSwitch());
+		autoChooser.addObject("Right to Switch", new SequenceRightToSwitch());
+		autoChooser.addObject("Left to Scale SwitchSide", new SequenceLeftToScaleSwitchSide());
+		autoChooser.addObject("Right to Scale SwitchSide", new SequenceRightToScaleSwitchSide());
+		startPositionSelector.addDefault("Center", new ChooseStartPosition(StartPosition.CENTER));
+		startPositionSelector.addObject("Left", new ChooseStartPosition(StartPosition.LEFT));
+		startPositionSelector.addObject("Right", new ChooseStartPosition(StartPosition.RIGHT));
+		SmartDashboard.putNumber("target", 100);
+		SmartDashboard.putNumber("max count", 50);
+		SmartDashboard.putNumber("tolerance", 69);
+		SmartDashboard.putNumber("Path Planning F", Constants.PATHING_F);
+		SmartDashboard.putNumber("Path Planning P", Constants.PATHING_P);
+		SmartDashboard.putNumber("Path Planning I", Constants.PATHING_I);
+		SmartDashboard.putData("Auto mode", autoChooser);
+		SmartDashboard.putData("Starting Position", startPositionSelector);
+//		SmartDashboard.getNumber("Intake Speed", Constants.INTAKE_POWER);
 		LiveWindow.disableAllTelemetry();
     }
-	private static void startCamera() {
-		CameraServer camera = CameraServer.getInstance();
-		cam1 = camera.startAutomaticCapture("cam0", RobotMap.CAMERA_PORT);
-		cam1.setResolution(Constants.CAMERA_PIXEL_HEIGHT, Constants.CAMERA_PIXEL_WIDTH);
-		server = camera.getServer();
-		cvsink1 = new CvSink("cam1cv");
-		cvsink1.setSource(cam1);
-		cvsink1.setEnabled(true);
-	}
 	
 
 	/**
@@ -94,28 +116,43 @@ public class Robot extends IterativeRobot {
 	public void disabledInit() {
 //		hardware.elevatorMotor.setSelectedSensorPosition(0, 0, 0);
 //		System.out.println(hardware.elevatorMotor.getSelectedSensorPosition(0));
+		drive.setupCoastMode();
 	}
 
 	@Override
 	public void disabledPeriodic() {
+		startPositionSelector.getSelected().setRunWhenDisabled(true);
+		startPositionSelector.getSelected().start();
 		Scheduler.getInstance().run();
+		try {
+			if (startPositionSelector.getSelected().chooser.getSelected().choice != null) {
+				SmartDashboard.putString("Selected autonomous mode", startPositionSelector.getSelected().chooser.getSelected().choice.toString());
+			}
+		} catch (NullPointerException e) {
+			// Just continue on with life
+		}
 	}
 
 	/**
-	 * This autonomous (along with the chooser code above) shows how to select
+	 * This autonomous (along with the autoChooser code above) shows how to select
 	 * between different autonomous modes using the dashboard. The sendable
-	 * chooser code works with the Java SmartDashboard. If you prefer the
-	 * LabVIEW Dashboard, remove all of the chooser code and uncomment the
+	 * autoChooser code works with the Java SmartDashboard. If you prefer the
+	 * LabVIEW Dashboard, remove all of the autoChooser code and uncomment the
 	 * getString code to get the auto name from the text box below the Gyro
 	 *
 	 * <p>You can add additional auto modes by adding additional commands to the
-	 * chooser code above (like the commented example) or additional comparisons
+	 * autoChooser code above (like the commented example) or additional comparisons
 	 * to the switch structure below with additional strings & commands.
 	 */
 	@Override
 	public void autonomousInit() {
+		Robot.elevator.motors.motor1.setSelectedSensorPosition(Robot.elevator.motors.motor1.getSelectedSensorPosition(Constants.kPIDLoopIdx), Constants.kPIDLoopIdx, Constants.kTimeoutMs);
+		Robot.elevator.motors.motor1.set(ControlMode.Disabled, 1);
+		
+		drive.setupBrakeMode();
+		
 		autoCommand = autoChooser.getSelected();
-		Robot.elevator.position = ElevatorPosition.DOWN;
+//		autoCommand = startPositionSelector.getSelected().chooser.getSelected().choice;
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -145,6 +182,10 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopInit() {
 		Robot.elevator.motors.motor1.set(ControlMode.MotionMagic, Robot.elevator.motors.motor1.getSelectedSensorPosition(Constants.kPIDLoopIdx));
+		Robot.elevator.motors.motor1.set(ControlMode.Disabled, 1);
+		
+		drive.setupBrakeMode();
+
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
@@ -187,6 +228,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void testPeriodic() {
+		SmartDashboard.putNumber("Drive Left Encoder Reading", Robot.drive.getLeftEncoderPosition());
+		SmartDashboard.putNumber("Drive Right Encoder Reading", Robot.drive.getRightEncoderPosition());
 	}
 	
 	public static void dispNum(String key, double value) {

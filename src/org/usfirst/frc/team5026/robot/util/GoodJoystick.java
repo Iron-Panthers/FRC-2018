@@ -2,12 +2,15 @@ package org.usfirst.frc.team5026.robot.util;
 import org.usfirst.frc.team5026.robot.Robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class GoodJoystick {
 	public Joystick driveStick;
+	public JoystickButton driveStickTrigger;
 	public GoodJoystick(int port){
 		driveStick = new Joystick(port);
+		driveStickTrigger = new JoystickButton(driveStick, 1);
 	}
 	public void seeAxis() {
 		SmartDashboard.putNumber("Raw X", driveStick.getX());
@@ -17,8 +20,8 @@ public class GoodJoystick {
 
 	public double findX() {
 		double x;
-		x = -driveStick.getX();
-//		if(Robot.drive.isReversed) {
+		x = driveStick.getX();
+//		if(driveStickTrigger.get() {
 //			x = -x;
 //		}
 		if(Math.abs(x) < Constants.XDEADZONE_SIZE*Math.abs(driveStick.getY()) 
@@ -34,16 +37,17 @@ public class GoodJoystick {
 			}
 		}
 		SmartDashboard.putNumber("Output X", x);
-		return x;
+		return x*Constants.X_AXIS_MODIFIER;
 	}
 	public double findY() {
 		double y;
 		y = -driveStick.getY();
-		if(Robot.drive.isReversed) {
+		if(driveStickTrigger.get()) {
+			System.out.println("REVERSED");
 			y = -y;
 		}
 		if(Math.abs(y) < Constants.YDEADZONE_SIZE*Math.abs(driveStick.getX())
-		|| (Math.sqrt(driveStick.getY()*driveStick.getY() + driveStick.getX()*driveStick.getX()) < Constants.CIRCLE_DEADZONE)) {
+		|| (Math.sqrt(y*y + driveStick.getX()*driveStick.getX()) < Constants.CIRCLE_DEADZONE)) {
 			y = 0;
 		}
 		else {

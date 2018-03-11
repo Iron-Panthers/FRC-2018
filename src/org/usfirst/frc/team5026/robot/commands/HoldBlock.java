@@ -4,6 +4,7 @@ import org.usfirst.frc.team5026.robot.Robot;
 import org.usfirst.frc.team5026.robot.util.Constants;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -24,30 +25,20 @@ public class HoldBlock extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	error = Constants.HOLD_BLOCK_CURRENT_TARGET - Robot.intake.motor.getOutputCurrent();
-    	Robot.intake.intake(Constants.HOLD_BLOCK_P * error + Constants.INTAKE_VOLTAGE_HOLD);
+    	Robot.intake.intake(Constants.INTAKE_VOLTAGE_HOLD);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	//Stops when there is no block
-        if(Robot.intake.motor.getOutputCurrent()<(Constants.HOLD_BLOCK_NO_BLOCK_CURRENT + Constants.HOLD_BLOCK_NO_BLOCK_TOLERANCE)) {
-        	timeWithoutBlock++;
-        }
-        else {
-        	timeWithoutBlock = 0;
-        }
-        return timeWithoutBlock > Constants.HOLD_BLOCK_NO_BLOCK_STOP_TIME;
+        return Robot.intake.hasBlock();
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.intake.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.intake.stop();
     }
 }

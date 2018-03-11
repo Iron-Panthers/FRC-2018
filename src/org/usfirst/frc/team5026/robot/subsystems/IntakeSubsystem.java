@@ -12,24 +12,27 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class IntakeSubsystem extends Subsystem {
+	
 	public TalonSRX motor;
+	
 	public IntakeSubsystem() {
 		motor = Robot.hardware.intakeM;
 	}
+	
 	public void intake(double speed) {
 		motor.set(ControlMode.PercentOutput,speed);
 	}
+	
 	public void outtake(double speed) {
 		motor.set(ControlMode.PercentOutput,speed);
 	}
+	
 	public void stop() {
 		motor.set(ControlMode.PercentOutput,0);
 	}
+	
 	public boolean hasBlock() {
-		if(motor.getOutputCurrent()>Constants.BLOCK_GRAB_THRESHOLD) {
-			return true;
-		}
-		return false;
+		return motor.getOutputCurrent()>Constants.BLOCK_GRAB_THRESHOLD;
 	}
 	public void grabBlock() {
 		//Grabs block by setting motor to desired voltage

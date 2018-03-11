@@ -90,6 +90,9 @@ public class DriveMotorGroup implements SpeedController {
 			t.setInverted(isInverted);
 		}
 	}
+	public void setSensorInverted(boolean inverted) {
+		motor1.setSensorPhase(!inverted);
+	}
 	public void pidWrite(double arg0) {
 		// TODO LATER
 	}

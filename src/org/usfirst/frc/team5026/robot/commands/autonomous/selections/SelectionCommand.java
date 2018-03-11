@@ -1,24 +1,25 @@
-package org.usfirst.frc.team5026.robot.commands.elevator;
+package org.usfirst.frc.team5026.robot.commands.autonomous.selections;
 
-import org.usfirst.frc.team5026.robot.Robot;
+import org.usfirst.frc.team5026.robot.util.StartPosition;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
  *
  */
-public class ElevatorExtendPistons extends Command {
-    public ElevatorExtendPistons() {
-    	requires(Robot.elevator);
-    	
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+public abstract class SelectionCommand extends Command {
+
+	StartPosition start;
+	public Command choice;
+	
+    public SelectionCommand(StartPosition position) {
+    	start = position;
+    	choice = null;
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
-    	Robot.elevator.extendPistons();
-    }
+    protected abstract void initialize();
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
@@ -31,12 +32,10 @@ public class ElevatorExtendPistons extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.elevator.retractPistons();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.elevator.retractPistons();
     }
 }

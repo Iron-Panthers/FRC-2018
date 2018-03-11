@@ -9,8 +9,11 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 /**
  *
  */
+
 public class IntakeCommand extends Command {
+	
 	public double time;
+	
 	public IntakeCommand() {
 		requires(Robot.intake);
 		time = 0;

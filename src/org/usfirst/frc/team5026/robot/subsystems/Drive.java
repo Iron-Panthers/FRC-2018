@@ -20,17 +20,17 @@ public class Drive extends Subsystem {
 	public Talon r;
 	public DoubleSolenoid gearShift;
 	public DifferentialDrive dDrive;
-	public boolean isReversed;
+//	public boolean isReversed;
 	public GearState state;
-	public Drive(DriveMotorGroup r, DriveMotorGroup l, DoubleSolenoid gearShift){
+	public Drive(DriveMotorGroup l, DriveMotorGroup r, DoubleSolenoid gearShift){
 		this.gearShift = gearShift;
 		this.right = r;
 		this.left = l;
 		type = DriveMotorType.TALONSRX;
 		dDrive = new DifferentialDrive(left, right);
 		dDrive.setSafetyEnabled(false);
-		dDrive.setDeadband(Constants.JOYSTICK_DEADZONE);
-		isReversed = false;
+		dDrive.setDeadband(Constants.DDRIVE_JOYSTICK_DEADZONE);
+//		isReversed = false;
 	}
 	public Drive(Talon l, Talon r, DoubleSolenoid gearShift) {
 		this.gearShift = gearShift;
@@ -40,8 +40,8 @@ public class Drive extends Subsystem {
 		type = DriveMotorType.TALONSR;
 		dDrive = new DifferentialDrive(l, r);
 		dDrive.setSafetyEnabled(false);
-		dDrive.setDeadband(Constants.JOYSTICK_DEADZONE);
-		isReversed = false;
+		dDrive.setDeadband(Constants.DDRIVE_JOYSTICK_DEADZONE);
+//		isReversed = false;
 	}
 	public void setupBrakeMode() {
 		left.motor1.setNeutralMode(NeutralMode.Brake);
@@ -50,6 +50,14 @@ public class Drive extends Subsystem {
 		right.motor1.setNeutralMode(NeutralMode.Brake);
 		right.motor2.setNeutralMode(NeutralMode.Brake);
 		right.motor3.setNeutralMode(NeutralMode.Brake);
+	}
+	public void setupCoastMode() {
+		left.motor1.setNeutralMode(NeutralMode.Coast);
+		left.motor2.setNeutralMode(NeutralMode.Coast);
+		left.motor3.setNeutralMode(NeutralMode.Coast);
+		right.motor1.setNeutralMode(NeutralMode.Coast);
+		right.motor2.setNeutralMode(NeutralMode.Coast);
+		right.motor3.setNeutralMode(NeutralMode.Coast);
 	}
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -111,6 +119,22 @@ public class Drive extends Subsystem {
 			return;
 		}
 	}
+	public double getLeftEncoderPosition() {
+		if (type == DriveMotorType.TALONSRX) {
+			return left.getEncoderTicks();
+		} else if (type == DriveMotorType.TALONSR) {
+			System.out.println("You are in the wrong DriveMotorType! You should be in DriveMotorType.TALONSRX, but you are in DriveMotorType.TALONSR");
+		}
+		return 0;
+	}
+	public double getRightEncoderPosition() {
+		if (type == DriveMotorType.TALONSRX) {
+			return right.getEncoderTicks();
+		} else if (type == DriveMotorType.TALONSR) {
+			System.out.println("You are in the wrong DriveMotorType! You should be in DriveMotorType.TALONSRX, but you are in DriveMotorType.TALONSR");
+		}
+		return 0;
+	}
 //	public void driveWithPower(double speed) {
 //		left.driveWithPower(speed);
 //		right.driveWithPower(speed);
@@ -131,9 +155,9 @@ public class Drive extends Subsystem {
 			r.stopMotor();
 		}
 	}
-	public void reverseDrive() {
-		isReversed = !isReversed;
-	}
+//	public void reverseDrive() {
+//		isReversed = !isReversed;
+//	}
 	public void shiftHigh() {
 		state = GearState.HIGH;
 		gearShift.set(DoubleSolenoid.Value.kReverse);

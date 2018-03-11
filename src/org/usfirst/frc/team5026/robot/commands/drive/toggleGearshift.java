@@ -1,4 +1,4 @@
-package org.usfirst.frc.team5026.robot.commands.elevator;
+package org.usfirst.frc.team5026.robot.commands.drive;
 
 import org.usfirst.frc.team5026.robot.Robot;
 
@@ -7,17 +7,17 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ElevatorExtendPistons extends Command {
-    public ElevatorExtendPistons() {
-    	requires(Robot.elevator);
-    	
+public class toggleGearshift extends Command {
+
+    public toggleGearshift() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.elevator.extendPistons();
+		Robot.drive.shiftHigh();
+    		
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -26,17 +26,17 @@ public class ElevatorExtendPistons extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.elevator.retractPistons();
+        Robot.drive.shiftLow();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.elevator.retractPistons();
+        Robot.drive.shiftLow();
     }
 }
