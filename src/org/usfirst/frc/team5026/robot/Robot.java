@@ -90,6 +90,7 @@ public class Robot extends IterativeRobot {
 		autoChooser.addObject("Right to Switch", new SequenceRightToSwitch());
 		autoChooser.addObject("Left to Scale SwitchSide", new SequenceLeftToScaleSwitchSide());
 		autoChooser.addObject("Right to Scale SwitchSide", new SequenceRightToScaleSwitchSide());
+		autoChooser.addObject("Right 2 cube backup test", new PathFollower(AutoPaths.getRightSwitch2Cube()[1]));
 		startPositionSelector.addDefault("Center", new ChooseStartPosition(StartPosition.CENTER));
 		startPositionSelector.addObject("Left", new ChooseStartPosition(StartPosition.LEFT));
 		startPositionSelector.addObject("Right", new ChooseStartPosition(StartPosition.RIGHT));

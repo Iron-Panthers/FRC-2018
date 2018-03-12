@@ -61,8 +61,17 @@ public class PathFollower extends Command {
     	double rspeed = F * (path.smoothRightVelocity[index][1]);
     	double lp = P * leftPositionalError();
     	double rp = P * rightPositionalError();
-    	leftTotal += leftPositionalError();
-    	rightTotal += rightPositionalError();
+    	if (path.nodeOnlyPath[0][0] < 0) {
+    		// This means that the left and the right should be flipped. THIS IS A HACK! REMOVE ME! TODO
+    		lp = P * rightPositionalError();
+    		rp = P * leftPositionalError();
+    		leftTotal += rightPositionalError();
+        	rightTotal += leftPositionalError();
+     	} else {
+     		leftTotal += leftPositionalError();
+        	rightTotal += rightPositionalError();
+     	}
+    	
     	double li = I * leftTotal;
     	double ri = I * rightTotal;
     	if (index == 0) {
@@ -99,10 +108,18 @@ public class PathFollower extends Command {
     	lastTime = System.currentTimeMillis();
     }
     private double leftPositionalError() {
-    	return (path.getLeftArclength()[index] - Robot.drive.getLeftEncoderPosition() / Constants.TICKS_TO_INCHES);
+    	double arc = path.getLeftArclength()[index];
+    	if (path.smoothCenterVelocity[index][1] < 0) {
+    		arc = -arc;
+    	}
+    	return (arc - Robot.drive.getLeftEncoderPosition() / Constants.TICKS_TO_INCHES);
     }
     private double rightPositionalError() {
-    	return (path.getRightArclength()[index] - Robot.drive.getRightEncoderPosition() / Constants.TICKS_TO_INCHES);
+    	double arc = path.getRightArclength()[index];
+    	if (path.smoothCenterVelocity[index][1] < 0) {
+    		arc = -arc;
+    	}
+    	return (arc - Robot.drive.getRightEncoderPosition() / Constants.TICKS_TO_INCHES);
     }
 
     // Make this return true when this Command no longer needs to run execute()

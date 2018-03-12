@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5026.robot.commands.autonomous;
 
+import org.usfirst.frc.team5026.robot.commands.autonomous.selections.Select2CubeSwitch;
 import org.usfirst.frc.team5026.robot.commands.autonomous.selections.SelectCornerScale;
 import org.usfirst.frc.team5026.robot.commands.autonomous.selections.SelectScale;
 import org.usfirst.frc.team5026.robot.commands.autonomous.selections.SelectSwitch;
@@ -36,6 +37,7 @@ public class ChooseStartPosition extends Command {
     		break;
     	case CENTER:
     		// Only switch works here!
+    		chooser.addObject("2 Cube Switch", new Select2CubeSwitch(position));
     		break;
     	case RIGHT:
     		chooser.addObject("Scale", new SelectScale(position));

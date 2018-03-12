@@ -83,8 +83,7 @@ public class AutoPaths {
 	};
 	
 	private static double[][] CENTER_RIGHT_GRAB = new double[][]{
-		{113.58202247191011, 146.13667649950835},
-		{106.66516853932583, 138.79793510324484},
+		{103.41369863013699, 139.07142857142858},
 		{96.10786516853932, 132.73549655850542},
 		{85.18651685393257, 128.2684365781711},
 		{75.72134831460673, 125.3967551622419},
@@ -264,14 +263,15 @@ public class AutoPaths {
 			FastPathPlanner goBack = new FastPathPlanner(CENTER_RIGHT_TURNBACK);
 			
 			fpp.calculate(3.2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
-			stage2.calculate(1.2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
-			grabCube.calculate(1.1, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
-			goBackFromCube.calculate(1.1, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
-			goBack.calculate(1.2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+			stage2.calculate(2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+			grabCube.calculate(2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+			goBackFromCube.calculate(2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+			goBack.calculate(2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
 			
 			reverseAndFlipPath(stage2);
+			flipPath(grabCube);
 			reverseAndFlipPath(goBackFromCube);
-			flipPath(goBack);
+//			flipPath(goBack);
 			
 			CENTER_RIGHT_SWITCH_2_CUBE = new FastPathPlanner[]{
 					fpp, stage2, grabCube, goBackFromCube, goBack
@@ -330,7 +330,7 @@ public class AutoPaths {
 	}
 	
 	public static FastPathPlanner getLeftStartingRightScalePath() {
-		if (RIGHT_SCALE_LEFT_START != null) {
+		if (RIGHT_SCALE_LEFT_START_PATH != null) {
 			return RIGHT_SCALE_LEFT_START_PATH;
 		}
 		RIGHT_SCALE_LEFT_START_PATH = new FastPathPlanner(RIGHT_SCALE_LEFT_START);
@@ -386,28 +386,33 @@ public class AutoPaths {
 	}
 	
 	public static void reverseAndFlipPath(FastPathPlanner path) {
-		double[][] tempArr = path.rightPath;
-		path.rightPath = path.leftPath;
-		path.leftPath = tempArr;
-		
-		for (int i=0; i < path.smoothLeftVelocity.length; i++) {
-			double temp = -path.smoothRightVelocity[i][1];
-			path.smoothRightVelocity[i][1] = -path.smoothLeftVelocity[i][1];
-			path.smoothLeftVelocity[i][1] = temp;
-			path.smoothCenterVelocity[i][1] = -path.smoothCenterVelocity[i][1];
-		}
+		flipPath(path);
+		reversePath(path);
 	}
 	public static void reversePath(FastPathPlanner path) {
 		for (int i=0; i < path.smoothLeftVelocity.length; i++) {
-			double temp = -path.smoothRightVelocity[i][1];
-			path.smoothRightVelocity[i][1] = -path.smoothLeftVelocity[i][1];
-			path.smoothLeftVelocity[i][1] = temp;
+			path.smoothRightVelocity[i][1] = -path.smoothRightVelocity[i][1];
+			path.smoothLeftVelocity[i][1] = -path.smoothLeftVelocity[i][1];
 			path.smoothCenterVelocity[i][1] = -path.smoothCenterVelocity[i][1];
 		}
+//		for (int i=0; i < path.smoothLeftVelocity.length; i++) {
+//			double temp = -path.smoothRightVelocity[i][1];
+//			path.smoothRightVelocity[i][1] = -path.smoothLeftVelocity[i][1];
+//			path.smoothLeftVelocity[i][1] = temp;
+//			path.smoothCenterVelocity[i][1] = -path.smoothCenterVelocity[i][1];
+//		}
 	}
 	public static void flipPath(FastPathPlanner path) {
 		double[][] tempArr = path.rightPath;
 		path.rightPath = path.leftPath;
 		path.leftPath = tempArr;
+		double[][] temp = path.smoothLeftVelocity;
+		path.smoothLeftVelocity = path.smoothRightVelocity;
+		path.smoothRightVelocity = temp;
+		
+//		 THIS IS A HACK! TODO REMOVE ME REMOVE ME
+//		for (int i = 0; i < path.nodeOnlyPath.length; i++) {
+//			path.nodeOnlyPath[i][0] = -path.nodeOnlyPath[i][0];
+//		}
 	}
 }

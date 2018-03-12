@@ -4,6 +4,7 @@ import org.usfirst.frc.team5026.robot.commands.conveyorbelt.ConveyorBeltBackward
 import org.usfirst.frc.team5026.robot.commands.conveyorbelt.ConveyorBeltForward;
 import org.usfirst.frc.team5026.robot.commands.drive.DriveShift;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorPistonToggle;
+import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorSliding;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToExchange;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToScale;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToShortCube;
@@ -74,7 +75,7 @@ public class OI {
 //		stickBtnThree.whileHeld(new ElevatorToScale());
 //		stickBtnFour.whileHeld(new ElevatorToGround());
 		
-//		boardBtnOne.whileHeld(new ElevatorSliding());
+		boardBtnOne.whileHeld(new ElevatorSliding());
 		boardBtnTwo.whenPressed(new IntakeCommandGroup());
 		boardBtnThree.whileHeld(new IntakeOuttakeCommand());
 //		boardBtnFour.whenPressed(new ConveyorBeltForwardToBanner());
