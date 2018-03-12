@@ -1,7 +1,6 @@
 package org.usfirst.frc.team5026.robot.commands.elevator;
 
 import org.usfirst.frc.team5026.robot.Robot;
-import org.usfirst.frc.team5026.robot.util.ElevatorPosition;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -11,45 +10,47 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class ElevatorTarget extends Command {
 
-	
+
 	int target = Integer.MAX_VALUE;
-    public ElevatorTarget(int trgt) {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	requires(Robot.elevator);
-    	target = trgt;
-    }
+	public ElevatorTarget() {
+		// Use requires() here to declare subsystem dependencies
+		// eg. requires(chassis);
+		requires(Robot.elevator);
+	}
 
-    // Called just before this Command runs the first time
-    protected void initialize() {
-    	Robot.elevator.stop();
-    	if (target == Integer.MAX_VALUE) {
-    		target = (int)SmartDashboard.getNumber("Elevator Target", 0);
-    	}
-    }
+	public ElevatorTarget(int t) {
+		requires(Robot.elevator);
+		target = t;
+	}
 
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-//    	Robot.elevator.checkPosition();
-    	if(Robot.elevator.position == ElevatorPosition.UP) {
-    		Robot.elevator.motors.driveWithTarget(target);
-    	}
-    	SmartDashboard.putNumber("Elevator Position", Robot.elevator.motors.getEncoderTicks());
-    }
+	// Called just before this Command runs the first time
+	protected void initialize() {
+		Robot.elevator.stop();
+		if (target == Integer.MAX_VALUE) {
+			target = (int)SmartDashboard.getNumber("Elevator Target", 0);
+		}
+	}
 
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-        return false;
-    }
+	// Called repeatedly when this Command is scheduled to run
+	protected void execute() {
+		//      Robot.elevator.checkPosition();
+		Robot.elevator.motors.driveWithTarget(target);
+		SmartDashboard.putNumber("Elevator Position", Robot.elevator.motors.getEncoderTicks());
+	}
 
-    // Called once after isFinished returns true
-    protected void end() {
-    	Robot.elevator.stop();
-    }
+	// Make this return true when this Command no longer needs to run execute()
+	protected boolean isFinished() {
+		return false;
+	}
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
-    	Robot.elevator.stop();
-    }
+	// Called once after isFinished returns true
+	protected void end() {
+		Robot.elevator.stop();
+	}
+
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
+	protected void interrupted() {
+		Robot.elevator.stop();
+	}
 }
