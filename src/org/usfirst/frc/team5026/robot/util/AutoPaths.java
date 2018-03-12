@@ -233,14 +233,14 @@ public class AutoPaths {
 			FastPathPlanner goBack = new FastPathPlanner(CENTER_LEFT_TURNBACK);
 			
 			fpp.calculate(3.2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
-			stage2.calculate(1.2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
-			grabCube.calculate(1.1, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
-			goBackFromCube.calculate(1.1, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
-			goBack.calculate(1.2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+			stage2.calculate(2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+			grabCube.calculate(2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+			goBackFromCube.calculate(2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+			goBack.calculate(2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
 			
 			reverseAndFlipPath(stage2);
+			flipPath(grabCube);
 			reverseAndFlipPath(goBackFromCube);
-			flipPath(goBack);
 
 			CENTER_LEFT_SWITCH_2_CUBE = new FastPathPlanner[] {
 					fpp, stage2, grabCube, goBackFromCube, goBack
