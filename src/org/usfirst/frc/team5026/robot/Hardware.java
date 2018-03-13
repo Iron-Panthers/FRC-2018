@@ -5,6 +5,7 @@ import org.usfirst.frc.team5026.robot.util.DriveMotorGroup;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.sensors.PigeonIMU;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 //import edu.wpi.first.wpilibj.DigitalInput;
@@ -32,6 +33,7 @@ public class Hardware {
 	public DoubleSolenoid gearShift;
 	public PowerDistributionPanel pdp;
 	public DigitalInput banner;
+	public PigeonIMU gyro;
 	
 	public Hardware() {
 		elevatorMotor = new TalonSRX(RobotMap.ELEVATOR_MASTER);
@@ -63,5 +65,6 @@ public class Hardware {
 		gearShift = new DoubleSolenoid(0, RobotMap.SHIFT_FORWARD, RobotMap.SHIFT_REVERSE);
 		pdp = new PowerDistributionPanel();
 		banner = new DigitalInput(RobotMap.BANNER_PORT);
+		gyro = new PigeonIMU(RobotMap.GYRO_ID);
 	}
 }

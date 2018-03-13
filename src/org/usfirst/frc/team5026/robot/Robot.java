@@ -48,6 +48,11 @@ public class Robot extends IterativeRobot {
 //		elevator = new Elevator();
 //		conveyor = new ConveyorBelt();
 		oi = new OI();
+		double[] ypr = new double[3];
+		hardware.gyro.getYawPitchRoll(ypr);
+		SmartDashboard.putNumber("yaw", ypr[0]);	
+		SmartDashboard.putNumber("pitch", ypr[1]);	
+		SmartDashboard.putNumber("roll", ypr[2]);
 //		right.setInverted(Constants.IS_RIGHT_INVERTED);
 		// autoChooser.addObject("My Auto", new MyAutoCommand());
 //		SmartDashboard.putNumber("Elevator Percent", 0.25); // TODO to remove later
