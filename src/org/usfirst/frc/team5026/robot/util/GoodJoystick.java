@@ -1,7 +1,4 @@
 package org.usfirst.frc.team5026.robot.util;
-import org.usfirst.frc.team5026.robot.Robot;
-import org.usfirst.frc.team5026.robot.RobotMap;
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
