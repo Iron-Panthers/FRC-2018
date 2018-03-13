@@ -1,12 +1,9 @@
  package org.usfirst.frc.team5026.robot;
 
-import com.ctre.phoenix.motorcontrol.NeutralMode;
 import org.usfirst.frc.team5026.robot.util.Constants;
 import org.usfirst.frc.team5026.robot.util.DriveMotorGroup;
-import org.usfirst.frc.team5026.robot.util.ElevatorMotorGroup;
 
-import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
-import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -18,7 +15,7 @@ import edu.wpi.first.wpilibj.Talon;
 public class Hardware {
 	public TalonSRX elevatorMotor;
 	public TalonSRX elevatorSlaveMotor;
-	public ElevatorMotorGroup elevatorMotors;
+	//public ElevatorMotorGroup elevatorMotors;
 	public DoubleSolenoid elevatorSolenoid;
 	public TalonSRX conveyor;
 	public TalonSRX intakeM;
@@ -39,7 +36,7 @@ public class Hardware {
 	public Hardware() {
 		elevatorMotor = new TalonSRX(RobotMap.ELEVATOR_MASTER);
 		elevatorSlaveMotor = new TalonSRX(RobotMap.ELEVATOR_SLAVE);
-		elevatorMotors = new ElevatorMotorGroup(elevatorMotor, elevatorSlaveMotor);
+		//elevatorMotors = new ElevatorMotorGroup(elevatorMotor, elevatorSlaveMotor);
 		elevatorMotor.setInverted(Constants.IS_ELEVATOR_INVERTED);
 		elevatorSlaveMotor.setInverted(Constants.IS_ELEVATOR_INVERTED);
 		elevatorMotor.setSensorPhase(!Constants.IS_ELEVATOR_SENSOR_INVERTED);

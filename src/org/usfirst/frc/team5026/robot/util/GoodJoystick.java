@@ -20,46 +20,54 @@ public class GoodJoystick {
 	//Robot.drive.useArcadeDrive(Robot.oi.driveStick.getX()*Constants.X_AXIS_MODIFIER, Robot.oi.driveStick.getY());
 
 	public double findX() {
-		double x;
+		//if(Math.abs(x) < Constants.XDEADZONE_SIZE*Math.abs(driveStick.getY()) || Math.sqrt(driveStick.getY()*driveStick.getY() + driveStick.getX()*driveStick.getX()) < Constants.CIRCLE_DEADZONE) { 
+		
+		double x, y, magnitude;
 		x = driveStick.getX();
-//		if(driveStickTrigger.get() {
-//			x = -x;
-//		}
-		if(Math.abs(x) < Constants.XDEADZONE_SIZE*Math.abs(driveStick.getY()) 
-		|| Math.sqrt(driveStick.getY()*driveStick.getY() + driveStick.getX()*driveStick.getX()) < Constants.CIRCLE_DEADZONE) { 
-			x=0; //circle deadzone
-		}
-		else {
-			if(x<0) {
-				x = (x + Constants.XDEADZONE_SIZE)/(1-Constants.XDEADZONE_SIZE);
+		y = -driveStick.getY();
+		magnitude = Math.sqrt(x*x + y*y);
+				
+		//if(Math.abs(y) < Constants.YDEADZONE_SIZE*Math.abs(driveStick.getX()) || magnitude < Constants.CIRCLE_DEADZONE) {
+		if ( magnitude < Constants.CIRCLE_DEADZONE ) {
+			x = 0;
+		} else {
+			double normX = x / magnitude;
+			magnitude = (magnitude - Constants.CIRCLE_DEADZONE) / (1 - Constants.CIRCLE_DEADZONE);
+			if (magnitude > 1) { 
+				magnitude = 1;
 			}
-			else{
-				x = (x - Constants.XDEADZONE_SIZE)/(1-Constants.XDEADZONE_SIZE);
-			}
+			
+			x = normX * magnitude;
 		}
-		SmartDashboard.putNumber("Output X", x);
-		return x*Constants.X_AXIS_MODIFIER;
+		
+		SmartDashboard.putNumber("deadzone corrected X", x);
+		return x;
 	}
 	public double findY() {
-		double y;
+		double x, y, magnitude;
+		x = driveStick.getX();
 		y = -driveStick.getY();
+		magnitude = Math.sqrt(x*x + y*y);
+				
 		if(driveStickTrigger.get()) {
 			System.out.println("REVERSED");
 			y = -y;
 		}
-		if(Math.abs(y) < Constants.YDEADZONE_SIZE*Math.abs(driveStick.getX())
-		|| (Math.sqrt(y*y + driveStick.getX()*driveStick.getX()) < Constants.CIRCLE_DEADZONE)) {
+		
+		//if(Math.abs(y) < Constants.YDEADZONE_SIZE*Math.abs(driveStick.getX()) || magnitude < Constants.CIRCLE_DEADZONE) {
+		if ( magnitude < Constants.CIRCLE_DEADZONE ) {
 			y = 0;
-		}
-		else {
-			if(y<0) {
-				y = (y + Constants.YDEADZONE_SIZE)/(1-Constants.YDEADZONE_SIZE);
+		} else {
+			double normY = y / magnitude;
+			magnitude = (magnitude - Constants.CIRCLE_DEADZONE) / (1 - Constants.CIRCLE_DEADZONE);
+			if (magnitude > 1) { 
+				magnitude = 1;
 			}
-			else {
-				y = (y - Constants.YDEADZONE_SIZE)/(1-Constants.YDEADZONE_SIZE);
-			}
+			
+			y = normY * magnitude * Constants.Y_AXIS_MODIFIER;
 		}
-		SmartDashboard.putNumber("Output Y", y);
+		
+		SmartDashboard.putNumber("deadzone corrected Y", y);
 		return y;
 	}
 	//k = Robot.oi.driveStick.getY()/Robot.oi.driveStick.getX();

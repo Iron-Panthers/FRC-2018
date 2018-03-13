@@ -26,9 +26,9 @@ public class DriveWithJoystick extends Command {
     	Robot.oi.driveStick.seeAxis();
 //    	Robot.drive.useArcadeDrive(Robot.oi.joystick.findY(),Robot.oi.joystick.findX());
     	leftSpd = Robot.oi.driveStick.findLeftPower(Robot.oi.driveStick.findX(),Robot.oi.driveStick.findY());
-    	SmartDashboard.putNumber("left spd", leftSpd);
+    	SmartDashboard.putNumber("left motor set", leftSpd);
     	rightSpd = Robot.oi.driveStick.findRightPower(Robot.oi.driveStick.findX(),Robot.oi.driveStick.findY());
-    	SmartDashboard.putNumber("right spd", rightSpd);
+    	SmartDashboard.putNumber("right motor set", rightSpd);
     	Robot.drive.setLeftSide(leftSpd);
     	Robot.drive.setRightSide(rightSpd);
     }

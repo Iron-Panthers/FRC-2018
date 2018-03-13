@@ -1,18 +1,5 @@
 package org.usfirst.frc.team5026.robot;
 
-import org.usfirst.frc.team5026.robot.commands.conveyorbelt.ConveyorBeltBackward;
-import org.usfirst.frc.team5026.robot.commands.conveyorbelt.ConveyorBeltForward;
-import org.usfirst.frc.team5026.robot.commands.drive.DriveShift;
-import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorPistonToggle;
-import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorSliding;
-import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToExchange;
-import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToScale;
-import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToShortCube;
-import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToSwitch;
-import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToTallCube;
-import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorZero;
-import org.usfirst.frc.team5026.robot.commands.intake.IntakeCommandGroup;
-import org.usfirst.frc.team5026.robot.commands.intake.IntakeOuttakeCommand;
 import org.usfirst.frc.team5026.robot.util.GoodJoystick;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -66,58 +53,59 @@ public class OI {
 
 	}
 	public void mapButtons(){
-//		stickBtnOne.whenPressed(new ReverseDrive());
-//		stickBtnOne.whenReleased(new ReverseDrive());
-//		stickBtnTwo.whileHeld(new OuttakeCommand());
-		stickBtnTwo.toggleWhenPressed(new DriveShift());
-		stickBtnThree.whileHeld(new IntakeOuttakeCommand());
-		stickBtnFive.whenPressed(new ElevatorZero());
-//		stickBtnThree.whileHeld(new ElevatorToScale());
-//		stickBtnFour.whileHeld(new ElevatorToGround());
-		
-		boardBtnOne.whileHeld(new ElevatorSliding());
-		boardBtnTwo.whenPressed(new IntakeCommandGroup());
-		boardBtnThree.whileHeld(new IntakeOuttakeCommand());
-//		boardBtnFour.whenPressed(new ConveyorBeltForwardToBanner());
-		boardBtnFour.whenPressed(new ElevatorZero());
-		boardBtnFive.whileHeld(new ConveyorBeltForward());
-		boardBtnSix.whileHeld(new ConveyorBeltBackward());
-		
-		boardBtnSeven.whenPressed(new ElevatorToShortCube());
-		boardBtnEight.whenPressed(new ElevatorToTallCube());
-		boardBtnNine.whenPressed(new ElevatorToSwitch());
-		boardBtnTen.whenPressed(new ElevatorToScale());
-		boardBtnEleven.whenPressed(new ElevatorToExchange());
-//		boardBtnThree.whileHeld(new ElevatorTarget());
-//		boardBtnFour.whenPressed(new ElevatorSetPIDF());
-		
-//		boardBtnSeven.whileHeld(new OuttakeCommand());
-		boardBtnTwelve.whenPressed(new ElevatorPistonToggle());
+////		stickBtnOne.whenPressed(new ReverseDrive());
+////		stickBtnOne.whenReleased(new ReverseDrive());
+////		stickBtnTwo.whileHeld(new OuttakeCommand());
+//		stickBtnTwo.toggleWhenPressed(new DriveShift());
+//		stickBtnThree.whileHeld(new IntakeOuttakeCommand());
+//		stickBtnFive.whenPressed(new ElevatorZero());
+////		stickBtnThree.whileHeld(new ElevatorToScale());
+////		stickBtnFour.whileHeld(new ElevatorToGround());
+//		
+//		boardBtnOne.whileHeld(new ElevatorSliding());
+//		boardBtnTwo.whenPressed(new IntakeCommandGroup());
+//		boardBtnThree.whileHeld(new IntakeOuttakeCommand());
+////		boardBtnFour.whenPressed(new ConveyorBeltForwardToBanner());
+//		boardBtnFour.whenPressed(new ElevatorZero());
+//		boardBtnFive.whileHeld(new ConveyorBeltForward());
+//		boardBtnSix.whileHeld(new ConveyorBeltBackward());
+//		
+//		boardBtnSeven.whenPressed(new ElevatorToShortCube());
+//		boardBtnEight.whenPressed(new ElevatorToTallCube());
+//		boardBtnNine.whenPressed(new ElevatorToSwitch());
+//		boardBtnTen.whenPressed(new ElevatorToScale());
+//		boardBtnEleven.whenPressed(new ElevatorToExchange());
+////		boardBtnThree.whileHeld(new ElevatorTarget());
+////		boardBtnFour.whenPressed(new ElevatorSetPIDF());
+//		
+////		boardBtnSeven.whileHeld(new OuttakeCommand());
+//		boardBtnTwelve.whenPressed(new ElevatorPistonToggle());
+//	}
+//	//// CREATING BUTTONS
+//	// One type of button is a joystick button which is any button on a
+//	//// joystick.
+//	// You create one by telling it which joystick it's on and which button
+//	// number it is.
+//	// Joystick stick = new Joystick(port);
+//	// Button button = new JoystickButton(stick, buttonNumber);
+//// There are a few additional built in buttons you can use. Additionally,
+//	// by subclassing Button you can create custom triggers and bind those to
+//	// commands the same as any other Button.
+//
+//	//// TRIGGERING COMMANDS WITH BUTTONS
+//	// Once you have a button, it's trivial to bind it to a button in one of
+//	// three ways:
+//
+//	// Start the command when the button is pressed and let it run the command
+//	// until it is finished as determined by it's isFinished method.
+//	// button.whenPressed(new ExampleCommand());
+//
+//	// Run the command while the button is being held down and interrupt it once
+//	// the button is released.
+//	// button.whileHeld(new ExampleCommand());
+//
+//	// Start the command when the button is released and let it run the command
+//	// until it is finished as determined by it's isFinished method.
+//	// button.whenReleased(new ExampleCommand());
 	}
-	//// CREATING BUTTONS
-	// One type of button is a joystick button which is any button on a
-	//// joystick.
-	// You create one by telling it which joystick it's on and which button
-	// number it is.
-	// Joystick stick = new Joystick(port);
-	// Button button = new JoystickButton(stick, buttonNumber);
-// There are a few additional built in buttons you can use. Additionally,
-	// by subclassing Button you can create custom triggers and bind those to
-	// commands the same as any other Button.
-
-	//// TRIGGERING COMMANDS WITH BUTTONS
-	// Once you have a button, it's trivial to bind it to a button in one of
-	// three ways:
-
-	// Start the command when the button is pressed and let it run the command
-	// until it is finished as determined by it's isFinished method.
-	// button.whenPressed(new ExampleCommand());
-
-	// Run the command while the button is being held down and interrupt it once
-	// the button is released.
-	// button.whileHeld(new ExampleCommand());
-
-	// Start the command when the button is released and let it run the command
-	// until it is finished as determined by it's isFinished method.
-	// button.whenReleased(new ExampleCommand());
 }

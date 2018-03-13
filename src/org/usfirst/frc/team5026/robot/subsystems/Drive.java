@@ -29,7 +29,7 @@ public class Drive extends Subsystem {
 		this.gearShift = gearShift;
 		this.right = r;
 		this.left = l;
-		type = DriveMotorType.TALONSRX;
+		type = DriveMotorType.TALONSR;
 		dDrive = new DifferentialDrive(left, right);
 		dDrive.setSafetyEnabled(false);
 		dDrive.setDeadband(Constants.DDRIVE_JOYSTICK_DEADZONE);

@@ -7,17 +7,8 @@
 
 package org.usfirst.frc.team5026.robot;
 
-import org.usfirst.frc.team5026.robot.commands.autonomous.CenterToSwitchDropCube;
-import org.usfirst.frc.team5026.robot.commands.autonomous.DriveStraight;
-import org.usfirst.frc.team5026.robot.commands.autonomous.PathFollower;
-import org.usfirst.frc.team5026.robot.subsystems.ConveyorBelt;
 import org.usfirst.frc.team5026.robot.subsystems.Drive;
-import org.usfirst.frc.team5026.robot.subsystems.Elevator;
-import org.usfirst.frc.team5026.robot.subsystems.IntakeSubsystem;
-import org.usfirst.frc.team5026.robot.util.AutoPaths;
 import org.usfirst.frc.team5026.robot.util.Constants;
-
-import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -39,9 +30,9 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static Hardware hardware;
 	public static Drive drive;
-	public static ConveyorBelt conveyor;
-	public static IntakeSubsystem intake;
-	public static Elevator elevator;
+//	public static ConveyorBelt conveyor;
+//	public static IntakeSubsystem intake;
+//	public static Elevator elevator;
 	Command autoCommand;
 	SendableChooser<Command> autoChooser = new SendableChooser<>();
 	/**
@@ -53,32 +44,32 @@ public class Robot extends IterativeRobot {
 		hardware = new Hardware();
 //		drive = new Drive(hardware.left, hardware.right, hardware.gearShift);
 		drive = new Drive(hardware.leftTalonSR, hardware.rightTalonSR, hardware.gearShift);
-		intake = new IntakeSubsystem();
-		elevator = new Elevator();
-		conveyor = new ConveyorBelt();
+//		intake = new IntakeSubsystem();
+//		elevator = new Elevator();
+//		conveyor = new ConveyorBelt();
 		oi = new OI();
 //		right.setInverted(Constants.IS_RIGHT_INVERTED);
 		// autoChooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putNumber("Elevator Percent", 0.25); // TODO to remove later
-		SmartDashboard.putNumber("Elevator F", Constants.ELEVATOR_F); // TODO to remove later
-		SmartDashboard.putNumber("Elevator P Term", Constants.ELEVATOR_P); // TODO to remove later
-		SmartDashboard.putNumber("Elevator I", Constants.ELEVATOR_I); // TODO to remove later
-		SmartDashboard.putNumber("Elevator D", Constants.ELEVATOR_D); // TODO to remove later
-		SmartDashboard.putNumber("Elevator V Term", Constants.ELEVATOR_VELOCITY); // TODO to remove later
-		SmartDashboard.putNumber("Elevator A Term", Constants.ELEVATOR_ACCELERATION); // TODO to remove later
-		SmartDashboard.putNumber("Elevator Reset Value", 0); // TODO to remove later
-		SmartDashboard.putNumber("Elevator Target", 1000); // TODO to remove later
+//		SmartDashboard.putNumber("Elevator Percent", 0.25); // TODO to remove later
+//		SmartDashboard.putNumber("Elevator F", Constants.ELEVATOR_F); // TODO to remove later
+//		SmartDashboard.putNumber("Elevator P Term", Constants.ELEVATOR_P); // TODO to remove later
+//		SmartDashboard.putNumber("Elevator I", Constants.ELEVATOR_I); // TODO to remove later
+//		SmartDashboard.putNumber("Elevator D", Constants.ELEVATOR_D); // TODO to remove later
+//		SmartDashboard.putNumber("Elevator V Term", Constants.ELEVATOR_VELOCITY); // TODO to remove later
+//		SmartDashboard.putNumber("Elevator A Term", Constants.ELEVATOR_ACCELERATION); // TODO to remove later
+//		SmartDashboard.putNumber("Elevator Reset Value", 0); // TODO to remove later
+//		SmartDashboard.putNumber("Elevator Target", 1000); // TODO to remove later
 		oi.mapButtons();
-		autoChooser.addDefault("My Auto", new DriveStraight());
-		autoChooser.addObject("Center to Left Path", new PathFollower(AutoPaths.getLeftPath()));
-		autoChooser.addObject("Center to Right Path", new PathFollower(AutoPaths.getRightPath()));
-		autoChooser.addObject("Center to Switch", new CenterToSwitchDropCube());
-		SmartDashboard.putNumber("target", 100);
-		SmartDashboard.putNumber("max count", 50);
-		SmartDashboard.putNumber("tolerance", 69);
-		SmartDashboard.putNumber("Path Planning F", Constants.PATHING_F);
-		SmartDashboard.putNumber("Path Planning P", Constants.PATHING_P);
-		SmartDashboard.putData("Auto mode", autoChooser);
+//		autoChooser.addDefault("My Auto", new DriveStraight());
+//		autoChooser.addObject("Center to Left Path", new PathFollower(AutoPaths.getLeftPath()));
+//		autoChooser.addObject("Center to Right Path", new PathFollower(AutoPaths.getRightPath()));
+//		autoChooser.addObject("Center to Switch", new CenterToSwitchDropCube());
+//		SmartDashboard.putNumber("target", 100);
+//		SmartDashboard.putNumber("max count", 50);
+//		SmartDashboard.putNumber("tolerance", 69);
+//		SmartDashboard.putNumber("Path Planning F", Constants.PATHING_F);
+//		SmartDashboard.putNumber("Path Planning P", Constants.PATHING_P);
+//		SmartDashboard.putData("Auto mode", autoChooser);
 //		SmartDashboard.getNumber("Intake Speed", Constants.INTAKE_POWER);
 		LiveWindow.disableAllTelemetry();
     }
@@ -113,8 +104,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		Robot.elevator.motors.motor1.setSelectedSensorPosition(Robot.elevator.motors.motor1.getSelectedSensorPosition(Constants.kPIDLoopIdx), Constants.kPIDLoopIdx, Constants.kTimeoutMs);
-		Robot.elevator.motors.motor1.set(ControlMode.Disabled, 1);
+//		Robot.elevator.motors.motor1.setSelectedSensorPosition(Robot.elevator.motors.motor1.getSelectedSensorPosition(Constants.kPIDLoopIdx), Constants.kPIDLoopIdx, Constants.kTimeoutMs);
+//		Robot.elevator.motors.motor1.set(ControlMode.Disabled, 1);
 		autoCommand = autoChooser.getSelected();
 
 		/*
@@ -144,9 +135,9 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void teleopInit() {
-		Robot.elevator.motors.motor1.set(ControlMode.MotionMagic, Robot.elevator.motors.motor1.getSelectedSensorPosition(Constants.kPIDLoopIdx));
-		Robot.elevator.motors.motor1.set(ControlMode.Disabled, 1);
-		// This makes sure that the autonomous stops running when
+//		Robot.elevator.motors.motor1.set(ControlMode.MotionMagic, Robot.elevator.motors.motor1.getSelectedSensorPosition(Constants.kPIDLoopIdx));
+//		Robot.elevator.motors.motor1.set(ControlMode.Disabled, 1);
+//		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
@@ -168,8 +159,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putString("Time Left", time);
 		SmartDashboard.putNumber("Battery Voltage", hardware.pdp.getVoltage());
 		//Debug Window
-    	SmartDashboard.putString("Elevator Status", Robot.elevator.getElevatorDirection().name());
-		SmartDashboard.putNumber("Elevator Motor", Robot.elevator.motors.motor1.getOutputCurrent());
+//    	SmartDashboard.putString("Elevator Status", Robot.elevator.getElevatorDirection().name());
+//		SmartDashboard.putNumber("Elevator Motor", Robot.elevator.motors.motor1.getOutputCurrent());
     	SmartDashboard.putNumber("Encoder Position", hardware.elevatorMotor.getSelectedSensorPosition(0));
 		SmartDashboard.putNumber("Encoder Velocity", hardware.elevatorMotor.getSelectedSensorVelocity(0));
 		SmartDashboard.putNumber("Elevator Motor Current", hardware.elevatorMotor.getOutputCurrent());
