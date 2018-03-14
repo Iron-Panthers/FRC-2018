@@ -12,7 +12,7 @@ import scadlib.paths.FastPathPlanner;
 /**
  * This command ONLY runs after the game data has been received
  */
-public class CenterToSwitch extends Command {
+public class CenterToSwitch1Cube extends Command {
 
 	int index = 0;
 	long startTime;
@@ -21,7 +21,7 @@ public class CenterToSwitch extends Command {
 	double P;
 	FastPathPlanner path;
 	
-    public CenterToSwitch() {
+    public CenterToSwitch1Cube() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.drive);

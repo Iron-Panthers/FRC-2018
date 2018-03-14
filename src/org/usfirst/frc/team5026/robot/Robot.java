@@ -11,10 +11,13 @@ import org.usfirst.frc.team5026.robot.commands.autonomous.ChooseStartPosition;
 import org.usfirst.frc.team5026.robot.commands.autonomous.DriveStraight;
 import org.usfirst.frc.team5026.robot.commands.autonomous.PathFollower;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceCenterToSwitch2Cube;
-import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceCenterToSwitchDropCube;
+import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceCenterToSwitch3Cube;
+import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceCenterToSwitch1Cube;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceLeftToScale;
+import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceLeftToScale2Cube;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceLeftToScaleSwitchSide;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceLeftToSwitch;
+import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceLeftToSwitch2Cube;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceRightToScale;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceRightToScaleSwitchSide;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceRightToSwitch;
@@ -82,15 +85,17 @@ public class Robot extends IterativeRobot {
 		autoChooser.addDefault("My Auto", new DriveStraight());
 		autoChooser.addObject("Center to Left Path", new PathFollower(AutoPaths.getLeftPath()));
 		autoChooser.addObject("Center to Right Path", new PathFollower(AutoPaths.getRightPath()));
-		autoChooser.addObject("Center to Switch", new SequenceCenterToSwitchDropCube());
+		autoChooser.addObject("Center to Switch", new SequenceCenterToSwitch1Cube());
 		autoChooser.addObject("Center to Switch 2 Cube", new SequenceCenterToSwitch2Cube());
+		autoChooser.addObject("Center to Switch 3 Cube", new SequenceCenterToSwitch3Cube());
 		autoChooser.addObject("Left to Scale", new SequenceLeftToScale());
 		autoChooser.addObject("Right to Scale", new SequenceRightToScale());
 		autoChooser.addObject("Left to Switch", new SequenceLeftToSwitch());
 		autoChooser.addObject("Right to Switch", new SequenceRightToSwitch());
+		autoChooser.addObject("Left to Switch 2 Cube", new SequenceLeftToSwitch2Cube());
 		autoChooser.addObject("Left to Scale SwitchSide", new SequenceLeftToScaleSwitchSide());
 		autoChooser.addObject("Right to Scale SwitchSide", new SequenceRightToScaleSwitchSide());
-		autoChooser.addObject("Right 2 cube backup test", new PathFollower(AutoPaths.getRightSwitch2Cube()[1]));
+		autoChooser.addObject("Left to Scale 2 Cubes", new SequenceLeftToScale2Cube());
 		startPositionSelector.addDefault("Center", new ChooseStartPosition(StartPosition.CENTER));
 		startPositionSelector.addObject("Left", new ChooseStartPosition(StartPosition.LEFT));
 		startPositionSelector.addObject("Right", new ChooseStartPosition(StartPosition.RIGHT));
@@ -121,16 +126,16 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void disabledPeriodic() {
-		startPositionSelector.getSelected().setRunWhenDisabled(true);
-		startPositionSelector.getSelected().start();
-		Scheduler.getInstance().run();
-		try {
-			if (startPositionSelector.getSelected().chooser.getSelected().choice != null) {
-				SmartDashboard.putString("Selected autonomous mode", startPositionSelector.getSelected().chooser.getSelected().choice.toString());
-			}
-		} catch (NullPointerException e) {
-			// Just continue on with life
-		}
+//		startPositionSelector.getSelected().setRunWhenDisabled(true);
+//		startPositionSelector.getSelected().start();
+//		Scheduler.getInstance().run();
+//		try {
+//			if (startPositionSelector.getSelected().chooser.getSelected().choice != null) {
+//				SmartDashboard.putString("Selected autonomous mode", startPositionSelector.getSelected().chooser.getSelected().choice.toString());
+//			}
+//		} catch (NullPointerException e) {
+//			// Just continue on with life
+//		}
 	}
 
 	/**
