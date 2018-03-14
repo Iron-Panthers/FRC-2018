@@ -42,5 +42,28 @@ public class Vector {
 	public Vector norm() {
 		return new Vector(x/magnitude, y/magnitude);
 	}
+	
+	/**
+	 * Returns the angle of the vector in radians
+	 * 
+	 * @return angle of the vector in radians
+	 */
+	public double getAngleRad() {
+		if (x == 0) return Math.PI/2;
+		double alpha = Math.atan(Math.abs(y)/Math.abs(x));
+		if (x > 0 && y > 0) return alpha;
+		if (x < 0 && y > 0) return alpha + Math.PI/2;
+		if (x < 0 && y < 0) return alpha + Math.PI;
+		return alpha + 1.5*Math.PI;
+	}
+	
+	/**
+	 * Returns the angle of the vector in degrees
+	 * 
+	 * @return angle of the vector in degrees
+	 */
+	public double getAngleDeg() {
+		return getAngleRad()*180/Math.PI;
+	}
 
 }
