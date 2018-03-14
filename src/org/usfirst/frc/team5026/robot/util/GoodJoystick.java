@@ -1,13 +1,11 @@
 package org.usfirst.frc.team5026.robot.util;
-import org.usfirst.frc.team5026.robot.Robot;
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class GoodJoystick {
 	public Joystick driveStick;
-	public JoystickButton driveStickTrigger;
+	public JoystickButton driveStickTrigger; 
 	public GoodJoystick(int port){
 		driveStick = new Joystick(port);
 		driveStickTrigger = new JoystickButton(driveStick, 1);
@@ -18,49 +16,23 @@ public class GoodJoystick {
 	}
 	//Robot.drive.useArcadeDrive(Robot.oi.driveStick.getX()*Constants.X_AXIS_MODIFIER, Robot.oi.driveStick.getY());
 
-	public double findX() {
-		double x;
-		x = driveStick.getX();
-//		if(driveStickTrigger.get() {
-//			x = -x;
-//		}
-		if(Math.abs(x) < Constants.XDEADZONE_SIZE*Math.abs(driveStick.getY()) 
-		|| Math.sqrt(driveStick.getY()*driveStick.getY() + driveStick.getX()*driveStick.getX()) < Constants.CIRCLE_DEADZONE) { 
-			x=0; //circle deadzone
+	public Vector findXY() {		
+		Vector v = new Vector(driveStick.getX(), -driveStick.getY());
+		double magnitude = v.getMagnitude();
+		double scaledMagnitude = (magnitude-Constants.CIRCLE_DEADZONE)/(1-Constants.CIRCLE_DEADZONE);
+		v.norm();
+		v.mult(scaledMagnitude);
+					
+		//if(Math.abs(y) < Constants.YDEADZONE_SIZE*Math.abs(driveStick.getX()) || magnitude < Constants.CIRCLE_DEADZONE) {
+		if ( magnitude < Constants.CIRCLE_DEADZONE ) {
+			v.zero();
 		}
-		else {
-			if(x<0) {
-				x = (x + Constants.XDEADZONE_SIZE)/(1-Constants.XDEADZONE_SIZE);
-			}
-			else{
-				x = (x - Constants.XDEADZONE_SIZE)/(1-Constants.XDEADZONE_SIZE);
-			}
-		}
-		SmartDashboard.putNumber("Output X", x);
-		return x*Constants.X_AXIS_MODIFIER;
+		
+		SmartDashboard.putNumber("deadzone corrected X", v.getX());
+		SmartDashboard.putNumber("deadzone corrected Y", v.getY());
+		return v;
 	}
-	public double findY() {
-		double y;
-		y = -driveStick.getY();
-		if(driveStickTrigger.get()) {
-			System.out.println("REVERSED");
-			y = -y;
-		}
-		if(Math.abs(y) < Constants.YDEADZONE_SIZE*Math.abs(driveStick.getX())
-		|| (Math.sqrt(y*y + driveStick.getX()*driveStick.getX()) < Constants.CIRCLE_DEADZONE)) {
-			y = 0;
-		}
-		else {
-			if(y<0) {
-				y = (y + Constants.YDEADZONE_SIZE)/(1-Constants.YDEADZONE_SIZE);
-			}
-			else {
-				y = (y - Constants.YDEADZONE_SIZE)/(1-Constants.YDEADZONE_SIZE);
-			}
-		}
-		SmartDashboard.putNumber("Output Y", y);
-		return y;
-	}
+
 	//k = Robot.oi.driveStick.getY()/Robot.oi.driveStick.getX();
 	public double findRightPower(double x,double y) {
 			return y-x;
