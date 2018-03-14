@@ -21,6 +21,7 @@ public class Vector {
 	/**
 	 * Calculates the magnitude of the vector
 	 */
+	
 	public void calcMagnitude() {
 		this.magnitude = Math.sqrt(x*x + y*y);
 	}
@@ -54,34 +55,31 @@ public class Vector {
 	
 	/**
 	 * Normalizes the vector
-	 * 
-	 * @return the normal vector
 	 */
-	public Vector norm() {
-		return new Vector(x/magnitude, y/magnitude);
+	public void norm() {
+		if (this.magnitude < 0.0001) {
+			return;
+		}
+		x /= this.magnitude;
+		y /= this.magnitude;
+		this.magnitude = 1;
 	}
 	
 	/**
-	 * Returns the angle of the vector in radians
-	 * 
-	 * @return angle of the vector in radians
+	 * Multiplies the vector components by some number m
 	 */
-	public double getAngleRad() {
-		if (x == 0) return Math.PI/2;
-		double alpha = Math.atan(Math.abs(y)/Math.abs(x));
-		if (x > 0 && y > 0) return alpha;
-		if (x < 0 && y > 0) return alpha + Math.PI/2;
-		if (x < 0 && y < 0) return alpha + Math.PI;
-		return alpha + 1.5*Math.PI;
+	public void mult(double m) {
+		x *= m;
+		y *= m;
+		this.magnitude *= m;
 	}
 	
 	/**
-	 * Returns the angle of the vector in degrees
-	 * 
-	 * @return angle of the vector in degrees
+	 * Zero's this vector
 	 */
-	public double getAngleDeg() {
-		return getAngleRad()*180/Math.PI;
+	public void zero() {
+		this.x = 0;
+		this.y = 0;
+		this.magnitude = 0;
 	}
-
 }

@@ -8,7 +8,6 @@
 package org.usfirst.frc.team5026.robot;
 
 import org.usfirst.frc.team5026.robot.subsystems.Drive;
-import org.usfirst.frc.team5026.robot.util.Constants;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -48,11 +47,11 @@ public class Robot extends IterativeRobot {
 //		elevator = new Elevator();
 //		conveyor = new ConveyorBelt();
 		oi = new OI();
-		double[] ypr = new double[3];
-		hardware.gyro.getYawPitchRoll(ypr);
-		SmartDashboard.putNumber("yaw", ypr[0]);	
-		SmartDashboard.putNumber("pitch", ypr[1]);	
-		SmartDashboard.putNumber("roll", ypr[2]);
+//		double[] ypr = new double[3];
+//		hardware.gyro.getYawPitchRoll(ypr);
+//		SmartDashboard.putNumber("yaw", ypr[0]);	
+//		SmartDashboard.putNumber("pitch", ypr[1]);	
+//		SmartDashboard.putNumber("roll", ypr[2]);
 //		right.setInverted(Constants.IS_RIGHT_INVERTED);
 		// autoChooser.addObject("My Auto", new MyAutoCommand());
 //		SmartDashboard.putNumber("Elevator Percent", 0.25); // TODO to remove later
@@ -166,12 +165,12 @@ public class Robot extends IterativeRobot {
 		//Debug Window
 //    	SmartDashboard.putString("Elevator Status", Robot.elevator.getElevatorDirection().name());
 //		SmartDashboard.putNumber("Elevator Motor", Robot.elevator.motors.motor1.getOutputCurrent());
-    	SmartDashboard.putNumber("Encoder Position", hardware.elevatorMotor.getSelectedSensorPosition(0));
-		SmartDashboard.putNumber("Encoder Velocity", hardware.elevatorMotor.getSelectedSensorVelocity(0));
-		SmartDashboard.putNumber("Elevator Motor Current", hardware.elevatorMotor.getOutputCurrent());
-		SmartDashboard.putNumber("Elevator Motor Voltage", hardware.elevatorMotor.getMotorOutputVoltage());
-		SmartDashboard.putNumber("Intake Motor Current", hardware.intakeM.getOutputCurrent());
-		SmartDashboard.putNumber("Intake Motor Voltage", hardware.intakeM.getMotorOutputVoltage());
+//    	SmartDashboard.putNumber("Encoder Position", hardware.elevatorMotor.getSelectedSensorPosition(0));
+//		SmartDashboard.putNumber("Encoder Velocity", hardware.elevatorMotor.getSelectedSensorVelocity(0));
+//		SmartDashboard.putNumber("Elevator Motor Current", hardware.elevatorMotor.getOutputCurrent());
+//		SmartDashboard.putNumber("Elevator Motor Voltage", hardware.elevatorMotor.getMotorOutputVoltage());
+		//SmartDashboard.putNumber("Intake Motor Current", hardware.intakeM.getOutputCurrent());
+//		SmartDashboard.putNumber("Intake Motor Voltage", hardware.intakeM.getMotorOutputVoltage());
 		//Drive Motor Current and Voltage
 		SmartDashboard.putNumber("Joystick Raw X", oi.driveStick.driveStick.getX());
 		SmartDashboard.putNumber("Joystick Raw Y", oi.driveStick.driveStick.getY());
