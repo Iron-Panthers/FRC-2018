@@ -35,6 +35,24 @@ public class Vector {
 	}
 	
 	/**
+	 * Returns the x component of the vector 
+	 * 
+	 * @return {@link Vector#x}
+	 */
+	public double getX() {
+		return x;
+	}
+
+	/**
+	 * Returns the y component of the vector 
+	 * 
+	 * @return {@link Vector#y}
+	 */
+	public double getY() {
+		return y;
+	}
+	
+	/**
 	 * Normalizes the vector
 	 * 
 	 * @return the normal vector
