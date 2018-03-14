@@ -46,7 +46,8 @@ public class Constants {
 	public static final double ELEVATOR_CURRENT_THRESHOLD = 30; //Untested, Current when we know the elevator is stalling
 	public static final double ELEVATOR_HIT_BOTTOM_CURRENT = 0;
 	public static final double ELEVATOR_ZEROING_TOLERANCE = 3000;
-	public static final double ELEVATOR_SLIDER_SENSITIVITY = 500;
+	public static final double ELEVATOR_SLIDER_SENSITIVITY = 2400;
+	public static final int ELEVATOR_ACCELERATING_COUNT = 30;
 	
 	//auto?
 	public static final double ROBOT_WIDTH = 25.75; // unit is inches

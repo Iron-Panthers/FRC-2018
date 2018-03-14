@@ -24,7 +24,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class OI {
 	public GoodJoystick driveStick;
-	public Joystick elevatorStick;
+	public GoodJoystick elevatorStick;
 	public Button stickBtnOne; //reserved for GoodJoystick
 	public Button stickBtnTwo;
 	public Button stickBtnThree;
@@ -44,24 +44,24 @@ public class OI {
 	public Button boardBtnTwelve;
 	public OI(){
 		driveStick = new GoodJoystick(RobotMap.DRIVE_JOYSTICK);
-		elevatorStick = new Joystick(RobotMap.ELEVATOR_JOYSTICK);
+		elevatorStick = new GoodJoystick(RobotMap.ELEVATOR_JOYSTICK);
 		stickBtnOne = new JoystickButton(driveStick.driveStick,1);
 		stickBtnTwo = new JoystickButton(driveStick.driveStick,2);
 		stickBtnThree = new JoystickButton(driveStick.driveStick,3);
 		stickBtnFour = new JoystickButton(driveStick.driveStick, 4);
 		stickBtnFive = new JoystickButton(driveStick.driveStick, 5);
-		boardBtnOne = new JoystickButton(elevatorStick, 1);
-		boardBtnTwo = new JoystickButton(elevatorStick, 2);
-		boardBtnThree = new JoystickButton(elevatorStick, 3);
-		boardBtnFour = new JoystickButton(elevatorStick, 4);
-		boardBtnFive = new JoystickButton(elevatorStick, 5);
-		boardBtnSix = new JoystickButton(elevatorStick, 6);
-		boardBtnSeven = new JoystickButton(elevatorStick, 7);
-		boardBtnEight = new JoystickButton(elevatorStick, 8);
-		boardBtnNine = new JoystickButton(elevatorStick, 9);
-		boardBtnTen = new JoystickButton(elevatorStick, 10);
-		boardBtnEleven = new JoystickButton(elevatorStick, 11);
-		boardBtnTwelve = new JoystickButton(elevatorStick, 12);
+		boardBtnOne = new JoystickButton(elevatorStick.driveStick, 1);
+		boardBtnTwo = new JoystickButton(elevatorStick.driveStick, 2);
+		boardBtnThree = new JoystickButton(elevatorStick.driveStick, 3);
+		boardBtnFour = new JoystickButton(elevatorStick.driveStick, 4);
+		boardBtnFive = new JoystickButton(elevatorStick.driveStick, 5);
+		boardBtnSix = new JoystickButton(elevatorStick.driveStick, 6);
+		boardBtnSeven = new JoystickButton(elevatorStick.driveStick, 7);
+		boardBtnEight = new JoystickButton(elevatorStick.driveStick, 8);
+		boardBtnNine = new JoystickButton(elevatorStick.driveStick, 9);
+		boardBtnTen = new JoystickButton(elevatorStick.driveStick, 10);
+		boardBtnEleven = new JoystickButton(elevatorStick.driveStick, 11);
+		boardBtnTwelve = new JoystickButton(elevatorStick.driveStick, 12);
 
 	}
 	public void mapButtons(){

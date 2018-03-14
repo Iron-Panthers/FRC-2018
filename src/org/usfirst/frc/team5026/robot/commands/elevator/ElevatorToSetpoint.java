@@ -12,7 +12,9 @@ public class ElevatorToSetpoint extends Command {
 	private boolean encoderMode = true;
 	private int stallCount = 0;
 	private int previousTicks;
-	private FixedBuffer runningAverage = new FixedBuffer(5);
+	private FixedBuffer runningAverage = new FixedBuffer(8);
+	private int acceleratingCount = 0;
+	private int lastSetpoint = 0;
 	
     public ElevatorToSetpoint() {
     	requires(Robot.elevator);
@@ -25,28 +27,38 @@ public class ElevatorToSetpoint extends Command {
     }
 
     protected void execute() {
+    	double power = Robot.oi.elevatorStick.findY();
+    	
+    	acceleratingCount++;
+    	if (Math.abs(lastSetpoint - Robot.elevator.wantedSetpoint()) > Constants.ELEVATOR_SLIDER_SENSITIVITY+300) {
+    		acceleratingCount = 0;
+    		System.out.println("(-: We reset :-)");
+    	} 
+    	lastSetpoint = Robot.elevator.wantedSetpoint();
+    	
     	runningAverage.addValue(Robot.elevator.getCurrent());
-    	double average = runningAverage.sum/5;
-    	if (average > Math.abs(Constants.ELEVATOR_CURRENT_THRESHOLD)) {
+    	double average = runningAverage.sum/runningAverage.length;
+		double voltage = Robot.elevator.motors.motor1.getMotorOutputVoltage();
+    	if (average > Math.abs(Constants.ELEVATOR_CURRENT_THRESHOLD) && acceleratingCount > Constants.ELEVATOR_ACCELERATING_COUNT) {
     		Robot.elevator.motors.stop();
     		
-    		if (average < 0) {
+    		if (voltage < 0) {
     			Robot.elevator.setEncoderPos(0);
     			Robot.elevator.forceSetpoint(0);
+    			System.out.println("Reset to bottom! :)");
     		} else {
     			Robot.elevator.setEncoderPos(Constants.ELEVATOR_TOP_TARGET);
     			Robot.elevator.forceSetpoint(Constants.ELEVATOR_TOP_TARGET);
+    			System.out.println("Reset to top! :D");
     		}
     		
     		if (encoderMode) {
     			Robot.elevator.motors.driveWithTarget(Robot.elevator.wantedSetpoint());
-    		}
+    		}    		
     	}
     	
     	if (!encoderMode) {
-    		if (!DriverStation.getInstance().isAutonomous()) {
-    			double power = Robot.oi.elevatorStick.getX();
-    			
+    		if (!DriverStation.getInstance().isAutonomous()) {    			
     			if (Robot.elevator.wantedSetpoint() <= 0) {
     				power = Math.max(0, power);
     			}
@@ -60,9 +72,14 @@ public class ElevatorToSetpoint extends Command {
     		return;
     	}
     	
-    	Robot.elevator.changeWantedSetpoint((int)(Robot.oi.elevatorStick.getX() * Constants.ELEVATOR_SLIDER_SENSITIVITY));
-		Robot.elevator.motors.driveWithTarget(Robot.elevator.wantedSetpoint());
+    	if (Robot.elevator.motors.getEncoderTicks() < Constants.ELEVATOR_TOP_TARGET - 100 && Robot.elevator.motors.getEncoderTicks() > 100) {
+        	Robot.elevator.changeWantedSetpoint((int)(power * Constants.ELEVATOR_SLIDER_SENSITIVITY));
+    	} else if ((Robot.elevator.motors.getEncoderTicks() > Constants.ELEVATOR_TOP_TARGET - 100 && power < 0) || (Robot.elevator.motors.getEncoderTicks() < 100 && power > 0)) {
+        	Robot.elevator.changeWantedSetpoint((int)(power * Constants.ELEVATOR_SLIDER_SENSITIVITY));
+    	}
     	
+		Robot.elevator.motors.driveWithTarget(Robot.elevator.wantedSetpoint());
+		
     	if (Robot.elevator.atSetpoint) {
     		return;
     	}
@@ -80,7 +97,7 @@ public class ElevatorToSetpoint extends Command {
 			return;
 		}
 		
-		delta = Math.abs(Robot.elevator.motors.getEncoderTicks() - previousTicks);
+		/*delta = Math.abs(Robot.elevator.motors.getEncoderTicks() - previousTicks);
 		if (delta < 20) {
 			stallCount++;
 			
@@ -90,7 +107,7 @@ public class ElevatorToSetpoint extends Command {
 				System.out.println("MOVING TO ELEVATOR NON-ENCODER MDOE!! USE SLIDER!!");
 				Robot.elevator.motors.stop();
 			}
-		}
+		}*/
 		
 		previousTicks = Robot.elevator.motors.getEncoderTicks();
     }
