@@ -7,9 +7,11 @@
 
 package org.usfirst.frc.team5026.robot;
 
+import org.usfirst.frc.team5026.robot.commands.autonomous.CenterToLeftSwitch3Cube2;
+import org.usfirst.frc.team5026.robot.commands.autonomous.CenterToLeftSwitch3Cube3;
+import org.usfirst.frc.team5026.robot.commands.autonomous.CenterToLeftSwitch3Cube4;
 import org.usfirst.frc.team5026.robot.commands.autonomous.ChooseStartPosition;
 import org.usfirst.frc.team5026.robot.commands.autonomous.DriveStraight;
-import org.usfirst.frc.team5026.robot.commands.autonomous.PathFollower;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceCenterToSwitch1Cube;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceCenterToSwitch2Cube;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceCenterToSwitch3Cube;
@@ -22,7 +24,6 @@ import org.usfirst.frc.team5026.robot.subsystems.ConveyorBelt;
 import org.usfirst.frc.team5026.robot.subsystems.Drive;
 import org.usfirst.frc.team5026.robot.subsystems.Elevator;
 import org.usfirst.frc.team5026.robot.subsystems.IntakeSubsystem;
-import org.usfirst.frc.team5026.robot.util.AutoPaths;
 import org.usfirst.frc.team5026.robot.util.Constants;
 import org.usfirst.frc.team5026.robot.util.StartPosition;
 
@@ -80,11 +81,12 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Elevator Target", 1000); // TODO to remove later
 		oi.mapButtons();
 		autoChooser.addDefault("My Auto", new DriveStraight());
-		autoChooser.addObject("Center to Left Path", new PathFollower(AutoPaths.getLeftPath()));
-		autoChooser.addObject("Center to Right Path", new PathFollower(AutoPaths.getRightPath()));
 		autoChooser.addObject("Center to Switch", new SequenceCenterToSwitch1Cube());
 		autoChooser.addObject("Center to Switch 2 Cube", new SequenceCenterToSwitch2Cube());
 		autoChooser.addObject("Center to Switch 3 Cube", new SequenceCenterToSwitch3Cube());
+		autoChooser.addObject("Center to Switch 3 Cube 2", new CenterToLeftSwitch3Cube2());
+		autoChooser.addObject("Center to Switch 3 Cube 3", new CenterToLeftSwitch3Cube3());
+		autoChooser.addObject("Center to Switch 3 Cube 4", new CenterToLeftSwitch3Cube4());
 		autoChooser.addObject("Left to Scale", new SequenceLeftToScale());
 		autoChooser.addObject("Right to Scale", new SequenceRightToScale());
 		autoChooser.addObject("Left to Scale (Prioritizes Switch)", new SequenceLeftToScaleSwitchSide());
@@ -92,7 +94,6 @@ public class Robot extends IterativeRobot {
 		autoChooser.addObject("Left to Switch 2 Cube", new SequenceLeftToSwitch2Cube());
 		autoChooser.addObject("Left to Scale SwitchSide", new SequenceLeftToScaleSwitchSide());
 		autoChooser.addObject("Right to Scale SwitchSide", new SequenceRightToScaleSwitchSide());
-//		autoChooser.addObject("Left to Scale 2 Cubes", new SequenceLeftToScale2Cube());
 		startPositionSelector.addDefault("Center", new ChooseStartPosition(StartPosition.CENTER));
 		startPositionSelector.addObject("Left", new ChooseStartPosition(StartPosition.LEFT));
 		startPositionSelector.addObject("Right", new ChooseStartPosition(StartPosition.RIGHT));
