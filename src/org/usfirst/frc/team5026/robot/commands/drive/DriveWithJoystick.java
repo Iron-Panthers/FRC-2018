@@ -6,7 +6,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- *
+ * :) hey fam squad whats poppin
+ * Can we get some 1gs in the chat
  */
 public class DriveWithJoystick extends Command {
 	public double leftSpd;
@@ -26,9 +27,10 @@ public class DriveWithJoystick extends Command {
     	Robot.oi.driveStick.seeAxis();
     	Vector v = Robot.oi.driveStick.findXY();
 //    	Robot.drive.useArcadeDrive(Robot.oi.joystick.findY(),Robot.oi.joystick.findX());
-    	leftSpd = Robot.oi.driveStick.findLeftPower(v.getY(), v.getX());
+    	Vector leftRightPower = Robot.oi.driveStick.findLeftRightPower(v.getX(), v.getY());
+    	leftSpd = leftRightPower.getX();
     	SmartDashboard.putNumber("left motor set", leftSpd);
-    	rightSpd = Robot.oi.driveStick.findRightPower(v.getY(), v.getX());
+    	rightSpd = leftRightPower.getY();
     	SmartDashboard.putNumber("right motor set", rightSpd);
     	Robot.drive.setLeftSide(leftSpd);
     	Robot.drive.setRightSide(rightSpd);

@@ -1,9 +1,12 @@
 package org.usfirst.frc.team5026.robot.util;
+import java.util.function.Function;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class GoodJoystick {
+	private final Function<Double, Double> interpolator = (x) -> x*x;
 	public Joystick driveStick;
 	public JoystickButton driveStickTrigger; 
 	public GoodJoystick(int port){
@@ -19,39 +22,37 @@ public class GoodJoystick {
 	public Vector findXY() {		
 		Vector v = new Vector(driveStick.getX(), -driveStick.getY());
 		double magnitude = v.getMagnitude();
-		double scaledMagnitude = deadzone(Math.min(Math.max(magnitude, -1), 1), Constants.CIRCLE_DEADZONE);
+		double scaledMagnitude = deadzone(magnitude, Constants.CIRCLE_DEADZONE);
 		v.norm();
 		v.mult(scaledMagnitude);
-		
-		double x = v.getX();
-		double y = v.getY();
-		double absX = Math.abs(x);
-		double absY = Math.abs(y);
-		double baseX = absY * Constants.XDEADZONE_SIZE;
-		double baseY = absX * Constants.YDEADZONE_SIZE;
-		if (absX > baseX) {
-			v.setX(Math.copySign(lerp(absX, 0, 1, baseX, 1), x));
-		} else {
-			v.setX(0);
-		}
-		if (absY > baseY) {
-			v.setY(Math.copySign(lerp(absY, 0, 1, baseY, 1), y));
-		} else {
-			v.setY(0);
-		}
+
+		double x = Math.abs(v.getX());
+		double y = Math.abs(v.getY());
+
+		x = deadzone(x, Constants.XCROSS_DEADZONE);
+		y = deadzone(y, Constants.YCROSS_DEADZONE);
+
+		x = Math.copySign(x, v.getX());
+		y = Math.copySign(y, v.getY());
+
+		v.set(x, y);
+
 		System.out.println(x + "\t" + y + "\t" + v.getX() + "\t" + v.getY());
 		SmartDashboard.putNumber("deadzone corrected X", v.getX());
 		SmartDashboard.putNumber("deadzone corrected Y", v.getY());
 		return v;
 	}
-	
+
 	public static double deadzone(double x, double dzone) {
 		if (x < dzone) {
 			return 0;
 		}
+		if (x > 1) {
+			return 1;
+		}
 		return (x - dzone) / (1 - dzone);
 	}
-	
+
 	/**
 	 * Linearly interpolates some value in one range to another value in another range.
 	 * @param x the value
@@ -65,14 +66,42 @@ public class GoodJoystick {
 		return (b2 - a2) * (x - a1) / (b1 - a1) + a2;
 	}
 
-	//k = Robot.oi.driveStick.getY()/Robot.oi.driveStick.getX();
-	public double findRightPower(double x,double y) {
-		return y - x;
-	}
-	public double findLeftPower(double x,double y) {
-	        return y+x;
+	/**
+	 * Interpolates some value in one range to another value in another range, with a 
+	 * provided interpolation function.
+	 * @param x the value
+	 * @param a1 lower bound of original range
+	 * @param b1 upper bound of original range
+	 * @param a2 lower bound of new range
+	 * @param b2 upper bound of new range
+	 * @param f an interpolation function that passes through (0, 0) and (1, 1).
+	 * @return the interpolated number
+	 */
+	public static double interp(double x, double a1, double b1, double a2, double b2, Function<Double, Double> f) {
+		return (b2 - a2) * f.apply((x - a1) / (b1 - a1)) + a2;	
 	}
 	
+	/**
+	 * Finds left and right power for motors using joystick x and y.
+	 * Uses arcade drive
+	 * 
+	 * @param x X value on joystick (-1 = left, 1 = right)
+	 * @param y Y value on joystick (-1 = bottom, 1 = top)
+	 * @return vector with x = left motor power, y = right motor power
+	 */
+	public Vector findLeftRightPower(double x, double y) {
+		double absX = Math.abs(x);
+		double absY = Math.abs(y);
+		double maxX = lerp(absY, 0, 1, 1, Constants.TURN_MIN_CLAMP_X);
+		double maxY = lerp(absX, 0, 1, 1, Constants.TURN_MIN_CLAMP_Y);
+		double outX = lerp(absX, 0, 1, 0, maxX);
+		double outY = lerp(absY, 0, 1, 0, maxY);
+		outX = Math.copySign(outX, x);
+		outY = Math.copySign(outY, y);
+		
+		return new Vector(outY + outX, outY - outX);		
+	}
+
 	public static void main(String[] args) {
 		System.out.println(lerp(3, 0, 5, 0, 10));
 		System.out.println(lerp(6, 5, 10, 0, 10));
