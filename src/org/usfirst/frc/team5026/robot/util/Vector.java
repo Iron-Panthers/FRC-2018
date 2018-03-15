@@ -4,7 +4,7 @@ public class Vector {
 	
 	private double x;
 	private double y;
-	private double magnitude; // The magnitude of the vector
+	private double magnitude = -1; // The magnitude of the vector, or -1 if not calculated yet
 	
 	/**
 	 * Constructs a 2D vector
@@ -15,7 +15,6 @@ public class Vector {
 	public Vector(double x, double y) {
 		this.x = x;
 		this.y = y;
-		calcMagnitude();
 	}
 	
 	/**
@@ -32,6 +31,9 @@ public class Vector {
 	 * @return {@link Vector#magnitude}
 	 */
 	public double getMagnitude() {
+		if (magnitude < 0) {
+			calcMagnitude();
+		}
 		return this.magnitude;
 	}
 	
@@ -53,11 +55,21 @@ public class Vector {
 		return y;
 	}
 	
+	public void setX(double x) {
+		this.x = x;
+		magnitude = -1;
+	}
+	
+	public void setY(double y) {
+		this.y = y;
+		magnitude = -1;
+	}
+	
 	/**
 	 * Normalizes the vector
 	 */
 	public void norm() {
-		if (this.magnitude < 0.0001) {
+		if (getMagnitude() < 0.0001) {
 			return;
 		}
 		x /= this.magnitude;

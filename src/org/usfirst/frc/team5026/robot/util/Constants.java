@@ -2,8 +2,8 @@ package org.usfirst.frc.team5026.robot.util;
 
 public class Constants {
 	public static final double Y_AXIS_MODIFIER = .8;//lower for more sensitive turning
-	public static final double XDEADZONE_SIZE = 0.15;
-	public static final double YDEADZONE_SIZE = 0.15;
+	public static final double XDEADZONE_SIZE = 0.15;//x bow-tie
+	public static final double YDEADZONE_SIZE = 0.15;//y bow-tie
 	public static final double CIRCLE_DEADZONE = 0.05;//middle of joystick
 	public static final double SPEED = 1.0;//teleop driving
 	//public static final double DEADZONE_SIZE = .1;
