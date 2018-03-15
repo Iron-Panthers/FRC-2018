@@ -29,7 +29,7 @@ public class CenterToLeftSwitch3Cube2 extends CommandGroup {
         addSequential(new PathFollower(AutoPaths.getLeftSwitch3Cube2()[3]));
         addParallel(new ElevatorToSwitch());
         addSequential(new PathFollower(AutoPaths.getLeftSwitch3Cube2()[4]));
-        addSequential(new OuttakeForTime(0.5));
+        addSequential(new OuttakeForTime(0.25));
         addParallel(new ElevatorTarget(0));
         addSequential(new PathFollower(AutoPaths.getLeftSwitch3Cube2()[5]));
         addParallel(new IntakeCommandNoRequires());
@@ -38,6 +38,6 @@ public class CenterToLeftSwitch3Cube2 extends CommandGroup {
         addSequential(new PathFollower(AutoPaths.getLeftSwitch3Cube2()[7]));
         addParallel(new ElevatorToSwitch());
         addSequential(new PathFollower(AutoPaths.getLeftSwitch3Cube2()[8]));
-        addParallel(new OuttakeForTime(0.5));
+        addParallel(new OuttakeForTime(0.25));
     }
 }

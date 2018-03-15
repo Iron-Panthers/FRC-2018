@@ -375,36 +375,62 @@ public class AutoPaths {
 			};
 			
 			double[][] leftTurnBack = new double[][]{
-				{96.31232876712329, 258.97596153846155},
-				{94.53698630136986, 245.6037087912088},
-				{98.08767123287672, 230.44848901098902},
+				{94.53698630136986, 242.92925824175825},
+				{100.75068493150685, 227.77403846153845},
 				{106.96438356164384, 221.53365384615384},
 				{114.95342465753426, 218.8592032967033},
 				{121.375, 219.8905},
 			};
 			
 			double[][] leftGrabCube = new double[][]{
-				{96.31232876712329, 258.97596153846155},
-				{94.53698630136986, 245.6037087912088},
-				{98.08767123287672, 218.8592032967033},
-				{105.18904109589042, 192.1146978021978},
-				{109.62739726027398, 178.74244505494505},
+				{91.87397260273974, 250.06112637362637},
+				{90.09863013698632, 242.03777472527474},
+				{90.09863013698632, 227.77403846153845},
+				{91.87397260273974, 220.64217032967034},
+				{97.2, 207.26991758241758},
+				{98.97534246575343, 204.59546703296704},
+			};
+			
+			double[][] leftTurnBackA = new double[][]{
+				{95.42465753424658, 242.03777472527474},
+				{98.08767123287672, 232.23145604395606},
+				{106.96438356164384, 225.0995879120879},
+				{113.17808219178083, 222.42513736263737},
+				{120.27945205479453, 222.42513736263737},
+				{128.26849315068495, 225.99107142857144},
 			};
 			
 			double[][] leftTurnBack2 = new double[][]{
-				{96.31232876712329, 256.301510989011},
-				{96.31232876712329, 240.2548076923077},
-				{105.18904109589042, 223.31662087912088},
-				{116.72876712328768, 218.8592032967033},
+				{102.52602739726028, 241.1462912087912},
+				{104.3013698630137, 233.12293956043956},
+				{111.4027397260274, 222.42513736263737},
+				{119.39178082191782, 218.8592032967033},
 				{128.26849315068495, 219.75068681318683},
 			};
 			
 			double[][] leftGrabCube2 = new double[][]{
-				{96.31232876712329, 256.301510989011},
-				{96.31232876712329, 241.1462912087912},
-				{98.97534246575343, 216.18475274725276},
-				{107.85205479452055, 189.44024725274727},
-				{108.73972602739727, 179.63392857142858},
+				{95.42465753424658, 225.99107142857144},
+				{96.31232876712329, 221.53365384615384},
+				{100.75068493150685, 206.37843406593407},
+				{107.85205479452055, 190.33173076923077},
+				{112.29041095890412, 182.30837912087912},
+			};
+			
+			double[][] leftAfterGrabCube2 = new double[][]{
+				{92.76164383561645, 245.6037087912088},
+				{94.53698630136986, 234.0144230769231},
+				{101.63835616438357, 209.0528846153846},
+				{107.85205479452055, 190.33173076923077},
+				{112.29041095890412, 182.30837912087912},
+			};
+			
+			double[][] leftTurnBack2A = new double[][]{
+				{102.52602739726028, 241.1462912087912},
+				{104.3013698630137, 233.12293956043956},
+				{111.4027397260274, 225.99107142857144},
+				{118.50410958904111, 221.53365384615384},
+				{123.83013698630138, 220.64217032967034},
+				{130.93150684931507, 221.53365384615384},
 			};
 //			new PathData(leftPath3Cube, 3.2, 0.02, robotWidth),
 //			new PathData(leftTurnBack, 2, 0.02, robotWidth, PathData.PathParameter.FLIPREVERSE),
@@ -416,29 +442,29 @@ public class AutoPaths {
 			FastPathPlanner second = new FastPathPlanner(leftTurnBack);
 			FastPathPlanner third = new FastPathPlanner(leftGrabCube);
 			FastPathPlanner fourth = new FastPathPlanner(leftGrabCube);
-			FastPathPlanner fifth = new FastPathPlanner(leftTurnBack);
+			FastPathPlanner fifth = new FastPathPlanner(leftTurnBackA);
 			
 			first.calculate(3.2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
-			second.calculate(2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+			second.calculate(1.5, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
 			third.calculate(1.5, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
 			fourth.calculate(1.5, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
-			fifth.calculate(2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+			fifth.calculate(1.5, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
 			
 			reversePath(second);
-			flipPath(third);
-			reverseAndFlipPath(fourth);
+//			flipPath(third);
+			reversePath(fourth);
 			
 			FastPathPlanner s1 = new FastPathPlanner(leftTurnBack2);
 			FastPathPlanner s2 = new FastPathPlanner(leftGrabCube2);
-			FastPathPlanner s3 = new FastPathPlanner(leftGrabCube2);
-			FastPathPlanner s4 = new FastPathPlanner(leftTurnBack2);
+			FastPathPlanner s3 = new FastPathPlanner(leftAfterGrabCube2);
+			FastPathPlanner s4 = new FastPathPlanner(leftTurnBack2A);
 			
 			s1.calculate(1.5, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
 			s2.calculate(1.2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
 			s3.calculate(1.2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
 			s4.calculate(1.5, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
 			
-			reverseAndFlipPath(s1);
+			reversePath(s1);
 			reversePath(s3);
 			
 			CENTER_LEFT_SWITCH_3_CUBE_2 = new FastPathPlanner[]{
@@ -623,7 +649,7 @@ public class AutoPaths {
 			fourth.calculate(1.5, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
 			fifth.calculate(1.5, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
 			
-			reversePath(second);
+			reverseAndFlipPath(second);
 			reversePath(fourth);
 			
 			FastPathPlanner s1 = new FastPathPlanner(leftBackup3A);
