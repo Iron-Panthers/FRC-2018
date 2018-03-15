@@ -1,8 +1,6 @@
 package org.usfirst.frc.team5026.robot.commands.autonomous.selections;
 
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceCenterToSwitch1Cube;
-import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceLeftToSwitch;
-import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceRightToSwitch;
 import org.usfirst.frc.team5026.robot.util.StartPosition;
 
 /**
@@ -21,8 +19,6 @@ public class SelectSwitch extends SelectionCommand {
     	switch (start) {
     	case LEFT:
     		// Left to Switch
-    		choice = new SequenceLeftToSwitch();
-    		System.out.println("Left to Switch autonomous selected!");
     		break;
     	case CENTER:
     		// Center to Switch
@@ -31,7 +27,6 @@ public class SelectSwitch extends SelectionCommand {
     		break;
     	case RIGHT:
     		// Right to Switch
-    		choice = new SequenceRightToSwitch();
     		System.out.println("Right to Switch autonomous selected!");
     		break;
     	case UNKNOWN:

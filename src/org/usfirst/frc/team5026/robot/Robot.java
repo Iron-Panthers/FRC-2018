@@ -10,17 +10,14 @@ package org.usfirst.frc.team5026.robot;
 import org.usfirst.frc.team5026.robot.commands.autonomous.ChooseStartPosition;
 import org.usfirst.frc.team5026.robot.commands.autonomous.DriveStraight;
 import org.usfirst.frc.team5026.robot.commands.autonomous.PathFollower;
+import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceCenterToSwitch1Cube;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceCenterToSwitch2Cube;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceCenterToSwitch3Cube;
-import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceCenterToSwitch1Cube;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceLeftToScale;
-import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceLeftToScale2Cube;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceLeftToScaleSwitchSide;
-import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceLeftToSwitch;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceLeftToSwitch2Cube;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceRightToScale;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceRightToScaleSwitchSide;
-import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceRightToSwitch;
 import org.usfirst.frc.team5026.robot.subsystems.ConveyorBelt;
 import org.usfirst.frc.team5026.robot.subsystems.Drive;
 import org.usfirst.frc.team5026.robot.subsystems.Elevator;
@@ -90,12 +87,12 @@ public class Robot extends IterativeRobot {
 		autoChooser.addObject("Center to Switch 3 Cube", new SequenceCenterToSwitch3Cube());
 		autoChooser.addObject("Left to Scale", new SequenceLeftToScale());
 		autoChooser.addObject("Right to Scale", new SequenceRightToScale());
-		autoChooser.addObject("Left to Switch", new SequenceLeftToSwitch());
-		autoChooser.addObject("Right to Switch", new SequenceRightToSwitch());
+		autoChooser.addObject("Left to Scale (Prioritizes Switch)", new SequenceLeftToScaleSwitchSide());
+		autoChooser.addObject("Right to Switch", new SequenceRightToScaleSwitchSide());
 		autoChooser.addObject("Left to Switch 2 Cube", new SequenceLeftToSwitch2Cube());
 		autoChooser.addObject("Left to Scale SwitchSide", new SequenceLeftToScaleSwitchSide());
 		autoChooser.addObject("Right to Scale SwitchSide", new SequenceRightToScaleSwitchSide());
-		autoChooser.addObject("Left to Scale 2 Cubes", new SequenceLeftToScale2Cube());
+//		autoChooser.addObject("Left to Scale 2 Cubes", new SequenceLeftToScale2Cube());
 		startPositionSelector.addDefault("Center", new ChooseStartPosition(StartPosition.CENTER));
 		startPositionSelector.addObject("Left", new ChooseStartPosition(StartPosition.LEFT));
 		startPositionSelector.addObject("Right", new ChooseStartPosition(StartPosition.RIGHT));
@@ -121,6 +118,9 @@ public class Robot extends IterativeRobot {
 	public void disabledInit() {
 //		hardware.elevatorMotor.setSelectedSensorPosition(0, 0, 0);
 //		System.out.println(hardware.elevatorMotor.getSelectedSensorPosition(0));
+		if (autoCommand != null) {
+			autoCommand.cancel();
+		}
 		drive.setupCoastMode();
 	}
 
