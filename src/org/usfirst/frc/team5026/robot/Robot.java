@@ -7,9 +7,7 @@
 
 package org.usfirst.frc.team5026.robot;
 
-import org.usfirst.frc.team5026.robot.commands.autonomous.CenterToLeftSwitch3Cube2;
 import org.usfirst.frc.team5026.robot.commands.autonomous.CenterToLeftSwitch3Cube3;
-import org.usfirst.frc.team5026.robot.commands.autonomous.CenterToLeftSwitch3Cube4;
 import org.usfirst.frc.team5026.robot.commands.autonomous.CenterToRightSwitch3Cube3;
 import org.usfirst.frc.team5026.robot.commands.autonomous.ChooseStartPosition;
 import org.usfirst.frc.team5026.robot.commands.autonomous.DriveStraight;
@@ -18,10 +16,7 @@ import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceCent
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceCenterToSwitch3Cube;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceCenterToSwitch3Cube3;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceLeftToScale;
-import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceLeftToScaleSwitchSide;
-import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceLeftToSwitch2Cube;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceRightToScale;
-import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceRightToScaleSwitchSide;
 import org.usfirst.frc.team5026.robot.subsystems.ConveyorBelt;
 import org.usfirst.frc.team5026.robot.subsystems.Drive;
 import org.usfirst.frc.team5026.robot.subsystems.Elevator;
@@ -31,6 +26,8 @@ import org.usfirst.frc.team5026.robot.util.StartPosition;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -54,6 +51,8 @@ public class Robot extends IterativeRobot {
 	public static ConveyorBelt conveyor;
 	public static IntakeSubsystem intake;
 	public static Elevator elevator;
+	public static UsbCamera cam1;
+	public static UsbCamera cam2;
 	Command autoCommand;
 	SendableChooser<Command> autoChooser = new SendableChooser<>();
 	SendableChooser<ChooseStartPosition> startPositionSelector = new SendableChooser<>(); 
@@ -70,6 +69,13 @@ public class Robot extends IterativeRobot {
 		elevator = new Elevator();
 		conveyor = new ConveyorBelt();
 		oi = new OI();
+		//Camera Stuff
+		CameraServer camera = CameraServer.getInstance();
+	    cam1 = camera.startAutomaticCapture("cam0", RobotMap.CAMERA_PORT);
+	    cam1.setResolution(Constants.CAMERA_PIXEL_HEIGHT, Constants.CAMERA_PIXEL_WIDTH);
+	    CameraServer camera2 = CameraServer.getInstance();
+	    cam2 = camera2.startAutomaticCapture("cam1", RobotMap.CAMERA_PORT_2);
+	    cam2.setResolution(Constants.CAMERA_PIXEL_HEIGHT, Constants.CAMERA_PIXEL_WIDTH);
 //		right.setInverted(Constants.IS_RIGHT_INVERTED);
 		// autoChooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putNumber("Elevator Percent", 0.25); // TODO to remove later
@@ -86,18 +92,17 @@ public class Robot extends IterativeRobot {
 		autoChooser.addObject("Center to Switch", new SequenceCenterToSwitch1Cube());
 		autoChooser.addObject("Center to Switch 2 Cube", new SequenceCenterToSwitch2Cube());
 		autoChooser.addObject("Center to Switch 3 Cube", new SequenceCenterToSwitch3Cube());
-		autoChooser.addObject("Center to Switch 3 Cube 2 Left", new CenterToLeftSwitch3Cube2());
+//		autoChooser.addObject("Center to Switch 3 Cube 2 Left", new CenterToLeftSwitch3Cube2());
 		autoChooser.addObject("Center to Switch 3 Cube 3 Left", new CenterToLeftSwitch3Cube3());
-		autoChooser.addObject("Center to Switch 3 Cube 4 Left", new CenterToLeftSwitch3Cube4());
 		autoChooser.addObject("Center to Switch 3 Cube 3 Right", new CenterToRightSwitch3Cube3());
 		autoChooser.addObject("Center to Switch 3 Cube 3", new SequenceCenterToSwitch3Cube3());
 		autoChooser.addObject("Left to Scale", new SequenceLeftToScale());
 		autoChooser.addObject("Right to Scale", new SequenceRightToScale());
-		autoChooser.addObject("Left to Scale (Prioritizes Switch)", new SequenceLeftToScaleSwitchSide());
-		autoChooser.addObject("Right to Switch", new SequenceRightToScaleSwitchSide());
-		autoChooser.addObject("Left to Switch 2 Cube", new SequenceLeftToSwitch2Cube());
-		autoChooser.addObject("Left to Scale SwitchSide", new SequenceLeftToScaleSwitchSide());
-		autoChooser.addObject("Right to Scale SwitchSide", new SequenceRightToScaleSwitchSide());
+//		autoChooser.addObject("Left to Scale (Prioritizes Switch)", new SequenceLeftToScaleSwitchSide());
+//		autoChooser.addObject("Right to Switch", new SequenceRightToScaleSwitchSide());
+//		autoChooser.addObject("Left to Switch 2 Cube", new SequenceLeftToSwitch2Cube());
+//		autoChooser.addObject("Left to Scale SwitchSide", new SequenceLeftToScaleSwitchSide());
+//		autoChooser.addObject("Right to Scale SwitchSide", new SequenceRightToScaleSwitchSide());
 		startPositionSelector.addDefault("Center", new ChooseStartPosition(StartPosition.CENTER));
 		startPositionSelector.addObject("Left", new ChooseStartPosition(StartPosition.LEFT));
 		startPositionSelector.addObject("Right", new ChooseStartPosition(StartPosition.RIGHT));

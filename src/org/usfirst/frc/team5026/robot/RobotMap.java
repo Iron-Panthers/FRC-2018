@@ -43,4 +43,5 @@ public class RobotMap {
 	public static final int BANNER_PORT = 0;
 	//Camera
 	public static int CAMERA_PORT = 0; 
+	public static int CAMERA_PORT_2 = 1;
 }
