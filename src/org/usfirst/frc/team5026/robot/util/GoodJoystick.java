@@ -29,6 +29,8 @@ public class GoodJoystick {
 			v.zero();
 		}
 		
+		v.mult(Constants.MOTOR_OUTPUT_SCALING);
+		
 		SmartDashboard.putNumber("deadzone corrected X", v.getX());
 		SmartDashboard.putNumber("deadzone corrected Y", v.getY());
 		return v;
@@ -43,6 +45,7 @@ public class GoodJoystick {
 	}
 	//Robot.drive.setLeftMotor(Robot.oi.driveStick.getY() + Robot.oi.driveStick.getX());
 	//Robot.drive.setRightMotor(Robot.oi.driveStick.getY() - Robot.oi.driveStick.getX());
+	
 }
 
 
