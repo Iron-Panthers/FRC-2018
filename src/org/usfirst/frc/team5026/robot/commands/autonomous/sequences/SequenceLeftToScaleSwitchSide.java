@@ -16,8 +16,8 @@ public class SequenceLeftToScaleSwitchSide extends CommandGroup {
 
     public SequenceLeftToScaleSwitchSide() {
         addSequential(new FindGameDataAndAddCommand(new CommandOption(
-        		new LeftToLeftScaleSwitch(), 
-        		new LeftToLeftSwitch(),
+        		new AutoScale(AutoPaths.getLeftStartingLeftScalePath()),
+        		new AutoScale(AutoPaths.getLeftStartingRightScalePath()),
         		new AutoScale(AutoPaths.getLeftStartingLeftScalePath()),
         		new AutoScale(AutoPaths.getLeftStartingRightScalePath()))));
     }

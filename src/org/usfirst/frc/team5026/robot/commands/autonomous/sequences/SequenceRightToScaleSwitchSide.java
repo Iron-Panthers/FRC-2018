@@ -15,8 +15,8 @@ public class SequenceRightToScaleSwitchSide extends CommandGroup {
     public SequenceRightToScaleSwitchSide() {
         addSequential(new FindGameDataAndAddCommand(new CommandOption(
         		new AutoScale(AutoPaths.getRightStartingLeftScalePath()),
-        		null,
         		new AutoScale(AutoPaths.getRightStartingLeftScalePath()),
-        		null)));
+        		new AutoScale(AutoPaths.getRightStartingLeftScalePath()),
+        		new AutoScale(AutoPaths.getRightStartingLeftScalePath()))));
     }
 }

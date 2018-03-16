@@ -15,7 +15,7 @@ public class SequenceLeftToScale extends CommandGroup {
 
     public SequenceLeftToScale() {
         addSequential(new FindGameDataAndAddCommand(new CommandOption(
-        		new LeftToLeftScaleSwitch(), 
+        		new AutoScale(AutoPaths.getLeftStartingLeftScalePath()), 
         		new AutoScale(AutoPaths.getLeftStartingRightScalePath()),
         		new AutoScale(AutoPaths.getLeftStartingLeftScalePath()),
         		new AutoScale(AutoPaths.getLeftStartingRightScalePath()))));
