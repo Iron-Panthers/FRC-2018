@@ -6,6 +6,7 @@ import org.usfirst.frc.team5026.robot.util.PlatformState;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * This command finds and updates the game data, as well as adds a command to the scheduler depending on if it is left or right
@@ -33,6 +34,7 @@ public class FindGameDataAndAddCommand extends Command {
     protected void execute() {
     	String message = DriverStation.getInstance().getGameSpecificMessage();
     	if (message.length() > 0) {
+    		SmartDashboard.putString("Real Data", message);
     		finished = true;
     		AutoPaths.updateData(message);
     	}
@@ -45,12 +47,15 @@ public class FindGameDataAndAddCommand extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	String assumedData = "";
     	if (AutoPaths.ALLY_SWITCH_STATE == PlatformState.LEFT) {
     		if (AutoPaths.SCALE_STATE == PlatformState.LEFT) {
     			// LL
+    			assumedData = "LL";
     			Scheduler.getInstance().add(commandOption.leftSwitchLeftScale);
     		} else if (AutoPaths.SCALE_STATE == PlatformState.RIGHT) {
     			// LR
+    			assumedData = "LR";
     			Scheduler.getInstance().add(commandOption.leftSwitchRightScale);
     		} else {
     			// Never should happen
@@ -59,9 +64,11 @@ public class FindGameDataAndAddCommand extends Command {
     	} else if (AutoPaths.ALLY_SWITCH_STATE == PlatformState.RIGHT) {
     		if (AutoPaths.SCALE_STATE == PlatformState.LEFT) {
     			// RL
+    			assumedData = "RL";
     			Scheduler.getInstance().add(commandOption.rightSwitchLeftScale);
     		} else if (AutoPaths.SCALE_STATE == PlatformState.RIGHT) {
     			// RR
+    			assumedData = "RR";
     			Scheduler.getInstance().add(commandOption.rightSwitchRightScale);
     		} else {
     			// Never should happen
@@ -71,6 +78,7 @@ public class FindGameDataAndAddCommand extends Command {
     		// This should never happen!
     		System.out.println("Failed to setup field data BUT command still ended!");
     	}
+    	SmartDashboard.putString("Assumed FMS Data", assumedData);
     }
 
     // Called when another command which requires one or more of the same
