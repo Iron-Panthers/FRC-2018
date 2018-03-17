@@ -23,22 +23,22 @@ public class CenterToLeftSwitch3Cube3 extends CommandGroup {
     	double turnTime = 0.5;
     	
     	addParallel(new ElevatorExtendPistons());
-        addSequential(new PathFollower(AutoPaths.getLeftSwitch3Cube3()[0]));
-        addSequential(new ConveyorForTime(false, 1));
+        addSequential(new PathFollower(AutoPaths.getLeftSwitch3Cube4()[0]));
+        addSequential(new ConveyorForTime(false, 1.5));
         addParallel(new ElevatorTarget(0));
         addSequential(new DriveRunRight(-turnPower, turnTime));
         addParallel(new IntakeSafeCommandGroup());
-        addSequential(new PathFollower(AutoPaths.getLeftSwitch3Cube3()[1]));
+        addSequential(new PathFollower(AutoPaths.getLeftSwitch3Cube4()[1]));
         addParallel(new ElevatorToSwitch());
-        addSequential(new PathFollower(AutoPaths.getLeftSwitch3Cube3()[2]));
+        addSequential(new PathFollower(AutoPaths.getLeftSwitch3Cube4()[2]));
         addSequential(new DriveRunRight(turnPower, turnTime));
         addSequential(new OuttakeForTime(0.25));
         addParallel(new ElevatorTarget(0));
         addSequential(new DriveRunRight(-turnPower, turnTime));
         addParallel(new IntakeSafeCommandGroup());
-        addSequential(new PathFollower(AutoPaths.getLeftSwitch3Cube3()[3]));
+        addSequential(new PathFollower(AutoPaths.getLeftSwitch3Cube4()[3]));
         addParallel(new ElevatorToSwitch());
-        addSequential(new PathFollower(AutoPaths.getLeftSwitch3Cube3()[4]));
+        addSequential(new PathFollower(AutoPaths.getLeftSwitch3Cube4()[4]));
         addSequential(new DriveRunRight(turnPower, turnTime));
         addParallel(new OuttakeForTime(0.25));
     }

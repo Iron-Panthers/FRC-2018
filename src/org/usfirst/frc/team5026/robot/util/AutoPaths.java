@@ -656,7 +656,7 @@ public class AutoPaths {
 			reverseAndFlipPath(stage2);
 			flipPath(grabCube);
 			reverseAndFlipPath(goBackFromCube);
-//			flipPath(goBack);
+			flipPath(goBack);
 			
 			CENTER_RIGHT_SWITCH_2_CUBE = new FastPathPlanner[]{
 					fpp, stage2, grabCube, goBackFromCube, goBack
@@ -714,7 +714,7 @@ public class AutoPaths {
 			reverseAndFlipPath(third);
 			reversePath(fifth);
 			
-			CENTER_LEFT_SWITCH_3_CUBE_4 = new FastPathPlanner[]{
+			CENTER_RIGHT_SWITCH_3_CUBE_3 = new FastPathPlanner[]{
 				first, second, third, fourth, fifth
 			};
 		}

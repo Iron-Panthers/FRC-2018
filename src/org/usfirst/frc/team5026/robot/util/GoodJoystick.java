@@ -23,6 +23,9 @@ public class GoodJoystick {
 		double scaledMagnitude = (magnitude-Constants.CIRCLE_DEADZONE)/(1-Constants.CIRCLE_DEADZONE);
 		v.norm();
 		v.mult(scaledMagnitude);
+		
+		//TODO
+		v.mult(1.05);
 					
 		//if(Math.abs(y) < Constants.YDEADZONE_SIZE*Math.abs(driveStick.getX()) || magnitude < Constants.CIRCLE_DEADZONE) {
 		if ( magnitude < Constants.CIRCLE_DEADZONE ) {

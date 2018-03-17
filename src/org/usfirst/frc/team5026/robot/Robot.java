@@ -16,7 +16,11 @@ import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceCent
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceCenterToSwitch3Cube;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceCenterToSwitch3Cube3;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceLeftToScale;
+import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceLeftToSwitchNoElevator;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceRightToScale;
+import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceRightToSwitchNoElevator;
+import org.usfirst.frc.team5026.robot.commands.drive.DriveRunLeft;
+import org.usfirst.frc.team5026.robot.commands.drive.DriveRunRight;
 import org.usfirst.frc.team5026.robot.subsystems.ConveyorBelt;
 import org.usfirst.frc.team5026.robot.subsystems.Drive;
 import org.usfirst.frc.team5026.robot.subsystems.Elevator;
@@ -96,8 +100,12 @@ public class Robot extends IterativeRobot {
 		autoChooser.addObject("Center to Switch 3 Cube 3 Left", new CenterToLeftSwitch3Cube3());
 		autoChooser.addObject("Center to Switch 3 Cube 3 Right", new CenterToRightSwitch3Cube3());
 		autoChooser.addObject("Center to Switch 3 Cube 3", new SequenceCenterToSwitch3Cube3());
+		autoChooser.addObject("Left to Switch No Elevator", new SequenceLeftToSwitchNoElevator());
+		autoChooser.addObject("Right to Switch No Elevator", new SequenceRightToSwitchNoElevator());
 		autoChooser.addObject("Left to Scale", new SequenceLeftToScale());
 		autoChooser.addObject("Right to Scale", new SequenceRightToScale());
+		autoChooser.addObject("Drive Turn for Left", new DriveRunLeft(-0.7, 0.5));
+		autoChooser.addObject("Drive Turn for Right", new DriveRunRight(-0.7, 0.5));
 //		autoChooser.addObject("Left to Scale (Prioritizes Switch)", new SequenceLeftToScaleSwitchSide());
 //		autoChooser.addObject("Right to Switch", new SequenceRightToScaleSwitchSide());
 //		autoChooser.addObject("Left to Switch 2 Cube", new SequenceLeftToSwitch2Cube());
