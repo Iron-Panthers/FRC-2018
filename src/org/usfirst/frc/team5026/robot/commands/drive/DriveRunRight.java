@@ -24,6 +24,7 @@ public class DriveRunRight extends TimedCommand {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.drive.setRightSide(p);
+    	Robot.drive.setLeftSide(p < 0 ? -p-0.5 : -p+0.5);
     }
 
     // Called once after isFinished returns true
