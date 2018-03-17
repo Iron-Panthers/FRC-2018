@@ -1,14 +1,14 @@
 package org.usfirst.frc.team5026.robot.subsystems;
 
-import java.util.ArrayList;
-
 import org.usfirst.frc.team5026.robot.Robot;
 import org.usfirst.frc.team5026.robot.util.Constants;
 import org.usfirst.frc.team5026.robot.util.ElevatorDirection;
 import org.usfirst.frc.team5026.robot.util.ElevatorMotorGroup;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -17,9 +17,11 @@ public class Elevator extends Subsystem {
 	public ElevatorMotorGroup motors;
 	public DoubleSolenoid solenoid;
 	public double lastVelocity;
+	public DigitalInput elevatorLimit;
 	public Elevator() {
 		motors = Robot.hardware.elevatorMotors;
 		solenoid = Robot.hardware.elevatorSolenoid;
+		elevatorLimit = Robot.hardware.elevatorLimit;
 	}
 
 	public void extendPistons() {
@@ -29,19 +31,23 @@ public class Elevator extends Subsystem {
 		solenoid.set(DoubleSolenoid.Value.kReverse);
 	}
 	public void raiseToTarget(double tickTarget) {
-		motors.driveWithTarget(tickTarget);
+		SmartDashboard.putBoolean("Elevator Closed?", !elevatorLimit.get());
+		if (!elevatorLimit.get()) {
+			System.out.println("CAN MOVE!");
+			motors.driveWithTarget(tickTarget);
+		}
 	}
 	public void raiseToScale() {
-		motors.driveWithTarget(Constants.ELEVATOR_SCALE_TARGET);
+		raiseToTarget(Constants.ELEVATOR_SCALE_TARGET);
 	}
 	public void raiseToSwitch() {
-		motors.driveWithTarget(Constants.ELEVATOR_SWITCH_TARGET);
+		raiseToTarget(Constants.ELEVATOR_SWITCH_TARGET);
 	}
 	public void raiseToShortCube() {
-		motors.driveWithTarget(Constants.ELEVATOR_SHORT_CUBE_TARGET);
+		raiseToTarget(Constants.ELEVATOR_SHORT_CUBE_TARGET);
 	}
 	public void raiseToTallCube() {
-		motors.driveWithTarget(Constants.ELEVATOR_TALL_CUBE_TARGET);
+		raiseToTarget(Constants.ELEVATOR_TALL_CUBE_TARGET);
 	}
 	public void stop() {
 		motors.stop();

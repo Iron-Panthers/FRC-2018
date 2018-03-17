@@ -30,6 +30,7 @@ public class Hardware {
 	public DoubleSolenoid gearShift;
 	public PowerDistributionPanel pdp;
 	public DigitalInput banner;
+	public DigitalInput elevatorLimit;
 	
 	public Hardware() {
 		elevatorMotor = new TalonSRX(RobotMap.ELEVATOR_MASTER);
@@ -59,5 +60,6 @@ public class Hardware {
 		gearShift = new DoubleSolenoid(0, RobotMap.SHIFT_FORWARD, RobotMap.SHIFT_REVERSE);
 		pdp = new PowerDistributionPanel();
 		banner = new DigitalInput(RobotMap.BANNER_PORT);
+		elevatorLimit = new DigitalInput(RobotMap.ELEVATOR_LIMIT_PORT);
 	}
 }

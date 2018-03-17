@@ -154,6 +154,7 @@ public class Robot extends IterativeRobot {
 //		} catch (NullPointerException e) {
 //			// Just continue on with life
 //		}
+		SmartDashboard.putBoolean("Elevator Closed?", !hardware.elevatorLimit.get());
 	}
 
 	/**

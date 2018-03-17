@@ -34,7 +34,7 @@ public class ElevatorTarget extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		//      Robot.elevator.checkPosition();
-		Robot.elevator.motors.driveWithTarget(target);
+		Robot.elevator.raiseToTarget(target);
 		SmartDashboard.putNumber("Elevator Position", Robot.elevator.motors.getEncoderTicks());
 	}
 
