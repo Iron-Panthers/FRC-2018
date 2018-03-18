@@ -37,7 +37,7 @@ public class Constants {
 	public static final int ELEVATOR_SCALE_TARGET = 85000; //See above
 	public static final int ELEVATOR_TOP_TARGET = 89000; //Tested by James. TODO Needs perfecting!!!
 	public static final int ELEVATOR_VELOCITY = 9000;
-	public static final int ELEVATOR_ACCELERATION = 15000;
+	public static final int ELEVATOR_ACCELERATION = 12000;
 	public static final double ELEVATOR_TARGET_TOLERANCE = 100; //In ticks
 	public static final double ELEVATOR_TOLERANCE_TIME = 5; //execute loops
 	public static final double ELEVATOR_HIT_TOLERANCE = 5; //amps, needs changing

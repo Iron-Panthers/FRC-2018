@@ -33,8 +33,8 @@ public class RobotMap {
 	public static final int INTAKE_PDP_PORT = 1; //To Be Changed
 	public static final int ELEVATOR_MOTOR_PDP_PORT = 0;
 	
-	public static final int ELEVATOR_SOLENOID_PORT_1 = 2;
-	public static final int ELEVATOR_SOLENOID_PORT_2 = 3;
+	public static final int ELEVATOR_SOLENOID_PORT_1 = 3;
+	public static final int ELEVATOR_SOLENOID_PORT_2 = 2;
 	public static final int ELEVATOR_MASTER = 8;
 	public static final int ELEVATOR_SLAVE = 7;
 	public static final int SHIFT_FORWARD = 0;
