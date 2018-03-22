@@ -10,13 +10,13 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class PataDataRecorder extends Command {
+public class PathDataRecorder extends Command {
 
 	private ArrayList<Double> leftPathData;
 	private ArrayList<Double> rightPathData;
 	private int count;
 	
-	public PataDataRecorder() {
+	public PathDataRecorder() {
 	// Use requires() here to declare subsystem dependencies
 	// eg. requires(chassis);
 		requires(Robot.drive);

@@ -1,6 +1,6 @@
 package org.usfirst.frc.team5026.robot;
 
-import org.usfirst.frc.team5026.robot.commands.PataDataRecorder;
+import org.usfirst.frc.team5026.robot.commands.PathDataRecorder;
 import org.usfirst.frc.team5026.robot.commands.conveyorbelt.ConveyorBeltBackward;
 import org.usfirst.frc.team5026.robot.commands.conveyorbelt.ConveyorBeltForward;
 import org.usfirst.frc.team5026.robot.commands.drive.DriveShift;
@@ -75,7 +75,7 @@ public class OI {
 		stickBtnTwo.toggleWhenPressed(new DriveShift());
 		stickBtnThree.whileHeld(new IntakeOuttakeCommand());
 		stickBtnFive.whenPressed(new ElevatorZero());
-		stickBtnSix.whileHeld(new PataDataRecorder());
+		stickBtnSix.whileHeld(new PathDataRecorder());
 //		stickBtnThree.whileHeld(new ElevatorToScale());
 //		stickBtnFour.whileHeld(new ElevatorToGround());
 		
