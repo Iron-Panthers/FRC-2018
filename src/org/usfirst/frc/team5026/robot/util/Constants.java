@@ -77,6 +77,8 @@ public class Constants {
 //	public static final double TICKS_TO_INCHES = DRIVE_TICKS_PER_REVOLUTION / WHEEL_CIRCUMFERENCE;
 	public static final double TICKS_TO_INCHES = 288; // Measured with 175 inch test, on practice robot by Adam
 	
+	// Experimental Auto Stuff
+	public static final int EXECUTE_LOOPS_PER_SAMPLE = 5; 
 	
 	public static final double DRIVE_WANTED_INCHES_PER_SECOND = 48;
 	public static final double DRIVE_WANTED_ACCELERATION_INCHES_PER_SECOND_SQUARED = 80;
