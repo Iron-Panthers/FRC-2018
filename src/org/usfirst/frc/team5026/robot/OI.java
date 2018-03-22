@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5026.robot;
 
+import org.usfirst.frc.team5026.robot.commands.PataDataRecorder;
 import org.usfirst.frc.team5026.robot.commands.conveyorbelt.ConveyorBeltBackward;
 import org.usfirst.frc.team5026.robot.commands.conveyorbelt.ConveyorBeltForward;
 import org.usfirst.frc.team5026.robot.commands.drive.DriveShift;
@@ -31,6 +32,7 @@ public class OI {
 	public Button stickBtnThree;
 	public Button stickBtnFour;
 	public Button stickBtnFive;
+	public Button stickBtnSix;
 	public Button boardBtnOne;
 	public Button boardBtnTwo;
 	public Button boardBtnThree;
@@ -51,6 +53,7 @@ public class OI {
 		stickBtnThree = new JoystickButton(driveStick.driveStick,3);
 		stickBtnFour = new JoystickButton(driveStick.driveStick, 4);
 		stickBtnFive = new JoystickButton(driveStick.driveStick, 5);
+		stickBtnSix = new JoystickButton(driveStick.driveStick, 6);
 		boardBtnOne = new JoystickButton(elevatorStick, 1);
 		boardBtnTwo = new JoystickButton(elevatorStick, 2);
 		boardBtnThree = new JoystickButton(elevatorStick, 3);
@@ -72,6 +75,7 @@ public class OI {
 		stickBtnTwo.toggleWhenPressed(new DriveShift());
 		stickBtnThree.whileHeld(new IntakeOuttakeCommand());
 		stickBtnFive.whenPressed(new ElevatorZero());
+		stickBtnSix.whileHeld(new PataDataRecorder());
 //		stickBtnThree.whileHeld(new ElevatorToScale());
 //		stickBtnFour.whileHeld(new ElevatorToGround());
 		
