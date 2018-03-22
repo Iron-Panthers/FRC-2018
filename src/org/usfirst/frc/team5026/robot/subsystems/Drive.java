@@ -169,6 +169,10 @@ public class Drive extends Subsystem {
 		state = GearState.LOW;
 		gearShift.set(DoubleSolenoid.Value.kForward);
 	}
+	public void resetEncoders() {
+		this.left.resetEncoderTicks();
+		this.right.resetEncoderTicks();
+	}
     public void initDefaultCommand() {
     	
     	setDefaultCommand(new DriveWithJoystick());

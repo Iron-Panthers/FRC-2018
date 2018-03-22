@@ -121,5 +121,8 @@ public class DriveMotorGroup implements SpeedController {
 	public int getEncoderTicks() {
 		return this.motor1.getSelectedSensorPosition(Constants.kSlotIdx);
 	}
+	public void resetEncoderTicks() {
+		this.motor1.setSelectedSensorPosition(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
+	}
 }
 
