@@ -1,4 +1,4 @@
-package org.usfirst.frc.team5026.robot.commands;
+package org.usfirst.frc.team5026.robot.commands.intake;
 
 import org.usfirst.frc.team5026.robot.Robot;
 import org.usfirst.frc.team5026.robot.util.Constants;
@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.command.TimedCommand;
 /**
  *
  */
-public class OuttakeForTime extends TimedCommand {
+public class IntakeOuttakeForTime extends TimedCommand {
 
-    public OuttakeForTime(double timeout) {
+    public IntakeOuttakeForTime(double timeout) {
         super(timeout);
         requires(Robot.intake);
         // Use requires() here to declare subsystem dependencies

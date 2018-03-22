@@ -1,9 +1,9 @@
 package org.usfirst.frc.team5026.robot.commands.autonomous;
 
-import org.usfirst.frc.team5026.robot.commands.OuttakeForTime;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorExtendPistons;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToScale;
 import org.usfirst.frc.team5026.robot.commands.intake.HoldBlock;
+import org.usfirst.frc.team5026.robot.commands.intake.IntakeOuttakeForTime;
 import org.usfirst.frc.team5026.robot.util.AutoPaths;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -21,6 +21,6 @@ public class AutoScale extends CommandGroup {
     	addSequential(new WaitCommand(2));
         addParallel(new ElevatorToScale());
         addSequential(new PathFollower(path));
-        addSequential(new OuttakeForTime(2)); 
+        addSequential(new IntakeOuttakeForTime(2)); 
     }
 }
