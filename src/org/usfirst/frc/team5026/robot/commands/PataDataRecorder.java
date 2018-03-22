@@ -23,7 +23,8 @@ public class PataDataRecorder extends Command {
 	}
 	
 	// Called just before this Command runs the first time
-	protected void initialize() { 
+	protected void initialize() {
+		Robot.drive.resetEncoders();
 	}
 	
 	// Called repeatedly when this Command is scheduled to run
@@ -44,5 +45,13 @@ public class PataDataRecorder extends Command {
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
+	}
+	
+	public ArrayList<Double> getLeftPathData() {
+		return this.leftPathData;
+	}
+	
+	public ArrayList<Double> getRightPathData() {
+		return this.rightPathData;
 	}
 }
