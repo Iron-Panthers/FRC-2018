@@ -56,7 +56,7 @@ public class PathDataRecorder extends Command {
 		}
 	} 
 	
-	public ArrayList<Double[]> getLeftPathData() {
+	public ArrayList<Double[]> getPathData() {
 		return pathData;
 	}
 }
