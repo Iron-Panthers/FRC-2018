@@ -12,8 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class PathDataRecorder extends Command {
 
-	private ArrayList<Double> leftPathData;
-	private ArrayList<Double> rightPathData;
+	private ArrayList<Double[]> pathData;
 	private int count;
 	
 	public PathDataRecorder() {
@@ -24,8 +23,7 @@ public class PathDataRecorder extends Command {
 	
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		this.leftPathData = new ArrayList<Double>();
-		this.rightPathData = new ArrayList<Double>();
+		pathData = new ArrayList<Double[]>();
 		count = 0;
 		Robot.drive.resetEncoders();
 	}
@@ -33,8 +31,9 @@ public class PathDataRecorder extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		if (count % Constants.EXECUTE_LOOPS_PER_SAMPLE == 0) {
-			this.leftPathData.add(Robot.drive.getLeftEncoderPosition());
-			this.rightPathData.add(Robot.drive.getRightEncoderPosition());
+			// Add a new double array to the arraylist
+			// Each double array records the left encoder ticks and then the right encoder ticks
+			pathData.add(new Double[] {Robot.drive.getLeftEncoderPosition(), Robot.drive.getRightEncoderPosition()});
 		}
 		count++;
 	}
@@ -51,15 +50,13 @@ public class PathDataRecorder extends Command {
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
-		System.out.println("Left Path Data: " + this.leftPathData);
-		System.out.println("Right Path Data: " + this.rightPathData);
+		System.out.println("Left, right");
+		for (Double[] point : pathData) {
+			System.out.println(point[0] + ", " + point[1]);
+		}
 	} 
 	
-	public ArrayList<Double> getLeftPathData() {
-		return this.leftPathData;
-	}
-	
-	public ArrayList<Double> getRightPathData() {
-		return this.rightPathData;
+	public ArrayList<Double[]> getLeftPathData() {
+		return pathData;
 	}
 }
