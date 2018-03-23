@@ -32,7 +32,7 @@ public class AutoPaths {
 		{(distanceToSwitchFromAlliance-robotLength)/2-delta-xDelta, height/2},
 		{(distanceToSwitchFromAlliance-robotLength)/2+delta-xDelta, height/2+delta},
 		{(distanceToSwitchFromAlliance+robotLength)/2+delta-xDelta, height-distanceToSwitchFromWall-switchLength/2+yDelta},
-		{distanceToSwitchFromAlliance-robotLength/2, height-distanceToSwitchFromWall-switchLength/2+yDelta}
+		{distanceToSwitchFromAlliance-robotLength/2+5, height-distanceToSwitchFromWall-switchLength/2+yDelta}
 	};
 	private static double[][] CENTER_RIGHT_PATH = new double[][]{
 		{robotLength/2, height/2},
@@ -40,7 +40,7 @@ public class AutoPaths {
 		{(distanceToSwitchFromAlliance-robotLength)/2+delta, height/2-2*delta},
 		{(distanceToSwitchFromAlliance+robotLength)/2-delta, distanceToSwitchFromWall+switchLength/2+delta},
 		{(distanceToSwitchFromAlliance+robotLength)/2+delta, distanceToSwitchFromWall+switchLength/2},
-		{distanceToSwitchFromAlliance-robotLength/2, distanceToSwitchFromWall+switchLength/2}
+		{distanceToSwitchFromAlliance-robotLength/2+5, distanceToSwitchFromWall+switchLength/2}
 	};
 	
 	private static double[][] CENTER_LEFT_TURNBACK = new double[][]{
@@ -255,7 +255,7 @@ public class AutoPaths {
 			
 			reverseAndFlipPath(stage2);
 			flipPath(grabCube);
-			reverseAndFlipPath(goBackFromCube);
+			reverseAndFlipPath(goBackFromCube); // Maybe just reverse instead of fipping
 
 			CENTER_LEFT_SWITCH_2_CUBE = new FastPathPlanner[] {
 					fpp, stage2, grabCube, goBackFromCube, goBack

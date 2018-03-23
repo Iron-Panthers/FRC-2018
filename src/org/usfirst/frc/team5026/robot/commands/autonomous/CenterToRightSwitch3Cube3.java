@@ -1,7 +1,7 @@
 package org.usfirst.frc.team5026.robot.commands.autonomous;
 
 import org.usfirst.frc.team5026.robot.commands.conveyorbelt.ConveyorForTime;
-import org.usfirst.frc.team5026.robot.commands.drive.DriveRunRight;
+import org.usfirst.frc.team5026.robot.commands.drive.DriveRunLeft;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorExtendPistons;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorTarget;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToSwitch;
@@ -26,20 +26,20 @@ public class CenterToRightSwitch3Cube3 extends CommandGroup {
         addSequential(new PathFollower(AutoPaths.getRightSwitch3Cube3()[0]));
         addSequential(new ConveyorForTime(false, 1));
         addParallel(new ElevatorTarget(0));
-        addSequential(new DriveRunRight(-turnPower, turnTime));
+        addSequential(new DriveRunLeft(-turnPower, turnTime));
         addParallel(new IntakeSafeCommandGroup());
         addSequential(new PathFollower(AutoPaths.getRightSwitch3Cube3()[1]));
         addParallel(new ElevatorToSwitch());
         addSequential(new PathFollower(AutoPaths.getRightSwitch3Cube3()[2]));
-        addSequential(new DriveRunRight(turnPower, turnTime));
+        addSequential(new DriveRunLeft(turnPower, turnTime));
         addSequential(new OuttakeForTime(0.25));
         addParallel(new ElevatorTarget(0));
-        addSequential(new DriveRunRight(-turnPower, turnTime));
+        addSequential(new DriveRunLeft(-turnPower, turnTime));
         addParallel(new IntakeSafeCommandGroup());
         addSequential(new PathFollower(AutoPaths.getRightSwitch3Cube3()[3]));
         addParallel(new ElevatorToSwitch());
         addSequential(new PathFollower(AutoPaths.getRightSwitch3Cube3()[4]));
-        addSequential(new DriveRunRight(turnPower, turnTime));
+        addSequential(new DriveRunLeft(turnPower, turnTime));
         addParallel(new OuttakeForTime(0.25));
     }
 }
