@@ -99,8 +99,7 @@ public class DriveMotorGroup implements SpeedController {
 	}
 	@Override
 	public double get() {
-		// TODO Auto-generated method stub
-		return 0;
+		return motor1.getMotorOutputPercent();
 	}
 	@Override
 	public boolean getInverted() {
@@ -109,12 +108,10 @@ public class DriveMotorGroup implements SpeedController {
 	}
 	@Override
 	public void set(double power) {
-		// TODO Auto-generated method stub
 		driveWithPower(power);
 	}
 	@Override
 	public void stopMotor() {
-		// TODO Auto-generated method stub
 		stop();
 	}
 	

@@ -8,6 +8,7 @@ import org.usfirst.frc.team5026.robot.util.GearState;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -122,7 +123,7 @@ public class Drive extends Subsystem {
 			return;
 		}
 	}
-	public double getLeftEncoderPosition() {
+	public int getLeftEncoderPosition() {
 		if (type == DriveMotorType.TALONSRX) {
 			return left.getEncoderTicks();
 		} else if (type == DriveMotorType.TALONSR) {
@@ -130,13 +131,25 @@ public class Drive extends Subsystem {
 		}
 		return 0;
 	}
-	public double getRightEncoderPosition() {
+	public int getRightEncoderPosition() {
 		if (type == DriveMotorType.TALONSRX) {
 			return right.getEncoderTicks();
 		} else if (type == DriveMotorType.TALONSR) {
 			System.out.println("You are in the wrong DriveMotorType! You should be in DriveMotorType.TALONSRX, but you are in DriveMotorType.TALONSR");
 		}
 		return 0;
+	}
+	public SpeedController getLeftSpeedController() {
+		if (type == DriveMotorType.TALONSRX) {
+			return left;
+		}
+		return l;
+	}
+	public SpeedController getRightSpeedController() {
+		if (type == DriveMotorType.TALONSRX) {
+			return right;
+		}
+		return r;
 	}
 //	public void driveWithPower(double speed) {
 //		left.driveWithPower(speed);
