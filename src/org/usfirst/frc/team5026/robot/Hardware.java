@@ -56,6 +56,8 @@ public class Hardware {
 		leftM3 = new TalonSRX(RobotMap.DRIVE_LEFT_MOTOR_3);
 		right = new DriveMotorGroup(rightM1, rightM2, rightM3);
 		left = new DriveMotorGroup(leftM1, leftM2, leftM3);
+		rightM1.configOpenloopRamp(Constants.RIGHTM_RAMP_RATE, Constants.kTimeoutMs);
+		leftM1.configOpenloopRamp(Constants.LEFTM_RAMP_RATE, Constants.kTimeoutMs);
 		leftTalonSR = new Talon(RobotMap.TALON_SR_DRIVE_LEFT_MOTOR);
 		rightTalonSR = new Talon(RobotMap.TALON_SR_DRIVE_RIGHT_MOTOR);
 		right.setInverted(Constants.IS_RIGHT_INVERTED);

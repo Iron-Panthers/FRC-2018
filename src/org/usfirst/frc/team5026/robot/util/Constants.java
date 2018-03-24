@@ -82,6 +82,9 @@ public class Constants {
 	}
 	public static final int DRIVE_VELOCITY = MOTION_MAGIC_VELOCITY(DRIVE_WANTED_INCHES_PER_SECOND); // Units of encoder ticks per 100 ms 
 	public static final int DRIVE_ACCELERATION = MOTION_MAGIC_ACCELERATION(DRIVE_WANTED_ACCELERATION_INCHES_PER_SECOND_SQUARED); // Units of encoder ticks per 100 ms per second
+	public static final double RIGHTM_RAMP_RATE = 2; //TODO needs to be tested
+	public static final double LEFTM_RAMP_RATE = 2; //TODO needs to be tested
+	
 	//Camera stuff
 	public static int CAMERA_PIXEL_HEIGHT = 1920; 
 	public static int CAMERA_PIXEL_WIDTH = 1080;
