@@ -1,12 +1,10 @@
 package org.usfirst.frc.team5026.robot.util;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 public class Constants {
-	public static final double X_AXIS_MODIFIER = .8;//lower for more sensitive turning
-	public static final double XDEADZONE_SIZE = 0.15;
-	public static final double YDEADZONE_SIZE = 0.15;
-	public static final double CIRCLE_DEADZONE = 0.2;//middle of joystick
+	public static final double Y_AXIS_MODIFIER = .8;//lower for more sensitive turning
+	public static final double XDEADZONE_SIZE = 0.15;//x bow-tie
+	public static final double YDEADZONE_SIZE = 0.15;//y bow-tie
+	public static final double CIRCLE_DEADZONE = 0.05;//middle of joystick
 	public static final double SPEED = 1.0;//teleop driving
 	//public static final double DEADZONE_SIZE = .1;
 	//public static final double QUARTER_SPEED = .4;
@@ -82,6 +80,11 @@ public class Constants {
 	}
 	public static final int DRIVE_VELOCITY = MOTION_MAGIC_VELOCITY(DRIVE_WANTED_INCHES_PER_SECOND); // Units of encoder ticks per 100 ms 
 	public static final int DRIVE_ACCELERATION = MOTION_MAGIC_ACCELERATION(DRIVE_WANTED_ACCELERATION_INCHES_PER_SECOND_SQUARED); // Units of encoder ticks per 100 ms per second
+	public static final double YCROSS_DEADZONE = 0.3; // TODO DECREASE
+	public static final double XCROSS_DEADZONE = 0.3;
+	public static final double TURN_MIN_CLAMP_X = 0.35;
+	public static final double TURN_MIN_CLAMP_Y = 0.15;
+
 	public static final double RIGHTM_RAMP_RATE = 2; //TODO needs to be tested
 	public static final double LEFTM_RAMP_RATE = 2; //TODO needs to be tested
 	

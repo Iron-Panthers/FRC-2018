@@ -1,14 +1,14 @@
 package org.usfirst.frc.team5026.robot.util;
-import org.usfirst.frc.team5026.robot.Robot;
-import org.usfirst.frc.team5026.robot.RobotMap;
+import java.util.function.Function;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class GoodJoystick {
+	private final Function<Double, Double> interpolator = (x) -> x*x;
 	public Joystick driveStick;
-	public JoystickButton driveStickTrigger;
+	public JoystickButton driveStickTrigger; 
 	public GoodJoystick(int port){
 		driveStick = new Joystick(port);
 		driveStickTrigger = new JoystickButton(driveStick, 1);
@@ -19,55 +19,93 @@ public class GoodJoystick {
 	}
 	//Robot.drive.useArcadeDrive(Robot.oi.driveStick.getX()*Constants.X_AXIS_MODIFIER, Robot.oi.driveStick.getY());
 
-	public double findX() {
-		double x;
-		x = driveStick.getX();
-//		if(driveStickTrigger.get() {
-//			x = -x;
-//		}
-		if(Math.abs(x) < Constants.XDEADZONE_SIZE*Math.abs(driveStick.getY()) 
-		|| Math.sqrt(driveStick.getY()*driveStick.getY() + driveStick.getX()*driveStick.getX()) < Constants.CIRCLE_DEADZONE) { 
-			x=0; //circle deadzone
-		}
-		else {
-			if(x<0) {
-				x = (x + Constants.XDEADZONE_SIZE)/(1-Constants.XDEADZONE_SIZE);
-			}
-			else{
-				x = (x - Constants.XDEADZONE_SIZE)/(1-Constants.XDEADZONE_SIZE);
-			}
-		}
-		SmartDashboard.putNumber("Output X", x);
-		return x*Constants.X_AXIS_MODIFIER;
+	public Vector findXY() {		
+		Vector v = new Vector(driveStick.getX(), -driveStick.getY());
+		double magnitude = v.getMagnitude();
+		double scaledMagnitude = deadzone(magnitude, Constants.CIRCLE_DEADZONE);
+		v.norm();
+		v.mult(scaledMagnitude);
+
+		double x = Math.abs(v.getX());
+		double y = Math.abs(v.getY());
+
+		x = deadzone(x, Constants.XCROSS_DEADZONE);
+		y = deadzone(y, Constants.YCROSS_DEADZONE);
+
+		x = Math.copySign(x, v.getX());
+		y = Math.copySign(y, v.getY());
+
+		v.set(x, y);
+
+		System.out.println(x + "\t" + y + "\t" + v.getX() + "\t" + v.getY());
+		SmartDashboard.putNumber("deadzone corrected X", v.getX());
+		SmartDashboard.putNumber("deadzone corrected Y", v.getY());
+		return v;
 	}
-	public double findY() {
-		double y;
-		y = -driveStick.getY();
-		if(driveStickTrigger.get()) {
-			System.out.println("REVERSED");
-			y = -y;
+
+	public static double deadzone(double x, double dzone) {
+		if (x < dzone) {
+			return 0;
 		}
-		if(Math.abs(y) < Constants.YDEADZONE_SIZE*Math.abs(driveStick.getX())
-		|| (Math.sqrt(y*y + driveStick.getX()*driveStick.getX()) < Constants.CIRCLE_DEADZONE)) {
-			y = 0;
+		if (x > 1) {
+			return 1;
 		}
-		else {
-			if(y<0) {
-				y = (y + Constants.YDEADZONE_SIZE)/(1-Constants.YDEADZONE_SIZE);
-			}
-			else {
-				y = (y - Constants.YDEADZONE_SIZE)/(1-Constants.YDEADZONE_SIZE);
-			}
-		}
-		SmartDashboard.putNumber("Output Y", y);
-		return y;
+		return (x - dzone) / (1 - dzone);
 	}
-	//k = Robot.oi.driveStick.getY()/Robot.oi.driveStick.getX();
-	public double findRightPower(double x,double y) {
-			return y-x;
+
+	/**
+	 * Linearly interpolates some value in one range to another value in another range.
+	 * @param x the value
+	 * @param a1 lower bound of original range
+	 * @param b1 upper bound of original range
+	 * @param a2 lower bound of new range
+	 * @param b2 upper bound of new range
+	 * @return the linearly interpolated number
+	 */
+	public static double lerp(double x, double a1, double b1, double a2, double b2) {
+		return (b2 - a2) * (x - a1) / (b1 - a1) + a2;
 	}
-	public double findLeftPower(double x,double y) {
-	        return y+x;
+
+	/**
+	 * Interpolates some value in one range to another value in another range, with a 
+	 * provided interpolation function.
+	 * @param x the value
+	 * @param a1 lower bound of original range
+	 * @param b1 upper bound of original range
+	 * @param a2 lower bound of new range
+	 * @param b2 upper bound of new range
+	 * @param f an interpolation function that passes through (0, 0) and (1, 1).
+	 * @return the interpolated number
+	 */
+	public static double interp(double x, double a1, double b1, double a2, double b2, Function<Double, Double> f) {
+		return (b2 - a2) * f.apply((x - a1) / (b1 - a1)) + a2;	
+	}
+	
+	/**
+	 * Finds left and right power for motors using joystick x and y.
+	 * Uses arcade drive
+	 * 
+	 * @param x X value on joystick (-1 = left, 1 = right)
+	 * @param y Y value on joystick (-1 = bottom, 1 = top)
+	 * @return vector with x = left motor power, y = right motor power
+	 */
+	public Vector findLeftRightPower(double x, double y) {
+		double absX = Math.abs(x);
+		double absY = Math.abs(y);
+		double maxX = lerp(absY, 0, 1, 1, Constants.TURN_MIN_CLAMP_X);
+		double maxY = lerp(absX, 0, 1, 1, Constants.TURN_MIN_CLAMP_Y);
+		double outX = lerp(absX, 0, 1, 0, maxX);
+		double outY = lerp(absY, 0, 1, 0, maxY);
+		outX = Math.copySign(outX, x);
+		outY = Math.copySign(outY, y);
+		
+		return new Vector(outY + outX, outY - outX);		
+	}
+
+	public static void main(String[] args) {
+		System.out.println(lerp(3, 0, 5, 0, 10));
+		System.out.println(lerp(6, 5, 10, 0, 10));
+		System.out.println(lerp(26, 20, 25, 0, 10));
 	}
 	//Robot.drive.setLeftMotor(Robot.oi.driveStick.getY() + Robot.oi.driveStick.getX());
 	//Robot.drive.setRightMotor(Robot.oi.driveStick.getY() - Robot.oi.driveStick.getX());

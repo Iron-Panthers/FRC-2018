@@ -1,12 +1,13 @@
 package org.usfirst.frc.team5026.robot.commands.drive;
 import org.usfirst.frc.team5026.robot.Robot;
-import org.usfirst.frc.team5026.robot.util.Constants;
+import org.usfirst.frc.team5026.robot.util.Vector;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- *
+ * :) hey fam squad whats poppin
+ * Can we get some 1gs in the chat
  */
 public class DriveWithJoystick extends Command {
 	public double leftSpd;
@@ -24,11 +25,13 @@ public class DriveWithJoystick extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.oi.driveStick.seeAxis();
+    	Vector v = Robot.oi.driveStick.findXY();
 //    	Robot.drive.useArcadeDrive(Robot.oi.joystick.findY(),Robot.oi.joystick.findX());
-    	leftSpd = Robot.oi.driveStick.findLeftPower(Robot.oi.driveStick.findX(),Robot.oi.driveStick.findY());
-    	SmartDashboard.putNumber("left spd", leftSpd);
-    	rightSpd = Robot.oi.driveStick.findRightPower(Robot.oi.driveStick.findX(),Robot.oi.driveStick.findY());
-    	SmartDashboard.putNumber("right spd", rightSpd);
+    	Vector leftRightPower = Robot.oi.driveStick.findLeftRightPower(v.getX(), v.getY());
+    	leftSpd = leftRightPower.getX();
+    	SmartDashboard.putNumber("left motor set", leftSpd);
+    	rightSpd = leftRightPower.getY();
+    	SmartDashboard.putNumber("right motor set", rightSpd);
     	Robot.drive.setLeftSide(leftSpd);
     	Robot.drive.setRightSide(rightSpd);
     }
