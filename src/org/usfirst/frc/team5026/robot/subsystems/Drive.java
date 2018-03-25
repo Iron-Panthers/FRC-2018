@@ -19,7 +19,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 public class Drive extends Subsystem {
 	public DriveMotorGroup right;
 	public DriveMotorGroup left;
-	DriveMotorType type;
+	public DriveMotorType type;
 	public Talon l;
 	public Talon r;
 	public DoubleSolenoid gearShift;

@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import org.usfirst.frc.team5026.robot.Robot;
+import org.usfirst.frc.team5026.robot.util.Constants;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -31,10 +32,13 @@ public class WritePowers extends Command {
     	leftPowers = new ArrayList<Double>();
     	rightPowers = new ArrayList<Double>();
     	startTime = System.currentTimeMillis();
+    	
+//    	Robot.drive.left.motor1.setSelectedSensorPosition(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
+//    	Robot.drive.right.motor1.setSelectedSensorPosition(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
     }
 
     protected void execute() {
-    	times.add((double) (System.currentTimeMillis() - startTime));
+    	times.add((double) (System.currentTimeMillis() - startTime) / 1000.0);
     	leftPowers.add(Robot.drive.getLeftSpeedController().get());
     	rightPowers.add(Robot.drive.getRightSpeedController().get());
     }
@@ -49,6 +53,7 @@ public class WritePowers extends Command {
     protected void interrupted() {
     	// Called when button is released. Driving is complete! Save to file
     	String path = SmartDashboard.getString("CSV Write Path", "");
+    	System.out.println("WRITING TO PATH: "+path);
 		File file = new File(path);
 		BufferedWriter writer = null;
 

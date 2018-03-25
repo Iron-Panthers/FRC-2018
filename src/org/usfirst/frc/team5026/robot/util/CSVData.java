@@ -36,16 +36,16 @@ public class CSVData {
 		        } catch (IndexOutOfBoundsException e) {
 		        	// The CSV file was formatted incorrectly. That is really bad, so literally kill the entire command.
 		        	System.out.println("THE CSV FILE AT PATH: "+path+" CONTAINS INVALID DATA (IndexOutOfBounds)!\nKILLING ALL COMMNADS!");
-		        	Scheduler.getInstance().removeAll();
+		        	return null;
 		        }
 		    }		    
 		} catch (FileNotFoundException e) {
 			System.out.println("THE CSV FILE AT PATH: "+path+" COULD NOT BE FOUND!\nKILLING ALL COMMANDS!");
-		    Scheduler.getInstance().removeAll();
+			return null;
 		} catch (IOException e) {
 			// Command should be killed any time an error is thrown out here
 		    e.printStackTrace();
-		    Scheduler.getInstance().removeAll();
+		    return null;
 		} finally {
 		    try {
 		        if (reader != null) {
@@ -53,7 +53,7 @@ public class CSVData {
 		        }
 		    } catch (IOException e) {}
 		}
-	return out;
+		return out;
 	}
 	
 	public static ArrayList<ArrayList<Double>> interp(ArrayList<ArrayList<Double>> data) {

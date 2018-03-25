@@ -20,7 +20,11 @@ public class ReplayPathData extends Command {
 	ArrayList<ArrayList<Double>> data;
 	long startTime;
 	boolean usePID;
-	double P = 0.05;
+	double P = 0;
+	double I = 0;
+	
+	double leftTotal;
+	double rightTotal;
 	
 	public ReplayPathData(boolean usePID) {
 		requires(Robot.drive); // Requires so that Joystick drive is overridden
@@ -29,11 +33,26 @@ public class ReplayPathData extends Command {
 	
 	protected void initialize() {
 		String path = SmartDashboard.getString("CSV Read Path", "");
-		if (usePID) {
-			data = CSVData.interp(CSVData.readFromCsv(path, 7)); // 7 for time, leftPower, rightPower, leftPos, rightPos, leftV, rightV
-		} else {
-			data = CSVData.interp(CSVData.readFromCsv(path, 3)); // 3 for time, leftPower, rightPower
-		}
+    	P = SmartDashboard.getNumber("Path Planning P", Constants.PATHING_P);
+    	I = SmartDashboard.getNumber("Path Planning I", Constants.PATHING_I);
+    	
+    	leftTotal = 0;
+    	rightTotal = 0;
+    	
+    	try {
+			if (usePID) {
+				Robot.drive.stop();
+		    	Robot.drive.left.motor1.setSelectedSensorPosition(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
+		    	Robot.drive.right.motor1.setSelectedSensorPosition(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
+				data = CSVData.readFromCsv(path, 7); // 7 for time, leftPower, rightPower, leftPos, rightPos, leftV, rightV
+			} else {
+				data = CSVData.readFromCsv(path, 3); // 3 for time, leftPower, rightPower
+			}
+    	} catch (NullPointerException e) {
+    		// The CSV Data Read Failed
+			Scheduler.getInstance().removeAll();
+    	}
+
 		startTime = System.currentTimeMillis();
 	}
 
@@ -52,6 +71,12 @@ public class ReplayPathData extends Command {
 			
 			leftPower += leftError * P;
 			rightPower += rightError * P;
+			
+			leftTotal += leftError;
+        	rightTotal += rightError;
+	    	
+	    	leftPower += I * leftTotal;
+	    	rightPower += I * rightTotal;
 			
 			Robot.drive.left.set(leftPower);
 			Robot.drive.right.set(rightPower);

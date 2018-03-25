@@ -26,6 +26,7 @@ import org.usfirst.frc.team5026.robot.subsystems.Drive;
 import org.usfirst.frc.team5026.robot.subsystems.Elevator;
 import org.usfirst.frc.team5026.robot.subsystems.IntakeSubsystem;
 import org.usfirst.frc.team5026.robot.util.Constants;
+import org.usfirst.frc.team5026.robot.util.DriveMotorType;
 import org.usfirst.frc.team5026.robot.util.StartPosition;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -94,8 +95,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Elevator A Term", Constants.ELEVATOR_ACCELERATION); // TODO to remove later
 		SmartDashboard.putNumber("Elevator Reset Value", 0); // TODO to remove later
 		SmartDashboard.putNumber("Elevator Target", 1000); // TODO to remove later
-		SmartDashboard.putString("CSV Read Path", "");
-		SmartDashboard.putString("CSV Write Path", "");
+		SmartDashboard.putString("CSV Read Path", "/home/lvuser/test1.csv");
+		SmartDashboard.putString("CSV Write Path", "/home/lvuser/test1.csv");
 		oi.mapButtons();
 		autoChooser.addDefault("My Auto", new DriveStraight());
 		autoChooser.addObject("Center to Switch", new SequenceCenterToSwitch1Cube());
@@ -144,7 +145,9 @@ public class Robot extends IterativeRobot {
 		if (autoCommand != null) {
 			autoCommand.cancel();
 		}
-		drive.setupCoastMode();
+		if (drive.type == DriveMotorType.TALONSRX){
+			drive.setupCoastMode();
+		}
 	}
 
 	@Override
@@ -212,8 +215,9 @@ public class Robot extends IterativeRobot {
 	public void teleopInit() {
 		Robot.elevator.motors.motor1.set(ControlMode.MotionMagic, Robot.elevator.motors.motor1.getSelectedSensorPosition(Constants.kPIDLoopIdx));
 		Robot.elevator.motors.motor1.set(ControlMode.Disabled, 1);
-		
-		drive.setupBrakeMode();
+		if (drive.type == DriveMotorType.TALONSRX){
+			drive.setupBrakeMode();
+		}
 
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to

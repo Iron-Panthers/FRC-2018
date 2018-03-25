@@ -40,10 +40,13 @@ public class WritePathData extends Command {
     	leftVelocities = new ArrayList<Integer>();
     	rightVelocities = new ArrayList<Integer>();
     	startTime = System.currentTimeMillis();
+    	
+    	Robot.drive.left.motor1.setSelectedSensorPosition(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
+    	Robot.drive.right.motor1.setSelectedSensorPosition(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
     }
 
     protected void execute() {
-    	times.add((double) (System.currentTimeMillis() - startTime));
+    	times.add((double) (System.currentTimeMillis() - startTime) / 1000.0);
     	leftPowers.add(Robot.drive.getLeftSpeedController().get());
     	rightPowers.add(Robot.drive.getRightSpeedController().get());
     	leftPositions.add(Robot.drive.getLeftEncoderPosition());

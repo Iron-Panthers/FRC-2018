@@ -7,21 +7,32 @@ import org.usfirst.frc.team5026.robot.util.CSVData;
 import org.usfirst.frc.team5026.robot.util.Constants;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ReplayPowers extends Command {
 	
 	private ArrayList<ArrayList<Double>> data;
 	
+	int index = 0;
+	int entries = 0;
 	long startTime;
-	
+		
 	public ReplayPowers() {
 		requires(Robot.drive); // Requires so that Joystick drive is overridden
 	}
 	
 	protected void initialize() {
 		String path = SmartDashboard.getString("CSV Read Path", "");
-		data = CSVData.readFromCsv(path, 3); // 3 for time, leftPower, rightPower
+		try {
+			data = CSVData.readFromCsv(path, 3); // 3 for time, leftPower, rightPower
+		} catch (NullPointerException e) {
+			System.out.println("PATH READ FAILED!");
+			Scheduler.getInstance().removeAll();
+		}
+		startTime = System.currentTimeMillis();
+		index = 0;
+		entries = data.get(0).size();
 	}
 
 	protected void execute() {
@@ -29,15 +40,20 @@ public class ReplayPowers extends Command {
 			return;
 		}
 		
-		// Given that the CSV file contains times now, it would be trivial to do a binary search, or even something faster
-		// For now, we can just snap the index to the last, based off of time
-		int index = (int)((System.currentTimeMillis() - startTime) / 1000.0 / Constants.DELTA_TIME);
+		double myTime = System.currentTimeMillis() - startTime;
+		// There should be failsafes for index here!
+		for (int i = index+1; i < entries; i++) {
+			double entryTime = data.get(0).get(i);
+			if (myTime < entryTime) {
+				index = i - 1;
+			}
+		}
 		
 		double leftPower = data.get(1).get(index);
 		double rightPower = data.get(2).get(index);
-		
-		Robot.drive.left.set(leftPower);
-		Robot.drive.right.set(rightPower);
+	
+		Robot.drive.setLeftSide(leftPower);
+		Robot.drive.setRightSide(rightPower);
 	}
 	
 	@Override
