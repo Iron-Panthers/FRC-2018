@@ -97,6 +97,7 @@ public class GoodJoystick {
 		double outX = lerp(absX, 0, 1, 0, maxX);
 		double outY = lerp(absY, 0, 1, 0, maxY);
 		outX = Math.copySign(outX, x);
+		outX = outX * -1;
 		outY = Math.copySign(outY, y);
 		
 		return new Vector(outY + outX, outY - outX);		

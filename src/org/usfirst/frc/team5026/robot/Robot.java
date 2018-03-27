@@ -161,7 +161,7 @@ public class Robot extends IterativeRobot {
 		int minutes = (int) (DriverStation.getInstance().getMatchTime() - seconds) / 60;
 		time = minutes+":"+seconds;
 		SmartDashboard.putString("Time Left", time);
-		SmartDashboard.putNumber("Battery Voltage", hardware.pdp.getVoltage());
+		//SmartDashboard.putNumber("Battery Voltage", hardware.pdp.getVoltage());
 		//Debug Window
 //    	SmartDashboard.putString("Elevator Status", Robot.elevator.getElevatorDirection().name());
 //		SmartDashboard.putNumber("Elevator Motor", Robot.elevator.motors.motor1.getOutputCurrent());
@@ -174,7 +174,7 @@ public class Robot extends IterativeRobot {
 		//Drive Motor Current and Voltage
 		SmartDashboard.putNumber("Joystick Raw X", oi.driveStick.driveStick.getX());
 		SmartDashboard.putNumber("Joystick Raw Y", oi.driveStick.driveStick.getY());
-		SmartDashboard.putBoolean("banner", hardware.banner.get());
+		//SmartDashboard.putBoolean("banner", hardware.banner.get());
 		Scheduler.getInstance().run();
 	}
 

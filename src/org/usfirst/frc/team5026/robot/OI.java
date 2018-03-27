@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5026.robot;
 
+import org.usfirst.frc.team5026.robot.commands.ReverseDrive;
 import org.usfirst.frc.team5026.robot.util.GoodJoystick;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -53,8 +54,8 @@ public class OI {
 
 	}
 	public void mapButtons(){
-////		stickBtnOne.whenPressed(new ReverseDrive());
-////		stickBtnOne.whenReleased(new ReverseDrive());
+		stickBtnOne.whenPressed(new ReverseDrive());
+		stickBtnOne.whenReleased(new ReverseDrive());
 ////		stickBtnTwo.whileHeld(new OuttakeCommand());
 //		stickBtnTwo.toggleWhenPressed(new DriveShift());
 //		stickBtnThree.whileHeld(new IntakeOuttakeCommand());

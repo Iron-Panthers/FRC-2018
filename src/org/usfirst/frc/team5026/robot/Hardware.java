@@ -36,7 +36,7 @@ public class Hardware {
 //		elevatorSlaveMotor.setInverted(Constants.IS_ELEVATOR_INVERTED);
 //		elevatorMotor.setSensorPhase(!Constants.IS_ELEVATOR_SENSOR_INVERTED);
 		elevatorSolenoid = new DoubleSolenoid(0, RobotMap.ELEVATOR_SOLENOID_PORT_1, RobotMap.ELEVATOR_SOLENOID_PORT_2);
-	/*	conveyor = new TalonSRX(RobotMap.CONVEYOR_BELT_MOTOR);
+		/*conveyor = new TalonSRX(RobotMap.CONVEYOR_BELT_MOTOR);
 		conveyor.setInverted(Constants.IS_COVEYOR_INVERTED);
 		conveyor.setNeutralMode(NeutralMode.Brake);
 		intakeM = new TalonSRX(RobotMap.INTAKE_MOTOR);
@@ -49,7 +49,7 @@ public class Hardware {
 		right = new DriveMotorGroup(rightM1, rightM2, rightM3);
 		left = new DriveMotorGroup(leftM1, leftM2, leftM3);
 		rightM1.configOpenloopRamp(Constants.RIGHTM_RAMP_RATE, Constants.kTimeoutMs);
-		leftM1.configOpenloopRamp(Constants.LEFTM_RAMP_RATE, Constants.kTimeoutMs);
+		leftM1.configOpenloopRamp(Constants.LEFTM_RAMP_RATE, Constants.kTimeoutMs);*/
 		leftTalonSR = new Talon(RobotMap.TALON_SR_DRIVE_LEFT_MOTOR);
 		leftTalonSR.setInverted(true);
 		rightTalonSR = new Talon(RobotMap.TALON_SR_DRIVE_RIGHT_MOTOR);
