@@ -13,8 +13,8 @@ public class Climb extends Subsystem {
 	public Spark leftClimber;
 	public Spark rightClimber;
 	public Climb() {
-		leftClimber = Robot.hardware.leftClimb;
-		rightClimber = Robot.hardware.rightClimb;
+		leftClimber = Robot.hardware.climbMotor1;
+		rightClimber = Robot.hardware.climbMotor2;
 	}
 	public void up() {
 		leftClimber.set(Constants.CLIMB_SPEED);
