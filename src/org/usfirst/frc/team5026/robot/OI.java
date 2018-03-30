@@ -1,7 +1,7 @@
 package org.usfirst.frc.team5026.robot;
 
 import org.usfirst.frc.team5026.robot.commands.ReverseDrive;
-import org.usfirst.frc.team5026.robot.util.BetterJoystick;
+import org.usfirst.frc.team5026.robot.util.GoodJoystick;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-	public BetterJoystick driveStick;
+	public GoodJoystick driveStick;
 	public Joystick elevatorStick;
 	public Button stickBtnOne; //reserved for GoodJoystick
 	public Button stickBtnTwo;
@@ -32,7 +32,7 @@ public class OI {
 	public Button boardBtnEleven;
 	public Button boardBtnTwelve;
 	public OI(){
-		driveStick = new BetterJoystick(RobotMap.DRIVE_JOYSTICK);
+		driveStick = new GoodJoystick(RobotMap.DRIVE_JOYSTICK);
 		elevatorStick = new Joystick(RobotMap.ELEVATOR_JOYSTICK);
 		stickBtnOne = new JoystickButton(driveStick.driveStick,1);
 		stickBtnTwo = new JoystickButton(driveStick.driveStick,2);

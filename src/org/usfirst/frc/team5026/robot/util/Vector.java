@@ -4,6 +4,7 @@ public class Vector {
 	
 	private double x;
 	private double y;
+	private double magnitude = 0; // The magnitude of the vector, or -1 if not calculated yet
 	
 	/**
 	 * Constructs a 2D vector
@@ -14,6 +15,15 @@ public class Vector {
 	public Vector(double x, double y) {
 		this.x = x;
 		this.y = y;
+		calcMagnitude();
+	}
+	
+	/**
+	 * Calculates the magnitude of the vector
+	 */
+	
+	public void calcMagnitude() {
+		this.magnitude = Math.sqrt(x*x + y*y);
 	}
 	
 	/**
@@ -22,7 +32,7 @@ public class Vector {
 	 * @return {@link Vector#magnitude}
 	 */
 	public double getMagnitude() {
-		return Math.sqrt(x*x + y*y);
+		return this.magnitude;
 	}
 	
 	/**
@@ -46,18 +56,19 @@ public class Vector {
 	public void set(double x, double y) {
 		this.x = x;
 		this.y = y;
+		calcMagnitude();
 	}
 	
 	/**
 	 * Normalizes the vector
 	 */
 	public void norm() {
-		double magnitude = getMagnitude();
-		if (magnitude < 0.0001) {
+		if (getMagnitude() < 0.0001) {
 			return;
 		}
-		x /= magnitude;
-		y /= magnitude;
+		x /= this.magnitude;
+		y /= this.magnitude;
+		this.magnitude = 1;
 	}
 	
 	/**
@@ -66,16 +77,7 @@ public class Vector {
 	public void mult(double m) {
 		x *= m;
 		y *= m;
-	}
-	
-	/**
-	 * Add a scalar to both components
-	 * 
-	 * @param scalar
-	 */
-	public void add(double scalar) {
-		this.x += scalar;
-		this.y += scalar;
+		this.magnitude *= m;
 	}
 	
 	/**
@@ -84,5 +86,6 @@ public class Vector {
 	public void zero() {
 		this.x = 0;
 		this.y = 0;
+		this.magnitude = 0;
 	}
 }
