@@ -13,6 +13,12 @@ public class GoodJoystick {
 		driveStick = new Joystick(port);
 		driveStickTrigger = new JoystickButton(driveStick, 1);
 	}
+	
+	public GoodJoystick(Joystick stick){
+		driveStick = stick;
+		driveStickTrigger = new JoystickButton(driveStick, 1);
+	}
+	
 	public void seeAxis() {
 		SmartDashboard.putNumber("Raw X", driveStick.getX());
 		SmartDashboard.putNumber("Raw Y", driveStick.getY());
@@ -37,7 +43,6 @@ public class GoodJoystick {
 
 		v.set(x, y);
 
-		System.out.println(x + "\t" + y + "\t" + v.getX() + "\t" + v.getY());
 		SmartDashboard.putNumber("deadzone corrected X", v.getX());
 		SmartDashboard.putNumber("deadzone corrected Y", v.getY());
 		return v;
@@ -103,11 +108,6 @@ public class GoodJoystick {
 		return new Vector(outY + outX, outY - outX);		
 	}
 
-	public static void main(String[] args) {
-		System.out.println(lerp(3, 0, 5, 0, 10));
-		System.out.println(lerp(6, 5, 10, 0, 10));
-		System.out.println(lerp(26, 20, 25, 0, 10));
-	}
 	//Robot.drive.setLeftMotor(Robot.oi.driveStick.getY() + Robot.oi.driveStick.getX());
 	//Robot.drive.setRightMotor(Robot.oi.driveStick.getY() - Robot.oi.driveStick.getX());
 }

@@ -6,14 +6,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class BetterJoystick {
 
 	public Joystick driveStick;
-	public int arcadeButton = 0;
-	public int reverseButton = 1;
+	public int arcadeButton = 1;
+	public int reverseButton = 2;
 	
 	private GoodJoystick arcadeFallback;
 	
 	public BetterJoystick(int joystick){
 		this.driveStick = new Joystick(joystick);
-		arcadeFallback = new GoodJoystick(joystick);
+		arcadeFallback = new GoodJoystick(driveStick);
 	}
 	
 	public BetterJoystick(int joystick, int arcadeButton, int reverseButton) {
@@ -23,11 +23,11 @@ public class BetterJoystick {
 	}
 	
 	private double rawTurn() {
-		return driveStick.getRawAxis(0);
+		return driveStick.getX();
 	}
 	
 	private double rawThrottle() {
-		return driveStick.getRawAxis(4);
+		return driveStick.getZ();
 	}
 	
 	public void seeAxis() {
@@ -36,8 +36,21 @@ public class BetterJoystick {
 	}
 
 	private Vector findXY() {		
-		double turn = deadzone(rawTurn(), Constants.CIRCLE_DEADZONE);		
-		double throttle = deadzone(driveStick.getRawAxis(4), Constants.CIRCLE_DEADZONE);
+		int sign = 1;
+		double throttle = rawThrottle();
+		if (throttle > 0) {
+			sign = -1;
+			throttle = deadzone(throttle, Constants.CIRCLE_DEADZONE);
+		} else {
+			throttle = -deadzone(-throttle, Constants.CIRCLE_DEADZONE);
+		}
+		
+		double turn = sign * rawTurn();
+		if (turn > 0) {
+			turn = deadzone(turn, Constants.CIRCLE_DEADZONE);
+		} else {
+			turn = -deadzone(-turn, Constants.CIRCLE_DEADZONE);
+		}
 		
 		Vector result = new Vector(turn, -turn);
 		result.mult(throttle);
@@ -78,8 +91,10 @@ public class BetterJoystick {
 	 * @return vector with x = left motor power, y = right motor power
 	 */
 	public Vector findLeftRightPower() {
-		if (driveStick.getRawButton(arcadeButton)) {
+		if (driveStick.getTrigger()) {
+			arcadeFallback.seeAxis();
 			Vector joy = arcadeFallback.findXY();
+			SmartDashboard.putNumber("go", joy.getY());
 			return arcadeFallback.findLeftRightPower(joy.getX(), joy.getY());
 		} else {
 			return this.findXY();
