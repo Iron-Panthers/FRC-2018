@@ -7,19 +7,33 @@
 
 package org.usfirst.frc.team5026.robot;
 
-import org.usfirst.frc.team5026.robot.commands.autonomous.CenterToSwitchDropCube;
+import org.usfirst.frc.team5026.robot.commands.autonomous.CenterToLeftSwitch3Cube3;
+import org.usfirst.frc.team5026.robot.commands.autonomous.CenterToRightSwitch3Cube3;
+import org.usfirst.frc.team5026.robot.commands.autonomous.ChooseStartPosition;
 import org.usfirst.frc.team5026.robot.commands.autonomous.DriveStraight;
-import org.usfirst.frc.team5026.robot.commands.autonomous.PathFollower;
+import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceCenterToSwitch1Cube;
+import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceCenterToSwitch2Cube;
+import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceCenterToSwitch3Cube;
+import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceCenterToSwitch3Cube3;
+import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceLeftToScale;
+import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceLeftToSwitchNoElevator;
+import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceRightToScale;
+import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceRightToSwitchNoElevator;
+import org.usfirst.frc.team5026.robot.commands.drive.DriveRunLeft;
+import org.usfirst.frc.team5026.robot.commands.drive.DriveRunRight;
 import org.usfirst.frc.team5026.robot.subsystems.Climb;
+import org.usfirst.frc.team5026.robot.commands.autonomous.PathFollower;
 import org.usfirst.frc.team5026.robot.subsystems.ConveyorBelt;
 import org.usfirst.frc.team5026.robot.subsystems.Drive;
 import org.usfirst.frc.team5026.robot.subsystems.Elevator;
 import org.usfirst.frc.team5026.robot.subsystems.IntakeSubsystem;
-import org.usfirst.frc.team5026.robot.util.AutoPaths;
 import org.usfirst.frc.team5026.robot.util.Constants;
+import org.usfirst.frc.team5026.robot.util.StartPosition;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -44,8 +58,11 @@ public class Robot extends IterativeRobot {
 	public static ConveyorBelt conveyor;
 	public static IntakeSubsystem intake;
 	public static Elevator elevator;
+	public static UsbCamera cam1;
+	public static UsbCamera cam2;
 	Command autoCommand;
 	SendableChooser<Command> autoChooser = new SendableChooser<>();
+	SendableChooser<ChooseStartPosition> startPositionSelector = new SendableChooser<>(); 
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -60,9 +77,15 @@ public class Robot extends IterativeRobot {
 		elevator = new Elevator();
 		conveyor = new ConveyorBelt();
 		oi = new OI();
+		//Camera Stuff
+		CameraServer camera = CameraServer.getInstance();
+	    cam1 = camera.startAutomaticCapture("cam0", RobotMap.CAMERA_PORT);
+	    cam1.setResolution(Constants.CAMERA_PIXEL_HEIGHT, Constants.CAMERA_PIXEL_WIDTH);
+	    CameraServer camera2 = CameraServer.getInstance();
+	    cam2 = camera2.startAutomaticCapture("cam1", RobotMap.CAMERA_PORT_2);
+	    cam2.setResolution(Constants.CAMERA_PIXEL_HEIGHT, Constants.CAMERA_PIXEL_WIDTH);
 //		right.setInverted(Constants.IS_RIGHT_INVERTED);
 		// autoChooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", autoChooser);
 		SmartDashboard.putNumber("Elevator Percent", 0.25); // TODO to remove later
 		SmartDashboard.putNumber("Elevator F", Constants.ELEVATOR_F); // TODO to remove later
 		SmartDashboard.putNumber("Elevator P Term", Constants.ELEVATOR_P); // TODO to remove later
@@ -74,15 +97,35 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Elevator Target", 1000); // TODO to remove later
 		oi.mapButtons();
 		autoChooser.addDefault("My Auto", new DriveStraight());
-		autoChooser.addObject("Center to Left Path", new PathFollower(AutoPaths.getLeftPath()));
-		autoChooser.addObject("Center to Right Path", new PathFollower(AutoPaths.getRightPath()));
-		autoChooser.addObject("Center to Switch", new CenterToSwitchDropCube());
+		autoChooser.addObject("Center to Switch", new SequenceCenterToSwitch1Cube());
+		autoChooser.addObject("Center to Switch 2 Cube", new SequenceCenterToSwitch2Cube());
+		autoChooser.addObject("Center to Switch 3 Cube", new SequenceCenterToSwitch3Cube());
+//		autoChooser.addObject("Center to Switch 3 Cube 2 Left", new CenterToLeftSwitch3Cube2());
+		autoChooser.addObject("Center to Switch 3 Cube 3 Left", new CenterToLeftSwitch3Cube3());
+		autoChooser.addObject("Center to Switch 3 Cube 3 Right", new CenterToRightSwitch3Cube3());
+		autoChooser.addObject("Center to Switch 3 Cube 3", new SequenceCenterToSwitch3Cube3());
+		autoChooser.addObject("Left to Switch No Elevator", new SequenceLeftToSwitchNoElevator());
+		autoChooser.addObject("Right to Switch No Elevator", new SequenceRightToSwitchNoElevator());
+		autoChooser.addObject("Left to Scale", new SequenceLeftToScale());
+		autoChooser.addObject("Right to Scale", new SequenceRightToScale());
+		autoChooser.addObject("Drive Turn for Left", new DriveRunLeft(-0.7, 0.5));
+		autoChooser.addObject("Drive Turn for Right", new DriveRunRight(-0.7, 0.5));
+//		autoChooser.addObject("Left to Scale (Prioritizes Switch)", new SequenceLeftToScaleSwitchSide());
+//		autoChooser.addObject("Right to Switch", new SequenceRightToScaleSwitchSide());
+//		autoChooser.addObject("Left to Switch 2 Cube", new SequenceLeftToSwitch2Cube());
+//		autoChooser.addObject("Left to Scale SwitchSide", new SequenceLeftToScaleSwitchSide());
+//		autoChooser.addObject("Right to Scale SwitchSide", new SequenceRightToScaleSwitchSide());
+		startPositionSelector.addDefault("Center", new ChooseStartPosition(StartPosition.CENTER));
+		startPositionSelector.addObject("Left", new ChooseStartPosition(StartPosition.LEFT));
+		startPositionSelector.addObject("Right", new ChooseStartPosition(StartPosition.RIGHT));
 		SmartDashboard.putNumber("target", 100);
 		SmartDashboard.putNumber("max count", 50);
 		SmartDashboard.putNumber("tolerance", 69);
 		SmartDashboard.putNumber("Path Planning F", Constants.PATHING_F);
 		SmartDashboard.putNumber("Path Planning P", Constants.PATHING_P);
+		SmartDashboard.putNumber("Path Planning I", Constants.PATHING_I);
 		SmartDashboard.putData("Auto mode", autoChooser);
+		SmartDashboard.putData("Starting Position", startPositionSelector);
 //		SmartDashboard.getNumber("Intake Speed", Constants.INTAKE_POWER);
 		LiveWindow.disableAllTelemetry();
     }
@@ -97,11 +140,25 @@ public class Robot extends IterativeRobot {
 	public void disabledInit() {
 //		hardware.elevatorMotor.setSelectedSensorPosition(0, 0, 0);
 //		System.out.println(hardware.elevatorMotor.getSelectedSensorPosition(0));
+		if (autoCommand != null) {
+			autoCommand.cancel();
+		}
+		drive.setupCoastMode();
 	}
 
 	@Override
 	public void disabledPeriodic() {
-		Scheduler.getInstance().run();
+//		startPositionSelector.getSelected().setRunWhenDisabled(true);
+//		startPositionSelector.getSelected().start();
+//		Scheduler.getInstance().run();
+//		try {
+//			if (startPositionSelector.getSelected().chooser.getSelected().choice != null) {
+//				SmartDashboard.putString("Selected autonomous mode", startPositionSelector.getSelected().chooser.getSelected().choice.toString());
+//			}
+//		} catch (NullPointerException e) {
+//			// Just continue on with life
+//		}
+		SmartDashboard.putBoolean("Elevator Closed?", !hardware.elevatorLimit.get());
 	}
 
 	/**
@@ -119,7 +176,11 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		Robot.elevator.motors.motor1.setSelectedSensorPosition(Robot.elevator.motors.motor1.getSelectedSensorPosition(Constants.kPIDLoopIdx), Constants.kPIDLoopIdx, Constants.kTimeoutMs);
 		Robot.elevator.motors.motor1.set(ControlMode.Disabled, 1);
+		
+		drive.setupBrakeMode();
+		
 		autoCommand = autoChooser.getSelected();
+//		autoCommand = startPositionSelector.getSelected().chooser.getSelected().choice;
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -150,6 +211,9 @@ public class Robot extends IterativeRobot {
 	public void teleopInit() {
 		Robot.elevator.motors.motor1.set(ControlMode.MotionMagic, Robot.elevator.motors.motor1.getSelectedSensorPosition(Constants.kPIDLoopIdx));
 		Robot.elevator.motors.motor1.set(ControlMode.Disabled, 1);
+		
+		drive.setupBrakeMode();
+
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
@@ -172,7 +236,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putString("Time Left", time);
 		SmartDashboard.putNumber("Battery Voltage", hardware.pdp.getVoltage());
 		//Debug Window
-    	SmartDashboard.putString("Elevator Status", Robot.elevator.getElevatorDirection().name());
+    	SmartDashboard.putString("Elevator Direction", Robot.elevator.getElevatorDirection().name());
 		SmartDashboard.putNumber("Elevator Motor", Robot.elevator.motors.motor1.getOutputCurrent());
     	SmartDashboard.putNumber("Encoder Position", hardware.elevatorMotor.getSelectedSensorPosition(0));
 		SmartDashboard.putNumber("Encoder Velocity", hardware.elevatorMotor.getSelectedSensorVelocity(0));
@@ -183,7 +247,6 @@ public class Robot extends IterativeRobot {
 		//Drive Motor Current and Voltage
 		SmartDashboard.putNumber("Joystick Raw X", oi.driveStick.driveStick.getX());
 		SmartDashboard.putNumber("Joystick Raw Y", oi.driveStick.driveStick.getY());
-		SmartDashboard.putBoolean("banner", hardware.banner.get());
 		Scheduler.getInstance().run();
 	}
 
@@ -192,6 +255,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void testPeriodic() {
+		SmartDashboard.putNumber("Drive Left Encoder Reading", Robot.drive.getLeftEncoderPosition());
+		SmartDashboard.putNumber("Drive Right Encoder Reading", Robot.drive.getRightEncoderPosition());
 	}
 	
 	public static void dispNum(String key, double value) {

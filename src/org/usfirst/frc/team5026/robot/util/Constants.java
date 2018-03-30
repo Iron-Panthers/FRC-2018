@@ -11,13 +11,13 @@ public class Constants {
 	//public static final double DEADZONE_SIZE = .1;
 	//public static final double QUARTER_SPEED = .4;
 	//Intake and Outtake
-	public static final double INTAKE_VOLTAGE_GRAB = 10./12; //Voltage before grabbing the block
-	public static final double INTAKE_VOLTAGE_HOLD = 5.5/12; //"" 4 good enough, 6 secure but too much for burning
+	public static final double INTAKE_VOLTAGE_GRAB = 12./12; //Voltage before grabbing the block
+	public static final double INTAKE_VOLTAGE_HOLD = 6.5/12; //"" 4 good enough, 6 secure but too much for burning
 //	public static final double INTAKE_CURRENT_SAMPLE = 4; //number of samples required to determine if cube is possessed
-	public static final int INTAKE_SPEED_UP_TIME = 2;// execute loops waited before sampling current to prevent motor stopping w/out cube 
+	public static final int INTAKE_SPEED_UP_TIME = 10;// execute loops waited before sampling current to prevent motor stopping w/out cube 
 	public static final boolean IS_INTAKE_INVERTED = true;
-	public static final double OUTTAKE_POWER = -.4;
-	public static final double BLOCK_GRAB_THRESHOLD = 15; //min amount of amps intake has with block before dropping voltage
+	public static final double OUTTAKE_POWER = -.8;
+	public static final double BLOCK_GRAB_THRESHOLD = 20; //min amount of amps intake has with block before dropping voltage
 	  
 	//Portal to Switch 
 	public static final double CONVEYOR_SPEED = 1; 
@@ -42,13 +42,16 @@ public class Constants {
 	public static final int ELEVATOR_SCALE_TARGET = 85000; //See above
 	public static final int ELEVATOR_TOP_TARGET = 89000; //Tested by James. TODO Needs perfecting!!!
 	public static final int ELEVATOR_VELOCITY = 9000;
-	public static final int ELEVATOR_ACCELERATION = 20000;
+	public static final int ELEVATOR_ACCELERATION = 12000;
 	public static final double ELEVATOR_TARGET_TOLERANCE = 100; //In ticks
 	public static final double ELEVATOR_TOLERANCE_TIME = 5; //execute loops
 	public static final double ELEVATOR_HIT_TOLERANCE = 5; //amps, needs changing
 	public static final double ELEVATOR_VELOCITY_THRESHOLD = 30; //Velocity Threshold (Not tested, arbitrary)
 	public static final int ELEVATOR_CURRENT_COUNT_THRESHOLD = 5; //Amount of count when the current is high (For Elevator)
 	public static final double ELEVATOR_CURRENT_THRESHOLD = 30; //Untested, Current when we know the elevator is stalling
+	public static final double ELEVATOR_HIT_BOTTOM_CURRENT = 0;
+	public static final double ELEVATOR_ZEROING_TOLERANCE = 3000;
+	public static final double ELEVATOR_SLIDER_SENSITIVITY = 500;
 	
 	//auto?
 	public static final double ROBOT_WIDTH = 25.75; // unit is inches
@@ -59,8 +62,9 @@ public class Constants {
 	public static final double DRIVE_F = 0.3069; // Calculated as per the Talon SRX Software Refrence Manual, Section: 12.4.2. Math is: 0.75 * 1023 / 2500
 	public static final int DRIVE_TICKS_PER_REVOLUTION = 5526; // we tested this, I wonder if it's actually correct! ::thinking::
 	// ScadLib variables
-	public static final double PATHING_F = 0.011069; // TESTED ON REAL ROBOT BY ADAM
-	public static final double PATHING_P = 0.03; // TESTED ON REAL ROBOT BY ADAM
+	public static final double PATHING_F = 0.011069; // TESTED ON REAL ROBOT BY ADAM (0.011069)
+	public static final double PATHING_P = 0.025; // TESTED ON REAL ROBOT BY ADAM (0.03)
+	public static final double PATHING_I = 0.00025;
 	
 	public static final double DDRIVE_JOYSTICK_DEADZONE = 0.1; //used for built in differential drive
 	//Auto Code
@@ -75,7 +79,9 @@ public class Constants {
 	public static final double AUTO_DISTANCE = 30; //Inches
 	public static final double WHEEL_RADIUS = 3; // inch
 	public static final double WHEEL_CIRCUMFERENCE = WHEEL_RADIUS*2*Math.PI;
-	public static final double TICKS_TO_INCHES = DRIVE_TICKS_PER_REVOLUTION / WHEEL_CIRCUMFERENCE;
+//	public static final double TICKS_TO_INCHES = DRIVE_TICKS_PER_REVOLUTION / WHEEL_CIRCUMFERENCE;
+	public static final double TICKS_TO_INCHES = 288; // Measured with 175 inch test, on practice robot by Adam
+	
 	
 	public static final double DRIVE_WANTED_INCHES_PER_SECOND = 48;
 	public static final double DRIVE_WANTED_ACCELERATION_INCHES_PER_SECOND_SQUARED = 80;

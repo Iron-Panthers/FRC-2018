@@ -16,8 +16,12 @@ public class PathFollower extends Command {
 	FastPathPlanner path;
 	double F;
 	double P;
+	double I;
 	long lastTime;
 	long startTime;
+	
+	double leftTotal;
+	double rightTotal;
 	
     public PathFollower(FastPathPlanner p) {
         // Use requires() here to declare subsystem dependencies
@@ -32,9 +36,12 @@ public class PathFollower extends Command {
     	Robot.drive.left.motor1.setSelectedSensorPosition(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
     	Robot.drive.right.motor1.setSelectedSensorPosition(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
     	index = 0;
+    	leftTotal = 0;
+    	rightTotal = 0;
     	startTime = System.currentTimeMillis();
     	F = SmartDashboard.getNumber("Path Planning F", Constants.PATHING_F);
     	P = SmartDashboard.getNumber("Path Planning P", Constants.PATHING_P);
+    	I = SmartDashboard.getNumber("Path Planning I", Constants.PATHING_I);
     	SmartDashboard.putNumber("Path total index count", path.smoothPath.length);
     }
 
@@ -54,6 +61,19 @@ public class PathFollower extends Command {
     	double rspeed = F * (path.smoothRightVelocity[index][1]);
     	double lp = P * leftPositionalError();
     	double rp = P * rightPositionalError();
+    	if (path.nodeOnlyPath[0][0] < 0) {
+    		// This means that the left and the right should be flipped. THIS IS A HACK! REMOVE ME! TODO
+    		lp = P * rightPositionalError();
+    		rp = P * leftPositionalError();
+    		leftTotal += rightPositionalError();
+        	rightTotal += leftPositionalError();
+     	} else {
+     		leftTotal += leftPositionalError();
+        	rightTotal += rightPositionalError();
+     	}
+    	
+    	double li = I * leftTotal;
+    	double ri = I * rightTotal;
     	if (index == 0) {
     		lp = rp = 0;
     	}
@@ -61,6 +81,8 @@ public class PathFollower extends Command {
     	// Don't ask
     	lspeed += lp;
     	rspeed += rp;
+    	lspeed += li;
+    	rspeed += ri;
     	
     	Robot.drive.setLeftSide(lspeed);
     	Robot.drive.setRightSide(rspeed);
@@ -86,10 +108,18 @@ public class PathFollower extends Command {
     	lastTime = System.currentTimeMillis();
     }
     private double leftPositionalError() {
-    	return (path.getLeftArclength()[index] - Robot.drive.getLeftEncoderPosition() / Constants.TICKS_TO_INCHES);
+    	double arc = path.getLeftArclength()[index];
+    	if (path.smoothCenterVelocity[index][1] < 0) {
+    		arc = -arc;
+    	}
+    	return (arc - Robot.drive.getLeftEncoderPosition() / Constants.TICKS_TO_INCHES);
     }
     private double rightPositionalError() {
-    	return (path.getRightArclength()[index] - Robot.drive.getRightEncoderPosition() / Constants.TICKS_TO_INCHES);
+    	double arc = path.getRightArclength()[index];
+    	if (path.smoothCenterVelocity[index][1] < 0) {
+    		arc = -arc;
+    	}
+    	return (arc - Robot.drive.getRightEncoderPosition() / Constants.TICKS_TO_INCHES);
     }
 
     // Make this return true when this Command no longer needs to run execute()
