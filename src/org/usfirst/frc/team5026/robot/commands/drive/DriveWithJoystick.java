@@ -25,9 +25,8 @@ public class DriveWithJoystick extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.oi.driveStick.seeAxis();
-    	Vector v = Robot.oi.driveStick.findXY();
 //    	Robot.drive.useArcadeDrive(Robot.oi.joystick.findY(),Robot.oi.joystick.findX());
-    	Vector leftRightPower = Robot.oi.driveStick.findLeftRightPower(v.getX(), v.getY());
+    	Vector leftRightPower = Robot.oi.driveStick.findLeftRightPower();
     	leftSpd = leftRightPower.getX();
     	SmartDashboard.putNumber("left motor set", leftSpd);
     	rightSpd = leftRightPower.getY();
