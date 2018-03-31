@@ -39,24 +39,23 @@ public class BetterJoystick {
 		SmartDashboard.putNumber("Raw Y", rawThrottle());
 	}
 
-	private Vector findXY() {		
-		int sign = 1;
+	private Vector findXY() {	
 		double throttle = rawThrottle();
 		if (throttle > 0) {
-			sign = -1;
 			throttle = deadzone(throttle, Constants.CIRCLE_DEADZONE);
 		} else {
 			throttle = -deadzone(-throttle, Constants.CIRCLE_DEADZONE);
 		}
 		
-		double turn = sign * rawTurn();
+		double turn = rawTurn();
+		SmartDashboard.putNumber("Raw Turn", turn); // Display raw turn, positive means to the right and negative is to the left
 		if (turn > 0) {
 			turn = deadzone(turn, Constants.CIRCLE_DEADZONE);
 		} else {
 			turn = -deadzone(-turn, Constants.CIRCLE_DEADZONE);
 		}
-		
-		Vector result = new Vector(turn, -turn);
+		SmartDashboard.putNumber("Deadzone Corrected Turn", turn); // Display corrected turn
+		Vector result = new Vector(-turn, turn); // Make a vector whose left/x value is negative of the turn and right/y value is positive
 		result.mult(throttle);
 		
 		if (reverseButton.get()) {
