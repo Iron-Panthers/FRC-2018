@@ -27,7 +27,7 @@ public class GoodJoystick {
 
 	public Vector findXY() {
 		// Reverses y if trigger is pressed
-		Vector v = (driveStickTrigger.get()) ? new Vector(driveStick.getX(), driveStick.getY()): new Vector(driveStick.getX(), -driveStick.getY());
+		Vector v = (driveStickTrigger.get()) ? new Vector(driveStick.getX(), -driveStick.getY()): new Vector(driveStick.getX(), driveStick.getY());
 		double magnitude = v.getMagnitude();
 		double scaledMagnitude = deadzone(magnitude, Constants.CIRCLE_DEADZONE);
 		v.norm();
