@@ -1,6 +1,5 @@
 package org.usfirst.frc.team5026.robot;
 
-import org.usfirst.frc.team5026.robot.commands.ReverseDrive;
 import org.usfirst.frc.team5026.robot.util.BetterJoystick;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -34,7 +33,7 @@ public class OI {
 	public OI(){
 		driveStick = new BetterJoystick(RobotMap.DRIVE_JOYSTICK);
 		elevatorStick = new Joystick(RobotMap.ELEVATOR_JOYSTICK);
-		stickBtnOne = new JoystickButton(driveStick.driveStick,1);
+//		stickBtnOne = new JoystickButton(driveStick.driveStick,1);
 		stickBtnTwo = new JoystickButton(driveStick.driveStick,2);
 		stickBtnThree = new JoystickButton(driveStick.driveStick,3);
 		stickBtnFour = new JoystickButton(driveStick.driveStick, 4);
@@ -53,9 +52,9 @@ public class OI {
 		boardBtnTwelve = new JoystickButton(elevatorStick, 12);
 
 	}
-	public void mapButtons(){
+	public void mapButtons(){/*
 		stickBtnOne.whenPressed(new ReverseDrive());
-		stickBtnOne.whenReleased(new ReverseDrive());
+		stickBtnOne.whenReleased(new ReverseDrive());*/
 ////		stickBtnTwo.whileHeld(new OuttakeCommand());
 //		stickBtnTwo.toggleWhenPressed(new DriveShift());
 //		stickBtnThree.whileHeld(new IntakeOuttakeCommand());

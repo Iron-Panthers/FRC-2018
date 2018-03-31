@@ -1,25 +1,29 @@
 package org.usfirst.frc.team5026.robot.util;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class BetterJoystick {
 
 	public Joystick driveStick;
-	public int arcadeButton = 1;
-	public int reverseButton = 2;
+	public Button arcadeButton;
+	public Button reverseButton;
 	
 	private GoodJoystick arcadeFallback;
 	
 	public BetterJoystick(int joystick){
 		this.driveStick = new Joystick(joystick);
 		arcadeFallback = new GoodJoystick(driveStick);
+		this.reverseButton = new JoystickButton(this.driveStick, 1);
+		this.arcadeButton = new JoystickButton(this.driveStick, 2);
 	}
 	
 	public BetterJoystick(int joystick, int arcadeButton, int reverseButton) {
 		this(joystick);
-		this.arcadeButton = arcadeButton;
-		this.reverseButton = reverseButton;
+		this.arcadeButton = new JoystickButton(this.driveStick, arcadeButton);
+		this.reverseButton = new JoystickButton(this.driveStick, reverseButton);
 	}
 	
 	private double rawTurn() {
@@ -55,7 +59,7 @@ public class BetterJoystick {
 		Vector result = new Vector(turn, -turn);
 		result.mult(throttle);
 		
-		if (driveStick.getRawButton(reverseButton)) {
+		if (reverseButton.get()) {
 			throttle *= -1;
 		}
 		
@@ -91,7 +95,7 @@ public class BetterJoystick {
 	 * @return vector with x = left motor power, y = right motor power
 	 */
 	public Vector findLeftRightPower() {
-		if (driveStick.getTrigger()) {
+		if (arcadeButton.get()) {
 			arcadeFallback.seeAxis();
 			Vector joy = arcadeFallback.findXY();
 			SmartDashboard.putNumber("go", joy.getY());

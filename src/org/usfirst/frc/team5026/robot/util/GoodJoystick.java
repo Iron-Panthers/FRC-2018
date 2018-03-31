@@ -25,8 +25,9 @@ public class GoodJoystick {
 	}
 	//Robot.drive.useArcadeDrive(Robot.oi.driveStick.getX()*Constants.X_AXIS_MODIFIER, Robot.oi.driveStick.getY());
 
-	public Vector findXY() {		
-		Vector v = new Vector(driveStick.getX(), -driveStick.getY());
+	public Vector findXY() {
+		// Reverses y if trigger is pressed
+		Vector v = (driveStickTrigger.get()) ? new Vector(driveStick.getX(), driveStick.getY()): new Vector(driveStick.getX(), -driveStick.getY());
 		double magnitude = v.getMagnitude();
 		double scaledMagnitude = deadzone(magnitude, Constants.CIRCLE_DEADZONE);
 		v.norm();
