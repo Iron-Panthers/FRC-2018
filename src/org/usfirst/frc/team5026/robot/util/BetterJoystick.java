@@ -37,9 +37,9 @@ public class BetterJoystick {
 
 	private Vector findXY() {		
 		int sign = 1;
-		double throttle = rawThrottle();
+		double throttle = -rawThrottle();
 		if (throttle > 0) {
-			sign = -1;
+			// sign = -1; //allows turn to be inverted while driving backwards
 			throttle = deadzone(throttle, Constants.CIRCLE_DEADZONE);
 		} else {
 			throttle = -deadzone(-throttle, Constants.CIRCLE_DEADZONE);
@@ -52,7 +52,7 @@ public class BetterJoystick {
 			turn = -deadzone(-turn, Constants.CIRCLE_DEADZONE);
 		}
 		
-		Vector result = new Vector(turn, -turn);
+		Vector result = new Vector(-turn, turn);
 		result.mult(throttle);
 		
 		if (driveStick.getRawButton(reverseButton)) {
@@ -91,10 +91,9 @@ public class BetterJoystick {
 	 * @return vector with x = left motor power, y = right motor power
 	 */
 	public Vector findLeftRightPower() {
-		if (driveStick.getTrigger()) {
+		if (driveStick.getRawButton(arcadeButton)) {
 			arcadeFallback.seeAxis();
 			Vector joy = arcadeFallback.findXY();
-			SmartDashboard.putNumber("go", joy.getY());
 			return arcadeFallback.findLeftRightPower(joy.getX(), joy.getY());
 		} else {
 			return this.findXY();
