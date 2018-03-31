@@ -31,7 +31,7 @@ public class BetterJoystick {
 	}
 	
 	private double rawThrottle() {
-		return driveStick.getZ();
+		return -driveStick.getZ();
 	}
 	
 	public void seeAxis() {
