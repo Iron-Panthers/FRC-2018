@@ -25,7 +25,7 @@ public class Constants {
 	
 	//Elevator
 	public static final boolean IS_ELEVATOR_INVERTED = false;
-	public static final boolean IS_ELEVATOR_SENSOR_INVERTED = false;
+	public static final boolean IS_ELEVATOR_SENSOR_INVERTED = true;
 	public static final double ELEVATOR_P = 0.8;
 	public static final double ELEVATOR_I = 0.002;
 	public static final double ELEVATOR_D = 0;
