@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5026.robot;
 
-import org.usfirst.frc.team5026.robot.commands.FindTimeCommand;
+import org.usfirst.frc.team5026.robot.commands.ReplayPowers;
+import org.usfirst.frc.team5026.robot.commands.WritePowers;
 import org.usfirst.frc.team5026.robot.util.BetterJoystick;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -54,6 +55,9 @@ public class OI {
 
 	}
 	public void mapButtons(){
+		stickBtnFour.whileHeld(new WritePowers());
+		stickBtnFive.whenPressed(new ReplayPowers());
+		
 ////		stickBtnTwo.whileHeld(new OuttakeCommand());
 //		stickBtnTwo.toggleWhenPressed(new DriveShift());
 //		stickBtnThree.whileHeld(new IntakeOuttakeCommand());

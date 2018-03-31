@@ -63,6 +63,10 @@ public class Robot extends IterativeRobot {
 //		SmartDashboard.putNumber("Elevator A Term", Constants.ELEVATOR_ACCELERATION); // TODO to remove later
 //		SmartDashboard.putNumber("Elevator Reset Value", 0); // TODO to remove later
 //		SmartDashboard.putNumber("Elevator Target", 1000); // TODO to remove later
+		
+		SmartDashboard.putString("CSV Read Path", "/home/lvuser/test1.csv");
+		SmartDashboard.putString("CSV Write Path", "/home/lvuser/test1.csv");
+		
 		oi.mapButtons();
 //		autoChooser.addDefault("My Auto", new DriveStraight());
 //		autoChooser.addObject("Center to Left Path", new PathFollower(AutoPaths.getLeftPath()));
