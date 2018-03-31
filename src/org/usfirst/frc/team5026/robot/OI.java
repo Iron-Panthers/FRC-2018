@@ -56,7 +56,8 @@ public class OI {
 	}
 	public void mapButtons(){
 		stickBtnFour.whileHeld(new WritePowers());
-		stickBtnFive.whenPressed(new ReplayPowers());
+		stickBtnFive.whenPressed(new ReplayPowers(false));
+		stickBtnThree.whenPressed(new ReplayPowers(true));
 		
 ////		stickBtnTwo.whileHeld(new OuttakeCommand());
 //		stickBtnTwo.toggleWhenPressed(new DriveShift());
