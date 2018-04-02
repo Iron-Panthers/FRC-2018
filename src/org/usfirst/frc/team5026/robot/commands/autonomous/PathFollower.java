@@ -67,20 +67,19 @@ public class PathFollower extends Command {
     	double rspeed = F * (path.smoothRightVelocity[index][1]);
     	double lp = P * leftPositionalError();
     	double rp = P * rightPositionalError();
-    	double ld = D * leftPositionalError() - lastLeftError;
-    	double rd = D * rightPositionalError() - lastRightError;
+    	double ld = D * (leftPositionalError() - lastLeftError);
+    	double rd = D * (rightPositionalError() - lastRightError);
     	if (path.nodeOnlyPath[0][0] < 0) {
     		// This means that the left and the right should be flipped. THIS IS A HACK! REMOVE ME! TODO
     		lp = P * rightPositionalError();
     		rp = P * leftPositionalError();
-    		ld = D * rightPositionalError() - lastRightError;
-    		rd = D * leftPositionalError() - lastLeftError;
+    		ld = D * (rightPositionalError() - lastRightError);
+    		rd = D * (leftPositionalError() - lastLeftError);
     		leftTotal += rightPositionalError();
         	rightTotal += leftPositionalError();
      	} else {
      		leftTotal += leftPositionalError();
         	rightTotal += rightPositionalError();
-        	
      	}
     	
     	double li = I * leftTotal;
