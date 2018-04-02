@@ -17,11 +17,14 @@ public class PathFollower extends Command {
 	double F;
 	double P;
 	double I;
+	double D;
 	long lastTime;
 	long startTime;
 	
 	double leftTotal;
 	double rightTotal;
+	double lastLeftError;
+	double lastRightError;
 	
     public PathFollower(FastPathPlanner p) {
         // Use requires() here to declare subsystem dependencies
@@ -39,9 +42,12 @@ public class PathFollower extends Command {
     	leftTotal = 0;
     	rightTotal = 0;
     	startTime = System.currentTimeMillis();
+    	lastLeftError = 0;
+    	lastRightError = 0;
     	F = SmartDashboard.getNumber("Path Planning F", Constants.PATHING_F);
     	P = SmartDashboard.getNumber("Path Planning P", Constants.PATHING_P);
     	I = SmartDashboard.getNumber("Path Planning I", Constants.PATHING_I);
+    	D = SmartDashboard.getNumber("Path Planning D", Constants.PATHING_D);
     	SmartDashboard.putNumber("Path total index count", path.smoothPath.length);
     }
 
@@ -61,15 +67,23 @@ public class PathFollower extends Command {
     	double rspeed = F * (path.smoothRightVelocity[index][1]);
     	double lp = P * leftPositionalError();
     	double rp = P * rightPositionalError();
+    	double ld = D * leftPositionalError() - lastLeftError;
+    	double rd = D * rightPositionalError() - lastRightError;
     	if (path.nodeOnlyPath[0][0] < 0) {
     		// This means that the left and the right should be flipped. THIS IS A HACK! REMOVE ME! TODO
     		lp = P * rightPositionalError();
     		rp = P * leftPositionalError();
+    		ld = D * rightPositionalError() - lastLeftError;
+    		rd = D * leftPositionalError() - lastRightError;
+    		lastLeftError = rightPositionalError();
+    		lastRightError = leftPositionalError();
     		leftTotal += rightPositionalError();
         	rightTotal += leftPositionalError();
      	} else {
      		leftTotal += leftPositionalError();
         	rightTotal += rightPositionalError();
+        	lastLeftError = leftPositionalError();
+        	lastRightError = rightPositionalError();
      	}
     	
     	double li = I * leftTotal;
@@ -79,10 +93,8 @@ public class PathFollower extends Command {
     	}
     	
     	// Don't ask
-    	lspeed += lp;
-    	rspeed += rp;
-    	lspeed += li;
-    	rspeed += ri;
+    	lspeed += lp + li + ld;
+    	rspeed += rp + ri + rd;
     	
     	Robot.drive.setLeftSide(lspeed);
     	Robot.drive.setRightSide(rspeed);
