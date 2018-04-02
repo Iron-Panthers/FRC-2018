@@ -919,32 +919,43 @@ public class AutoPaths {
 				{222.36164383561646, 286.61195054945057},
 				{255.20547945205482, 279.03434065934067},
 				{272.0712328767124, 272.79395604395603},
-				{289.8246575342466, 260.3131868131868},
+				{284.9424657534247, 264.3248626373626},
 			};
 			
 			double[][] leftScaleBackup = new double[][]{
-				{289.8246575342466, 260.3131868131868},
-				{272.0712328767124, 272.79395604395603},
-				{259.64383561643837, 273.2396978021978},
-				{242.77808219178084, 275.91414835164835},
-				{229.46301369863016, 283.0460164835165},
-				{226.8, 294.6353021978022},
+				{284.9424657534247, 264.3248626373626},
+				{272.0712328767124, 272.3482142857143},
+				{258.75616438356167, 275.02266483516485},
+				{248.10410958904112, 278.5885989010989},
+				{236.56438356164387, 287.5034340659341},
+				{232.1260273972603, 295.5267857142857},
 			};
 			
 			double[][] leftScaleGrabCube = new double[][]{
-				{226.8, 294.6353021978022},
-				{229.46301369863016, 283.9375},
-				{225.0246575342466, 264.3248626373626},
-				{210.8219178082192, 242.92925824175825},
+				{225.0246575342466, 295.5267857142857},
+				{231.2383561643836, 285.72046703296706},
+				{233.9013698630137, 271.4567307692308},
+				{229.46301369863016, 259.86744505494505},
+				{227.68767123287674, 253.1813186813187},
+				{222.36164383561646, 246.04945054945054},
+			};
+			
+			double[][] leftScaleReturnCube = new double[][]{
+				{305.8027397260274, 265.21634615384613},
+				{278.2849315068493, 272.3482142857143},
+				{263.1945205479452, 279.4800824175824},
+				{249.87945205479454, 283.0460164835165},
+				{239.227397260274, 288.3949175824176},
+				{232.1260273972603, 295.5267857142857},
 			};
 			
 			FastPathPlanner first = new FastPathPlanner(leftScaleStartNew);
 			FastPathPlanner second = new FastPathPlanner(leftScaleBackup);
 			FastPathPlanner third = new FastPathPlanner(leftScaleGrabCube);
 			FastPathPlanner fourth = new FastPathPlanner(leftScaleGrabCube);
-			FastPathPlanner fifth = new FastPathPlanner(leftScaleBackup);
+			FastPathPlanner fifth = new FastPathPlanner(leftScaleReturnCube);
 			
-			first.calculate(8, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+			first.calculate(6, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
 			second.calculate(3, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
 			third.calculate(2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
 			fourth.calculate(2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);

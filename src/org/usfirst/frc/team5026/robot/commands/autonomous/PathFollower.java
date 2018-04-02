@@ -73,17 +73,14 @@ public class PathFollower extends Command {
     		// This means that the left and the right should be flipped. THIS IS A HACK! REMOVE ME! TODO
     		lp = P * rightPositionalError();
     		rp = P * leftPositionalError();
-    		ld = D * rightPositionalError() - lastLeftError;
-    		rd = D * leftPositionalError() - lastRightError;
-    		lastLeftError = rightPositionalError();
-    		lastRightError = leftPositionalError();
+    		ld = D * rightPositionalError() - lastRightError;
+    		rd = D * leftPositionalError() - lastLeftError;
     		leftTotal += rightPositionalError();
         	rightTotal += leftPositionalError();
      	} else {
      		leftTotal += leftPositionalError();
         	rightTotal += rightPositionalError();
-        	lastLeftError = leftPositionalError();
-        	lastRightError = rightPositionalError();
+        	
      	}
     	
     	double li = I * leftTotal;
@@ -117,6 +114,10 @@ public class PathFollower extends Command {
     	SmartDashboard.putNumber("Right path y", path.rightPath[index][1]);
     	SmartDashboard.putNumber("Delta Time (ms)", System.currentTimeMillis() - lastTime);
     	SmartDashboard.putNumber("Overall time (ms)", System.currentTimeMillis() - startTime);
+    	
+    	lastLeftError = leftPositionalError();
+    	lastRightError = rightPositionalError();
+    	
     	lastTime = System.currentTimeMillis();
     }
     private double leftPositionalError() {

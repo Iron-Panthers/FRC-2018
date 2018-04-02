@@ -12,11 +12,13 @@ import org.usfirst.frc.team5026.robot.commands.autonomous.CenterToRightSwitch3Cu
 import org.usfirst.frc.team5026.robot.commands.autonomous.ChooseStartPosition;
 import org.usfirst.frc.team5026.robot.commands.autonomous.DriveStraight;
 import org.usfirst.frc.team5026.robot.commands.autonomous.LeftToLeftScale2Cube;
+import org.usfirst.frc.team5026.robot.commands.autonomous.PathFollower;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceCenterToSwitch1Cube;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceCenterToSwitch2Cube;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceCenterToSwitch3Cube;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceCenterToSwitch3Cube3;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceLeftToScale;
+import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceLeftToScaleSwitchSide;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceLeftToSwitchNoElevator;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceRightToScale;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceRightToSwitchNoElevator;
@@ -26,6 +28,7 @@ import org.usfirst.frc.team5026.robot.subsystems.ConveyorBelt;
 import org.usfirst.frc.team5026.robot.subsystems.Drive;
 import org.usfirst.frc.team5026.robot.subsystems.Elevator;
 import org.usfirst.frc.team5026.robot.subsystems.IntakeSubsystem;
+import org.usfirst.frc.team5026.robot.util.AutoPaths;
 import org.usfirst.frc.team5026.robot.util.Constants;
 import org.usfirst.frc.team5026.robot.util.StartPosition;
 
@@ -101,6 +104,7 @@ public class Robot extends IterativeRobot {
 		autoChooser.addObject("Center to Switch 3 Cube 3 Left", new CenterToLeftSwitch3Cube3());
 		autoChooser.addObject("Center to Switch 3 Cube 3 Right", new CenterToRightSwitch3Cube3());
 		autoChooser.addObject("Center to Switch 3 Cube 3", new SequenceCenterToSwitch3Cube3());
+		autoChooser.addObject("Left to Scale 1/1", new SequenceLeftToScaleSwitchSide());
 		autoChooser.addObject("Left to Switch No Elevator", new SequenceLeftToSwitchNoElevator());
 		autoChooser.addObject("Right to Switch No Elevator", new SequenceRightToSwitchNoElevator());
 		autoChooser.addObject("Left to Scale", new SequenceLeftToScale());
@@ -122,6 +126,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Path Planning F", Constants.PATHING_F);
 		SmartDashboard.putNumber("Path Planning P", Constants.PATHING_P);
 		SmartDashboard.putNumber("Path Planning I", Constants.PATHING_I);
+		SmartDashboard.putNumber("Path Planning D", Constants.PATHING_D);
 		SmartDashboard.putData("Auto mode", autoChooser);
 		SmartDashboard.putData("Starting Position", startPositionSelector);
 //		SmartDashboard.getNumber("Intake Speed", Constants.INTAKE_POWER);
