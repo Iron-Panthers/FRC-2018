@@ -19,7 +19,7 @@ public class LeftToLeftScale2Cube extends CommandGroup {
     public LeftToLeftScale2Cube() {
 //        addSequential(new AutoScale(AutoPaths.getLeftStartingLeftScale2Cube()[0]));
     	addParallel(new HoldBlock());
-    	addParallel(new WaitExtendToScale(0.5,3));
+    	addParallel(new WaitExtendToScale(0.1,3));
         addSequential(new PathFollower(AutoPaths.getLeftStartingLeftScale2Cube()[0]));
         addParallel(new ElevatorToScale());
         addParallel(new OuttakeForTime(1));

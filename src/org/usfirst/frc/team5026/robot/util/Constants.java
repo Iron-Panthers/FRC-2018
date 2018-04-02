@@ -58,7 +58,7 @@ public class Constants {
 	public static final int DRIVE_TICKS_PER_REVOLUTION = 5526; // we tested this, I wonder if it's actually correct! ::thinking::
 	// ScadLib variables
 	public static final double PATHING_F = 0.011069; // TESTED ON REAL ROBOT BY ADAM (0.011069)
-	public static final double PATHING_P = 0.05; // TESTED ON PRACTICE ROBOT BY ADAM (0.25) 4/2/18
+	public static final double PATHING_P = 0.025; // TESTED ON PRACTICE ROBOT BY ADAM (0.025) 4/2/18
 	public static final double PATHING_I = 0; // TESTED ON PRACTICE ROBOT BY ADAM (0.00025) 4/2/18
 	public static final double PATHING_D = 0.15; // TESTED ON PRACTICE ROBOT BY ADAM (0) 4/2/18
 	public static final double AUTO_RAMP_RATE = 0;
