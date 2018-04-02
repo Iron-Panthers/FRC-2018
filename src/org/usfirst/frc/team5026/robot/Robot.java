@@ -181,8 +181,8 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		Robot.elevator.motors.motor1.setSelectedSensorPosition(Robot.elevator.motors.motor1.getSelectedSensorPosition(Constants.kPIDLoopIdx), Constants.kPIDLoopIdx, Constants.kTimeoutMs);
 		Robot.elevator.motors.motor1.set(ControlMode.Disabled, 1);
-		hardware.rightM1.configOpenloopRamp(0, Constants.kTimeoutMs);
-		hardware.leftM1.configOpenloopRamp(0, Constants.kTimeoutMs);
+		hardware.rightM1.configOpenloopRamp(Constants.AUTO_RAMP_RATE, Constants.kTimeoutMs);
+		hardware.leftM1.configOpenloopRamp(Constants.AUTO_RAMP_RATE, Constants.kTimeoutMs);
 		drive.setupBrakeMode();
 		
 		autoCommand = autoChooser.getSelected();
@@ -217,8 +217,10 @@ public class Robot extends IterativeRobot {
 	public void teleopInit() {
 		Robot.elevator.motors.motor1.set(ControlMode.MotionMagic, Robot.elevator.motors.motor1.getSelectedSensorPosition(Constants.kPIDLoopIdx));
 		Robot.elevator.motors.motor1.set(ControlMode.Disabled, 1);
-		hardware.rightM1.configOpenloopRamp(Constants.DRIVE_RAMP_RATE, Constants.kTimeoutMs);
-		hardware.leftM1.configOpenloopRamp(Constants.DRIVE_RAMP_RATE, Constants.kTimeoutMs);
+//		hardware.rightM1.configOpenloopRamp(Constants.DRIVE_RAMP_RATE, Constants.kTimeoutMs);
+//		hardware.leftM1.configOpenloopRamp(Constants.DRIVE_RAMP_RATE, Constants.kTimeoutMs);
+		hardware.rightM1.configOpenloopRamp(0, Constants.kTimeoutMs);
+		hardware.leftM1.configOpenloopRamp(0, Constants.kTimeoutMs);
 		drive.setupBrakeMode();
 
 		// This makes sure that the autonomous stops running when
