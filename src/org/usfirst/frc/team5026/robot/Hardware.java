@@ -60,8 +60,8 @@ public class Hardware {
 		left = new DriveMotorGroup(leftM1, leftM2, leftM3);
 //		rightM1.configOpenloopRamp(Constants.RIGHTM_RAMP_RATE, Constants.kTimeoutMs);
 //		leftM1.configOpenloopRamp(Constants.LEFTM_RAMP_RATE, Constants.kTimeoutMs);
-		leftTalonSR = new Talon(RobotMap.TALON_SR_DRIVE_LEFT_MOTOR);
-		leftTalonSR.setInverted(true);
+//		leftTalonSR = new Talon(RobotMap.TALON_SR_DRIVE_LEFT_MOTOR);
+//		leftTalonSR.setInverted(true);
 		climbMotor1 = new Spark(0);
 		climbMotor2 = new Spark(1);
 		rightTalonSR = new Talon(RobotMap.TALON_SR_DRIVE_RIGHT_MOTOR);
