@@ -22,6 +22,8 @@ import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceLeft
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceLeftToSwitchNoElevator;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceRightToScale;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceRightToSwitchNoElevator;
+import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceLeftToScale2Cube;
+
 import org.usfirst.frc.team5026.robot.commands.drive.DriveRunLeft;
 import org.usfirst.frc.team5026.robot.commands.drive.DriveRunRight;
 import org.usfirst.frc.team5026.robot.subsystems.Climb;
@@ -115,7 +117,7 @@ public class Robot extends IterativeRobot {
 		autoChooser.addObject("Right to Switch No Elevator", new SequenceRightToSwitchNoElevator());
 		autoChooser.addObject("Left to Scale", new SequenceLeftToScale());
 		autoChooser.addObject("Right to Scale", new SequenceRightToScale());
-		autoChooser.addObject("Left to Scale 2 Cube (NEEDS SEQUENCE)", new LeftToLeftScale2Cube());
+		autoChooser.addObject("Left to Scale 2 Cube", new SequenceLeftToScale2Cube());
 		autoChooser.addObject("Drive Turn for Left", new DriveRunLeft(-0.7, 0.5));
 		autoChooser.addObject("Drive Turn for Right", new DriveRunRight(-0.7, 0.5));
 //		autoChooser.addObject("Left to Scale (Prioritizes Switch)", new SequenceLeftToScaleSwitchSide());
