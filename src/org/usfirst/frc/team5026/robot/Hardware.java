@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj.DigitalInput;
 //import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.Talon;
 
 public class Hardware {
 	public TalonSRX elevatorMotor;
@@ -25,6 +27,10 @@ public class Hardware {
 	public TalonSRX leftM1;
 	public TalonSRX leftM2;
 	public TalonSRX leftM3;
+	public Talon leftTalonSR;
+	public Talon rightTalonSR;
+	public Spark climbMotor1;
+	public Spark climbMotor2;
 	public DriveMotorGroup right;
 	public DriveMotorGroup left;
 	public DoubleSolenoid gearShift;
@@ -52,6 +58,13 @@ public class Hardware {
 		leftM3 = new TalonSRX(RobotMap.DRIVE_LEFT_MOTOR_3);
 		right = new DriveMotorGroup(rightM1, rightM2, rightM3);
 		left = new DriveMotorGroup(leftM1, leftM2, leftM3);
+//		rightM1.configOpenloopRamp(Constants.RIGHTM_RAMP_RATE, Constants.kTimeoutMs);
+//		leftM1.configOpenloopRamp(Constants.LEFTM_RAMP_RATE, Constants.kTimeoutMs);
+//		leftTalonSR = new Talon(RobotMap.TALON_SR_DRIVE_LEFT_MOTOR);
+//		leftTalonSR.setInverted(true);
+		climbMotor1 = new Spark(0);
+		climbMotor2 = new Spark(1);
+		rightTalonSR = new Talon(RobotMap.TALON_SR_DRIVE_RIGHT_MOTOR);
 		right.setInverted(Constants.IS_RIGHT_INVERTED);
 		left.setInverted(Constants.IS_LEFT_INVERTED);
 		left.setSensorInverted(Constants.IS_LEFT_SENSOR_INVERTED);

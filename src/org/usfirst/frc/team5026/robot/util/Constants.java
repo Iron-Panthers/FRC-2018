@@ -23,6 +23,11 @@ public class Constants {
 	public static final double CONVEYOR_SPEED = 1; 
 	public static final boolean IS_COVEYOR_INVERTED = true; 
 	
+	//Climb
+	public static final double CLIMB_SPEED = 0.5;
+	public static final boolean IS_LEFTCLIMB_INVERTED = false; 
+	public static final boolean IS_RIGHTCLIMB_INVERTED = false; 
+	
 	//Elevator
 	public static final boolean IS_ELEVATOR_INVERTED = false;
 	public static final boolean IS_ELEVATOR_SENSOR_INVERTED = true;

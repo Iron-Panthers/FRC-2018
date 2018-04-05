@@ -24,6 +24,8 @@ import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceRigh
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceRightToSwitchNoElevator;
 import org.usfirst.frc.team5026.robot.commands.drive.DriveRunLeft;
 import org.usfirst.frc.team5026.robot.commands.drive.DriveRunRight;
+import org.usfirst.frc.team5026.robot.subsystems.Climb;
+import org.usfirst.frc.team5026.robot.commands.autonomous.PathFollower;
 import org.usfirst.frc.team5026.robot.subsystems.ConveyorBelt;
 import org.usfirst.frc.team5026.robot.subsystems.Drive;
 import org.usfirst.frc.team5026.robot.subsystems.Elevator;
@@ -56,6 +58,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static Hardware hardware;
 	public static Drive drive;
+	public static Climb climb;
 	public static ConveyorBelt conveyor;
 	public static IntakeSubsystem intake;
 	public static Elevator elevator;
@@ -75,6 +78,7 @@ public class Robot extends IterativeRobot {
 		hardware.leftM1.configOpenloopRamp(0, Constants.kTimeoutMs);
 		drive = new Drive(hardware.left, hardware.right, hardware.gearShift);
 //		drive = new Drive(hardware.leftTalonSR, hardware.rightTalonSR, hardware.gearShift);
+		climb = new Climb();
 		intake = new IntakeSubsystem();
 		elevator = new Elevator();
 		conveyor = new ConveyorBelt();

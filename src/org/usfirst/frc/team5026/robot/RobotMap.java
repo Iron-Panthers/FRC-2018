@@ -42,6 +42,8 @@ public class RobotMap {
 	public static final int CONVEYOR_BELT_MOTOR = 10;
 	public static final int BANNER_PORT = 0;
 	public static final int ELEVATOR_LIMIT_PORT = 2;
+	public static final int CLIMB_MOTOR_PORT_LEFT = 0;
+	public static final int CLIMB_MOTOR_PORT_RIGHT = 1;
 	//Camera
 	public static int CAMERA_PORT = 0; 
 	public static int CAMERA_PORT_2 = 1;
