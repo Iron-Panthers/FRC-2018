@@ -85,7 +85,7 @@ public class OI {
 //		stickBtnFour.whileHeld(new ElevatorToGround());
 		stickBtnSix.whileHeld(new ClimbUp());
 		stickBtnSeven.whileHeld(new ClimbDown());
-		stickBtnEight.whenPressed(new ClimbCommandGroup());
+//		stickBtnEight.whenPressed(new ClimbCommandGroup());
 		
 		boardBtnOne.whileHeld(new ElevatorSliding());
 		boardBtnTwo.whenPressed(new IntakeCommandGroup());
