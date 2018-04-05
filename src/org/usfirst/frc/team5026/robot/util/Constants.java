@@ -58,8 +58,10 @@ public class Constants {
 	public static final int DRIVE_TICKS_PER_REVOLUTION = 5526; // we tested this, I wonder if it's actually correct! ::thinking::
 	// ScadLib variables
 	public static final double PATHING_F = 0.011069; // TESTED ON REAL ROBOT BY ADAM (0.011069)
-	public static final double PATHING_P = 0.025; // TESTED ON REAL ROBOT BY ADAM (0.03)
-	public static final double PATHING_I = 0.00025;
+	public static final double PATHING_P = 0.025; // TESTED ON PRACTICE ROBOT BY ADAM (0.025) 4/2/18
+	public static final double PATHING_I = 0; // TESTED ON PRACTICE ROBOT BY ADAM (0.00025) 4/2/18
+	public static final double PATHING_D = 0.15; // TESTED ON PRACTICE ROBOT BY ADAM (0) 4/2/18
+	public static final double AUTO_RAMP_RATE = 0;
 	
 	public static final double DDRIVE_JOYSTICK_DEADZONE = 0.1; //used for built in differential drive
 	//Auto Code
@@ -88,6 +90,7 @@ public class Constants {
 	}
 	public static final int DRIVE_VELOCITY = MOTION_MAGIC_VELOCITY(DRIVE_WANTED_INCHES_PER_SECOND); // Units of encoder ticks per 100 ms 
 	public static final int DRIVE_ACCELERATION = MOTION_MAGIC_ACCELERATION(DRIVE_WANTED_ACCELERATION_INCHES_PER_SECOND_SQUARED); // Units of encoder ticks per 100 ms per second
+	public static final double DRIVE_RAMP_RATE = 0; //seconds from 0 to max speed
 	//Camera stuff
 	public static int CAMERA_PIXEL_HEIGHT = 1920; 
 	public static int CAMERA_PIXEL_WIDTH = 1080;
