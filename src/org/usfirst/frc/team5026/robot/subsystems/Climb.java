@@ -3,15 +3,15 @@ package org.usfirst.frc.team5026.robot.subsystems;
 import org.usfirst.frc.team5026.robot.Robot;
 import org.usfirst.frc.team5026.robot.util.Constants;
 
-import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *
  */
 public class Climb extends Subsystem {
-	public Spark leftClimber;
-	public Spark rightClimber;
+	public Talon leftClimber;
+	public Talon rightClimber;
 	public Climb() {
 		leftClimber = Robot.hardware.climbMotor1;
 		rightClimber = Robot.hardware.climbMotor2;
