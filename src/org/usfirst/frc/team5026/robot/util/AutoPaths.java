@@ -648,12 +648,12 @@ public class AutoPaths {
 	public static FastPathPlanner[] getRightSwitch2Cube() {
 		if (CENTER_RIGHT_SWITCH_2_CUBE == null) {
 			double[][] returnCube = new double[][]{
-				{125.16164383561645, 97.61744505494505},
-				{116.28493150684933, 97.61744505494505},
-				{101.19452054794522, 104.74931318681318},
+				{67.01917808219179, 123.02472527472527},
+				{72.34520547945206, 124.8076923076923},
 				{88.4629213483146, 118.3770894788594},
-				{75.72134831460673, 125.3967551622419},
-				{67.71235955056179, 125.71583087512292},
+				{101.19452054794522, 104.74931318681318},
+				{116.28493150684933, 97.61744505494505},
+				{125.16164383561645, 97.61744505494505},
 			};
 			FastPathPlanner fpp = getRightPath();
 			FastPathPlanner stage2 = new FastPathPlanner(CENTER_RIGHT_TURNBACK); // This path should have left and right inverted and negative!
@@ -669,7 +669,6 @@ public class AutoPaths {
 			reverseAndFlipPath(stage2);
 			flipPath(grabCube);
 			reverseAndFlipPath(goBackFromCube);
-			flipPath(goBack);
 			
 			CENTER_RIGHT_SWITCH_2_CUBE = new FastPathPlanner[]{
 					fpp, stage2, grabCube, goBackFromCube, goBack
