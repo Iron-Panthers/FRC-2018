@@ -35,8 +35,8 @@ public class RobotMap {
 	
 	public static final int ELEVATOR_SOLENOID_PORT_1 = 3;
 	public static final int ELEVATOR_SOLENOID_PORT_2 = 2;
-	public static final int ELEVATOR_MASTER = 8;
-	public static final int ELEVATOR_SLAVE = 7;
+	public static final int ELEVATOR_MASTER = 7;
+	public static final int ELEVATOR_SLAVE = 8;
 	public static final int SHIFT_FORWARD = 0;
 	public static final int SHIFT_REVERSE = 1;
 	public static final int CONVEYOR_BELT_MOTOR = 10;

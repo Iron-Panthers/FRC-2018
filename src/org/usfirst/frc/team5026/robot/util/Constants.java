@@ -39,7 +39,7 @@ public class Constants {
 	public static final int ELEVATOR_SHORT_CUBE_TARGET = 2000; //Needs to be tested (This is supposed to lift cube enough so it does not drag on ground)
 	public static final int ELEVATOR_EXCHANGE_TARGET = 3000; //Arbitrary, Needs Testing
 	public static final int ELEVATOR_SWITCH_TARGET = 38000; //Tested by Adam and Driveteam
-	public static final int ELEVATOR_SCALE_TARGET = 85000; //See above
+	public static final int ELEVATOR_SCALE_TARGET = 88888; //See above
 	public static final int ELEVATOR_TOP_TARGET = 89000; //Tested by James. TODO Needs perfecting!!!
 	public static final int ELEVATOR_VELOCITY = 9000;
 	public static final int ELEVATOR_ACCELERATION = 12000;
