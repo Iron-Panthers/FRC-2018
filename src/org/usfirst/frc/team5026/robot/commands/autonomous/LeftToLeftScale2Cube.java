@@ -19,10 +19,10 @@ public class LeftToLeftScale2Cube extends CommandGroup {
     public LeftToLeftScale2Cube() {
 //        addSequential(new AutoScale(AutoPaths.getLeftStartingLeftScale2Cube()[0]));
     	addParallel(new HoldBlock());
-    	addParallel(new WaitExtendToScale(0.1,3));
+    	addParallel(new WaitExtendToScale(0.1,2.5));
         addSequential(new PathFollower(AutoPaths.getLeftStartingLeftScale2Cube()[0]));
         addParallel(new ElevatorToScale());
-        addParallel(new OuttakeForTime(1));
+        addParallel(new OuttakeForTime(0.5));
         
         addParallel(new WaitElevatorToTarget(0.25,0));
         addSequential(new PathFollower(AutoPaths.getLeftStartingLeftScale2Cube()[1]));
@@ -32,6 +32,6 @@ public class LeftToLeftScale2Cube extends CommandGroup {
         addParallel(new ElevatorToScale());
         addSequential(new PathFollower(AutoPaths.getLeftStartingLeftScale2Cube()[3]));
         addSequential(new PathFollower(AutoPaths.getLeftStartingLeftScale2Cube()[4]));
-        addSequential(new OuttakeForTime(1));
+        addSequential(new OuttakeForTime(0.5));
     }
 }
