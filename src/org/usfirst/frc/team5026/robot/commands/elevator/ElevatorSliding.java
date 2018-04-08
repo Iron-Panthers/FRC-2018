@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5026.robot.commands.elevator;
 
 import org.usfirst.frc.team5026.robot.Robot;
+import org.usfirst.frc.team5026.robot.util.ElevatorDirection;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -23,8 +24,21 @@ public class ElevatorSliding extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
+		double speed = -Robot.oi.elevatorStick.getY();
 		//      Robot.elevator.checkPosition();
-		Robot.elevator.motors.driveWithPower(-Robot.oi.elevatorStick.getY());
+		if (Robot.elevator.getElevatorDirection() == ElevatorDirection.BACKWARDS) {
+			// Elevator going down
+			if (Robot.elevator.motors.getEncoderTicks() < 7000) { // 5000
+				speed /= 2.5;
+			}
+		}
+		if (Robot.elevator.getElevatorDirection() == ElevatorDirection.FORWARDS) {
+			// Elevator going up
+			if (Robot.elevator.motors.getEncoderTicks() > 82000) {
+				speed /= 2.5;
+			}
+		}
+		Robot.elevator.motors.driveWithPower(speed);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
