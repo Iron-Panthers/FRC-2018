@@ -32,6 +32,6 @@ public class LeftToLeftScale2Cube extends CommandGroup {
         addParallel(new ElevatorToScale());
         addSequential(new PathFollower(AutoPaths.getLeftStartingLeftScale2Cube()[3]));
         addSequential(new PathFollower(AutoPaths.getLeftStartingLeftScale2Cube()[4]));
-        addSequential(new OuttakeForTime(0.5));
+//        addSequential(new OuttakeForTime(0.5)); // Remove Outtaking to keep the cube (hopefully) for the start of teleop
     }
 }
