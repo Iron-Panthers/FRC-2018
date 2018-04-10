@@ -80,11 +80,11 @@ public class OI {
 //		stickBtnTwo.whileHeld(new OuttakeCommand());
 		stickBtnTwo.toggleWhenPressed(new DriveShift());
 		stickBtnThree.whileHeld(new IntakeOuttakeCommand());
-		stickBtnFive.whenPressed(new ElevatorZero());
+//		stickBtnFive.whenPressed(new ElevatorZero());
 //		stickBtnThree.whileHeld(new ElevatorToScale());
 //		stickBtnFour.whileHeld(new ElevatorToGround());
 		stickBtnSix.whileHeld(new ClimbUp());
-		stickBtnSeven.whileHeld(new ClimbDown());
+		stickBtnFour.whileHeld(new ClimbDown());
 //		stickBtnEight.whenPressed(new ClimbCommandGroup());
 		
 		boardBtnOne.whileHeld(new ElevatorSliding());
