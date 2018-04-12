@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5026.robot;
 
+import org.usfirst.frc.team5026.robot.commands.FollowPath;
 import org.usfirst.frc.team5026.robot.commands.ReplayPowers;
 import org.usfirst.frc.team5026.robot.commands.WritePowers;
 import org.usfirst.frc.team5026.robot.util.BetterJoystick;
@@ -20,6 +21,7 @@ public class OI {
 	public Button stickBtnThree;
 	public Button stickBtnFour;
 	public Button stickBtnFive;
+	public Button stickBtnSix;
 	public Button boardBtnOne;
 	public Button boardBtnTwo;
 	public Button boardBtnThree;
@@ -40,6 +42,7 @@ public class OI {
 		stickBtnThree = new JoystickButton(driveStick.driveStick,3);
 		stickBtnFour = new JoystickButton(driveStick.driveStick, 4);
 		stickBtnFive = new JoystickButton(driveStick.driveStick, 5);
+		stickBtnSix = new JoystickButton(driveStick.driveStick, 6);
 		boardBtnOne = new JoystickButton(elevatorStick, 1);
 		boardBtnTwo = new JoystickButton(elevatorStick, 2);
 		boardBtnThree = new JoystickButton(elevatorStick, 3);
@@ -58,7 +61,7 @@ public class OI {
 		stickBtnFour.whileHeld(new WritePowers());
 		stickBtnFive.whenPressed(new ReplayPowers(false));
 		stickBtnThree.whenPressed(new ReplayPowers(true));
-		
+		stickBtnSix.whenPressed(new FollowPath());
 ////		stickBtnTwo.whileHeld(new OuttakeCommand());
 //		stickBtnTwo.toggleWhenPressed(new DriveShift());
 //		stickBtnThree.whileHeld(new IntakeOuttakeCommand());

@@ -9,6 +9,7 @@ package org.usfirst.frc.team5026.robot;
 
 import org.usfirst.frc.team5026.robot.subsystems.Drive;
 
+import badlib.Path;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -151,7 +152,7 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		if (autoCommand != null) {
 			autoCommand.cancel();
-		}
+		}				
 	}
 
 	/**
