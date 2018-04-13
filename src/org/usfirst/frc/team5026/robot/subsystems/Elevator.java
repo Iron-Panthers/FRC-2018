@@ -13,11 +13,18 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
+
+
 public class Elevator extends Subsystem {
 	public ElevatorMotorGroup motors;
 	public DoubleSolenoid solenoid;
 	public double lastVelocity;
 	public DigitalInput elevatorLimit;
+	public ElevatorToggle toggle = ElevatorToggle.SWITCH;
+	public enum ElevatorToggle {
+		SWITCH, EXCHANGE
+	};
+	
 	public Elevator() {
 		motors = Robot.hardware.elevatorMotors;
 		solenoid = Robot.hardware.elevatorSolenoid;
@@ -29,6 +36,14 @@ public class Elevator extends Subsystem {
 	}
 	public void retractPistons() {
 		solenoid.set(DoubleSolenoid.Value.kReverse);
+	}
+	public void toggle() {
+		// Toggles the desired intake position after picking up a cube
+		if (toggle == ElevatorToggle.SWITCH) {
+			toggle = ElevatorToggle.EXCHANGE;
+		} else {
+			toggle = ElevatorToggle.SWITCH;
+		}
 	}
 	public void raiseToTarget(double tickTarget) {
 		SmartDashboard.putBoolean("Elevator Closed?", !elevatorLimit.get());
@@ -48,6 +63,9 @@ public class Elevator extends Subsystem {
 	}
 	public void raiseToTallCube() {
 		raiseToTarget(Constants.ELEVATOR_TALL_CUBE_TARGET);
+	}
+	public void raiseToExchange() {
+		raiseToTarget(Constants.ELEVATOR_EXCHANGE_TARGET);
 	}
 	public void stop() {
 		motors.stop();
