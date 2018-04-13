@@ -1,18 +1,17 @@
- package org.usfirst.frc.team5026.robot;
+package org.usfirst.frc.team5026.robot;
 
-import com.ctre.phoenix.motorcontrol.NeutralMode;
 import org.usfirst.frc.team5026.robot.util.Constants;
 import org.usfirst.frc.team5026.robot.util.DriveMotorGroup;
 import org.usfirst.frc.team5026.robot.util.ElevatorMotorGroup;
 
-import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
-import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 //import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.Talon;
 
 public class Hardware {
@@ -28,11 +27,14 @@ public class Hardware {
 	public TalonSRX leftM1;
 	public TalonSRX leftM2;
 	public TalonSRX leftM3;
+	public Talon climbMotor1;
+	public Talon climbMotor2;
 	public DriveMotorGroup right;
 	public DriveMotorGroup left;
 	public DoubleSolenoid gearShift;
 	public PowerDistributionPanel pdp;
 	public DigitalInput banner;
+	public DigitalInput elevatorLimit;
 	
 	public Hardware() {
 		elevatorMotor = new TalonSRX(RobotMap.ELEVATOR_MASTER);
@@ -54,6 +56,8 @@ public class Hardware {
 		leftM3 = new TalonSRX(RobotMap.DRIVE_LEFT_MOTOR_3);
 		right = new DriveMotorGroup(rightM1, rightM2, rightM3);
 		left = new DriveMotorGroup(leftM1, leftM2, leftM3);
+		climbMotor1 = new Talon(RobotMap.CLIMB_MOTOR_PORT_LEFT);
+		climbMotor2 = new Talon(RobotMap.CLIMB_MOTOR_PORT_RIGHT);
 		right.setInverted(Constants.IS_RIGHT_INVERTED);
 		left.setInverted(Constants.IS_LEFT_INVERTED);
 		left.setSensorInverted(Constants.IS_LEFT_SENSOR_INVERTED);
@@ -62,5 +66,6 @@ public class Hardware {
 		gearShift = new DoubleSolenoid(0, RobotMap.SHIFT_FORWARD, RobotMap.SHIFT_REVERSE);
 		pdp = new PowerDistributionPanel();
 		banner = new DigitalInput(RobotMap.BANNER_PORT);
+		elevatorLimit = new DigitalInput(RobotMap.ELEVATOR_LIMIT_PORT);
 	}
 }

@@ -1,5 +1,8 @@
 package org.usfirst.frc.team5026.robot;
 
+import org.usfirst.frc.team5026.robot.commands.climb.ClimbCommandGroup;
+import org.usfirst.frc.team5026.robot.commands.climb.ClimbDown;
+import org.usfirst.frc.team5026.robot.commands.climb.ClimbUp;
 import org.usfirst.frc.team5026.robot.commands.conveyorbelt.ConveyorBeltBackward;
 import org.usfirst.frc.team5026.robot.commands.conveyorbelt.ConveyorBeltForward;
 import org.usfirst.frc.team5026.robot.commands.drive.DriveShift;
@@ -31,6 +34,9 @@ public class OI {
 	public Button stickBtnThree;
 	public Button stickBtnFour;
 	public Button stickBtnFive;
+	public Button stickBtnSix;
+	public Button stickBtnSeven;
+	public Button stickBtnEight;
 	public Button boardBtnOne;
 	public Button boardBtnTwo;
 	public Button boardBtnThree;
@@ -51,6 +57,9 @@ public class OI {
 		stickBtnThree = new JoystickButton(driveStick.driveStick,3);
 		stickBtnFour = new JoystickButton(driveStick.driveStick, 4);
 		stickBtnFive = new JoystickButton(driveStick.driveStick, 5);
+		stickBtnSix = new JoystickButton(driveStick.driveStick, 6);
+		stickBtnSeven = new JoystickButton(driveStick.driveStick, 7);
+		stickBtnEight = new JoystickButton(driveStick.driveStick, 8);
 		boardBtnOne = new JoystickButton(elevatorStick, 1);
 		boardBtnTwo = new JoystickButton(elevatorStick, 2);
 		boardBtnThree = new JoystickButton(elevatorStick, 3);
@@ -71,9 +80,12 @@ public class OI {
 //		stickBtnTwo.whileHeld(new OuttakeCommand());
 		stickBtnTwo.toggleWhenPressed(new DriveShift());
 		stickBtnThree.whileHeld(new IntakeOuttakeCommand());
-		stickBtnFive.whenPressed(new ElevatorZero());
+//		stickBtnFive.whenPressed(new ElevatorZero());
 //		stickBtnThree.whileHeld(new ElevatorToScale());
 //		stickBtnFour.whileHeld(new ElevatorToGround());
+		stickBtnSix.whileHeld(new ClimbUp());
+		stickBtnFour.whileHeld(new ClimbDown());
+//		stickBtnEight.whenPressed(new ClimbCommandGroup());
 		
 		boardBtnOne.whileHeld(new ElevatorSliding());
 		boardBtnTwo.whenPressed(new IntakeCommandGroup());
@@ -94,30 +106,4 @@ public class OI {
 //		boardBtnSeven.whileHeld(new OuttakeCommand());
 		boardBtnTwelve.whenPressed(new ElevatorPistonToggle());
 	}
-	//// CREATING BUTTONS
-	// One type of button is a joystick button which is any button on a
-	//// joystick.
-	// You create one by telling it which joystick it's on and which button
-	// number it is.
-	// Joystick stick = new Joystick(port);
-	// Button button = new JoystickButton(stick, buttonNumber);
-// There are a few additional built in buttons you can use. Additionally,
-	// by subclassing Button you can create custom triggers and bind those to
-	// commands the same as any other Button.
-
-	//// TRIGGERING COMMANDS WITH BUTTONS
-	// Once you have a button, it's trivial to bind it to a button in one of
-	// three ways:
-
-	// Start the command when the button is pressed and let it run the command
-	// until it is finished as determined by it's isFinished method.
-	// button.whenPressed(new ExampleCommand());
-
-	// Run the command while the button is being held down and interrupt it once
-	// the button is released.
-	// button.whileHeld(new ExampleCommand());
-
-	// Start the command when the button is released and let it run the command
-	// until it is finished as determined by it's isFinished method.
-	// button.whenReleased(new ExampleCommand());
 }

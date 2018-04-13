@@ -71,6 +71,7 @@ public class ElevatorMotorGroup implements SpeedController {
 		}
 		
 	}
+
 	public void stop() {
 		motor1.set(ControlMode.PercentOutput, 0);
 	}

@@ -4,13 +4,15 @@ import org.usfirst.frc.team5026.robot.Robot;
 import org.usfirst.frc.team5026.robot.util.Constants;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class IntakeHoldBlock extends Command {
-
-    public IntakeHoldBlock() {
+public class HoldBlock extends Command {
+	double error;
+	int timeWithoutBlock;
+    public HoldBlock() {
     	requires(Robot.intake);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -18,6 +20,7 @@ public class IntakeHoldBlock extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	error = 0;
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -27,7 +30,6 @@ public class IntakeHoldBlock extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-//    	return false;
         return Robot.intake.hasBlock();
     }
 
@@ -38,6 +40,5 @@ public class IntakeHoldBlock extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	System.out.println("Interrupted");
     }
 }
