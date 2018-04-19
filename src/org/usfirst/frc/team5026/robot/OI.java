@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5026.robot;
 
 import org.usfirst.frc.team5026.robot.commands.climb.ClimbDown;
+import org.usfirst.frc.team5026.robot.commands.climb.ClimbForTime;
 import org.usfirst.frc.team5026.robot.commands.climb.ClimbUp;
 import org.usfirst.frc.team5026.robot.commands.conveyorbelt.ConveyorBeltBackward;
 import org.usfirst.frc.team5026.robot.commands.conveyorbelt.ConveyorBeltForward;
@@ -12,7 +13,6 @@ import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToScale;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToShortCube;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToSwitch;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToTallCube;
-import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToggle;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorZero;
 import org.usfirst.frc.team5026.robot.commands.intake.IntakeCommandGroup;
 import org.usfirst.frc.team5026.robot.commands.intake.IntakeOuttakeCommand;
@@ -80,7 +80,7 @@ public class OI {
 //		stickBtnTwo.whileHeld(new OuttakeCommand());
 		stickBtnTwo.toggleWhenPressed(new DriveShift());
 		stickBtnThree.whileHeld(new IntakeOuttakeCommand());
-		stickBtnFive.whenPressed(new ElevatorToggle());
+		stickBtnFive.whenPressed(new ClimbForTime(4.));
 //		stickBtnThree.whileHeld(new ElevatorToScale());
 //		stickBtnFour.whileHeld(new ElevatorToGround());
 		stickBtnSix.whileHeld(new ClimbUp());

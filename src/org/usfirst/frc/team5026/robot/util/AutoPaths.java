@@ -168,6 +168,8 @@ public class AutoPaths {
 	
 	// Switch Auto Modes
 	private static FastPathPlanner CENTER_LEFT;
+	private static FastPathPlanner CENTER_FAST_LEFT;
+	private static FastPathPlanner CENTER_FAST_RIGHT;
 	private static FastPathPlanner CENTER_RIGHT;
 	private static FastPathPlanner LEFT_LEFT;
 	private static FastPathPlanner RIGHT_RIGHT;
@@ -233,14 +235,50 @@ public class AutoPaths {
 		return CENTER_RIGHT;
 	}
 	
+	public static FastPathPlanner getLeftFastPath() {
+		if (CENTER_FAST_LEFT != null) {
+			return CENTER_FAST_LEFT;
+		}
+		double[][] centerLeft = new double[][]{
+			{18.625, 162.25},
+			{31.375, 162.25},
+			{51.375, 172.25},
+			{88.625, 219.8905},
+			{116.85842696629213, 219.8938706015891},
+		};
+		CENTER_FAST_LEFT = new FastPathPlanner(centerLeft);
+		CENTER_FAST_LEFT.calculate(3.2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+		CENTER_FAST_LEFT.getLeftArclength();
+		CENTER_FAST_LEFT.getRightArclength();
+		return CENTER_FAST_LEFT;
+	}
+	
+	public static FastPathPlanner getRightFastPath() {
+		if (CENTER_FAST_RIGHT != null) {
+			return CENTER_FAST_RIGHT;
+		}
+		double[][] centerRight = new double[][]{
+			{18.625, 162.25},
+			{31.375, 162.25},
+			{51.375, 152.25},
+			{88.625, 104.6095},
+			{112.85393258426966, 104.2377979568672},
+		};
+		CENTER_FAST_RIGHT = new FastPathPlanner(centerRight);
+		CENTER_FAST_RIGHT.calculate(3.2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+		CENTER_FAST_RIGHT.getLeftArclength();
+		CENTER_FAST_RIGHT.getRightArclength();
+		return CENTER_FAST_RIGHT;
+	}
+	
 	public static FastPathPlanner[] getLeftSwitch2Cube() {
 		if (CENTER_LEFT_SWITCH_2_CUBE == null) {
 			double[][] leftReturnCube = new double[][]{
-				{69.68219178082192, 199.24656593406593},
-				{82.99726027397261, 206.37843406593407},
-				{90.98630136986303, 209.0528846153846},
-				{114.06575342465754, 215.29326923076923},
-				{123.83013698630138, 215.29326923076923},
+				{67.34831460674157, 197.7939841089671},
+				{77.54157303370786, 198.8989784335982},
+				{100.11235955056179, 209.9489216799092},
+				{116.4943820224719, 216.9472190692395},
+				{127.05168539325842, 217.6838819523269},
 			};
 			FastPathPlanner fpp = getLeftPath();
 			FastPathPlanner stage2 = new FastPathPlanner(CENTER_LEFT_TURNBACK); // This path should have left and right inverted and negative!
@@ -647,19 +685,19 @@ public class AutoPaths {
 	
 	public static FastPathPlanner[] getRightSwitch2Cube() {
 		if (CENTER_RIGHT_SWITCH_2_CUBE == null) {
-			double[][] returnCube = new double[][]{
-				{67.01917808219179, 123.02472527472527},
+			double[][] rightReturnCube = new double[][]{
+				{66.2561797752809, 123.75936435868331},
 				{72.34520547945206, 124.8076923076923},
 				{88.4629213483146, 118.3770894788594},
-				{101.19452054794522, 104.74931318681318},
-				{116.28493150684933, 97.61744505494505},
-				{125.16164383561645, 97.61744505494505},
+				{100.11235955056179, 107.1844494892168},
+				{115.40224719101123, 102.3961407491487},
+				{126.68764044943819, 103.13280363223609},
 			};
 			FastPathPlanner fpp = getRightPath();
 			FastPathPlanner stage2 = new FastPathPlanner(CENTER_RIGHT_TURNBACK); // This path should have left and right inverted and negative!
 			FastPathPlanner grabCube = new FastPathPlanner(CENTER_RIGHT_GRAB);
 			FastPathPlanner goBackFromCube = new FastPathPlanner(CENTER_RIGHT_GRAB);
-			FastPathPlanner goBack = new FastPathPlanner(returnCube);
+			FastPathPlanner goBack = new FastPathPlanner(rightReturnCube);
 			
 			stage2.calculate(2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
 			grabCube.calculate(2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
@@ -926,22 +964,22 @@ public class AutoPaths {
 				{258.75616438356167, 275.02266483516485},
 				{239.227397260274, 281.26304945054943},
 				{229.46301369863016, 291.06936813186815},
-				{225.0246575342466, 301.7671703296703},
+				{226.07191011235955, 302.40011350737797},
 			};
 			
 			double[][] leftScaleGrabCube = new double[][]{
-				{225.46849315068496, 296.4182692307692},
+				{227.52808988764042, 294.2968217934166},
 				{229.9068493150685, 290.17788461538464},
 				{233.9013698630137, 271.4567307692308},
 				{233.45753424657536, 261.6504120879121},
-				{233.45753424657536, 249.16964285714286},
-				{231.68219178082194, 241.1462912087912},
+				{229.71235955056179, 248.25539160045403},
+				{223.15955056179774, 235.36379114642452},
 			};
 			
 			double[][] leftScaleReturnCube = new double[][]{
-				{219.6986301369863, 296.4182692307692},
-				{225.0246575342466, 290.17788461538464},
-				{244.9972602739726, 271.4567307692308},
+				{224.97977528089885, 292.8234960272418},
+				{231.1685393258427, 284.35187287173665},
+				{244.27415730337077, 272.19693530079456},
 				{260.08767123287674, 258.97596153846155},
 				{277.841095890411, 250.9526098901099},
 				{292.0438356164384, 250.06112637362637},
