@@ -875,6 +875,13 @@ public class AutoPaths {
 		return RIGHT_SCALE_LEFT_START_PATH;
 	}
 	
+	public static FastPathPlanner getLeftStartingRightScale2Cube() {
+		if (RIGHT_SCALE_LEFT_START_2_CUBE == null) {
+			
+		}
+		return RIGHT_SCALE_LEFT_START_2_CUBE;
+	}
+	
 	public static FastPathPlanner getRightStartingLeftScalePath() {
 		if (LEFT_SCALE_RIGHT_START_PATH != null) {
 			return LEFT_SCALE_RIGHT_START_PATH;
