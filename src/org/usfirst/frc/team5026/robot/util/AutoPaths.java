@@ -193,6 +193,7 @@ public class AutoPaths {
 	private static FastPathPlanner LEFT_SCALE_RIGHT_START_PATH;
 	// 2 Cube
 	private static FastPathPlanner[] LEFT_START_LEFT_SCALE_2;
+	private static FastPathPlanner[] LEFT_START_RIGHT_SCALE_2;
 	
 	private static FastPathPlanner[] LEFT_START_LEFT_SCALE_SWITCH;
 	private static FastPathPlanner[] RIGHT_START_RIGHT_SCALE_SWITCH;
@@ -875,11 +876,53 @@ public class AutoPaths {
 		return RIGHT_SCALE_LEFT_START_PATH;
 	}
 	
-	public static FastPathPlanner getLeftStartingRightScale2Cube() {
-		if (RIGHT_SCALE_LEFT_START_2_CUBE == null) {
+	public static FastPathPlanner[] getLeftStartingRightScale2Cube() {
+		if (LEFT_START_RIGHT_SCALE_2 == null) {
+			double[][] rightScaleLeftStartBackup = new double[][]{
+				{286.7178082191781, 76.66758241758242},
+				{265.413698630137, 74.88461538461539},
+				{255.55955056179772, 67.03632236095346},
+				{245.36629213483144, 58.93303064699206},
+				{235.9011235955056, 36.83314415437003},
+				{235.17303370786516, 23.204880817253123},
+			};
 			
+			double[][] rightScaleLeftStartGrabCube = new double[][]{
+				{235.17303370786516, 23.204880817253123},
+				{235.9011235955056, 36.83314415437003},
+				{230.07640449438202, 52.30306469920545},
+				{226.79999999999998, 62.98467650397276},
+				{222.06741573033707, 76.98127128263337},
+				{216.6067415730337, 87.29455164585698},
+			};
+			
+			double[][] rightScaleLeftStartReturnCube = new double[][]{
+				{235.17303370786516, 23.204880817253123},
+				{235.9011235955056, 36.83314415437003},
+				{242.81797752808987, 52.30306469920545},
+				{258.1078651685393, 71.82463110102157},
+				{277.4022471910112, 80.29625425652668},
+				{287.2314606741573, 79.55959137343928},
+			};
+			FastPathPlanner first = getLeftStartingRightScalePath();
+			FastPathPlanner second = new FastPathPlanner(rightScaleLeftStartBackup);
+			FastPathPlanner third = new FastPathPlanner(rightScaleLeftStartGrabCube);
+			FastPathPlanner fourth = new FastPathPlanner(rightScaleLeftStartGrabCube);
+			FastPathPlanner fifth = new FastPathPlanner(rightScaleLeftStartReturnCube);
+			
+			second.calculate(3, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+			third.calculate(2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+			fourth.calculate(2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+			fifth.calculate(3, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+			
+			reverseAndFlipPath(second);
+			reversePath(fourth);
+			
+			LEFT_START_RIGHT_SCALE_2 = new FastPathPlanner[]{
+				first, second, third, fourth, fifth
+			};
 		}
-		return RIGHT_SCALE_LEFT_START_2_CUBE;
+		return LEFT_START_RIGHT_SCALE_2;
 	}
 	
 	public static FastPathPlanner getRightStartingLeftScalePath() {
