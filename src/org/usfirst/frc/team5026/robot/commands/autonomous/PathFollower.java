@@ -67,6 +67,10 @@ public class PathFollower extends Command {
     	double rspeed = F * (path.smoothRightVelocity[index][1]);
     	double lp = P * leftPositionalError();
     	double rp = P * rightPositionalError();
+    	if (lastLeftError == 0 && lastRightError == 0) {
+    		lastLeftError = leftPositionalError();
+    		lastRightError = rightPositionalError();
+    	}
     	double ld = D * (leftPositionalError() - lastLeftError);
     	double rd = D * (rightPositionalError() - lastRightError);
     	if (path.nodeOnlyPath[0][0] < 0) {

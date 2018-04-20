@@ -5,7 +5,7 @@ import org.usfirst.frc.team5026.robot.commands.WaitExtendToScale;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorTarget;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToScale;
 import org.usfirst.frc.team5026.robot.commands.intake.HoldBlock;
-import org.usfirst.frc.team5026.robot.commands.intake.IntakeCommandNoRequires;
+import org.usfirst.frc.team5026.robot.commands.intake.IntakeSafeCommandGroup;
 import org.usfirst.frc.team5026.robot.commands.intake.OuttakeForTime;
 import org.usfirst.frc.team5026.robot.util.AutoPaths;
 
@@ -27,7 +27,8 @@ public class LeftToLeftScale2Cube extends CommandGroup {
         addParallel(new WaitElevatorToTarget(0.25,0));
         addSequential(new PathFollower(AutoPaths.getLeftStartingLeftScale2Cube()[1]));
         addParallel(new ElevatorTarget(0));
-        addParallel(new IntakeCommandNoRequires());
+        addParallel(new IntakeSafeCommandGroup());
+        
         addSequential(new PathFollower(AutoPaths.getLeftStartingLeftScale2Cube()[2]));
         addParallel(new ElevatorToScale());
         addSequential(new PathFollower(AutoPaths.getLeftStartingLeftScale2Cube()[3]));
