@@ -29,6 +29,7 @@ public class LeftToRightScale2Cube extends CommandGroup {
         addSequential(new PathFollower(AutoPaths.getLeftStartingRightScale2Cube()[1]));
         addParallel(new ElevatorTarget(0));
         addParallel(new IntakeSafeCommandGroup());
+        
         addSequential(new PathFollower(AutoPaths.getLeftStartingRightScale2Cube()[2]));
         addParallel(new ElevatorToScale());
         addSequential(new PathFollower(AutoPaths.getLeftStartingRightScale2Cube()[3]));
