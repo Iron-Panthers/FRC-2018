@@ -4,7 +4,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 public class SwerveMotorGroup {
-	TalonSRX m1;
+	public TalonSRX m1;
 	TalonSRX m2;
 	TalonSRX m3;
 	TalonSRX m4;
