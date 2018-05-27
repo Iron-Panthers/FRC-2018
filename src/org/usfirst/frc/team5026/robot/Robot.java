@@ -22,8 +22,9 @@ import org.usfirst.frc.team5026.robot.subsystems.SwerveDrive;
 public class Robot extends IterativeRobot {
 
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
-	public static OI oi;
+	public static Hardware hardware;
 	public static SwerveDrive swerveDrive;
+	public static OI oi;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -34,7 +35,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		swerveDrive = new SwerveDrive(hardware.left, hardware.right, hardware.swerve);
+		swerveDrive = new SwerveDrive(hardware.swerveM1, hardware.swerveM2, hardware.swerveM3, hardware.swerveM4, hardware.frontLeft, hardware.frontRight, hardware.backLeft, hardware.backRight);
 		oi = new OI();
 		chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());

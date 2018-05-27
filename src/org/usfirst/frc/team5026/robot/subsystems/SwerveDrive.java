@@ -34,63 +34,63 @@ public class SwerveDrive extends Subsystem {
 	
 	public void setDriveMotors(double adjustedMagnitude, double adjustedZ, double turn) {
 		double pi = Math.PI;
-		double swerveAngle = calcPositiveMod(swerveM1.getSelectedSensorPosition(pidIdx)/Constants.ENCODER_TICKS_PER_REVOLUTION, 1);
+		double swerveAngle = SwerveJoystick.calcPositiveMod(swerveM1.getSelectedSensorPosition(Constants.kPIDLoopIdx) / Constants.ENCODER_TICKS_PER_REVOLUTION, 1);
 		//encoders will start at 0, so angle will be refrenced to pointing forward relative to front of robot
 		//measured from 0 to 1
 		
 		if (0 <= swerveAngle && swerveAngle <= .125) {
-			frontLeft.set(ControlMode.PercentOutput, adjustedMagnitude+turn);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude-adjustedZ);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude-turn);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude+adjustedZ);
+			frontLeft.set(ControlMode.PercentOutput, adjustedMagnitude + turn);
+			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude - adjustedZ);
+			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude - turn);
+			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude + adjustedZ);
 		}
 		if (.125 < swerveAngle && swerveAngle < .25) {
-			frontLeft.set(ControlMode.PercentOutput, adjustedMagnitude-turn);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude-adjustedZ);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude+turn);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude+adjustedZ);
+			frontLeft.set(ControlMode.PercentOutput, adjustedMagnitude - turn);
+			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude - adjustedZ);
+			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude + turn);
+			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude + adjustedZ);
 		}
 		if(.25 <= swerveAngle && swerveAngle <= .375) {
-			frontLeft.set(ControlMode.PercentOutput, adjustedMagnitude-adjustedZ);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude-turn);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude+adjustedZ);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude+turn);
+			frontLeft.set(ControlMode.PercentOutput, adjustedMagnitude - adjustedZ);
+			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude - turn);
+			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude + adjustedZ);
+			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude + turn);
 		}
 		if(.375 < swerveAngle && swerveAngle < .5) {
-			frontLeft.set(ControlMode.PercentOutput, adjustedMagnitude-adjustedZ);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude+turn);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude+adjustedZ);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude-turn);
+			frontLeft.set(ControlMode.PercentOutput, adjustedMagnitude - adjustedZ);
+			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude + turn);
+			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude + adjustedZ);
+			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude - turn);
 		}
 		if(.5 <= swerveAngle && swerveAngle <= .625) {
-			frontLeft.set(ControlMode.PercentOutput, adjustedMagnitude-turn);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude+adjustedZ);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude+turn);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude-adjustedZ);
+			frontLeft.set(ControlMode.PercentOutput, adjustedMagnitude - turn);
+			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude + adjustedZ);
+			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude + turn);
+			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude - adjustedZ);
 		}
 		if(.625 < swerveAngle && swerveAngle < .75) {
-			frontLeft.set(ControlMode.PercentOutput, adjustedMagnitude+turn);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude+adjustedZ);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude-turn);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude-adjustedZ);
+			frontLeft.set(ControlMode.PercentOutput, adjustedMagnitude + turn);
+			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude + adjustedZ);
+			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude - turn);
+			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude - adjustedZ);
 		}
 		if(.75 <= swerveAngle && swerveAngle <= .875) {
-			frontLeft.set(ControlMode.PercentOutput, adjustedMagnitude+adjustedZ);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude+turn);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude-adjustedZ);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude-turn);
+			frontLeft.set(ControlMode.PercentOutput, adjustedMagnitude + adjustedZ);
+			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude + turn);
+			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude - adjustedZ);
+			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude - turn);
 		}
 		if(.875 < swerveAngle && swerveAngle < 1) {
-			frontLeft.set(ControlMode.PercentOutput, adjustedMagnitude+adjustedZ);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude-turn);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude-adjustedZ);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude+turn);
+			frontLeft.set(ControlMode.PercentOutput, adjustedMagnitude + adjustedZ);
+			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude - turn);
+			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude - adjustedZ);
+			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude + turn);
 		}
 	}
 	
 	public void setMotorDirection(double targetRadians) {
-		double angleFromNegative1To1 = targetRadians/(2*Math.PI);
-		double velocity = Constants.P*(angleFromNegative1To1-SwerveJoystick.calcPositiveMod(swerveM1.getSelectedSensorPosition(pidIdx)/Constants.ENCODER_TICKS_PER_REVOLUTION, 1)); //what is pidIdx?
+		double angleFromNegative1To1 = targetRadians / (2 * Math.PI);
+		double velocity = Constants.P * (angleFromNegative1To1 - SwerveJoystick.calcPositiveMod(swerveM1.getSelectedSensorPosition(Constants.kPIDLoopIdx) / Constants.ENCODER_TICKS_PER_REVOLUTION, 1)); //PidLoopX is the type of PID loop being used. 0 is for closed loop, which is what we are using
 		swerveM1.set(ControlMode.PercentOutput, velocity);
 		swerveM2.set(ControlMode.PercentOutput, velocity);
 		swerveM3.set(ControlMode.PercentOutput, velocity);
