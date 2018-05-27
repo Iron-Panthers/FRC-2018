@@ -76,7 +76,7 @@ public class SwerveDrive extends Subsystem {
 		}
 	}
 	
-	public void setMotorDirection(double targetRadians) {
+	public void setSwerveMotorDirection(double targetRadians) {
 		double angleFromNegative1To1 = targetRadians / (2 * Math.PI);
 		double velocity = Constants.P * (angleFromNegative1To1 - SwerveJoystick.calcPositiveMod(swerveM1.getSelectedSensorPosition(Constants.kPIDLoopIdx) / Constants.ENCODER_TICKS_PER_REVOLUTION, 1)); //PidLoopX is the type of PID loop being used. 0 is for closed loop, which is what we are using
 		swerveM1.set(ControlMode.PercentOutput, velocity);

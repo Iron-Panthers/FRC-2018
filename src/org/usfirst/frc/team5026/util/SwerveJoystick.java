@@ -21,10 +21,14 @@ public class SwerveJoystick {
 	
 	public static double calcPositiveMod(double a, double b) {
 		return ((a % b) + b) % b;
+		//gets around the remainder operator returning negative values for angles
 	}
 	
 	public double findTurn() {
 		return findZ() * Math.cos(calcPositiveMod(calcPositiveMod(Robot.swerveDrive.swerveM1.getSelectedSensorPosition(Constants.kPIDLoopIdx) / Constants.ENCODER_TICKS_PER_REVOLUTION, 1), .25) * 4);
+		//this might be a bit confusing but what it does is find the angle of the wheels, and then translate it 
+		//into a cosine function based on how far along it is from 0-90 degrees, 90-180 degrees, 180-270, or 270-360, respectively
+		//(this is assuming 0 degrees is the drive wheels facing forward)
 	}
 	
 	public double findMagnitude() {

@@ -20,8 +20,8 @@ public class SwerveDriveCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.swerveDrive.setDriveMotors(Robot.oi.swerveJoystick.findTurn(), Robot.oi.swerveJoystick.findZ(), Robot.oi.swerveJoystick.findMagnitude());
-    	Robot.swerveDrive.setMotorDirection(Robot.oi.swerveJoystick.findXYAngle());
+    	Robot.swerveDrive.setDriveMotors(Robot.oi.swerveJoystick.findMagnitude(), Robot.oi.swerveJoystick.findZ(), Robot.oi.swerveJoystick.findTurn());
+    	Robot.swerveDrive.setSwerveMotorDirection(Robot.oi.swerveJoystick.findXYAngle());
     }
 
     // Make this return true when this Command no longer needs to run execute()
