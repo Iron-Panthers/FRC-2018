@@ -32,59 +32,47 @@ public class SwerveDrive extends Subsystem {
 		this.swerveM4 = swerveM4;
 	}
 	
+	public double cycleSet(double robotSection, double magnitude, double Z, double turn) {
+		if (robotSection == 0) {
+			return magnitude + turn;
+		}
+		if (robotSection == 1) {
+			return magnitude - turn;
+		}
+		if (robotSection == 0) {
+			return magnitude - Z;
+		}
+		if (robotSection == 0) {
+			return magnitude - Z;
+		}
+		if (robotSection == 0) {
+			return magnitude - turn;
+		}
+		if (robotSection == 0) {
+			return magnitude + turn;
+		}
+		if (robotSection == 0) {
+			return magnitude + Z;
+		}
+		if (robotSection == 0) {
+			return magnitude + Z;
+		}
+			
+	}
+	
 	public void setDriveMotors(double adjustedMagnitude, double adjustedZ, double turn) {
 		double pi = Math.PI;
 		double swerveAngle = SwerveJoystick.calcPositiveMod(swerveM1.getSelectedSensorPosition(Constants.kPIDLoopIdx) / Constants.ENCODER_TICKS_PER_REVOLUTION, 1);
 		//encoders will start at 0, so angle will be refrenced to pointing forward relative to front of robot
 		//measured from 0 to 1
 		
-		if (0 <= swerveAngle && swerveAngle <= .125) {
-			frontLeft.set(ControlMode.PercentOutput, adjustedMagnitude + turn);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude - adjustedZ);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude - turn);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude + adjustedZ);
-		}
-		if (.125 < swerveAngle && swerveAngle < .25) {
-			frontLeft.set(ControlMode.PercentOutput, adjustedMagnitude - turn);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude - adjustedZ);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude + turn);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude + adjustedZ);
-		}
-		if(.25 <= swerveAngle && swerveAngle <= .375) {
-			frontLeft.set(ControlMode.PercentOutput, adjustedMagnitude - adjustedZ);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude - turn);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude + adjustedZ);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude + turn);
-		}
-		if(.375 < swerveAngle && swerveAngle < .5) {
-			frontLeft.set(ControlMode.PercentOutput, adjustedMagnitude - adjustedZ);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude + turn);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude + adjustedZ);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude - turn);
-		}
-		if(.5 <= swerveAngle && swerveAngle <= .625) {
-			frontLeft.set(ControlMode.PercentOutput, adjustedMagnitude - turn);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude + adjustedZ);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude + turn);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude - adjustedZ);
-		}
-		if(.625 < swerveAngle && swerveAngle < .75) {
-			frontLeft.set(ControlMode.PercentOutput, adjustedMagnitude + turn);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude + adjustedZ);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude - turn);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude - adjustedZ);
-		}
-		if(.75 <= swerveAngle && swerveAngle <= .875) {
-			frontLeft.set(ControlMode.PercentOutput, adjustedMagnitude + adjustedZ);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude + turn);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude - adjustedZ);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude - turn);
-		}
-		if(.875 < swerveAngle && swerveAngle < 1) {
-			frontLeft.set(ControlMode.PercentOutput, adjustedMagnitude + adjustedZ);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude - turn);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude - adjustedZ);
-			frontRight.set(ControlMode.PercentOutput, adjustedMagnitude + turn);
+		for (int i = 0; i < 8; i++) {
+			if (i*.125 < swerveAngle && swerveAngle < (i*.125)+.125) {
+				frontLeft.set(ControlMode.PercentOutput, cycleSet(i, adjustedMagnitude, adjustedZ, turn));
+				frontRight.set(ControlMode.PercentOutput, cycleSet(i+2, adjustedMagnitude, adjustedZ, turn));
+				backRight.set(ControlMode.PercentOutput, cycleSet(i+4, adjustedMagnitude, adjustedZ, turn));
+				backLeft.set(ControlMode.PercentOutput, cycleSet(i+6, adjustedMagnitude, adjustedZ, turn));
+			}
 		}
 	}
 	
