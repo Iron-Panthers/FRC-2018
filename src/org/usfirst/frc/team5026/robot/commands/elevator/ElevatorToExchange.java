@@ -23,7 +23,7 @@ public class ElevatorToExchange extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.elevator.raiseToTarget(Constants.ELEVATOR_EXCHANGE_TARGET);
+		Robot.elevator.raiseToExchange();
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

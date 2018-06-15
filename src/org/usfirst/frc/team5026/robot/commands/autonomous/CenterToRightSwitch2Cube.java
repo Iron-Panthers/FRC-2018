@@ -22,9 +22,9 @@ public class CenterToRightSwitch2Cube extends CommandGroup {
         addSequential(new ConveyorForTime(false, 1));
         addParallel(new ElevatorTarget(0));
         addSequential(new PathFollower(AutoPaths.getRightSwitch2Cube()[1]));
-        addParallel(new IntakeCommandNoRequires());
-        addSequential(new PathFollower(AutoPaths.getRightSwitch2Cube()[2]));
         addParallel(new IntakeSafeCommandGroup());
+        addSequential(new PathFollower(AutoPaths.getRightSwitch2Cube()[2]));
+//        addParallel(new IntakeSafeCommandGroup());
         addSequential(new PathFollower(AutoPaths.getRightSwitch2Cube()[3]));
         addParallel(new ElevatorToSwitch());
         addSequential(new PathFollower(AutoPaths.getRightSwitch2Cube()[4]));

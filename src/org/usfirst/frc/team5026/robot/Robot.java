@@ -11,28 +11,25 @@ import org.usfirst.frc.team5026.robot.commands.autonomous.CenterToLeftSwitch3Cub
 import org.usfirst.frc.team5026.robot.commands.autonomous.CenterToRightSwitch3Cube3;
 import org.usfirst.frc.team5026.robot.commands.autonomous.ChooseStartPosition;
 import org.usfirst.frc.team5026.robot.commands.autonomous.DriveStraight;
-import org.usfirst.frc.team5026.robot.commands.autonomous.LeftToLeftScale2Cube;
-import org.usfirst.frc.team5026.robot.commands.autonomous.PathFollower;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceCenterToSwitch1Cube;
+import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceCenterToSwitch1CubeFast;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceCenterToSwitch2Cube;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceCenterToSwitch3Cube;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceCenterToSwitch3Cube3;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceLeftToScale;
+import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceLeftToScale2Cube;
+import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceLeftToScale2CubeTest;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceLeftToScaleSwitchSide;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceLeftToSwitchNoElevator;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceRightToScale;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceRightToSwitchNoElevator;
-import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceLeftToScale2Cube;
-
 import org.usfirst.frc.team5026.robot.commands.drive.DriveRunLeft;
 import org.usfirst.frc.team5026.robot.commands.drive.DriveRunRight;
 import org.usfirst.frc.team5026.robot.subsystems.Climb;
-import org.usfirst.frc.team5026.robot.commands.autonomous.PathFollower;
 import org.usfirst.frc.team5026.robot.subsystems.ConveyorBelt;
 import org.usfirst.frc.team5026.robot.subsystems.Drive;
 import org.usfirst.frc.team5026.robot.subsystems.Elevator;
 import org.usfirst.frc.team5026.robot.subsystems.IntakeSubsystem;
-import org.usfirst.frc.team5026.robot.util.AutoPaths;
 import org.usfirst.frc.team5026.robot.util.Constants;
 import org.usfirst.frc.team5026.robot.util.StartPosition;
 
@@ -106,6 +103,7 @@ public class Robot extends IterativeRobot {
 		oi.mapButtons();
 		autoChooser.addDefault("My Auto", new DriveStraight());
 		autoChooser.addObject("Center to Switch", new SequenceCenterToSwitch1Cube());
+		autoChooser.addObject("Center to Switch Fast", new SequenceCenterToSwitch1CubeFast());
 		autoChooser.addObject("Center to Switch 2 Cube", new SequenceCenterToSwitch2Cube());
 		autoChooser.addObject("Center to Switch 3 Cube", new SequenceCenterToSwitch3Cube());
 //		autoChooser.addObject("Center to Switch 3 Cube 2 Left", new CenterToLeftSwitch3Cube2());
@@ -118,6 +116,7 @@ public class Robot extends IterativeRobot {
 		autoChooser.addObject("Left to Scale", new SequenceLeftToScale());
 		autoChooser.addObject("Right to Scale", new SequenceRightToScale());
 		autoChooser.addObject("Left to Scale 2 Cube", new SequenceLeftToScale2Cube());
+		autoChooser.addObject("Left to Scale 2 Cube Both", new SequenceLeftToScale2CubeTest());
 		autoChooser.addObject("Drive Turn for Left", new DriveRunLeft(-0.7, 0.5));
 		autoChooser.addObject("Drive Turn for Right", new DriveRunRight(-0.7, 0.5));
 //		autoChooser.addObject("Left to Scale (Prioritizes Switch)", new SequenceLeftToScaleSwitchSide());

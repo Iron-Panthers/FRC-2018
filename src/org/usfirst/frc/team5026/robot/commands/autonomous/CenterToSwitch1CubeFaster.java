@@ -1,53 +1,50 @@
 package org.usfirst.frc.team5026.robot.commands.autonomous;
 
 import org.usfirst.frc.team5026.robot.Robot;
+import org.usfirst.frc.team5026.robot.util.AutoPaths;
 import org.usfirst.frc.team5026.robot.util.Constants;
+import org.usfirst.frc.team5026.robot.util.PlatformState;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import scadlib.paths.FastPathPlanner;
 
 /**
- *
+ * This command ONLY runs after the game data has been received
  */
-public class PathFollower extends Command {
+public class CenterToSwitch1CubeFaster extends Command {
 
-	int index;
-	FastPathPlanner path;
+	int index = 0;
+	long startTime;
+	long lastTime;
 	double F;
 	double P;
-	double I;
-	double D;
-	long lastTime;
-	long startTime;
+	FastPathPlanner path;
 	
-	double leftTotal;
-	double rightTotal;
-	double lastLeftError;
-	double lastRightError;
-	
-    public PathFollower(FastPathPlanner p) {
+    public CenterToSwitch1CubeFaster() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.drive);
-    	path = p;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	if (AutoPaths.ALLY_SWITCH_STATE == PlatformState.LEFT) {
+    		path = AutoPaths.getLeftFastPath();
+    	} else if (AutoPaths.ALLY_SWITCH_STATE == PlatformState.RIGHT) {
+    		path = AutoPaths.getRightFastPath();
+    	}
+    	else {
+    		System.out.println("NO DATA!");
+    		// NO PATH! Go straight instead...
+    	}
     	Robot.drive.stop();
     	Robot.drive.left.motor1.setSelectedSensorPosition(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
     	Robot.drive.right.motor1.setSelectedSensorPosition(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
     	index = 0;
-    	leftTotal = 0;
-    	rightTotal = 0;
     	startTime = System.currentTimeMillis();
-    	lastLeftError = 0;
-    	lastRightError = 0;
     	F = SmartDashboard.getNumber("Path Planning F", Constants.PATHING_F);
     	P = SmartDashboard.getNumber("Path Planning P", Constants.PATHING_P);
-    	I = SmartDashboard.getNumber("Path Planning I", Constants.PATHING_I);
-    	D = SmartDashboard.getNumber("Path Planning D", Constants.PATHING_D);
     	SmartDashboard.putNumber("Path total index count", path.smoothPath.length);
     }
 
@@ -67,34 +64,13 @@ public class PathFollower extends Command {
     	double rspeed = F * (path.smoothRightVelocity[index][1]);
     	double lp = P * leftPositionalError();
     	double rp = P * rightPositionalError();
-    	if (lastLeftError == 0 && lastRightError == 0) {
-    		lastLeftError = leftPositionalError();
-    		lastRightError = rightPositionalError();
-    	}
-    	double ld = D * (leftPositionalError() - lastLeftError);
-    	double rd = D * (rightPositionalError() - lastRightError);
-    	if (path.nodeOnlyPath[0][0] < 0) {
-    		// This means that the left and the right should be flipped. THIS IS A HACK! REMOVE ME! TODO
-    		lp = P * rightPositionalError();
-    		rp = P * leftPositionalError();
-    		ld = D * (rightPositionalError() - lastRightError);
-    		rd = D * (leftPositionalError() - lastLeftError);
-    		leftTotal += rightPositionalError();
-        	rightTotal += leftPositionalError();
-     	} else {
-     		leftTotal += leftPositionalError();
-        	rightTotal += rightPositionalError();
-     	}
-    	
-    	double li = I * leftTotal;
-    	double ri = I * rightTotal;
     	if (index == 0) {
     		lp = rp = 0;
     	}
     	
     	// Don't ask
-    	lspeed += lp + li + ld;
-    	rspeed += rp + ri + rd;
+    	lspeed += lp;
+    	rspeed += rp;
     	
     	Robot.drive.setLeftSide(lspeed);
     	Robot.drive.setRightSide(rspeed);
@@ -117,25 +93,14 @@ public class PathFollower extends Command {
     	SmartDashboard.putNumber("Right path y", path.rightPath[index][1]);
     	SmartDashboard.putNumber("Delta Time (ms)", System.currentTimeMillis() - lastTime);
     	SmartDashboard.putNumber("Overall time (ms)", System.currentTimeMillis() - startTime);
-    	
-    	lastLeftError = leftPositionalError();
-    	lastRightError = rightPositionalError();
-    	
     	lastTime = System.currentTimeMillis();
     }
+
     private double leftPositionalError() {
-    	double arc = path.getLeftArclength()[index];
-    	if (path.smoothCenterVelocity[index][1] < 0) {
-    		arc = -arc;
-    	}
-    	return (arc - Robot.drive.getLeftEncoderPosition() / Constants.TICKS_TO_INCHES);
+    	return (path.getLeftArclength()[index] - Robot.drive.getLeftEncoderPosition() / Constants.TICKS_TO_INCHES);
     }
     private double rightPositionalError() {
-    	double arc = path.getRightArclength()[index];
-    	if (path.smoothCenterVelocity[index][1] < 0) {
-    		arc = -arc;
-    	}
-    	return (arc - Robot.drive.getRightEncoderPosition() / Constants.TICKS_TO_INCHES);
+    	return (path.getRightArclength()[index] - Robot.drive.getRightEncoderPosition() / Constants.TICKS_TO_INCHES);
     }
 
     // Make this return true when this Command no longer needs to run execute()

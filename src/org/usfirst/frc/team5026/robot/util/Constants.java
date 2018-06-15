@@ -12,7 +12,7 @@ public class Constants {
 	//public static final double QUARTER_SPEED = .4;
 	//Intake and Outtake
 	public static final double INTAKE_VOLTAGE_GRAB = 12./12; //Voltage before grabbing the block
-	public static final double INTAKE_VOLTAGE_HOLD = 6./12; //"" 4 good enough, 6 secure but too much for burning
+	public static final double INTAKE_VOLTAGE_HOLD = 6.75/12; //"" 4 good enough, 6 secure but too much for burning
 //	public static final double INTAKE_CURRENT_SAMPLE = 4; //number of samples required to determine if cube is possessed
 	public static final int INTAKE_SPEED_UP_TIME = 10;// execute loops waited before sampling current to prevent motor stopping w/out cube 
 	public static final boolean IS_INTAKE_INVERTED = true;
@@ -35,8 +35,8 @@ public class Constants {
 	public static final double ELEVATOR_I = 0.002;
 	public static final double ELEVATOR_D = 0;
 	public static final double ELEVATOR_F = 0.28;
-	public static final int ELEVATOR_TALL_CUBE_TARGET = 3500;	
-	public static final int ELEVATOR_SHORT_CUBE_TARGET = 2000; //Needs to be tested (This is supposed to lift cube enough so it does not drag on ground)
+	public static final int ELEVATOR_TALL_CUBE_TARGET = -100; //Christ uses this for short cubes	
+	public static final int ELEVATOR_SHORT_CUBE_TARGET = 2600; //Christ uses this for tall cube Needs to be tested (This is supposed to lift cube enough so it does not drag on ground)
 	public static final int ELEVATOR_EXCHANGE_TARGET = 3000; //Arbitrary, Needs Testing
 	public static final int ELEVATOR_SWITCH_TARGET = 38000; //Tested by Adam and Driveteam
 	public static final int ELEVATOR_SCALE_TARGET = 88888; //See above
