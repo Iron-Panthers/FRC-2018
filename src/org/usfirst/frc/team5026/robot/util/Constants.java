@@ -8,6 +8,8 @@ public class Constants {
 	public static final double YDEADZONE_SIZE = 0.15;
 	public static final double CIRCLE_DEADZONE = 0.1;//middle of joystick
 	public static final double SPEED = 1.0;//teleop driving
+	public static final double BABY_PROOFING_MODIFIER = 0.3;
+	public static final boolean IS_BABY_PROOFED = true;
 	//public static final double DEADZONE_SIZE = .1;
 	//public static final double QUARTER_SPEED = .4;
 	//Intake and Outtake

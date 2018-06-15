@@ -137,6 +137,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Auto mode", autoChooser);
 		SmartDashboard.putData("Starting Position", startPositionSelector);
 //		SmartDashboard.getNumber("Intake Speed", Constants.INTAKE_POWER);
+		SmartDashboard.putBoolean("Is Baby Proofed", Constants.IS_BABY_PROOFED);
 		LiveWindow.disableAllTelemetry();
     }
 	

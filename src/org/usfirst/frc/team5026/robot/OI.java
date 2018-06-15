@@ -78,32 +78,31 @@ public class OI {
 //		stickBtnOne.whenPressed(new ReverseDrive());
 //		stickBtnOne.whenReleased(new ReverseDrive());
 //		stickBtnTwo.whileHeld(new OuttakeCommand());
-		stickBtnTwo.toggleWhenPressed(new DriveShift());
-		stickBtnThree.whileHeld(new IntakeOuttakeCommand());
-		stickBtnFive.whenPressed(new ClimbForTime(3.));
+//		stickBtnTwo.toggleWhenPressed(new DriveShift());
+//		stickBtnThree.whileHeld(new IntakeOuttakeCommand());
+//		stickBtnFive.whenPressed(new ClimbForTime(3.));
 //		stickBtnThree.whileHeld(new ElevatorToScale());
 //		stickBtnFour.whileHeld(new ElevatorToGround());
-		stickBtnSix.whileHeld(new ClimbUp());
-		stickBtnFour.whileHeld(new ClimbDown());
+//		stickBtnSix.whileHeld(new ClimbUp());
+//		stickBtnFour.whileHeld(new ClimbDown());
 //		stickBtnEight.whenPressed(new ClimbCommandGroup());
-		
 		boardBtnOne.whileHeld(new ElevatorSliding());
 		boardBtnTwo.whenPressed(new IntakeCommandGroup());
 		boardBtnThree.whileHeld(new IntakeOuttakeCommand());
 //		boardBtnFour.whenPressed(new ConveyorBeltForwardToBanner());
-		boardBtnFour.whenPressed(new ElevatorZero());
+//		boardBtnFour.whenPressed(new ElevatorZero());
 		boardBtnFive.whileHeld(new ConveyorBeltForward());
 		boardBtnSix.whileHeld(new ConveyorBeltBackward());
 		
-		boardBtnSeven.whenPressed(new ElevatorToShortCube());
-		boardBtnEight.whenPressed(new ElevatorToTallCube());
-		boardBtnNine.whenPressed(new ElevatorToSwitch());
-		boardBtnTen.whenPressed(new ElevatorToScale());
-		boardBtnEleven.whenPressed(new ElevatorToExchange());
+//		boardBtnSeven.whenPressed(new ElevatorToShortCube());
+//		boardBtnEight.whenPressed(new ElevatorToTallCube());
+//		boardBtnNine.whenPressed(new ElevatorToSwitch());
+//		boardBtnTen.whenPressed(new ElevatorToScale());
+//		boardBtnEleven.whenPressed(new ElevatorToExchange());
 //		boardBtnThree.whileHeld(new ElevatorTarget());
 //		boardBtnFour.whenPressed(new ElevatorSetPIDF());
 		
 //		boardBtnSeven.whileHeld(new OuttakeCommand());
-		boardBtnTwelve.whenPressed(new ElevatorPistonToggle());
+//		boardBtnTwelve.whenPressed(new ElevatorPistonToggle());
 	}
 }

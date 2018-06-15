@@ -39,9 +39,17 @@ public class GoodJoystick {
 
 	//k = Robot.oi.driveStick.getY()/Robot.oi.driveStick.getX();
 	public double findRightPower(double x,double y) {
+		boolean isBabyProofed = SmartDashboard.getBoolean("Is Baby Proofed", Constants.IS_BABY_PROOFED);
+		if (isBabyProofed) {
+			return (y-x)*Constants.BABY_PROOFING_MODIFIER;
+		}
 			return y-x;
 	}
 	public double findLeftPower(double x,double y) {
+		boolean isBabyProofed = SmartDashboard.getBoolean("Is Baby Proofed", Constants.IS_BABY_PROOFED);
+		if (isBabyProofed) {
+			return (y+x)*Constants.BABY_PROOFING_MODIFIER;
+		}
 	        return y+x;
 	}
 	//Robot.drive.setLeftMotor(Robot.oi.driveStick.getY() + Robot.oi.driveStick.getX());
