@@ -12,7 +12,7 @@ public class Constants {
 	//public static final double QUARTER_SPEED = .4;
 	//Intake and Outtake
 	public static final double INTAKE_VOLTAGE_GRAB = 12./12; //Voltage before grabbing the block
-	public static final double INTAKE_VOLTAGE_HOLD = 4./12; //"" 4 good enough, 6 secure but too much for burning
+	public static final double INTAKE_VOLTAGE_HOLD = 3./12; //"" 4 good enough, 6 secure but too much for burning
 //	public static final double INTAKE_CURRENT_SAMPLE = 4; //number of samples required to determine if cube is possessed
 	public static final int INTAKE_SPEED_UP_TIME = 10;// execute loops waited before sampling current to prevent motor stopping w/out cube 
 	public static final boolean IS_INTAKE_INVERTED = true;
@@ -21,7 +21,7 @@ public class Constants {
 	  
 	//Portal to Switch 
 	public static final double CONVEYOR_SPEED = 1; 
-	public static final boolean IS_COVEYOR_INVERTED = true; 
+	public static final boolean IS_COVEYOR_INVERTED = false; 
 	
 	//Climb
 	public static final double CLIMB_SPEED = 0.5;
