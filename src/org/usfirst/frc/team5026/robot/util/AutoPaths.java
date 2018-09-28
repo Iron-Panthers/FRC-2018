@@ -28,11 +28,12 @@ public class AutoPaths {
 	private static double stage2y4 = 40;
 	
 	private static double[][] CENTER_LEFT_PATH = new double[][]{
-		{robotLength/2, height / 2},
-		{(distanceToSwitchFromAlliance-robotLength)/2-delta-xDelta, height/2},
-		{(distanceToSwitchFromAlliance-robotLength)/2+delta-xDelta, height/2+delta},
-		{(distanceToSwitchFromAlliance+robotLength)/2+delta-xDelta, height-distanceToSwitchFromWall-switchLength/2+yDelta},
-		{distanceToSwitchFromAlliance-robotLength/2+5, height-distanceToSwitchFromWall-switchLength/2+yDelta}
+		{18.625, 162.25},
+		{40.625, 162.25},
+		{64.375, 178.25},
+		{83.625, 200.8905},
+		{98.625, 205.8905},
+		{127.69411764705882, 200.8905},
 	};
 	private static double[][] CENTER_RIGHT_PATH = new double[][]{
 		{18.625, 162.25},
