@@ -35,15 +35,15 @@ public class AutoPaths {
 		{distanceToSwitchFromAlliance-robotLength/2+5, height-distanceToSwitchFromWall-switchLength/2+yDelta}
 	};
 	private static double[][] CENTER_RIGHT_PATH = new double[][]{
-		{robotLength/2, height/2},
-		{robotLength/2+delta, height/2},
-		{(distanceToSwitchFromAlliance-robotLength)/2+delta, height/2-2*delta},
-		{(distanceToSwitchFromAlliance+robotLength)/2-delta, distanceToSwitchFromWall+switchLength/2+delta},
-		{(distanceToSwitchFromAlliance+robotLength)/2+delta, distanceToSwitchFromWall+switchLength/2},
-		{distanceToSwitchFromAlliance-robotLength/2+5, distanceToSwitchFromWall+switchLength/2}
+		{18.625, 162.25},
+		{28.625, 162.25},
+		{61.375, 142.25},
+		{78.625, 114.6095},
+		{98.625, 110.6095},
+		{127.69411764705882, 110.6095},
 	};
 	
-	private static double[][] CENTER_LEFT_TURNBACK = new double[][]{
+	private static double[][] CENTER_LEFT_TURNBACK = new double[][]{ //This is path 
 		{121.375, 219.8905},
 		{119.0, 219.8905},
 		{105.20898876404493, 217.2905604719764},
@@ -52,13 +52,13 @@ public class AutoPaths {
 		{64.43595505617976, 201.5011148272018},
 	};
 	
-	private static double[][] CENTER_LEFT_GRAB = new double[][]{
+	private static double[][] CENTER_LEFT_GRAB = new double[][]{ //Make Stop early before touch
 		{113.58202247191011, 178.36332350049165},
 		{106.66516853932583, 185.70206489675516},
 		{96.10786516853932, 191.76450344149458},
 		{85.18651685393257, 196.2315634218289},
 		{75.72134831460673, 199.1032448377581},
-		{67.71235955056179, 198.78416912487708},
+		{67.71235955056179, 198.78416912487708}, 
 	};
 	
 	private static double[][] LEFT_LEFT_SWITCH = new double[][]{
@@ -82,7 +82,6 @@ public class AutoPaths {
 	};
 	
 	private static double[][] CENTER_RIGHT_GRAB = new double[][]{
-		{103.41369863013699, 139.07142857142858},
 		{96.10786516853932, 132.73549655850542},
 		{85.18651685393257, 128.2684365781711},
 		{75.72134831460673, 125.3967551622419},

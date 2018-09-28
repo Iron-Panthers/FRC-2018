@@ -1,10 +1,10 @@
 package org.usfirst.frc.team5026.robot.commands.autonomous;
 
 import org.usfirst.frc.team5026.robot.commands.conveyorbelt.ConveyorForTime;
+import org.usfirst.frc.team5026.robot.commands.drive.DriveUntilCube;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorExtendPistons;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorTarget;
 import org.usfirst.frc.team5026.robot.commands.elevator.ElevatorToSwitch;
-import org.usfirst.frc.team5026.robot.commands.intake.IntakeCommandNoRequires;
 import org.usfirst.frc.team5026.robot.commands.intake.IntakeSafeCommandGroup;
 import org.usfirst.frc.team5026.robot.commands.intake.OuttakeForTime;
 import org.usfirst.frc.team5026.robot.util.AutoPaths;
@@ -24,6 +24,8 @@ public class CenterToRightSwitch2Cube extends CommandGroup {
         addSequential(new PathFollower(AutoPaths.getRightSwitch2Cube()[1]));
         addParallel(new IntakeSafeCommandGroup());
         addSequential(new PathFollower(AutoPaths.getRightSwitch2Cube()[2]));
+        addParallel(new IntakeSafeCommandGroup());
+        addSequential(new DriveUntilCube());
 //        addParallel(new IntakeSafeCommandGroup());
         addSequential(new PathFollower(AutoPaths.getRightSwitch2Cube()[3]));
         addParallel(new ElevatorToSwitch());
