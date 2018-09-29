@@ -28,19 +28,19 @@ public class AutoPaths {
 	private static double stage2y4 = 40;
 	
 	private static double[][] CENTER_LEFT_PATH = new double[][]{
-		{robotLength/2, height / 2},
-		{(distanceToSwitchFromAlliance-robotLength)/2-delta-xDelta, height/2},
-		{(distanceToSwitchFromAlliance-robotLength)/2+delta-xDelta, height/2+delta},
-		{(distanceToSwitchFromAlliance+robotLength)/2+delta-xDelta, height-distanceToSwitchFromWall-switchLength/2+yDelta},
-		{distanceToSwitchFromAlliance-robotLength/2+5, height-distanceToSwitchFromWall-switchLength/2+yDelta}
+		{18.625, 162.25},
+		{31.375, 162.25},
+		{51.375, 172.25},
+		{88.625, 213.8905},
+		{121.375, 213.8905},
 	};
 	private static double[][] CENTER_RIGHT_PATH = new double[][]{
-		{robotLength/2, height/2},
-		{robotLength/2+delta, height/2},
-		{(distanceToSwitchFromAlliance-robotLength)/2+delta, height/2-2*delta},
-		{(distanceToSwitchFromAlliance+robotLength)/2-delta, distanceToSwitchFromWall+switchLength/2+delta},
-		{(distanceToSwitchFromAlliance+robotLength)/2+delta, distanceToSwitchFromWall+switchLength/2},
-		{distanceToSwitchFromAlliance-robotLength/2+5, distanceToSwitchFromWall+switchLength/2}
+		{18.625, 162.25},
+		{28.625, 162.25},
+		{61.375, 142.25},
+		{78.625, 114.6095},
+		{98.625, 98.6095},
+		{126.375, 98.6095},
 	};
 	
 	private static double[][] CENTER_LEFT_TURNBACK = new double[][]{
