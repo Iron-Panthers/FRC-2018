@@ -20,7 +20,7 @@ public class DriveStraight extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	target = (int) SmartDashboard.getNumber("target", 0);
+    	target = (int) SmartDashboard.getNumber("target", 120);
     	target = (int) (target * Constants.TICKS_TO_INCHES);
 		Robot.drive.stop();
 		maxCount = (int) SmartDashboard.getNumber("max count", 0);
