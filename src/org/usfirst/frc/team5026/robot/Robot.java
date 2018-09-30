@@ -102,6 +102,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Elevator Target", 1000); // TODO to remove later
 		oi.mapButtons();
 		autoChooser.addDefault("My Auto", new DriveStraight());
+//		autoChooser.addDefault("Center to Switch good 2 cube", new SequenceCenterToSwitch2Cube());
 		autoChooser.addObject("Center to Switch", new SequenceCenterToSwitch1Cube());
 		autoChooser.addObject("Center to Switch Fast", new SequenceCenterToSwitch1CubeFast());
 		autoChooser.addObject("Center to Switch 2 Cube", new SequenceCenterToSwitch2Cube());
@@ -212,9 +213,9 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 //		hardware.elevatorMotor.set(ControlMode.MotionMagic, Constants.TICK_TARGET_TO_SCALE);
-//		SmartDashboard.putNumber("Auto Encoder Position", hardware.elevatorMotor.getSelectedSensorPosition(0));
+		SmartDashboard.putNumber("Auto Encoder Position", hardware.elevatorMotor.getSelectedSensorPosition(0));
 //		SmartDashboard.putNumber("Auto Talon Speed", hardware.elevatorMotor.getMotorOutputPercent());
-////		System.out.println(hardware.elevatorMotor.getSelectedSensorPosition(0));
+//		System.out.println(hardware.elevatorMotor.getSelectedSensorPosition(0));
 		Scheduler.getInstance().run();
 	}
 

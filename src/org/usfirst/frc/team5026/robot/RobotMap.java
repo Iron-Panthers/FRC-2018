@@ -28,7 +28,7 @@ public class RobotMap {
 	public static final int ELEVATOR_JOYSTICK = 1;
 	public static final int DRIVE_LEFT_MOTOR = 1; //Change back to drive
 	public static final int DRIVE_RIGHT_MOTOR = 0;
-	public static final int INTAKE_MOTOR = 9; //Change back to drive
+	public static final int INTAKE_MOTOR = 10; //Change back to drive
 	
 	public static final int INTAKE_PDP_PORT = 1; //To Be Changed
 	public static final int ELEVATOR_MOTOR_PDP_PORT = 0;
@@ -39,7 +39,7 @@ public class RobotMap {
 	public static final int ELEVATOR_SLAVE = 8;
 	public static final int SHIFT_FORWARD = 0;
 	public static final int SHIFT_REVERSE = 1;
-	public static final int CONVEYOR_BELT_MOTOR = 10;
+	public static final int CONVEYOR_BELT_MOTOR = 9;
 	public static final int BANNER_PORT = 0;
 	public static final int ELEVATOR_LIMIT_PORT = 2;
 	public static final int CLIMB_MOTOR_PORT_LEFT = 0;
