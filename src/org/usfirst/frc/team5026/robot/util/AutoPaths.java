@@ -28,19 +28,20 @@ public class AutoPaths {
 	private static double stage2y4 = 40;
 	
 	private static double[][] CENTER_LEFT_PATH = new double[][]{
-		{robotLength/2, height / 2},
-		{(distanceToSwitchFromAlliance-robotLength)/2-delta-xDelta, height/2},
-		{(distanceToSwitchFromAlliance-robotLength)/2+delta-xDelta, height/2+delta},
-		{(distanceToSwitchFromAlliance+robotLength)/2+delta-xDelta, height-distanceToSwitchFromWall-switchLength/2+yDelta},
-		{distanceToSwitchFromAlliance-robotLength/2+5, height-distanceToSwitchFromWall-switchLength/2+yDelta}
+		{18.625, 162.25},
+		{31.375, 162.25},
+		{51.375, 172.25},
+		{88.625, 217.8905},
+		{115.375, 216.8905},
+		{125.375, 217.8905},
 	};
 	private static double[][] CENTER_RIGHT_PATH = new double[][]{
-		{robotLength/2, height/2},
-		{robotLength/2+delta, height/2},
-		{(distanceToSwitchFromAlliance-robotLength)/2+delta, height/2-2*delta},
-		{(distanceToSwitchFromAlliance+robotLength)/2-delta, distanceToSwitchFromWall+switchLength/2+delta},
-		{(distanceToSwitchFromAlliance+robotLength)/2+delta, distanceToSwitchFromWall+switchLength/2},
-		{distanceToSwitchFromAlliance-robotLength/2+5, distanceToSwitchFromWall+switchLength/2}
+		{18.625, 162.25},
+		{28.625, 162.25},
+		{61.375, 142.25},
+		{78.625, 114.6095},
+		{98.625, 98.6095},
+		{126.375, 98.6095},
 	};
 	
 	private static double[][] CENTER_LEFT_TURNBACK = new double[][]{
@@ -53,12 +54,12 @@ public class AutoPaths {
 	};
 	
 	private static double[][] CENTER_LEFT_GRAB = new double[][]{
-		{113.58202247191011, 178.36332350049165},
-		{106.66516853932583, 185.70206489675516},
-		{96.10786516853932, 191.76450344149458},
-		{85.18651685393257, 196.2315634218289},
-		{75.72134831460673, 199.1032448377581},
-		{67.71235955056179, 198.78416912487708},
+		{92.5, 192.5},
+		{89.36, 194.5},
+		{86.36470588235294, 196.5},
+		{73.72134831460673, 198.5},
+		{70.72134831460673, 198.8},
+		{67.71235955056179, 198.8},
 	};
 	
 	private static double[][] LEFT_LEFT_SWITCH = new double[][]{
@@ -82,12 +83,11 @@ public class AutoPaths {
 	};
 	
 	private static double[][] CENTER_RIGHT_GRAB = new double[][]{
-//		{103.41369863013699, 139.07142857142858},
-//		{}
-		{96.10786516853932, 132.73549655850542},
-		{90.1865, 130.2684365},
-		{85.18651685393257, 128.2684365781711},
-		{75.72134831460673, 125.3967551622419},
+		{92.54117647058823, 131.375656167979},
+		{89.36470588235294, 129.45931758530182},
+		{86.36470588235294, 127.45931758530182},
+		{73.72134831460673, 125.3967551622419},
+		{70.71235955056179, 125.71583087512292},
 		{67.71235955056179, 125.71583087512292},
 	};
 	
@@ -691,10 +691,13 @@ public class AutoPaths {
 			double[][] rightReturnCube = new double[][]{
 				{66.2561797752809, 123.75936435868331},
 				{72.34520547945206, 124.8076923076923},
-				{88.4629213483146, 118.3770894788594},
-				{100.11235955056179, 107.1844494892168},
-				{115.40224719101123, 102.3961407491487},
-				{126.68764044943819, 103.13280363223609},
+				{88.4629213483146, 120.3770894788594},
+				{100.11235955056179, 115.1844494892168},
+				{110.40224719101123, 113},
+				{115.40224719101123, 111},
+				{120.40224719101123, 111.13280363223609},
+				{123.40224719101123, 111},
+				{126.68764044943819, 111.13280363223609},
 			};
 			FastPathPlanner fpp = getRightPath();
 			FastPathPlanner stage2 = new FastPathPlanner(CENTER_RIGHT_TURNBACK); // This path should have left and right inverted and negative!
