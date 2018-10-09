@@ -6,9 +6,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class GoodJoystick {
 	public Joystick driveStick;
 	public JoystickButton driveStickTrigger; 
+	public JoystickButton driveStickTopButton;
 	public GoodJoystick(int port){
 		driveStick = new Joystick(port);
 		driveStickTrigger = new JoystickButton(driveStick, 1);
+		driveStickTopButton = new JoystickButton(driveStick, 5);
 	}
 	public void seeAxis() {
 		SmartDashboard.putNumber("Raw X", driveStick.getX());
@@ -39,10 +41,18 @@ public class GoodJoystick {
 
 	//k = Robot.oi.driveStick.getY()/Robot.oi.driveStick.getX();
 	public double findRightPower(double x,double y) {
-			return y-x;
+		double rightPower = y-x;
+		if (driveStickTopButton.get()) {
+			return rightPower*Constants.DRIVE_SLOW_SCALAR;
+		}
+			return rightPower;
 	}
 	public double findLeftPower(double x,double y) {
-	        return y+x;
+		double leftPower = y+x;
+		if (driveStickTopButton.get()) {
+			return leftPower*Constants.DRIVE_SLOW_SCALAR;
+		}
+	        return leftPower;
 	}
 	//Robot.drive.setLeftMotor(Robot.oi.driveStick.getY() + Robot.oi.driveStick.getX());
 	//Robot.drive.setRightMotor(Robot.oi.driveStick.getY() - Robot.oi.driveStick.getX());
