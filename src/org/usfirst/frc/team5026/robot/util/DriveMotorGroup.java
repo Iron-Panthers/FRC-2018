@@ -52,6 +52,11 @@ public class DriveMotorGroup implements SpeedController {
 		
 		encoderMotor.configMotionCruiseVelocity(Constants.DRIVE_VELOCITY, Constants.kTimeoutMs);
 		encoderMotor.configMotionAcceleration(Constants.DRIVE_ACCELERATION, Constants.kTimeoutMs);
+		
+		encoderMotor.configContinuousCurrentLimit(10, 0); //Limit current to this after peak (amps, mili timeout)
+		encoderMotor.configPeakCurrentLimit(15, 0); //Peak current limit to stop at ''
+		encoderMotor.configPeakCurrentDuration(100, 0); //How long it has to be above peak current to go to cont. current limit (milliseconds)
+		encoderMotor.enableCurrentLimit(true); //Enables CurrentLimit
 
 		for (int i = 0; i < motors.length; i++) {
 			motors[i].follow(encoderMotor);
