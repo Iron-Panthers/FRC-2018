@@ -75,16 +75,19 @@ public class OI {
 
 	}
 	public void mapButtons(){
-//		stickBtnOne.whenPressed(new ReverseDrive());
+//		stickBtnOne.whenPressed(new ReverseDrive()); //Used in GoodJoystick for reverse driving
 //		stickBtnOne.whenReleased(new ReverseDrive());
 //		stickBtnTwo.whileHeld(new OuttakeCommand());
 		stickBtnTwo.toggleWhenPressed(new DriveShift());
 		stickBtnThree.whileHeld(new IntakeOuttakeCommand());
-		stickBtnFive.whenPressed(new ClimbForTime(3.));
+		stickBtnFour.whileHeld(new ClimbDown());
+//		stickBtnFive = used in GoodJoystick for quarter speed driving
+		stickBtnSix.whileHeld(new ClimbUp());
+//		stickBtnFive.whenPressed(new ClimbForTime(3.));
 //		stickBtnThree.whileHeld(new ElevatorToScale());
 //		stickBtnFour.whileHeld(new ElevatorToGround());
-		stickBtnSix.whileHeld(new ClimbUp());
-		stickBtnFour.whileHeld(new ClimbDown());
+		
+		
 //		stickBtnEight.whenPressed(new ClimbCommandGroup());
 		
 		boardBtnOne.whileHeld(new ElevatorSliding());
