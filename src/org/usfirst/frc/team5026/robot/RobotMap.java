@@ -22,7 +22,7 @@ public class RobotMap {
 	public static final int DRIVE_RIGHT_MOTOR_2 = 5;
 	public static final int DRIVE_RIGHT_MOTOR_3 = 6;
 	
-	public static final int TALON_SR_DRIVE_LEFT_MOTOR = 1;
+	public static final int TALON_SR_DRIVE_LEFT_MOTOR = 2;
 	public static final int TALON_SR_DRIVE_RIGHT_MOTOR = 0;
 	
 	public static final int ELEVATOR_JOYSTICK = 1;
