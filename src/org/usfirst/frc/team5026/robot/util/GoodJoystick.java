@@ -18,7 +18,7 @@ public class GoodJoystick {
 	}
 	//Robot.drive.useArcadeDrive(Robot.oi.driveStick.getX()*Constants.X_AXIS_MODIFIER, Robot.oi.driveStick.getY());
 
-	public double getValue() {
+	public double getWheel() {
 		return driveStick.getX();
 	}
 	

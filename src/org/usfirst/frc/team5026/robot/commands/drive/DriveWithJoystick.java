@@ -12,10 +12,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class DriveWithJoystick extends Command {
 	public double leftSpd;
 	public double rightSpd;
-	public double turn;
 	public double throttle;
-	public double angle;
-	public double radius = Constants.ROBOT_WIDTH;
+	public double wheel;
     public DriveWithJoystick() {
     	requires(Robot.drive);
         // Use requires() here to declare subsystem dependencies
@@ -28,7 +26,7 @@ public class DriveWithJoystick extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() { 
-    	Robot.oi.driveStick.seeAxis();
+    	Robot.oi.driveStick.seeAxis();/*
     	Vector v = Robot.oi.driveStick.findXY();
 //    	Robot.drive.useArcadeDrive(Robot.oi.joystick.findY(),Robot.oi.joystick.findX());
     	leftSpd = Robot.oi.driveStick.findLeftPower(v.getX(), v.getY());
@@ -36,24 +34,31 @@ public class DriveWithJoystick extends Command {
     	rightSpd = Robot.oi.driveStick.findRightPower(v.getX(), v.getY());
     	SmartDashboard.putNumber("right spd", rightSpd);
     	Robot.drive.setLeftSide(leftSpd);
-    	Robot.drive.setRightSide(rightSpd); 
+    	Robot.drive.setRightSide(rightSpd); */
     	
     	Robot.oi.driveStick.seeAxis();
     	throttle = -Robot.oi.driveStick.getThrottle();
-    	angle = Robot.oi.driveStick.getValue();
-    	turn = 1 - Math.abs(angle);
-    /*	if (angle > 0) {
-    		Robot.drive.setLeftSide(throttle * (turn + radius));
-    		Robot.drive.setRightSide(throttle * (turn - radius));
-    	} else if (angle < 0) {
-    		Robot.drive.setLeftSide(throttle * (turn - radius));
-    		Robot.drive.setRightSide(throttle * (turn + radius));
-    	}*/
+    	wheel = Robot.oi.driveStick.getWheel();
     	
-    	System.out.println("Value"+Robot.oi.driveStick.getValue());
-    	System.out.println("Throttle"+Robot.oi.driveStick.getThrottle());
-    	System.out.println("1." + (throttle * (turn + radius)));
-    	System.out.println("1." + (throttle * (turn - radius)));
+    	if (wheel > 0) {
+    		leftSpd = throttle;
+    		rightSpd = throttle * (1 - Math.abs(wheel));
+    	} else if (wheel < 0) {
+    		rightSpd = throttle;
+    		leftSpd = throttle * (1 - Math.abs(wheel));
+    	} else if (wheel == 0) {
+    		rightSpd = throttle;
+    		leftSpd = throttle;
+    	}
+    	
+    	Robot.drive.setLeftSide(leftSpd);
+    	Robot.drive.setRightSide(rightSpd);
+    	
+    	System.out.println("Throttle: " + throttle);
+    	System.out.println("Wheel: " + wheel);
+    	System.out.println("Right Speed: " + rightSpd);
+    	System.out.println("Left Speed" + leftSpd);
+
     	
     }
 
