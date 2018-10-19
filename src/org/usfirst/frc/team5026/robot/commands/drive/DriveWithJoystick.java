@@ -25,8 +25,7 @@ public class DriveWithJoystick extends Command {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() { 
-    	Robot.oi.driveStick.seeAxis();/*
+    protected void execute() { /*
     	Vector v = Robot.oi.driveStick.findXY();
 //    	Robot.drive.useArcadeDrive(Robot.oi.joystick.findY(),Robot.oi.joystick.findX());
     	leftSpd = Robot.oi.driveStick.findLeftPower(v.getX(), v.getY());
@@ -40,15 +39,12 @@ public class DriveWithJoystick extends Command {
     	throttle = Robot.oi.driveStick.getThrottle();
     	wheel = Robot.oi.driveStick.getWheel();
     	
-    	if (wheel > 0) {
-    		leftSpd = throttle;
-    		rightSpd = throttle * (1 - Math.abs(wheel));
-    	} else if (wheel < 0) {
-    		rightSpd = throttle;
-    		leftSpd = throttle * (1 - Math.abs(wheel));
-    	} else if (wheel == 0) {
-    		rightSpd = throttle;
-    		leftSpd = throttle;
+    	if (throttle != 0) {
+    		leftSpd = (Math.pow(throttle, 2)) * (1 + Math.pow(wheel, 3));
+    		rightSpd = (Math.pow(throttle, 2)) * (1 - Math.pow(wheel, 3));
+    	} else if (throttle == 0) {
+    		rightSpd = -wheel;
+    		leftSpd = wheel;
     	}
     	
     	Robot.drive.setLeftSide(leftSpd);
