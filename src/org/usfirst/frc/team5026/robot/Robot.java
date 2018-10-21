@@ -214,7 +214,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 //		hardware.elevatorMotor.set(ControlMode.MotionMagic, Constants.TICK_TARGET_TO_SCALE);
 		SmartDashboard.putNumber("Auto Encoder Position", hardware.elevatorMotor.getSelectedSensorPosition(0));
-		System.out.println("Elevator Closed? " + !Robot.hardware.elevatorLimit.get());
+//		System.out.println("Elevator Closed? " + !Robot.hardware.elevatorLimit.get());
 //		SmartDashboard.putNumber("Auto Talon Speed", hardware.elevatorMotor.getMotorOutputPercent());
 //		System.out.println(hardware.elevatorMotor.getSelectedSensorPosition(0));
 		Scheduler.getInstance().run();
@@ -260,7 +260,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Elevator Motor Voltage", hardware.elevatorMotor.getMotorOutputVoltage());
 		SmartDashboard.putNumber("Intake Motor Current", hardware.intakeM.getOutputCurrent());
 		SmartDashboard.putNumber("Intake Motor Voltage", hardware.intakeM.getMotorOutputVoltage());
-		System.out.println("Elevator Closed? " + !Robot.hardware.elevatorLimit.get());
+//		System.out.println("Elevator Closed? " + !Robot.hardware.elevatorLimit.get());
 		//Drive Motor Current and Voltage
 		SmartDashboard.putNumber("Joystick Raw X", oi.driveStick.driveStick.getX());
 		SmartDashboard.putNumber("Joystick Raw Y", oi.driveStick.driveStick.getY());

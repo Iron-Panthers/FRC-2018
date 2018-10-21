@@ -38,9 +38,11 @@ public class AutoPaths {
 	private static double[][] CENTER_RIGHT_PATH = new double[][]{
 		{18.625, 162.25},
 		{28.625, 162.25},
-		{61.375, 142.25},
-		{78.625, 114.6095},
-		{98.625, 98.6095},
+		{40.38904109589041, 154.566852367688},
+		{47.490410958904114, 131.51740947075209},
+		{72.34520547945206, 110.72771587743732},
+		{101.19452054794522, 97.1692200557103},
+		{114.95342465753426, 96.71727019498607},
 		{126.375, 98.6095},
 	};
 	
@@ -232,7 +234,7 @@ public class AutoPaths {
 			return CENTER_RIGHT;
 		}
 		CENTER_RIGHT = new FastPathPlanner(CENTER_RIGHT_PATH);
-		CENTER_RIGHT.calculate(5, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+		CENTER_RIGHT.calculate(6, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
 		CENTER_RIGHT.getLeftArclength();
 		CENTER_RIGHT.getRightArclength();
 		return CENTER_RIGHT;
