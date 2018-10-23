@@ -28,19 +28,21 @@ public class AutoPaths {
 	private static double stage2y4 = 40;
 	
 	private static double[][] CENTER_LEFT_PATH = new double[][]{
-		{18.625, 162.25},
-		{31.375, 162.25},
-		{51.375, 172.25},
-		{88.625, 217.8905},
-		{115.375, 216.8905},
-		{125.375, 217.8905},
+		{18.625, 162.25}, 
+		{31.375, 162.25}, 
+		{56.32941176470588, 201.4284776902887}, 
+		{88.625, 217.8905}, 
+		{115.375, 216.8905}, 
+		{125.375, 217.8905}, 
 	};
 	private static double[][] CENTER_RIGHT_PATH = new double[][]{
 		{18.625, 162.25},
 		{28.625, 162.25},
-		{61.375, 142.25},
-		{78.625, 114.6095},
-		{98.625, 98.6095},
+		{40.38904109589041, 154.566852367688},
+		{47.490410958904114, 131.51740947075209},
+		{72.34520547945206, 110.72771587743732},
+		{101.19452054794522, 97.1692200557103},
+		{114.95342465753426, 96.71727019498607},
 		{126.375, 98.6095},
 	};
 	
@@ -232,7 +234,7 @@ public class AutoPaths {
 			return CENTER_RIGHT;
 		}
 		CENTER_RIGHT = new FastPathPlanner(CENTER_RIGHT_PATH);
-		CENTER_RIGHT.calculate(5, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+		CENTER_RIGHT.calculate(6, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
 		CENTER_RIGHT.getLeftArclength();
 		CENTER_RIGHT.getRightArclength();
 		return CENTER_RIGHT;
@@ -277,11 +279,13 @@ public class AutoPaths {
 	public static FastPathPlanner[] getLeftSwitch2Cube() {
 		if (CENTER_LEFT_SWITCH_2_CUBE == null) {
 			double[][] leftReturnCube = new double[][]{
-				{67.34831460674157, 197.7939841089671},
-				{77.54157303370786, 198.8989784335982},
-				{100.11235955056179, 209.9489216799092},
-				{116.4943820224719, 216.9472190692395},
-				{127.05168539325842, 217.6838819523269},
+				{67.34831460674157, 197.7939841089671}, 
+				{72.34831460674157, 198.039841089671}, 
+				{77.54157303370786, 198.8989784335982}, 
+				{100.11235955056179, 209.9489216799092}, 
+				{116.4943820224719, 216.9472190692395}, 
+				{121.743820224719, 216.3472190692395}, 
+				{127.05168539325842, 217.6838819523269}, 
 			};
 			FastPathPlanner fpp = getLeftPath();
 			FastPathPlanner stage2 = new FastPathPlanner(CENTER_LEFT_TURNBACK); // This path should have left and right inverted and negative!
@@ -292,7 +296,7 @@ public class AutoPaths {
 			stage2.calculate(2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
 			grabCube.calculate(2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
 			goBackFromCube.calculate(2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
-			goBack.calculate(2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+			goBack.calculate(3, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
 			
 			reverseAndFlipPath(stage2);
 			flipPath(grabCube);
@@ -688,17 +692,40 @@ public class AutoPaths {
 	
 	public static FastPathPlanner[] getRightSwitch2Cube() {
 		if (CENTER_RIGHT_SWITCH_2_CUBE == null) {
-			double[][] rightReturnCube = new double[][]{
+			double[][] rightReturnCube = new double[][]{ //New one to test, 6 inches to the right (2 seconds for time)
 				{66.2561797752809, 123.75936435868331},
+				{69.0, 124.0},
 				{72.34520547945206, 124.8076923076923},
 				{88.4629213483146, 120.3770894788594},
-				{100.11235955056179, 115.1844494892168},
-				{110.40224719101123, 113},
-				{115.40224719101123, 111},
-				{120.40224719101123, 111.13280363223609},
-				{123.40224719101123, 111},
-				{126.68764044943819, 111.13280363223609},
+				{99.02022471910112, 113.59308807134894},
+				{112.48988764044942, 105.27257525083613},
+				{120.8629213483146, 104.5490523968785},
+				{125.77078651685392, 104},
+				{129.6, 104.5490523968785},
 			};
+//			double[][] rightReturnCube = new double[][]{ //Other new one to test, 10 inches to the right (3 seconds for time)
+//				{66.2561797752809, 123.75936435868331},
+//				{69.0, 124.0},
+//				{80.45393258426965, 121.91360089186178},
+//				{89.55505617977528, 115.04013377926422},
+//				{103.75280898876403, 105.99609810479376},
+//				{115.40224719101123, 102.01672240802677},
+//				{127.0, 100.0},
+//				{130, 101.2},
+//				{133.24044943820223, 100.9314381270903},
+//			};
+			
+//			double[][] rightReturnCube = new double[][]{ //Original
+//				{66.2561797752809, 123.75936435868331},
+//				{72.34520547945206, 124.8076923076923},
+//				{88.4629213483146, 120.3770894788594},
+//				{100.11235955056179, 115.1844494892168},
+//				{110.40224719101123, 113},
+//				{115.40224719101123, 111},
+//				{120.40224719101123, 111.13280363223609},
+//				{123.40224719101123, 111},
+//				{126.68764044943819, 111.13280363223609},
+//			};
 			FastPathPlanner fpp = getRightPath();
 			FastPathPlanner stage2 = new FastPathPlanner(CENTER_RIGHT_TURNBACK); // This path should have left and right inverted and negative!
 			FastPathPlanner grabCube = new FastPathPlanner(CENTER_RIGHT_GRAB);
