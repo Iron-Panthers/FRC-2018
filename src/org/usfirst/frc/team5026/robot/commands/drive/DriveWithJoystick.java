@@ -36,7 +36,7 @@ public class DriveWithJoystick extends Command {
     	Robot.drive.setRightSide(rightSpd); */
     	
     	Robot.oi.driveStick.seeAxis();
-    	throttle = Robot.oi.driveStick.getThrottle();
+    	throttle = 1 - Robot.oi.driveStick.getThrottle();
     	wheel = Robot.oi.driveStick.getWheel();
     	
     	if (throttle != 0) {
