@@ -695,11 +695,13 @@ public class AutoPaths {
 		if (CENTER_RIGHT_SWITCH_2_CUBE == null) {
 			double[][] rightReturnCube = new double[][]{ //New one to test, 6 inches to the right (2 seconds for time)
 				{66.2561797752809, 123.75936435868331},
-				{69.0, 124.0},
-				{72.34520547945206, 124.8076923076923},
-				{88.4629213483146, 120.3770894788594},
-				{99.02022471910112, 113.59308807134894},
-				{112.48988764044942, 105.27257525083613},
+				{68.0, 124.0},
+				{70.34520547945206, 124.8076923076923},
+				{70+19, 124 - 7},
+//				{88.4629213483146, 120.3770894788594},
+//				{99.02022471910112, 113.59308807134894},
+//				{112.48988764044942, 105.27257525083613},
+				{120 - 13, 104 + 7},
 				{120.8629213483146, 104.5490523968785},
 				{125.77078651685392, 104},
 				{129.6, 104.5490523968785},
@@ -736,7 +738,7 @@ public class AutoPaths {
 			stage2.calculate(2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
 			grabCube.calculate(2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
 			goBackFromCube.calculate(2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
-			goBack.calculate(2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+			goBack.calculate(3, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
 			
 			reverseAndFlipPath(stage2);
 			flipPath(grabCube);
