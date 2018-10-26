@@ -704,7 +704,7 @@ public class AutoPaths {
 				{120 - 13, 104 + 7},
 				{120.8629213483146, 104.5490523968785},
 				{125.77078651685392, 104},
-				{129.6, 104.5490523968785},
+//				{129.6, 104.5490523968785},
 			};
 //			double[][] rightReturnCube = new double[][]{ //Other new one to test, 10 inches to the right (3 seconds for time)
 //				{66.2561797752809, 123.75936435868331},
@@ -735,10 +735,10 @@ public class AutoPaths {
 			FastPathPlanner goBackFromCube = new FastPathPlanner(CENTER_RIGHT_GRAB);
 			FastPathPlanner goBack = new FastPathPlanner(rightReturnCube);
 			
-			stage2.calculate(2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+			stage2.calculate(3, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
 			grabCube.calculate(2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
 			goBackFromCube.calculate(2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
-			goBack.calculate(3, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+			goBack.calculate(2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
 			
 			reverseAndFlipPath(stage2);
 			flipPath(grabCube);
