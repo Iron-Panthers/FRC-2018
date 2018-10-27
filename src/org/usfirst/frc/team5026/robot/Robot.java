@@ -101,11 +101,11 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Elevator Reset Value", 0); // TODO to remove later
 		SmartDashboard.putNumber("Elevator Target", 1000); // TODO to remove later
 		oi.mapButtons();
-		autoChooser.addObject("My Auto", new DriveStraight());
+		autoChooser.addDefault("Center to Switch 2 Cube", new SequenceCenterToSwitch2Cube());
+//		autoChooser.addObject("My Auto", new DriveStraight());
 //		autoChooser.addDefault("Center to Switch good 2 cube", new SequenceCenterToSwitch2Cube());
 		autoChooser.addObject("Center to Switch", new SequenceCenterToSwitch1Cube());
 		autoChooser.addObject("Center to Switch Fast", new SequenceCenterToSwitch1CubeFast());
-		autoChooser.addDefault("Center to Switch 2 Cube", new SequenceCenterToSwitch2Cube());
 		autoChooser.addObject("Center to Switch 3 Cube", new SequenceCenterToSwitch3Cube());
 //		autoChooser.addObject("Center to Switch 3 Cube 2 Left", new CenterToLeftSwitch3Cube2());
 		autoChooser.addObject("Center to Switch 3 Cube 3 Left", new CenterToLeftSwitch3Cube3());
@@ -185,7 +185,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		Robot.elevator.motors.motor1.setSelectedSensorPosition(Robot.elevator.motors.motor1.getSelectedSensorPosition(Constants.kPIDLoopIdx), Constants.kPIDLoopIdx, Constants.kTimeoutMs);
+		Robot.elevator.motors.motor1.setSelectedSensorPosition(Constants.ELEVATOR_HIGH_POSITION, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
 		Robot.elevator.motors.motor1.set(ControlMode.Disabled, 1);
 		hardware.rightM1.configOpenloopRamp(Constants.AUTO_RAMP_RATE, Constants.kTimeoutMs);
 		hardware.leftM1.configOpenloopRamp(Constants.AUTO_RAMP_RATE, Constants.kTimeoutMs);
@@ -223,6 +223,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopInit() {
 		Robot.elevator.motors.motor1.set(ControlMode.MotionMagic, Robot.elevator.motors.motor1.getSelectedSensorPosition(Constants.kPIDLoopIdx));
+		Robot.elevator.motors.motor1.setSelectedSensorPosition(Constants.ELEVATOR_HIGH_POSITION, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
 		Robot.elevator.motors.motor1.set(ControlMode.Disabled, 1);
 //		hardware.rightM1.configOpenloopRamp(Constants.DRIVE_RAMP_RATE, Constants.kTimeoutMs);
 //		hardware.leftM1.configOpenloopRamp(Constants.DRIVE_RAMP_RATE, Constants.kTimeoutMs);
@@ -264,6 +265,7 @@ public class Robot extends IterativeRobot {
 		//Drive Motor Current and Voltage
 		SmartDashboard.putNumber("Joystick Raw X", oi.driveStick.driveStick.getX());
 		SmartDashboard.putNumber("Joystick Raw Y", oi.driveStick.driveStick.getY());
+		SmartDashboard.putNumber("Elevator Encoder", hardware.elevatorMotor.getSelectedSensorPosition(0));
 		Scheduler.getInstance().run();
 	}
 
