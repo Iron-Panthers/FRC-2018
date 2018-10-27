@@ -280,13 +280,11 @@ public class AutoPaths {
 	public static FastPathPlanner[] getLeftSwitch2Cube() {
 		if (CENTER_LEFT_SWITCH_2_CUBE == null) {
 			double[][] leftReturnCube = new double[][]{
-				{67.34831460674157, 197.7939841089671}, 
-				{72.34831460674157, 198.039841089671}, 
-				{77.54157303370786, 198.8989784335982}, 
+				{67.34831460674157, 198.7939841089671}, 
+				{77.34831460674157, 198.039841089671}, 
 				{100.11235955056179, 209.9489216799092}, 
-				{116.4943820224719, 216.9472190692395}, 
-				{121.743820224719, 216.3472190692395}, 
-				{127.05168539325842, 217.6838819523269}, 
+				{114.743820224719, 216.3472190692395}, 
+				{124.05168539325842, 216.6838819523269}, 
 			};
 			FastPathPlanner fpp = getLeftPath();
 			FastPathPlanner stage2 = new FastPathPlanner(CENTER_LEFT_TURNBACK); // This path should have left and right inverted and negative!
