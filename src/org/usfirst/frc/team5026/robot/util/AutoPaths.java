@@ -297,7 +297,7 @@ public class AutoPaths {
 			stage2.calculate(2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
 			grabCube.calculate(2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
 			goBackFromCube.calculate(2, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
-			goBack.calculate(3, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+			goBack.calculate(4, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
 			
 			reverseAndFlipPath(stage2);
 			flipPath(grabCube);
