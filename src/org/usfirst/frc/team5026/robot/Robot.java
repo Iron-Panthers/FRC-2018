@@ -102,32 +102,32 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Elevator Target", 1000); // TODO to remove later
 		oi.mapButtons();
 		autoChooser.addDefault("Center to Switch 2 Cube", new SequenceCenterToSwitch2Cube());
-		autoChooser.addObject("My Auto", new DriveStraight());
+//		autoChooser.addObject("My Auto", new DriveStraight());
 //		autoChooser.addDefault("Center to Switch good 2 cube", new SequenceCenterToSwitch2Cube());
-		autoChooser.addObject("Center to Switch", new SequenceCenterToSwitch1Cube());
-		autoChooser.addObject("Center to Switch Fast", new SequenceCenterToSwitch1CubeFast());
-		autoChooser.addObject("Center to Switch 3 Cube", new SequenceCenterToSwitch3Cube());
+//		autoChooser.addObject("Center to Switch", new SequenceCenterToSwitch1Cube());
+//		autoChooser.addObject("Center to Switch Fast", new SequenceCenterToSwitch1CubeFast());
+//		autoChooser.addObject("Center to Switch 3 Cube", new SequenceCenterToSwitch3Cube());
 //		autoChooser.addObject("Center to Switch 3 Cube 2 Left", new CenterToLeftSwitch3Cube2());
-		autoChooser.addObject("Center to Switch 3 Cube 3 Left", new CenterToLeftSwitch3Cube3());
-		autoChooser.addObject("Center to Switch 3 Cube 3 Right", new CenterToRightSwitch3Cube3());
-		autoChooser.addObject("Center to Switch 3 Cube 3", new SequenceCenterToSwitch3Cube3());
-		autoChooser.addObject("Left to Scale 1/1", new SequenceLeftToScaleSwitchSide());
-		autoChooser.addObject("Left to Switch No Elevator", new SequenceLeftToSwitchNoElevator());
-		autoChooser.addObject("Right to Switch No Elevator", new SequenceRightToSwitchNoElevator());
-		autoChooser.addObject("Left to Scale", new SequenceLeftToScale());
-		autoChooser.addObject("Right to Scale", new SequenceRightToScale());
-		autoChooser.addObject("Left to Scale 2 Cube", new SequenceLeftToScale2Cube());
-		autoChooser.addObject("Left to Scale 2 Cube Both", new SequenceLeftToScale2CubeTest());
-		autoChooser.addObject("Drive Turn for Left", new DriveRunLeft(-0.7, 0.5));
-		autoChooser.addObject("Drive Turn for Right", new DriveRunRight(-0.7, 0.5));
+//		autoChooser.addObject("Center to Switch 3 Cube 3 Left", new CenterToLeftSwitch3Cube3());
+//		autoChooser.addObject("Center to Switch 3 Cube 3 Right", new CenterToRightSwitch3Cube3());
+//		autoChooser.addObject("Center to Switch 3 Cube 3", new SequenceCenterToSwitch3Cube3());
+//		autoChooser.addObject("Left to Scale 1/1", new SequenceLeftToScaleSwitchSide());
+//		autoChooser.addObject("Left to Switch No Elevator", new SequenceLeftToSwitchNoElevator());
+//		autoChooser.addObject("Right to Switch No Elevator", new SequenceRightToSwitchNoElevator());
+//		autoChooser.addObject("Left to Scale", new SequenceLeftToScale());
+//		autoChooser.addObject("Right to Scale", new SequenceRightToScale());
+//		autoChooser.addObject("Left to Scale 2 Cube", new SequenceLeftToScale2Cube());
+//		autoChooser.addObject("Left to Scale 2 Cube Both", new SequenceLeftToScale2CubeTest());
+//		autoChooser.addObject("Drive Turn for Left", new DriveRunLeft(-0.7, 0.5));
+//		autoChooser.addObject("Drive Turn for Right", new DriveRunRight(-0.7, 0.5));
 //		autoChooser.addObject("Left to Scale (Prioritizes Switch)", new SequenceLeftToScaleSwitchSide());
 //		autoChooser.addObject("Right to Switch", new SequenceRightToScaleSwitchSide());
 //		autoChooser.addObject("Left to Switch 2 Cube", new SequenceLeftToSwitch2Cube());
 //		autoChooser.addObject("Left to Scale SwitchSide", new SequenceLeftToScaleSwitchSide());
 //		autoChooser.addObject("Right to Scale SwitchSide", new SequenceRightToScaleSwitchSide());
 		startPositionSelector.addDefault("Center", new ChooseStartPosition(StartPosition.CENTER));
-		startPositionSelector.addObject("Left", new ChooseStartPosition(StartPosition.LEFT));
-		startPositionSelector.addObject("Right", new ChooseStartPosition(StartPosition.RIGHT));
+//		startPositionSelector.addObject("Left", new ChooseStartPosition(StartPosition.LEFT));
+//		startPositionSelector.addObject("Right", new ChooseStartPosition(StartPosition.RIGHT));
 		SmartDashboard.putNumber("target", 100);
 		SmartDashboard.putNumber("max count", 50);
 		SmartDashboard.putNumber("tolerance", 69);
@@ -185,6 +185,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		Robot.drive.shiftHigh();
 		Robot.elevator.motors.motor1.setSelectedSensorPosition(Constants.ELEVATOR_HIGH_POSITION, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
 		Robot.elevator.motors.motor1.set(ControlMode.Disabled, 1);
 		hardware.rightM1.configOpenloopRamp(Constants.AUTO_RAMP_RATE, Constants.kTimeoutMs);
@@ -222,6 +223,7 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void teleopInit() {
+		drive.shiftLow();
 		Robot.elevator.motors.motor1.set(ControlMode.MotionMagic, Robot.elevator.motors.motor1.getSelectedSensorPosition(Constants.kPIDLoopIdx));
 		Robot.elevator.motors.motor1.setSelectedSensorPosition(Constants.ELEVATOR_HIGH_POSITION, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
 		Robot.elevator.motors.motor1.set(ControlMode.Disabled, 1);

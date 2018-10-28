@@ -56,8 +56,10 @@ public class AutoPaths {
 	};
 	
 	private static double[][] CENTER_LEFT_GRAB = new double[][]{
-		{95.66721044045677, 190.817094017094},
-		{92.5, 192},
+		{98.5, 188.5},
+		{98, 189},
+		{95.5, 190.5},
+		{92.5, 193},
 		{89.36, 194.5},
 		{86.36470588235294, 196.5},
 		{73.72134831460673, 198.5},
@@ -109,13 +111,17 @@ public class AutoPaths {
 
 	private static double[][] LEFT_SCALE_LEFT_START_SWITCH = new double[][]{
 		{18.625, 281.935},
-		{34.0, 281.935},
-		{103.41369863013699, 287.5034340659341},
-		{160.2246575342466, 289.2864010989011},
-		{222.36164383561646, 286.61195054945057},
-		{252.5424657534247, 281.26304945054943},
-		{272.95890410958907, 274.13118131868134},
-		{292.4876712328767, 261.6504120879121},
+		{34, 280},
+		{103.4, 277},
+		{160.2, 278},
+		{200.4, 280},
+		{252.5, 290},
+		{273+8, 290},
+		{300+10, 285},
+		{313+5, 280},
+		{323, 273},
+		{328, 265},
+		{328, 255},
 	};
 	
 	private static double[][] RIGHT_SCALE_RIGHT_START_SWITCH = new double[][]{
@@ -693,16 +699,14 @@ public class AutoPaths {
 		if (CENTER_RIGHT_SWITCH_2_CUBE == null) {
 			double[][] rightReturnCube = new double[][]{ //New one to test, 6 inches to the right (2 seconds for time)
 				{66.2561797752809, 123.75936435868331},
-				{68.0, 124.0},
-				{70.34520547945206, 124.8076923076923},
-				{70+19, 124 - 7},
-//				{88.4629213483146, 120.3770894788594},
-//				{99.02022471910112, 113.59308807134894},
-//				{112.48988764044942, 105.27257525083613},
-				{120 - 13, 104 + 7},
-				{120.8629213483146, 104.5490523968785},
-				{125.77078651685392, 104},
-//				{129.6, 104.5490523968785},
+				{70, 124.0},
+				{75, 122},
+				{80, 120},
+				{89, 117},
+				{98, 111},
+				{110, 108},
+				{116, 106},
+				{120, 106},
 			};
 //			double[][] rightReturnCube = new double[][]{ //Other new one to test, 10 inches to the right (3 seconds for time)
 //				{66.2561797752809, 123.75936435868331},
@@ -810,7 +814,7 @@ public class AutoPaths {
 			return LEFT_SCALE_LEFT_START_PATH_SWITCH;
 		}
 		LEFT_SCALE_LEFT_START_PATH_SWITCH = new FastPathPlanner(LEFT_SCALE_LEFT_START_SWITCH);
-		LEFT_SCALE_LEFT_START_PATH_SWITCH.calculate(8, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
+		LEFT_SCALE_LEFT_START_PATH_SWITCH.calculate(14, Constants.DELTA_TIME, Constants.ROBOT_WIDTH);
 		LEFT_SCALE_LEFT_START_PATH_SWITCH.getLeftArclength();
 		LEFT_SCALE_LEFT_START_PATH_SWITCH.getRightArclength();
 		return LEFT_SCALE_LEFT_START_PATH_SWITCH;

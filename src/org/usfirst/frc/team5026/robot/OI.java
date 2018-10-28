@@ -78,7 +78,7 @@ public class OI {
 //		stickBtnOne.whenPressed(new ReverseDrive()); //Used in GoodJoystick for reverse driving
 //		stickBtnOne.whenReleased(new ReverseDrive());
 //		stickBtnTwo.whileHeld(new OuttakeCommand());
-		stickBtnTwo.toggleWhenPressed(new DriveShift());
+		stickBtnTwo.whileHeld(new DriveShift());
 		stickBtnThree.whileHeld(new IntakeOuttakeCommand());
 		stickBtnFour.whileHeld(new ClimbDown());
 //		stickBtnFive = used in GoodJoystick for quarter speed driving
