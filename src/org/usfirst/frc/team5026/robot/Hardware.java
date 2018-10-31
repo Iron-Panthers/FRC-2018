@@ -6,12 +6,12 @@ import org.usfirst.frc.team5026.robot.util.ElevatorMotorGroup;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 //import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
-import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.Talon;
 
 public class Hardware {
@@ -23,7 +23,7 @@ public class Hardware {
 	public TalonSRX intakeM;
 	public TalonSRX rightM1;
 	public TalonSRX rightM2;
-	public TalonSRX rightM3;
+	public VictorSPX rightM3;
 	public TalonSRX leftM1;
 	public TalonSRX leftM2;
 	public TalonSRX leftM3;
@@ -50,7 +50,7 @@ public class Hardware {
 		intakeM = new TalonSRX(RobotMap.INTAKE_MOTOR);
 		rightM1 = new TalonSRX(RobotMap.DRIVE_RIGHT_MOTOR_1);
 		rightM2 = new TalonSRX(RobotMap.DRIVE_RIGHT_MOTOR_2);
-		rightM3 = new TalonSRX(RobotMap.DRIVE_RIGHT_MOTOR_3);
+		rightM3 = new VictorSPX(RobotMap.DRIVE_RIGHT_MOTOR_3);
 		leftM1 = new TalonSRX(RobotMap.DRIVE_LEFT_MOTOR_1);
 		leftM2 = new TalonSRX(RobotMap.DRIVE_LEFT_MOTOR_2);
 		leftM3 = new TalonSRX(RobotMap.DRIVE_LEFT_MOTOR_3);

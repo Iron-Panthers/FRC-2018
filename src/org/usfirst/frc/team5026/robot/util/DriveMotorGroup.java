@@ -2,6 +2,7 @@ package org.usfirst.frc.team5026.robot.util;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.IMotorController;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -14,16 +15,16 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class DriveMotorGroup implements SpeedController {
 	public TalonSRX motor1; 
-	public TalonSRX motor2;
-	public TalonSRX motor3;
-	public TalonSRX[] motors;
+	public IMotorController motor2;
+	public IMotorController motor3;
+	public IMotorController[] motors;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	public DriveMotorGroup(TalonSRX motor1, TalonSRX motor2, TalonSRX motor3) {
+	public DriveMotorGroup(TalonSRX motor1, IMotorController motor2, IMotorController motor3) {
 		this.motor1 = motor1;
 		this.motor2 = motor2;
 		this.motor3 = motor3;
-		motors = new TalonSRX[3];
+		motors = new IMotorController[3];
 		motors[0] = this.motor1;
 		motors[1] = this.motor2;
 		motors[2] = this.motor3;
@@ -31,14 +32,9 @@ public class DriveMotorGroup implements SpeedController {
 		this.motor3.follow(motor1);
 		setUp(motor1, motor2, motor3);
 	}
-	public void setUp(TalonSRX encoderMotor, TalonSRX... motors) {
-		encoderMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
+	public void setUp(TalonSRX encoderMotor, IMotorController... motors) {
 		encoderMotor.setSensorPhase(true);
 		encoderMotor.setInverted(false);
-		
-		encoderMotor.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 10, Constants.kTimeoutMs);
-		encoderMotor.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, Constants.kTimeoutMs);
-		
 		encoderMotor.configNominalOutputForward(0, Constants.kTimeoutMs);
 		encoderMotor.configNominalOutputReverse(0, Constants.kTimeoutMs);
 		encoderMotor.configPeakOutputForward(1, Constants.kTimeoutMs);
@@ -49,10 +45,8 @@ public class DriveMotorGroup implements SpeedController {
 		encoderMotor.config_kP(0, Constants.DRIVE_P, Constants.kTimeoutMs);
 		encoderMotor.config_kI(0, Constants.DRIVE_I, Constants.kTimeoutMs);
 		encoderMotor.config_kD(0, Constants.DRIVE_D, Constants.kTimeoutMs);
-		
 		encoderMotor.configMotionCruiseVelocity(Constants.DRIVE_VELOCITY, Constants.kTimeoutMs);
 		encoderMotor.configMotionAcceleration(Constants.DRIVE_ACCELERATION, Constants.kTimeoutMs);
-
 		for (int i = 0; i < motors.length; i++) {
 			motors[i].follow(encoderMotor);
 		}
@@ -61,20 +55,20 @@ public class DriveMotorGroup implements SpeedController {
 	}
 	public void setupBrakeMode(NeutralMode mode) {
 		motor1.setNeutralMode(mode);
-		for (TalonSRX s : motors) {
+		for (IMotorController s : motors) {
 			s.setNeutralMode(mode);
 		}
 	}
 	public void driveWithPower(double speed) {  // -1 to 1
 		motor1.set(ControlMode.PercentOutput, speed);
-		for (TalonSRX t : motors) {
+		for (IMotorController t : motors) {
 			SmartDashboard.putNumber("Motor "+t.getDeviceID(), t.getMotorOutputPercent());
 		}
 	}
 	public void driveWithTarget(double target) {
 		motor1.set(ControlMode.MotionMagic, target);
 		SmartDashboard.putNumber("Motor "+motor1.getDeviceID(), motor1.getMotorOutputPercent());
-		for (TalonSRX t : motors) {
+		for (IMotorController t : motors) {
 			SmartDashboard.putNumber("Motor "+t.getDeviceID(), t.getMotorOutputPercent());
 		}
 		
@@ -84,7 +78,7 @@ public class DriveMotorGroup implements SpeedController {
 	}
 	public void setInverted(boolean isInverted) {
 		motor1.setInverted(isInverted);
-		for (TalonSRX t : motors) {
+		for (IMotorController t : motors) {
 			t.setInverted(isInverted);
 		}
 	}
