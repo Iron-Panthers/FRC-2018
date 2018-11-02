@@ -18,7 +18,7 @@ public class RobotMap {
 	public static final int DRIVE_LEFT_MOTOR_1 = 1;
 	public static final int DRIVE_LEFT_MOTOR_2 = 2; //Change back to drive
 	public static final int DRIVE_LEFT_MOTOR_3 = 3;
-	public static final int DRIVE_RIGHT_MOTOR_1 = 4;
+	public static final int DRIVE_RIGHT_MOTOR_1 = 9;
 	public static final int DRIVE_RIGHT_MOTOR_2 = 5;
 	public static final int DRIVE_RIGHT_MOTOR_3 = 6;
 	
