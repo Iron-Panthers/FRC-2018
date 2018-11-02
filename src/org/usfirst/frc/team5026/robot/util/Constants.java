@@ -73,7 +73,7 @@ public class Constants {
 	public static final double DDRIVE_JOYSTICK_DEADZONE = 0.1; //used for built in differential drive
 	//Auto Code
 	public static final boolean IS_RIGHT_INVERTED = false;
-	public static final boolean IS_LEFT_INVERTED = true;
+	public static final boolean IS_LEFT_INVERTED = false;
 	public static final boolean IS_LEFT_SENSOR_INVERTED = true;
 	public static final boolean IS_RIGHT_SENSOR_INVERTED = true;
 	public static final int kTimeoutMs = 0; //Do not change
