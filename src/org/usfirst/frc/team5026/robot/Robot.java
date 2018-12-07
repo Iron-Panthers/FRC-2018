@@ -7,6 +7,9 @@
 
 package org.usfirst.frc.team5026.robot;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.usfirst.frc.team5026.robot.commands.autonomous.CenterToLeftSwitch3Cube3;
 import org.usfirst.frc.team5026.robot.commands.autonomous.CenterToRightSwitch3Cube3;
 import org.usfirst.frc.team5026.robot.commands.autonomous.ChooseStartPosition;
@@ -32,6 +35,7 @@ import org.usfirst.frc.team5026.robot.subsystems.Elevator;
 import org.usfirst.frc.team5026.robot.subsystems.IntakeSubsystem;
 import org.usfirst.frc.team5026.robot.util.Constants;
 import org.usfirst.frc.team5026.robot.util.StartPosition;
+import org.usfirst.frc.team5026.robot.util.arclib.ArcPath;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
@@ -186,13 +190,15 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		Robot.drive.shiftHigh();
+		hardware.leftM1.setSelectedSensorPosition(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
+		hardware.rightM1.setSelectedSensorPosition(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
 		Robot.elevator.motors.motor1.setSelectedSensorPosition(Constants.ELEVATOR_HIGH_POSITION, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
 		Robot.elevator.motors.motor1.set(ControlMode.Disabled, 1);
-		hardware.rightM1.configOpenloopRamp(Constants.AUTO_RAMP_RATE, Constants.kTimeoutMs);
-		hardware.leftM1.configOpenloopRamp(Constants.AUTO_RAMP_RATE, Constants.kTimeoutMs);
+	//	hardware.rightM1.configOpenloopRamp(Constants.AUTO_RAMP_RATE, Constants.kTimeoutMs);
+		//hardware.leftM1.configOpenloopRamp(Constants.AUTO_RAMP_RATE, Constants.kTimeoutMs);
 		drive.setupBrakeMode();
 		
-		autoCommand = autoChooser.getSelected();
+	//	autoCommand = autoChooser.getSelected();
 //		autoCommand = startPositionSelector.getSelected().chooser.getSelected().choice;
 
 		/*
@@ -201,7 +207,19 @@ public class Robot extends IterativeRobot {
 		 * = new MyAutoCommand(); break; case "Default Auto": default:
 		 * autonomousCommand = new ExampleCommand(); break; }
 		 */
+		ArrayList<Double> rightSideLengths = new ArrayList<Double>();
+		double[] rightLengths = {77.76219437530916};
+		for(int i = 0; i < rightLengths.length; i++) {
+			rightSideLengths.add(rightLengths[i]);
+		}
+		
+		ArrayList<Double> leftSideLengths = new ArrayList<Double>();
+		double[] leftLengths = {77.76219437530916};
+		for(int i = 0; i < leftLengths.length; i++) {
+			leftSideLengths.add(leftLengths[i]);
+		}
 
+		autoCommand = new ArcPath(rightSideLengths, leftSideLengths);
 		// schedule the autonomous command (example)
 		if (autoCommand != null) {
 			autoCommand.start();
