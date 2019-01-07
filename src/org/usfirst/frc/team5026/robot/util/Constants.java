@@ -87,6 +87,7 @@ public class Constants {
 	public static final double TICKS_TO_INCHES = 288; // Measured with 175 inch test, on practice robot by Adam
 	
 	
+	
 	public static final double DRIVE_WANTED_INCHES_PER_SECOND = 48;
 	public static final double DRIVE_WANTED_ACCELERATION_INCHES_PER_SECOND_SQUARED = 80;
 	public static int MOTION_MAGIC_VELOCITY(double inchesPerSecond) {
@@ -98,11 +99,11 @@ public class Constants {
 	public static final int DRIVE_VELOCITY = MOTION_MAGIC_VELOCITY(DRIVE_WANTED_INCHES_PER_SECOND); // Units of encoder ticks per 100 ms 
 	public static final int DRIVE_ACCELERATION = MOTION_MAGIC_ACCELERATION(DRIVE_WANTED_ACCELERATION_INCHES_PER_SECOND_SQUARED); // Units of encoder ticks per 100 ms per second
 	public static final double DRIVE_RAMP_RATE = 0; //seconds from 0 to max speed
-	public static final double ARCLIB_P = .5;//TODO testing
+	public static final double ARCLIB_P = 0;//TODO testing
 	//Camera stuff
 	public static int CAMERA_PIXEL_HEIGHT = 1920;
 	public static int CAMERA_PIXEL_WIDTH = 1080;
 	
 	public static double DELTA_TIME = 0.02;
-	public static double MAX_VELOCITY =7*12*0.1*TICKS_TO_INCHES; //measured in ticks per 100 milliseconds
+	public static double MAX_VELOCITY =7*12*0.1*TICKS_TO_INCHES; //measured in ticks per 100 milliseconds (7 ft/sec * 12 inches/ft * .1 100ms/sec * 288 ticks per inch) James said it was 7 ft/sec at max spd so im trusting him
 }

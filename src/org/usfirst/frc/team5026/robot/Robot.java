@@ -26,6 +26,7 @@ import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceLeft
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceLeftToSwitchNoElevator;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceRightToScale;
 import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.SequenceRightToSwitchNoElevator;
+import org.usfirst.frc.team5026.robot.commands.autonomous.sequences.arcLibTestOne;
 import org.usfirst.frc.team5026.robot.commands.drive.DriveRunLeft;
 import org.usfirst.frc.team5026.robot.commands.drive.DriveRunRight;
 import org.usfirst.frc.team5026.robot.subsystems.Climb;
@@ -175,7 +176,6 @@ public class Robot extends IterativeRobot {
 //		}
 		SmartDashboard.putBoolean("Elevator Closed?", !hardware.elevatorLimit.get());
 	}
-
 	/**
 	 * This autonomous (along with the autoChooser code above) shows how to select
 	 * between different autonomous modes using the dashboard. The sendable
@@ -207,19 +207,8 @@ public class Robot extends IterativeRobot {
 		 * = new MyAutoCommand(); break; case "Default Auto": default:
 		 * autonomousCommand = new ExampleCommand(); break; }
 		 */
-		ArrayList<Double> rightSideLengths = new ArrayList<Double>();
-		double[] rightLengths = {77.76219437530916};
-		for(int i = 0; i < rightLengths.length; i++) {
-			rightSideLengths.add(rightLengths[i]);
-		}
-		
-		ArrayList<Double> leftSideLengths = new ArrayList<Double>();
-		double[] leftLengths = {77.76219437530916};
-		for(int i = 0; i < leftLengths.length; i++) {
-			leftSideLengths.add(leftLengths[i]);
-		}
 
-		autoCommand = new ArcPath(rightSideLengths, leftSideLengths);
+		autoCommand = new arcLibTestOne();
 		// schedule the autonomous command (example)
 		if (autoCommand != null) {
 			autoCommand.start();

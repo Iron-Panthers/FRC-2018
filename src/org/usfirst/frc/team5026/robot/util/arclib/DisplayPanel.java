@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
-public class DisplayPanel extends JPanel implements ActionListener {
+public class DisplayPanel extends JPanel implements ActionListener, MouseListener {
 	protected JTextField xString;
 	protected JTextField yString;
 	protected JTextField index;
@@ -25,6 +25,8 @@ public class DisplayPanel extends JPanel implements ActionListener {
 	public static int arcCounter = 0;
 	public boolean backwardsArc = false;
 	boolean thisArcDriveReversed;
+	public boolean mouseClickNotPainted;
+	public boolean coordinatesAddedByClick;
 	
 	public DisplayPanel() {
 
@@ -33,29 +35,18 @@ public class DisplayPanel extends JPanel implements ActionListener {
 		
 		b = new JButton("create arc");
 		b.addActionListener(this);
-		backwards = new JButton("toggle backwards/forwards");
+		backwards = new JButton("toggle direcion switcher");
 		backwards.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(backwardsArc == false) {
-					backwardsArc = true;
-				}
-				else {
-					backwardsArc = false;
-				}
+				backwardsArc = !backwardsArc;
 				System.out.println(backwardsArc);
 			}
 		});
 		saver = new JButton("save path");
 		saver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("left wheel distances: ");
-				for(int i = 0; i < arcs.size(); i++) {
-					System.out.println(arcs.get(i).leftWheelDistance + ", ");
-				}
-				System.out.println("right wheel distances: ");
-				for(int i = 0; i < arcs.size(); i++) {
-					System.out.println(arcs.get(i).rightWheelDistance + ", ");
-				}
+				@SuppressWarnings("unused")
+				FormattedArcList printer = new FormattedArcList(arcs);
 			}
 		});
 //		saver.addActionListener(new ActionListener() {
@@ -131,6 +122,7 @@ public class DisplayPanel extends JPanel implements ActionListener {
 
 		// Add contents to the window.
 		frame.add(panel);
+		panel.addMouseListener(panel);
 		// Display the window.
 		frame.setSize(1240, 720);
 		frame.setVisible(true);
@@ -160,17 +152,24 @@ public class DisplayPanel extends JPanel implements ActionListener {
 			// add a new arc to the array using the point and index that the user typed in
 			if(!(xString.getText().matches("REMOVE"))) {
 				// store user inputs
-				tempX = Double.parseDouble(xString.getText());
-				tempY = Double.parseDouble(yString.getText());
+				if(!coordinatesAddedByClick) {
+					tempX = Double.parseDouble(xString.getText());
+					tempY = Double.parseDouble(yString.getText());
+				}
 				
 				//add the arc based on previous arc values or known values if its the first arc
-				if (indexInt == 0)
-					arcs.add(indexInt, new Arc(0, 0, tempX, tempY, 1000000000, -0.00000001, -0.0001, backwardsArc));
-				else
+				if (indexInt == 0) {
+					double tempPx = (tempX > 0) ? -0.00000001 : 0.00000001;
+					double tempPy = (tempY > 0) ? -0.0001 : 0.0001;
+					arcs.add(indexInt, new Arc(0, 0, tempX, tempY, 1000000000, tempPx, tempPy, backwardsArc));
+				}
+					
+				else {
 					arcs.add(indexInt,
 							new Arc(arcs.get(indexInt - 1).c, arcs.get(indexInt - 1).d, tempX, tempY,
 									arcs.get(indexInt - 1).endSlope, arcs.get(indexInt - 1).nextTestX,
 									arcs.get(indexInt - 1).nextTestY, backwardsArc));
+				}
 			}
 			
 			//remove an arc if "REMOVE" is entered
@@ -187,8 +186,10 @@ public class DisplayPanel extends JPanel implements ActionListener {
 					double otherTempX = arcs.get(0).c;
 					double otherTempY = arcs.get(0).d;
 					tempArcIsBackwards = arcs.get(0).isBackwards;
+					double otherTempPx = (otherTempX > 0) ? -0.00000001 : 0.00000001;
+					double otherTempPy = (otherTempY > 0) ? -0.0001 : 0.0001;
 					arcs.remove(0);
-					arcs.add(0, new Arc(0, 0, otherTempX, otherTempY, 1000000000, -0.00000001, -0.0001, tempArcIsBackwards));
+					arcs.add(0, new Arc(0, 0, otherTempX, otherTempY, 1000000000, otherTempPx, otherTempPy, tempArcIsBackwards));
 				}
 				
 				else {
@@ -201,16 +202,12 @@ public class DisplayPanel extends JPanel implements ActionListener {
 									arcs.get(i - 1).endSlope, arcs.get(i - 1).nextTestX,
 									arcs.get(i - 1).nextTestY, tempArcIsBackwards));
 				}
-				if(tempArcIsBackwards && thisArcDriveReversed) {
-					thisArcDriveReversed = false;
-					arcs.get(i).robotIsReversed = thisArcDriveReversed;
+				//this bit of code keeps track of the front/back direction the robot is traveling and stores it in the arc 
+				//so it can be used to calculate wheel distances
+				if(tempArcIsBackwards) {
+					thisArcDriveReversed = !thisArcDriveReversed;
 				}
-			
-				else if(tempArcIsBackwards) {
-					thisArcDriveReversed = true;
-					arcs.get(i).robotIsReversed = thisArcDriveReversed;
-					System.out.println("marker 1");
-				}
+				arcs.get(i).robotIsReversed = thisArcDriveReversed;
 				arcs.get(i).recalibrateDistances();
 			}
 
@@ -234,10 +231,12 @@ public class DisplayPanel extends JPanel implements ActionListener {
 		//rewrite display
 		displayArea.setText("");
 		for (int i = 0; i < arcs.size(); i++) {
-			displayArea.append("Arc " + i + "; 1st point: " + arcs.get(i).a + "," + arcs.get(i).b + "; 2nd point: " + arcs.get(i).c + "," + arcs.get(i).d + "; backwards: " + arcs.get(i).isBackwards);
+			displayArea.append("Arc " + i + "; 1st point: " + arcs.get(i).a + "," + arcs.get(i).b + "; 2nd point: " + arcs.get(i).c + "," + arcs.get(i).d);
 			displayArea.append("\n");
 		}
 
+		coordinatesAddedByClick = false;
+		mouseClickNotPainted = false;
 		//redraw the arcs. As far as I can tell this just calls PaintComponent()
 		repaint();
 	}
@@ -285,6 +284,55 @@ public class DisplayPanel extends JPanel implements ActionListener {
 		//draw the x and y axis
 		g.drawLine(620, 0, 620, 720);
 		g.drawLine(0, 500, 1240, 500);
+		
+		if(mouseClickNotPainted) {
+			g.drawRect((int) (tempX + 620), (int) (500 - tempY), 3, 3);
+		}
 
+	}
+
+
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		System.out.println("MouseEvent fired");
+		mouseClickNotPainted = true;
+		coordinatesAddedByClick = true;
+		tempX = arg0.getX() - 620;
+		tempY = 500 - arg0.getY();
+		repaint();
+	}
+
+
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

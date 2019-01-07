@@ -1,7 +1,7 @@
 package org.usfirst.frc.team5026.robot.util.arclib;
 
 public class Arc {
-	public double widthBetweenWheels = 1;
+	public double widthBetweenWheels = 48; //inches
 	public double a;
 	public double b;
 	public double c;
@@ -75,7 +75,7 @@ public class Arc {
 		
 		//now make the angle the long part instead of the short part if this new test coordinate angle is bigger than the current angle. Remember, it should be smaller,
 		//because the test coordinate is essentially "after" (a,b) on the path, so the arc to (c,d) should be smaller
-		System.out.println("intitial angle: " + angle);
+//		System.out.println("intitial angle: " + angle);
 		if(!isBackwards) {
 			if(angle > 0) {
 				if(testAngle > angle) 
@@ -96,7 +96,7 @@ public class Arc {
 					angle = angle + 2*Math.PI;
 			}
 		}
-		System.out.println("angle: " + angle);
+//		System.out.println("angle: " + angle);
 		
 		//finds distances for the inside and outside wheels to travel
 		arcLength = angle*radius;
@@ -220,7 +220,6 @@ public class Arc {
 	}
 	public void recalibrateDistances() {
 		if(robotIsReversed) {
-			System.out.println("marker");
 			double tempRightWheelDistance = rightWheelDistance;
 			rightWheelDistance = -leftWheelDistance;
 			leftWheelDistance = -tempRightWheelDistance;
